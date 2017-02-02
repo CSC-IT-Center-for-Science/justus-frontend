@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fi" data-ng-app="justusApp" data-ng-controller="APIController">
+<head>
+    <!-- bootstrap :: the  first 3 must be first -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="js/generic.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/codes.js"></script>
+    <script src="js/justus.app.js"></script>
+    <script src="js/api.service.js"></script>
+    <script src="js/api.controller.js"></script>
+
+    <link rel="stylesheet" href="css/justus.css">
+
+    <title>{{i18n.header.title[lang]}}</title>
+</head>
+<body class="container-fluid">
+
+  <div class="row">
+    <div class="col-xs-6">
+      <ui-select theme="bootstrap" data-ng-model="meta.tables.selected.name" on-select="useTaulu($select.selected.name)">
+        <ui-select-match class="ui-select-match" placeholder="">
+          <b>{{ $select.selected.name }}</b>
+        </ui-select-match>
+        <ui-select-choices repeat="o in meta.tables | filter: $select.search">
+          {{o.name}}
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="col-xs-6 text-right">
+      other side
+    </div>
+  </div>
+
+  <div class="row form-control">
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th data-ng-repeat="c in table.columns">{{c.name}}</th>
+            <th><i class="fa fa-refresh" aria-hidden="true" data-ng-model="btnget" data-ng-click="useHae()" title="päivitä"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="d in data track by d.ID">
+            <td data-ng-repeat="c in table.columns">
+              <span data-ng-if="c.name==table.pkcol"/>{{d[c.name]}}</span>
+              <input type="text" class="form-control input-sm" name="{{c.name}}" data-ng-model="d[c.name]" data-ng-if="c.name!=table.pkcol">
+            </td>
+            <td>
+              <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="usePaivita(d[table.pkcol],table.pkcol)" title="tallenna"></button>
+              <button class="fa fa-trash-o" aria-hidden="true" data-ng-click="usePoista(d[table.pkcol])" title="poista"></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <form name="myformuusi">
+              <!-- input type="hidden" data-ng-model="hideme" data-ng-init="dnew.hideme=true" -->
+              <td data-ng-repeat="c in table.columns">
+                <input type="text" class="form-control input-sm" data-ng-model="dnew[c.name]" data-ng-if="c.name!=table.pkcol">
+              </td>
+              <td>
+                <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="useLisaa()" title="Lisää data"></button>
+              </td>
+            </form>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+  <pre>
+  lang: {{lang}}
+  table: {{table}}
+  rawdata: {{rawdata}}
+  data: {{data}}
+  dnew: {{dnew}}
+  meta: {{meta}}
+  </pre>
+    </div>
+  </div>
+
+</body>
+</html>

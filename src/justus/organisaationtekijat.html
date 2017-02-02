@@ -1,0 +1,157 @@
+
+<!-- Kenttä: Julkaisun tekijöiden lukumäärä -->
+<div class="row form-group">
+  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisuntekijoidenlukumaara[lang]}}
+    <i class="glyphicon glyphicon-info-sign justus-info"
+     data-popover-trigger="'mouseenter'" data-popover-placement="right"
+     data-uib-popover="{{i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
+     data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]"></i>
+    <span class="justus-required-star">*</span>
+  </div>
+  <div class="col-xs-8 justus-data justus-required"
+   data-ng-model="req_julkaisuntekijoidenlukumaara" data-ng-required="requiredHighlight && !justus.julkaisuntekijoidenlukumaara">
+    <div class="row">
+      <div class="col-xs-5 col-sm-2">
+        <input type="text" class="form-control justus-required" data-ng-required="1==0"
+         data-ng-model="justus.julkaisuntekijoidenlukumaara"
+         size="2" pattern="^[0-9]*$">
+      </div>
+      <div class="col-xs-6 col-sm-9 justus-data text-right">
+        <input type="button" class="justus-btn justus-btn-default btn-sm"
+         data-ng-click="useKopioiTekijat(justus.tekijat)"
+         data-ng-show="justus.tekijat && !(justus.organisaationtekijat[0].sukunimi || justus.organisaationtekijat[0].etunimi)"
+         value="{{i18n.content.form.organisaationtekijat.kopioi[lang]}}"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.organisaationtekijat.kopioi.tooltip[lang]}}">
+      </div>
+      <div class="col-xs-1 col-sm-1 pull-right text-right">
+        <i class="fa fa-arrow-left" data-ng-if="requiredHighlight && !justus.julkaisuntekijoidenlukumaara"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Kenttä: Organisaation tekijät -->
+<div class="row form-group">
+  <div class="col-xs-4 justus-title">{{i18n.content.form.organisaationtekijat[lang]}}
+    <i class="glyphicon glyphicon-info-sign justus-info"
+     data-popover-trigger="'mouseenter'" data-popover-placement="right"
+     data-uib-popover="{{i18n.content.form.organisaationtekijat.tooltip[lang]}}"
+     data-ng-show="i18n.content.form.organisaationtekijat.tooltip[lang]"></i>
+    <span class="justus-required-star">*</span>
+  </div>
+  <div class="col-xs-8 justus-data">
+    <div data-ng-repeat="i in justus.organisaationtekijat track by $index"
+     class="row no-gutter justus-required"
+     data-ng-model="req_organisaationtekijat[$index]"
+     data-ng-required="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimi
+       && justus.organisaationtekijat[$index].alayksikot[0]
+       )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" -->
+      <div class="col-xs-11">
+        <div class="row no-gutter">
+          <div class="col-xs-12 col-sm-6">
+            <input type="text" class="form-control justus-required" data-ng-required="1==0"
+             data-ng-model="justus.organisaationtekijat[$index].sukunimi"
+             placeholder="{{i18n.content.form.organisaationtekijat.sukunimi.picktip[lang]}}">
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <input type="text" class="form-control justus-required" data-ng-required="1==0"
+             data-ng-model="justus.organisaationtekijat[$index].etunimi"
+             placeholder="{{i18n.content.form.organisaationtekijat.etunimi.picktip[lang]}}">
+          </div>
+        </div>
+        <div class="row no-gutter">
+          <div class="col-xs-12 col-sm-6">
+            <div data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot track by $index"
+             data-ng-init="pIx=$parent.$index; pay=justus.organisaationtekijat[pIx].alayksikot" class="row">
+              <div class="col-xs-9 col-sm-9">
+                <input type="hidden" data-ng-model="pay[$index]">
+                <input type="text" class="form-control"
+                 data-ng-model="lab_organisaationtekijat[pIx].alayksikot$index"
+                 data-ng-value="pay[$index]+' '+getCode('oppilaitokset',pay[$index]).selite[lang]"
+                 data-ng-show="pay[$index]"
+                 data-ng-click="pay[$index]=''">
+                <!--
+                {{pIx}}-{{$index}}({{pay.length}})-
+                -{{justus.organisaationtekijat[$parent.$index].alayksikot}}={{pay}}-
+                -{{justus.organisaationtekijat[$parent.$index].alayksikot[$index]}}={{a}}
+                -->
+                <ui-select data-ng-model="alayksikot.selected" data-ng-hide="pay[$index]"
+                  on-select="useOrganisaationtekijatAlayksikko(pIx,$index,$select.selected)"
+                  theme="bootstrap">
+                  <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.organisaationtekijat.alayksikko.picktip[lang]}}">
+                    {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                  </ui-select-match>
+                  <ui-select-choices repeat="o in getCode('oppilaitokset','10056').alatyypit | filter: $select.search">
+                    {{o.arvo}} {{o.selite[lang]}}
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <img src="img/miinusikoni.png" data-ng-click="pay.splice($index, 1)"
+                 class="justus-btn" title="poista alayksikko" alt="-"
+                 data-ng-hide="pay.length<2">
+                <img src="img/plusikoni.png" data-ng-click="pay.push('')"
+                  class="justus-btn" title="lisaa alayksikko" alt="+"
+                  data-ng-show="($index == pay.length-1 && pay[$index]!='')">
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-4"><!-- nb! ei pakollinen vielä -->
+            <input type="text" class="form-control justus-required" data-ng-required="1==0" data-orcid-directive=""
+             data-ng-model="justus.organisaationtekijat[$index].orcid"
+             data-ng-pattern="condition.orcid.pattern"
+             placeholder="{{i18n.content.form.organisaationtekijat.orcid.picktip[lang]}}">
+          </div>
+          <div class="col-xs-3 col-sm-2">
+            <img src="img/miinusikoni.png" data-ng-click="justus.organisaationtekijat.splice($index, 1)"
+             class="justus-btn" title="{{i18n.content.form.organisaationtekijat.poista.tooltip[lang]}}"
+             alt="{{i18n.content.form.organisaationtekijat.poista[lang]}}"
+             data-ng-hide="justus.organisaationtekijat.length<2">
+            <img src="img/plusikoni.png" data-ng-click="justus.organisaationtekijat.push({}); justus.organisaationtekijat[justus.organisaationtekijat.length-1].alayksikot = [''];"
+             class="justus-btn" title="{{i18n.content.form.organisaationtekijat.lisaa.tooltip[lang]}}"
+             alt="{{i18n.content.form.organisaationtekijat.lisaa[lang]}}"
+             data-ng-hide="$index < justus.organisaationtekijat.length-1">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 pull-right text-right">
+        <i class="fa fa-arrow-left"
+         data-ng-if="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimi
+          && justus.organisaationtekijat[$index].alayksikot[0]
+          )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" --></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" data-ng-if="!isValid('organisaationtekijat') || !isJustusValid()">
+  <div class="col-xs-4">
+  </div>
+  <div class="col-xs-6">
+    <b data-ng-bind="i18n.content.taytaviela[lang]"></b>
+    (<a style="cursor:pointer" data-ng-click="useRequiredHighlight()"
+      data-ng-bind="!requiredHighlight?i18n.content.taytaviela.korosta[lang]:i18n.content.taytaviela.poistakorostus[lang]"></a>)
+    <div class="justus-required" style="background:lightgray; color:red; border:1px solid red; padding:15px;">
+      <span data-ng-repeat="o in getInvalids()">
+        <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
+        <br>
+      </span>
+      <span data-ng-if="!isValid('organisaationtekijat')">
+        <i data-ng-bind="i18n.content.form.organisaationtekijat[lang]"></i>
+      </span>
+    </div>
+  </div>
+</div -->
+
+<!-- JATKA -->
+<div class="row form-group">
+  <div class="col-xs-12">
+    <div class="justus-btn-primary btn-lg btn-block active" data-ng-show="isValid('organisaationtekijat') && isJustusValid()"
+     data-ng-click="useJatka()"><img data-ng-src="img/jatka,{{lang}}.png" alt="{{i18n.content.jatka[lang]}}"></div>
+    <!-- div class="justus-btn-primary btn-lg btn-block active" data-ng-show="isValid('organisaationtekijat') && isJustusValid()"
+     data-ng-click="useJatka()">{{i18n.content.jatka[lang]}}</div -->
+    <!-- div class="justus-btn-primary btn-lg btn-block disabled" data-ng-show="!isValid('organisaationtekijat') || !isJustusValid()"
+     data-ng-click="useRequiredHighlight()">{{i18n.content.jatka[lang]}}</div -->
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<!-- julkaisutyyppi pääluokka -->
+<div class="row form-group"
+ data-ng-sh="" data-ow="(julkaisutyyppi_paa == null || julkaisutyyppi_paa == '')">
+  <div class="col-xs-12">
+    <div class="row" data-ng-repeat="o in codes.julkaisutyypit | orderBy: 'arvo'"
+      data-ng-if="o.arvo=='A' || o.arvo=='B' || o.arvo=='C' || o.arvo=='D' || o.arvo=='E' || o.arvo=='G'"
+    >
+      <div class="col-xs-12">
+        <div class="col-xs-12 justus-btn justus-btn-tyyppi" data-ng-class="{'active': julkaisutyyppi_paa == o.arvo}"
+        data-ng-click="useJulkaisutyyppiPaa(o.arvo);">{{o.selite[lang]}}</div>
+        <!-- julkaisutyyppi alaluokka -->
+        <div class="row form-group"
+         data-ng-show="julkaisutyyppi_paa == o.arvo">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-11">
+            <input type="hidden" data-ng-model="justus.julkaisutyyppi">
+            <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
+              <div class="col-xs-12 justus-btn justus-btn-tyyppi" data-ng-class="{'active': justus.julkaisutyyppi == a.arvo}"
+               data-ng-click="useJulkaisutyyppi(a.arvo); useVaihe(3);">
+                {{a.selite[lang]}}
+                <i class="fa fa-info-circle"
+                data-popover-trigger="'mouseenter'" data-popover-placement="right"
+                data-uib-popover="{{a.kuvaus[lang]}}"
+                data-ng-show="a.kuvaus[lang]"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

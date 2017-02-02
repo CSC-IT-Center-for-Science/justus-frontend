@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12 col-md-7">
+    <div><a href="./"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a></div>
+  </div>
+  <div class="col-xs-12 col-md-5 pull-right text-right">
+    <i>Lauri</i>, {{getCode('oppilaitokset',"10056").selite[lang]}} | {{i18n.header.logout[lang]}}
+    <br>
+    <span><a href="#" data-ng-click="alert('ohje?')">
+      {{i18n.header.help[lang]}}
+      <i class="glyphicon glyphicon-info-sign justus-info"
+      data-popover-trigger="'mouseenter'" data-popover-placement="bottom"
+      data-uib-popover="ohje?"></i>
+    </a></span>
+    <span>|</span>
+    <span data-ng-show="lang!='FI'"><a href="#" data-ng-click="lang='FI'">{{i18n.header.lang.FI}}</a></span>
+    <span data-ng-show="lang!='FI'">|</span>
+    <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="lang='SV'">{{i18n.header.lang.SV}}</a></span>
+    <span data-ng-show="lang=='FI'">|</span>
+    <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="lang='EN'">{{i18n.header.lang.EN}}</a></span>
+  </div>
+</div>

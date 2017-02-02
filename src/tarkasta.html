@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fi" data-ng-app="justusApp" data-ng-controller="InspectController">
+<head>
+    <!-- bootstrap :: the  first 3 must be first -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="js/generic.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/codes.js"></script>
+    <script src="js/justus.app.js"></script>
+    <script src="js/api.service.js"></script>
+    <script src="js/justus.service.js"></script>
+    <script src="js/inspect.controller.js"></script>
+
+    <link rel="stylesheet" href="css/justus.css">
+
+    <title>{{i18n.header.title[lang]}}</title>
+</head>
+<body class="container-fluid">
+
+<div class="row">
+<div class="col-xs-12 content">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-7">
+      <img src="img/justus_logo.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
+    </div>
+    <div class="col-xs-12 col-md-5 pull-right text-right">
+      Essi Esimerkki, {{getCode('oppilaitokset',"01901").selite[lang]}} | {{i18n.content.logout[lang]}}
+      <br>
+      <span data-ng-show="lang!='FI'"><a href="#" data-ng-click="lang='FI'">{{i18n.content.lang.FI}}</a></span>
+      <span data-ng-show="lang!='FI'">|</span>
+      <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="lang='SV'">{{i18n.content.lang.SV}}</a></span>
+      <span data-ng-show="lang=='FI'">|</span>
+      <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="lang='EN'">{{i18n.content.lang.EN}}</a></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>OMAT TALLENNUKSET</h3>
+    </div>
+  </div>
+
+  <div class="row justus-block-alter">
+    <div class="col-xs-12">
+      <div style="float:left;">
+        <h4 class="justus-btn-emphasized" onclick="window.location='justus.html'">
+          <i class="fa fa-download fa-3x" aria-hidden="true"></i>
+          <div style="float:right;">
+            TALLENNA UUSI<br>
+            JULKAISU
+          </div>
+        </h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-control">
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>JulkaisuID</th>
+            <th>Julkaisun nimi</th>
+            <th>Julkaisun tekijät</th>
+            <th>Julkaisuvuosi</th>
+            <th>Muokattu</th>
+            <th>Viimeisin muokkaaja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="(k,d) in data track by k">
+            <td>
+              <span style="font-size:smaller; color:#888888;">ID: {{k}}</span>
+              <br>{{d.SA_Julkaisut.DOI}}
+            </td>
+            <td>
+              {{d.SA_Julkaisut.JulkaisunNimi}}
+            </td>
+            <td>
+              {{d.SA_Julkaisut.TekijatiedotTeksti}}
+            </td>
+            <td>
+              {{d.SA_Julkaisut.JulkaisuVuosi}}
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <!-- td>
+              <button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button>
+              <button data-ng-click="usePoista(d[table.pkcol])">Poista</button>
+            </td -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <br>
+    </div>
+  </div>
+
+  <div data-ng-include src="'footer.html'"></div>
+
+</div>
+</div>
+
+</body>
+</html>
