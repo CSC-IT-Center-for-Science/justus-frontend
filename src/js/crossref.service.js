@@ -21,9 +21,9 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
             angular.forEach(kobj.title, function(tobj,tkey){
               obj.title = tobj;
             });
-            obj.doi = kobj.DOI;
-            obj.identifier = kobj.DOI;
-            obj.issn = kobj.ISSN;
+            obj.doi = kobj.DOI; //undefined ok, jos puuttuu!
+            obj.identifier = kobj.DOI; //undefined ok, jos puuttuu!
+            if (kobj.issn) obj.issn = kobj.ISSN; // saa puuttuakin
             obj.author = "";
             angular.forEach(kobj.author, function(aobj,akey){
               if(obj.author.length>0) obj.author+="; ";

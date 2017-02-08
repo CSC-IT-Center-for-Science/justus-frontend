@@ -47,19 +47,17 @@ body {
     max-width: 968px;
   }
 }
+*/
 @media (min-width: 1200px){
   .content {
     max-width: 1170px;
   }
 }
-*/
-/*
 @media (min-width: 1580px){
   .content {
     max-width: 1170px;
   }
 }
-*/
 .justus-footer {
   background-color: #99c2c8;
   color: #FFFFFF;
@@ -137,6 +135,7 @@ body {
 .justus-btn {
   cursor: pointer;
   text-align: center;
+  border-radius: 6px;
 }
 .justus-btn.disabled {
   cursor: not-allowed;
@@ -162,6 +161,7 @@ body {
 .justus-btn-stage {
   background-color: #99C2C8;
   color: #FFFFFF;
+  font-size: larger;
   padding: 12px;
   margin: 2px;
 }

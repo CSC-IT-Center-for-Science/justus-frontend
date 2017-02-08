@@ -388,7 +388,7 @@ let i18n = {
     tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "*EN*Tallenna tiedot ja palaa omiin tallennuksiin"},
     vaihevuo: {
       julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "Publikationstyp", EN: "Publication type"},
-      haku: {FI: "Hae tietokannoista", SV: "*SV*Hae tietokannoista", EN: "*EN*Hae tietokannoista"},
+      haku: {FI: "Esitäytä tiedot", SV: "*SV*Esitäytä tiedot", EN: "*EN*Esitäytä tiedot"},
       tietojensyotto: {FI: "Syötä julkaisutiedot", SV: "*SV*Syötä julkaisutiedot", EN: "*EN*Syötä julkaisutiedot"},
       organisaationtekijat: {FI: "SYÖTÄ\nTEKIJÖIDEN TIEDOT", SV: "*SV*SYÖTÄ\nTEKIJÖIDEN TIEDOT", EN: "*EN*SYÖTÄ\nTEKIJÖIDEN TIEDOT"},
       tallennus: {FI: "Tarkista ja tallenna", SV: "*SV*Tarkista ja tallenna", EN: "*EN*Tarkista ja tallenna"}
