@@ -144,6 +144,9 @@ body {
   transition: all 0.5s ease-in-out;
   background-color: #026D7C;
 }
+.justus-btn.selected {
+  background-color: #026D7C;
+}
 .justus-btn-default {
   background-color: #99C2C8;
   color: #FFFFFF;
