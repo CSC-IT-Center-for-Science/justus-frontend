@@ -302,6 +302,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     // just change vaihe (above) or make browser history with: (could almost use useJatka but not quite)
     var kvpairs = [];
     kvpairs.push("vaihe="+(parseInt(vaihe)));
+    kvpairs.push("lang="+$scope.lang);
     kvpairs = kvpairs.concat($scope.makeParams());
     var queryString = kvpairs.join("&");
     console.log("useVaihe => "+queryString);
