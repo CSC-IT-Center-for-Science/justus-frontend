@@ -36,13 +36,15 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
 
   var phppost = function (apiuri,obj) {
     var str=JSON.stringify(obj)
-    console.log("phppost "+str);
+    console.log("phppost "+apiuri+" "+str);
     return $http({
       method: 'POST',
       url: apiuri,
-      data: str
+      data: str,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
     .success(function (data, status, headers, config) {
+      console.log("phppost OK "+status+" "+data);
       return data.result;
     })
     .error(function (data, status, header, config) {
@@ -56,7 +58,8 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
     return $http({
       method: 'PUT',
       url: apiuri+id,
-      data: str
+      data: str,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
     .success(function (data, status, headers, config) {
       return data.result;
@@ -85,50 +88,44 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
   //
   var tallennaTaulu = function(table,jid) {
     console.log("tallennaTaulu "+table+" ("+jid+")")
-    var dnew = []; // lista, mutta usein vain yksi
+    var dnew = []; // list but often just one member
     var di = 0;
     dnew[di] = {};
     var dataIsArray = false;
     var jsonKey = $scope.meta.tables[table].ui;
 
-    // mapataan sarakkeet
+    // mapping of columns
     angular.forEach($scope.meta.tables[table].columns,function(v,k){
-      // Julkaisu_Id
-      if (v.name=="Julkaisu_Id") {
+      if (table=="alayksikko") {
+        dnew[di].organisaatiotekijaid = jid;
+      }
+      if (v.name=="julkaisuid") {
         dnew[di][v.name] = jid;
-      } else if (v.name!="ID") {
-        console.debug(table+" "+v.name+" columns "+k+" :: "+v.ui)
+      } else if (v.name!="id") {
         var tmpObj = $scope.justus[v.ui];
-        if (v.ui) { // tunnistettu justus-tieto
-          if (jsonKey) { // objekti on jsonia (orgtek)
-            tmpObj = $scope.justus[jsonKey]; // array tässä
-            console.debug(table+" "+v.name+" jsonKey "+jsonKey)
-            console.debug($scope.justus[jsonKey])
-            console.debug(v.ui)
-            console.debug($scope.justus[jsonKey][0][v.ui])
+        if (v.ui) { // recognized from ui meaning it should be stored
+          if (jsonKey) { // object is marked "json" or special, really just an array
+            tmpObj = $scope.justus[jsonKey];
           } else {
-            // perustapauksessa tämä riittää
-            dnew[di][v.name] = tmpObj;
+            // normal case
+            // has value
+            if (tmpObj)
+              dnew[di][v.name] = tmpObj;
           }
           if (isArray(tmpObj)) {
             angular.forEach(tmpObj,function(jv,jk){
-              console.debug(table+" "+v.name+" array "+v.ui+" "+jk+"="+jv)
               // hack: jk määrää dnew indeksin!
               if (di < jk) {
                 di++;
                 dnew[di] = {};
-                dnew[di].Julkaisu_Id = jid;
+                if (table=="alayksikko") {
+                  dnew[di].organisaatiotekijaid = jid;
+                } else {
+                  dnew[di].julkaisuid = jid;
+                }
               }
-              if (table=="SA_Tekijat") {
-                console.debug("JSON HANDLING")
-                console.debug(jv)
-                dnew[di].Etunimet = jv.etunimi;
-                dnew[di].Sukunimi = jv.sukunimi;
-                dnew[di].Yksikko = jv.alayksikko;
-                dnew[di].ORCID = jv.orcid;
-              } else {
+              if (jv)
                 dnew[di][v.name] = jv;
-              }
               // dnew yhden rivin osalta valmis
               console.debug(dnew)
             });
@@ -136,9 +133,8 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
         }
       }
     });
+    // loop'n'store
     angular.forEach(dnew,function(d,i){
-      console.debug(table+" post "+i)
-      console.debug(d)
       phppost(baseapiuri+table+"/",d);
     });
   }
@@ -152,11 +148,12 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
 
     var dnew = {};
 
-    var table = "SA_Julkaisut";
+    var table = "julkaisu";
     console.log("useTallenna "+table)
     dnew = {};
     angular.forEach($scope.meta.tables[table].columns,function(v,k){
-      if (v.name!="ID" && v.ui) {
+      // no id column, is "ui" (=supposed to store) and has a value
+      if (v.name!="id" && v.ui && $scope.justus[v.ui]) {
         dnew[v.name] = $scope.justus[v.ui];
       }
     });
@@ -165,128 +162,103 @@ justusApp.controller('justusSaveController', ['$scope', '$http', function($scope
       console.log("useTallenna post jid: "+jid);
 
       if (jid) {
-        tallennaTaulu("SA_Avainsanat",jid);
-        tallennaTaulu("SA_ISBN",jid);
-        tallennaTaulu("SA_ISSN",jid);
-        //tallennaTaulu("SA_OrgYksikko",jid);
-        tallennaTaulu("SA_Rinnakkaistallennettu",jid);
-        tallennaTaulu("SA_Tekijat",jid);
-        tallennaTaulu("SA_Tieteenalat",jid);
+        tallennaTaulu("avainsana",jid);
+        tallennaTaulu("tieteenala",jid);
+        // alayksikko needs new id of organisaatiotekija also:
+        //tallennaTaulu("organisaatiotekija",jid);
+        angular.forEach($scope.justus.organisaationtekijat,function(ov,ok){
+          var dot = {};
+          dot.julkaisuid = jid;
+          if(ov['sukunimi']) dot.sukunimi = ov['sukunimi'];
+          if(ov['etunimi'])  dot.etunimet = ov['etunimi'];
+          if(ov['orcid'])    dot.orcid = ov['orcid'];
+          phppost(baseapiuri+'organisaatiotekija'+"/",dot).success(function(oid){
+            console.log("useTallenna post oid: "+oid);
+            tallennaTaulu("alayksikko",oid);
+          });
+        });
       }
-
-      window.location = "omat_tallennukset.html";
+      // move on to own publications
+      window.location = "omat.html";
     });
   }
 
   //
   // Muuttujat ja alustus
   //
-  var baseapiuri = "justus_save.php/";
+  var baseapiuri = "https://demo.justus.csc.fi/api/justus_save.php/";
 
   $scope.meta = {
     tables: {
-      'SA_Avainsanat': {
+      'julkaisu': {
         columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'Avainsana', ui: 'avainsanat'} // nb: listana
+          id: {name: 'id'},
+          c1: {name: 'organisaatiotunnus', ui: null},
+          c2: {name: 'julkaisutyyppi', ui: 'julkaisutyyppi'},
+          c3: {name: 'julkaisuvuosi', ui: 'julkaisuvuosi'},
+          c4: {name: 'julkaisunnimi', ui: 'julkaisunnimi'},
+          c5: {name: 'tekijat', ui: 'tekijat'},
+          c6: {name: 'julkaisuntekijoidenlukumaara', ui: 'julkaisuntekijoidenlukumaara'},
+          c7: {name: 'konferenssinvakiintunutnimi', ui: 'konferenssinvakiintunutnimi'},
+          c8: {name: 'emojulkaisunnimi', ui: 'emojulkaisunnimi'},
+          c9: {name: 'isbn', ui: 'isbn'},
+          c10: {name: 'emojulkaisuntoimittajat', ui: 'emojulkaisuntoimittajat'},
+          c11: {name: 'lehdenjulkaisusarjannimi', ui: 'lehdenjulkaisusarjannimi'},
+          c12: {name: 'issn', ui: 'issn'},
+          c13: {name: 'volyymi', ui: 'volyymi'},
+          c14: {name: 'numero', ui: 'numero'},
+          c15: {name: 'sivut', ui: 'sivut'},
+          c16: {name: 'artikkelinumero', ui: 'artikkelinumero'},
+          c17: {name: 'kustantaja', ui: 'kustantaja'},
+          c18: {name: 'julkaisunkustannuspaikka', ui: 'julkaisunkustannuspaikka'},
+          c19: {name: 'julkaisunkieli', ui: 'julkaisunkieli'},
+          c20: {name: 'julkaisunkansainvalisyys', ui: 'julkaisunkansainvalisyys'},
+          c21: {name: 'julkaisumaa', ui: 'julkaisumaa'},
+          c22: {name: 'kansainvalinenyhteisjulkaisu', ui: 'kansainvalinenyhteisjulkaisu'},
+          c23: {name: 'yhteisjulkaisuyrityksenkanssa', ui: 'yhteisjulkaisuyrityksenkanssa'},
+          c24: {name: 'doitunniste', ui: 'doitunniste'},
+          c25: {name: 'pysyvaverkkoosoite', ui: 'pysyvaverkkoosoite'},
+          c26: {name: 'avoinsaatavuus', ui: 'avoinsaatavuus'},
+          c27: {name: 'julkaisurinnakkaistallenettu', ui: 'julkaisurinnakkaistallennettu'},
+          c28: {name: 'rinnakkaistallenetunversionverkkoosoite', ui: 'rinnakkaistallennetunversionverkkoosoite'},
+          c29: {name: 'jufotunnus', ui: 'jufoid'},
+          c30: {name: 'jufoluokitus', ui: 'jufoluokitus'}
         }
       },
-      'SA_Hanke': {
+      'avainsana': {
+        ui: 'avainsanat', // lista
         columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'Hankenumero'},
-          c3: {name: 'RahoittajaOrg'}
+          id: {name: 'id'},
+          c1: {name: 'julkaisuid'},
+          c2: {name: 'avainsana', ui: 'avainsana'}
         }
       },
-      'SA_ISBN': {
+      'organisaatiotekija': {
+        ui: 'organisaationtekijat', // lista
         columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'ISBN', ui: "isbn"}
+          id: {name: 'id'},
+          c1: {name: 'julkaisuid'},
+          c2: {name: 'etunimet', ui: 'etunimi'},
+          c3: {name: 'sukunimi', ui: 'sukunimi'},
+          c4: {name: 'orcid', ui: 'orcid'}
         }
       },
-      'SA_ISSN': {
+      'alayksikko': {
+        ui: 'alayksikot', // lista
         columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'ISSN', ui: "issn"}
+          id: {name: 'id'},
+          //nb! ei julkaisuid:tä
+          c1: {name: 'organisaatiotekijaid'},
+          c2: {name: 'alayksikko', ui: 'alayksikko'}
         }
       },
-      'SA_Julkaisut': {
+      'tieteenala': {
+        ui: 'julkaisuntieteenalat', // lista
         columns: {
-          id: {name: 'ID'},
-          c1: {name: 'OrganisaatioTunnus', ui: null},
-          c2: {name: 'IlmoitusVuosi', ui: null},
-          c3: {name: 'JulkaisunTilaKoodi', ui: null},
-          c4: {name: 'JulkaisunOrgTunnus', ui: null},
-          c5: {name: 'JulkaisuVuosi', ui: 'julkaisuvuosi'},
-          c6: {name: 'JulkaisunNimi', ui: 'julkaisunnimi'},
-          c7: {name: 'TekijatiedotTeksti', ui: 'tekijat'},
-          c8: {name: 'TekijoidenLkm', ui: 'julkaisuntekijoidenlukumaara'},
-          c9: {name: 'SivunumeroTeksti', ui: 'sivut'},
-          c10: {name: 'Artikkelinumero', ui: 'artikkelinumero'},
-          c11: {name: 'ISBN', ui: 'isbn'},
-          c12: {name: 'JufoTunnus', ui: 'jufoid'},
-          c13: {name: 'JufoLuokkaKoodi', ui: 'jufoluokitus'},
-          c14: {name: 'JulkaisumaaKoodi', ui: 'julkaisumaa'},
-          c15: {name: 'LehdenNimi', ui: 'lehdenjulkaisusarjannimi'},
-          c16: {name: 'ISSN', ui: 'issn'},
-          c17: {name: 'VolyymiTeksti', ui: 'volyymi'},
-          c18: {name: 'LehdenNumeroTeksti', ui: 'numero'},
-          c19: {name: 'KonferenssinNimi', ui: 'konferenssinvakiintunutnimi'},
-          c20: {name: 'KustantajanNimi', ui: 'kustantaja'},
-          c21: {name: 'KustannuspaikkaTeksti', ui: 'julkaisunkustannuspaikka'},
-          c22: {name: 'EmojulkaisunNimi', ui: 'emojulkaisunnimi'},
-          c23: {name: 'EmojulkaisunToimittajatTeksti', ui: 'emojulkaisuntoimittajat'},
-          c24: {name: 'JulkaisutyyppiKoodi', ui: 'julkaisutyyppi'},
-          c25: {name: 'YhteisjulkaisuKVKytkin', ui: 'kansainvalinenyhteisjulkaisu'}, // todo: vaihtoehdot
-          c29: {name: 'JulkaisunKansainvalisyysKytkin', ui: 'julkaisunkansainvalisyys'}, // todo: vaihtoehdot
-          c30: {name: 'JulkaisunKieliKoodi', ui: 'julkaisunkieli'},
-          c31: {name: 'AvoinSaatavuusKoodi', ui: 'avoinsaatavuus'}, // todo: vaihtoehdot
-          c33: {name: 'DOI', ui: 'doitunniste'},
-          c34: {name: 'PysyvaOsoiteTeksti', ui: 'pysyvaverkkoosoite'},
-          c35: {name: 'LahdetietokannanTunnus', ui: null},
-          c36: {name: 'RinnakkaistallenettuKytkin', ui: 'julkaisurinnakkaistallennettu'}, // todo: vaihtoehdot
-          c37: {name: 'YhteisjulkaisunTunnus', ui: null},
-          c38: {name: 'JuuliOsoiteTeksti', ui: null},
-          c39: {name: 'YhteisjulkaisuYritysKytkin', ui: 'yhteisjulkaisuyrityksenkanssa'} // todo: vaihtoehdot
-        }
-      },
-      'SA_OrgYksikko': {
-        columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'OrganisaatioTunnus'},
-          c3: {name: 'julkaisu_yksikko'},
-          c4: {name: 'tekija_yksikko'}
-        }
-      },
-      'SA_Rinnakkaistallennettu': {
-        columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'RinnakkaistallennettuOsoite', ui: 'rinnakkaistallennetunversionverkkoosoite'}
-        }
-      },
-      'SA_Tekijat': {
-        columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'Etunimet', ui: 'etunimi'}, // nb! lista+json
-          c3: {name: 'Sukunimi', ui: 'sukunimi'}, // nb! lista+json
-          c4: {name: 'ORCID', ui: 'orcid'}, // nb! lista+json
-          c5: {name: 'Yksikko', ui: 'alayksikko'} // nb! lista+json
-        },
-        ui: "organisaationtekijat" //json-tunnistin
-      },
-      'SA_Tieteenalat': {
-        columns: {
-          id: {name: 'ID'},
-          c1: {name: 'Julkaisu_Id'},
-          c2: {name: 'Tieteenala', ui: 'julkaisuntieteenalat'},
-          c3: {name: 'JNro'} // todo: $scope ja $index?
+          id: {name: 'id'},
+          c1: {name: 'julkaisuid'},
+          c2: {name: 'tieteenalakoodi', ui: 'tieteenala'},
+          c3: {name: 'jnro', ui: 'jnro'}
         }
       }
     }

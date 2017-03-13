@@ -5,144 +5,86 @@ justusApp.service('APIService', ['$http', function ($http) {
   this.meta = {
     tables: [
       {
-        name: 'SA_Avainsanat',
-        pkcol: 'ID',
+        name: 'julkaisu',
+        pkcol: 'id',
         columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'Avainsana'}
+          {name: 'id'},
+          {name: 'organisaatiotunnus'},
+          {name: 'julkaisutyyppi'},
+          {name: 'julkaisuvuosi'},
+          {name: 'julkaisunnimi'},
+          {name: 'tekijat'},
+          {name: 'julkaisuntekijoidenlukumaara'},
+          {name: 'konferenssinvakiintunutnimi'},
+          {name: 'emojulkaisunnimi'},
+          {name: 'isbn'},
+          {name: 'emojulkaisuntoimittajat'},
+          {name: 'lehdenjulkaisusarjannimi'},
+          {name: 'issn'},
+          {name: 'volyymi'},
+          {name: 'numero'},
+          {name: 'sivut'},
+          {name: 'artikkelinumero'},
+          {name: 'kustantaja'},
+          {name: 'julkaisunkustannuspaikka'},
+          {name: 'julkaisunkieli'},
+          {name: 'julkaisunkansainvalisyys'},
+          {name: 'julkaisumaa'},
+          {name: 'kansainvalinenyhteisjulkaisu'},
+          {name: 'yhteisjulkaisuyrityksenkanssa'},
+          {name: 'doitunniste'},
+          {name: 'pysyvaverkkoosoite'},
+          {name: 'avoinsaatavuus'},
+          {name: 'julkaisurinnakkaistallenettu'},
+          {name: 'rinnakkaistallenetunversionverkkoosoite'},
+          {name: 'jufotunnus'},
+          {name: 'jufoluokitus'}
         ]
       },
       {
-        name: 'SA_Hanke',
-        pkcol: 'ID',
+        name: 'avainsana',
+        pkcol: 'id',
         columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'Hankenumero'},
-          {name: 'RahoittajaOrg'}
+          {name: 'id'},
+          {name: 'julkaisuid'},
+          {name: 'avainsana'}
         ]
       },
       {
-        name: 'SA_ISBN',
-        pkcol: 'ID',
+        name: 'organisaatiotekija',
+        pkcol: 'id',
         columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'ISBN'}
+          {name: 'id'},
+          {name: 'julkaisuid'},
+          {name: 'etunimet'},
+          {name: 'sukunimi'},
+          {name: 'orcid'}
         ]
       },
       {
-        name: 'SA_ISSN',
-        pkcol: 'ID',
+        name: 'alayksikko',
+        pkcol: 'id',
         columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'ISSN'}
+          {name: 'id'},
+          {name: 'julkaisuid'},
+          {name: 'organisaatiotekijaid'},
+          {name: 'alayksikko'}
         ]
       },
       {
-        name: 'SA_Julkaisut',
-        pkcol: 'ID',
+        name: 'tieteenala',
+        pkcol: 'id',
         columns: [
-          {name: 'ID'},
-          {name: 'OrganisaatioTunnus'},
-          {name: 'IlmoitusVuosi'},
-          {name: 'JulkaisunTilaKoodi'},
-          {name: 'JulkaisunOrgTunnus'},
-          {name: 'JulkaisuVuosi'},
-          {name: 'JulkaisunNimi'},
-          {name: 'TekijatiedotTeksti'},
-          {name: 'TekijoidenLkm'},
-          {name: 'SivunumeroTeksti'},
-          {name: 'Artikkelinumero'},
-          {name: 'ISBN'},
-          {name: 'JufoTunnus'},
-          {name: 'JufoLuokkaKoodi'},
-          {name: 'JulkaisumaaKoodi'},
-          {name: 'LehdenNimi'},
-          {name: 'ISSN'},
-          {name: 'VolyymiTeksti'},
-          {name: 'LehdenNumeroTeksti'},
-          {name: 'KonferenssinNimi'},
-          {name: 'KustantajanNimi'},
-          {name: 'KustannuspaikkaTeksti'},
-          {name: 'EmojulkaisunNimi'},
-          {name: 'EmojulkaisunToimittajatTeksti'},
-          {name: 'JulkaisutyyppiKoodi'},
-          {name: 'YhteisjulkaisuKVKytkin'},
-          {name: 'YhteisjulkaisuSHPKytkin'},
-          {name: 'YhteisjulkaisuTutkimuslaitosKytkin'},
-          {name: 'YhteisjulkaisuMuuKytkin'},
-          {name: 'JulkaisunKansainvalisyysKytkin'},
-          {name: 'JulkaisunKieliKoodi'},
-          {name: 'AvoinSaatavuusKoodi'},
-          {name: 'EVOjulkaisuKytkin'},
-          {name: 'DOI'},
-          {name: 'PysyvaOsoiteTeksti'},
-          {name: 'LahdetietokannanTunnus'},
-          {name: 'RinnakkaistallenettuKytkin'},
-          {name: 'YhteisjulkaisunTunnus'},
-          {name: 'JuuliOsoiteTeksti'},
-          {name: 'YhteisjulkaisuYritysKytkin'}
-        ]
-      },
-      {
-        name: 'SA_Koulutusalat',
-        pkcol: 'ID',
-        columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'Koulutusala'},
-          {name: 'JNro'}
-        ]
-      },
-      {
-        name: 'SA_OrgYksikko',
-        pkcol: 'ID',
-        columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'OrganisaatioTunnus'},
-          {name: 'julkaisu_yksikko'},
-          {name: 'tekija_yksikko'}
-        ]
-      },
-      {
-        name: 'SA_Rinnakkaistallennettu',
-        pkcol: 'ID',
-        columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'RinnakkaistallennettuOsoite'}
-        ]
-      },
-      {
-        name: 'SA_Tekijat',
-        pkcol: 'ID',
-        columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'Etunimet'},
-          {name: 'Sukunimi'},
-          {name: 'ORCID'},
-          {name: 'Yksikko'}
-        ]
-      },
-      {
-        name: 'SA_Tieteenalat',
-        pkcol: 'ID',
-        columns: [
-          {name: 'ID'},
-          {name: 'Julkaisu_Id'},
-          {name: 'Tieteenala'},
-          {name: 'JNro'}
+          {name: 'id'},
+          {name: 'julkaisuid'},
+          {name: 'tieteenalakoodi'},
+          {name: 'jnro'}
         ]
       }
     ]
   };
 
-  this.apiuri = 'https://raja-dev.csc.fi/justus/justus_save.php/';
+  this.apiuri = 'https://demo.justus.csc.fi/api/justus_save.php/';
 
   /* CREATE :: POST */
   this.post = function(api,str) {

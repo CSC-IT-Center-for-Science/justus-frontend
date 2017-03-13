@@ -9,30 +9,31 @@
           <th>Julkaisuvuosi</th>
           <th>Muokattu</th>
           <th>Viimeisin muokkaaja</th>
+          <th>Toiminnot</th>
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="(k,d) in data track by k">
+        <tr data-ng-repeat="d in data track by d.id">
           <td>
-            <a href='justus.html?vaihe=5&jufoid=50083&jufoluokitus=1&organisaationtekijat=%7B"sukunimi"%3A"J"%2C"etunimi"%3A"L"%2C"alayksikot"%3A%5B"H01"%5D%7D&avainsanat=""&julkaisuntieteenalat="111"&julkaisutyyppi=A1&julkaisuvuosi=2016&julkaisunnimi=Nimi&tekijat=J%2C%20L&julkaisuntekijoidenlukumaara=1&konferenssinvakiintunutnimi=&emojulkaisunnimi=&isbn=&emojulkaisuntoimittajat=&lehdenjulkaisusarjannimi=Proceedings%20%3A%20ACM%20IEEE%20Design%20Automation%20Conference&issn=0738-100X&volyymi=&numero=&sivut=&artikkelinumero=&kustantaja=Institute%20of%20Electrical%20and%20Electronics%20Engineers&julkaisunkustannuspaikka=&julkaisunkieli=&julkaisunkansainvalisyys=0&julkaisumaa=&kansainvalinenyhteisjulkaisu=0&yhteisjulkaisuyrityksenkanssa=0&doitunniste=&pysyvaverkkoosoite=&avoinsaatavuus=0&julkaisurinnakkaistallennettu=0&rinnakkaistallennetunversionverkkoosoite='>{{k}}</a>
+            <a href='justus.html?vaihe=5&jufoid=50083&jufoluokitus=1&organisaationtekijat=%7B"sukunimi"%3A"J"%2C"etunimi"%3A"L"%2C"alayksikot"%3A%5B"H01"%5D%7D&avainsanat=""&julkaisuntieteenalat="111"&julkaisutyyppi=A1&julkaisuvuosi=2016&julkaisunnimi=Nimi&tekijat=J%2C%20L&julkaisuntekijoidenlukumaara=1&konferenssinvakiintunutnimi=&emojulkaisunnimi=&isbn=&emojulkaisuntoimittajat=&lehdenjulkaisusarjannimi=Proceedings%20%3A%20ACM%20IEEE%20Design%20Automation%20Conference&issn=0738-100X&volyymi=&numero=&sivut=&artikkelinumero=&kustantaja=Institute%20of%20Electrical%20and%20Electronics%20Engineers&julkaisunkustannuspaikka=&julkaisunkieli=&julkaisunkansainvalisyys=0&julkaisumaa=&kansainvalinenyhteisjulkaisu=0&yhteisjulkaisuyrityksenkanssa=0&doitunniste=&pysyvaverkkoosoite=&avoinsaatavuus=0&julkaisurinnakkaistallennettu=0&rinnakkaistallennetunversionverkkoosoite='>{{d.id}}</a>
           </td>
           <td>
-            {{d.SA_Julkaisut.JulkaisunNimi}}
+            {{d.julkaisunnimi}}
           </td>
           <td>
-            {{d.SA_Julkaisut.TekijatiedotTeksti}}
+            {{d.tekijat}}
           </td>
           <td>
-            {{d.SA_Julkaisut.JulkaisuVuosi}}
+            {{d.julkaisuvuosi}}
+          </td>
+          <td><!-- muokattu -->
+          </td>
+          <td><!-- muokkaaja -->
           </td>
           <td>
+            <!-- button data-ng-click="usePaivita('julkaisu',d.id,table.pkcol)">Päivitä</button -->
+            <button data-ng-click="usePoista('julkaisu',d.id)">Poista</button>
           </td>
-          <td>
-          </td>
-          <!-- td>
-            <button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button>
-            <button data-ng-click="usePoista(d[table.pkcol])">Poista</button>
-          </td -->
         </tr>
       </tbody>
     </table>

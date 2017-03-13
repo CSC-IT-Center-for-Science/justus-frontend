@@ -68,6 +68,6 @@ function($scope,$http,API)
   }
 
   // debug/develop init
-  $scope.useTaulu("SA_Avainsanat");
+  //$scope.useTaulu("julkaisu");
 
 }]);//-APIController

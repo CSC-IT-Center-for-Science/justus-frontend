@@ -15,7 +15,7 @@ function($scope,$http,API,Koodisto,Justus)
   }
 
   $scope.meta = API.meta;
-  $scope.data = {};
+  $scope.data = [];
 
   var getKoodisto = function(koodisto) {
     if(!koodisto) return;
@@ -53,15 +53,21 @@ function($scope,$http,API,Koodisto,Justus)
     .then(function (obj){
       angular.forEach(obj, function(o,k) { //saadaan lista, luupataan
         var id = "";
-        if (table=="SA_Julkaisut"){ //eri "id"-sarake
-          id = o.ID;
+        console.debug("useHae: o "+o.id)
+        console.debug(o)
+        if (table=="julkaisu"){ //eri "id"-sarake
+          $scope.data.push(o);
+        }
+        /*
+        if (table=="julkaisu"){ //eri "id"-sarake
+          id = o.id;
         } else {
-          id=o.Julkaisu_Id;
+          id=o.julkaisuid;
         }
         if (!$scope.data[id]) { //tee objekti jos ei ole
           $scope.data[id] = {};
         }
-        if (table=="SA_Julkaisut"){ //vain yksi rivi
+        if (table=="julkaisu"){ //vain yksi rivi
           $scope.data[id][table] = o;
         } else {
           if (!$scope.data[id][table]) {// tee lista jos ei ole
@@ -69,6 +75,7 @@ function($scope,$http,API,Koodisto,Justus)
           }
           $scope.data[id][table].push(o);
         }
+        */
       });
     });
   }
