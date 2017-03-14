@@ -1,6 +1,6 @@
 'use strict';
 
-justusApp.controller('APIController',
+justusApp.controller('YllapitoController',
 ['$scope', '$http', 'APIService',
 function($scope,$http,API)
 {

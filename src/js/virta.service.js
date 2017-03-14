@@ -8,7 +8,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
   //this.uri = "http://localhost/api/julkaisut/";
 
   this.fetch = function(input,tekija) {
-    this.uri = 'https://raja-dev.csc.fi/justus/virtahaku.php'; // TODO dev
+    this.uri = 'https://demo.justus.csc.fi/api/virtahaku.php'; // TODO dev
     var uriapi = "?julkaisunNimi="; // TODO dev
     //var uriapi = "haku?julkaisunNimi=";
 
@@ -56,7 +56,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
     });
   }
   this.get = function(input) {
-    this.uri = 'https://raja-dev.csc.fi/justus/virtahaku.php?julkaisunTunnus='; // TODO dev
+    this.uri = 'https://demo.justus.csc.fi/justus/virtahaku.php?julkaisunTunnus='; // TODO dev
     //this.uri = "virtahaku.php?julkaisunTunnus=";
     return $http.get(this.uri+input);
   }

@@ -293,26 +293,6 @@ justusApp.service('JustusService', [function() {
     return ret;
   }
 
-  this.getCode = function (codes,codeset,code) {
-    //console.log("getCode "+codeset+" "+code);
-    if (!codes || !codes[codeset]) return;
-
-    for (let len=codes[codeset].length, i=0; i<len && i in codes[codeset]; i++) {
-      let c = codes[codeset][i];
-      if (c.arvo == code) {
-        return c;
-      }
-      if (c.alatyypit) {
-        for (let jen=c.alatyypit.length, j=0; j<jen && j in c.alatyypit; j++) {
-          let a = c.alatyypit[j];
-          if (a.arvo == code) {
-            return a;
-          }
-        }
-      }
-    }
-  }
-
   //
   // these check functions should not be needed here. they are directives.
   // actually most of this justus service should be as directives!

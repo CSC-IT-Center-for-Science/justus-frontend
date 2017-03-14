@@ -2,6 +2,7 @@
 
 justusApp.service('APIService', ['$http', function ($http) {
 
+  //* (fix with justus.save.controller!)
   this.meta = {
     tables: [
       {
@@ -43,6 +44,7 @@ justusApp.service('APIService', ['$http', function ($http) {
       },
       {
         name: 'avainsana',
+        ui: 'avainsanat', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -52,6 +54,7 @@ justusApp.service('APIService', ['$http', function ($http) {
       },
       {
         name: 'organisaatiotekija',
+        ui: 'organisaationtekijat', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -63,6 +66,7 @@ justusApp.service('APIService', ['$http', function ($http) {
       },
       {
         name: 'alayksikko',
+        ui: 'alayksikot', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -73,6 +77,7 @@ justusApp.service('APIService', ['$http', function ($http) {
       },
       {
         name: 'tieteenala',
+        ui: 'julkaisuntieteenalat', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -84,14 +89,15 @@ justusApp.service('APIService', ['$http', function ($http) {
     ]
   };
 
-  this.apiuri = 'https://demo.justus.csc.fi/api/justus_save.php/';
-
+  let apiuri = 'https://demo.justus.csc.fi/api/justus_save.php/';
+  
   /* CREATE :: POST */
   this.post = function(api,str) {
     return $http({
       method: 'POST',
-      url: this.apiuri+api,
-      data: str
+      url: apiuri+api,
+      data: str,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
     .success(function (data, status, headers, config) {
       return status+" "+data;
@@ -106,7 +112,7 @@ justusApp.service('APIService', ['$http', function ($http) {
     //id voi puuttua, jolloin palautetaan kaikki
     return $http({
       method: 'GET',
-      url: this.apiuri+api+"/"+id
+      url: apiuri+api+"/"+id
     })
     .then(function (response){
       var ret = [];
@@ -120,8 +126,9 @@ justusApp.service('APIService', ['$http', function ($http) {
   this.put = function (api,id,str) {
     return $http({
       method: 'PUT',
-      url: this.apiuri+api+"/"+id,
-      data: str
+      url: apiuri+api+"/"+id,
+      data: str,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
     .success(function (data, status, headers, config) {
       return status+" "+data;
@@ -135,7 +142,7 @@ justusApp.service('APIService', ['$http', function ($http) {
   this.delete = function (api,id) {
     return $http({
       method: 'DELETE',
-      url: this.apiuri+api+"/"+id
+      url: apiuri+api+"/"+id
     })
     .success(function (data, status, headers, config) {
       return status+" "+data;

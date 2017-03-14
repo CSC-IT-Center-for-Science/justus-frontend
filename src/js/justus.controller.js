@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('justusController',
-['$scope', '$http', 'CrossRefService', 'VIRTAService','JUFOService','KoodistoService','JustusService',
-function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
+['$scope','$http','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService',
+function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
 {
   $scope.useTekijat = function(input) { // tekijat string
     console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
@@ -56,7 +56,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     if(input == null) return;
     if(input.length < 5) return [];
     console.log("refreshKanavanimet "+tyyppi+" "+input);
-    return JUFOService.etsikanava(input,tyyppi)
+    return JUFO.etsikanava(input,tyyppi)
     .then(function (response){
       if (isArray(response.data)) {
         if (tyyppi==3) $scope.konferenssinimet = response.data;
@@ -71,7 +71,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     console.log("useLehtisarja "+input);
     console.debug(input)
     if(input == null) return;
-    JUFOService.kanava(input)
+    JUFO.kanava(input)
     .then(function (obj){
       $scope.justus.lehdenjulkaisusarjannimi = obj.Name;
       $scope.justus.jufoid = input; // tai vastauksesta...
@@ -85,7 +85,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
   $scope.fetchLehtisarja = function(input) { //issn
     console.log("fetchLehtisarja "+input);
     if(input == null) return;
-    JUFOService.etsiissn(input)
+    JUFO.etsiissn(input)
     .then(function (response){
       var jobj = response.data;
       var jufoid = jobj[0].Jufo_ID; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
@@ -101,7 +101,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     $scope.julkaisunnimet = [];
     // CrossRef :: haku julkaisun nimellä, mutta voi olla myös tekijän nimi
     $scope.crossrefLataa = true;
-    CrossRefService.worksquery(input,tekija)
+    CrossRef.worksquery(input,tekija)
     .then(function(obj){
       $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj);
       $scope.crossrefLataa = false;
@@ -109,7 +109,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
 
     // VIRTA :: haku julkaisun nimellä, mutta voi olla myös tekijän nimi
     $scope.virtaLataa = true;
-    VIRTAService.fetch(input,tekija)
+    VIRTA.fetch(input,tekija)
     .then(function (obj){
       $scope.julkaisunnimet = $scope.julkaisunnimet.concat(obj);
       $scope.virtaLataa = false;
@@ -122,7 +122,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     if(!input) return;
     if (source=="CrossRef") {
       $scope.crossrefLataa = true;
-      CrossRefService.works(input)
+      CrossRef.works(input)
       .then(function successCb(response){
         angular.forEach(response.data, function(robj,rkey){
           $scope.justus.doitunniste = input;
@@ -175,7 +175,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
     }
     if (source=="VIRTA") {
       $scope.virtaLataa = true;
-      VIRTAService.get(input)
+      VIRTA.get(input)
       .then(function successCb(response){
         var robj = response.data;
         $scope.justus.doitunniste = robj.DOI||"";
@@ -315,7 +315,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
 
   // mappaa genericistä scopeen
   $scope.getCode = function(codeset,code) {
-    return Justus.getCode($scope.codes,codeset,code);
+    return Koodisto.getCode($scope.codes,codeset,code);
   }
 
   $scope.isVisible = function(field) {
@@ -451,7 +451,7 @@ function($scope,$http,CrossRefService,VIRTAService,JUFOService,Koodisto,Justus)
       }
       // haetaan selitteitä koodeille
       if (fkey=="jufoid") {
-        JUFOService.kanava($scope.justus[fkey])
+        JUFO.kanava($scope.justus[fkey])
         .then(function (obj) {
           $scope.lehtinimet.selected = obj;
         });

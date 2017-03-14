@@ -7,8 +7,9 @@ justusApp.service('KoodistoService', ['$http', function($http) {
   //if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
   //  baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
   //}
-  let maxage = 1*60*1000; // millisekunteja
-  console.log("KoodistoService baseuri for "+location.hostname+" is "+baseuri+" localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
+
+  //let maxage = 1*60*1000; // millisekunteja
+  //console.log("KoodistoService baseuri for "+location.hostname+" is "+baseuri+" localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
 
   //
   // internal private functions
@@ -161,4 +162,23 @@ justusApp.service('KoodistoService', ['$http', function($http) {
     });
   }
 
-}]);
+  this.getCode = function (codes,codeset,code) {
+    if (!codes || !codes[codeset]) return;
+
+    for (let len=codes[codeset].length, i=0; i<len && i in codes[codeset]; i++) {
+      let c = codes[codeset][i];
+      if (c.arvo == code) {
+        return c;
+      }
+      if (c.alatyypit) {
+        for (let jen=c.alatyypit.length, j=0; j<jen && j in c.alatyypit; j++) {
+          let a = c.alatyypit[j];
+          if (a.arvo == code) {
+            return a;
+          }
+        }
+      }
+    }
+  }
+
+}]);//-KoodistoService
