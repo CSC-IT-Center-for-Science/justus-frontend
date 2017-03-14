@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html lang="fi" data-ng-app="justusApp" data-ng-controller="InspectController">
 <head>
-    <!-- bootstrap :: the  first 3 must be first -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap :: the  first 3 must be first -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script><!--enddev-->
+  <!--dev--><!-- script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script --><!--enddev-->
+  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script><!--enddev-->
+  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script><!--enddev-->
+  <!--dev--><script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.js"></script><!--enddev-->
+  <!--dev--><script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script><!--enddev-->
+  <!-- build:js js/vendor.js -->
+  <!-- mustache
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  end mustache -->
+  <!-- endbuild -->
+  <!-- build:js js/app.js -->
+  <script src="js/generic.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/codes.js"></script>
+  <script src="js/justus.app.js"></script>
+  <script src="js/koodisto.service.js"></script>
+  <script src="js/justus.service.js"></script>
+  <script src="js/api.service.js"></script>
+  <script src="js/inspect.controller.js"></script>
+  <!-- endbuild -->
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <!-- script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+  <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!--enddev-->
+  <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!--enddev-->
+  <!--dev--><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.css"><!--enddev-->
+  <!-- build:css css/vendor.css -->
+  <!-- mustache
+  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css">
+  end mustache -->
+  <!-- endbuild -->
+  <link rel="stylesheet" href="css/justus.css">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.css">
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
-
-    <script src="js/generic.js"></script>
-    <script src="js/i18n.js"></script>
-    <script src="js/codes.js"></script>
-    <script src="js/justus.app.js"></script>
-    <script src="js/api.service.js"></script>
-    <script src="js/justus.service.js"></script>
-    <script src="js/inspect.controller.js"></script>
-
-    <link rel="stylesheet" href="css/justus.css">
-
-    <title>{{i18n.header.title[lang]}}</title>
+  <title>{{i18n.header.title[lang]}}</title>
 </head>
 <body class="container-fluid">
 
@@ -53,7 +68,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h3>OMAT TALLENNUKSET</h3>
+      <h3>HYVÄKSY TALLENNUKSIA</h3>
     </div>
   </div>
 
@@ -85,19 +100,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="(k,d) in data track by k">
+          <tr data-ng-repeat="d in data track by d.id">
             <td>
-              <span style="font-size:smaller; color:#888888;">ID: {{k}}</span>
-              <br>{{d.SA_Julkaisut.DOI}}
+              {{d.id}}
             </td>
             <td>
-              {{d.SA_Julkaisut.JulkaisunNimi}}
+              {{d.julkaisunnimi}}
             </td>
             <td>
-              {{d.SA_Julkaisut.TekijatiedotTeksti}}
+              {{d.tekijat}}
             </td>
             <td>
-              {{d.SA_Julkaisut.JulkaisuVuosi}}
+              {{d.julkaisuvuosi}}
             </td>
             <td>
             </td>
