@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi" data-ng-app="justusApp" data-ng-controller="InspectController">
+<html lang="fi" data-ng-app="justusApp" data-ng-controller="TarkastaController">
 <head>
   <!-- bootstrap :: the  first 3 must be first -->
   <meta charset="utf-8">
@@ -29,7 +29,7 @@
   <script src="js/koodisto.service.js"></script>
   <script src="js/justus.service.js"></script>
   <script src="js/api.service.js"></script>
-  <script src="js/inspect.controller.js"></script>
+  <script src="js/tarkasta.controller.js"></script>
   <!-- endbuild -->
 
   <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!--enddev-->
@@ -51,42 +51,23 @@
 <div class="row">
 <div class="col-xs-12 content">
 
-  <!-- todo: header -->
-  <div class="row">
-    <div class="col-xs-12 col-md-7">
-      <img src="img/justus_logo.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
-    </div>
-    <div class="col-xs-12 col-md-5 pull-right text-right">
-      Essi Esimerkki, {{getCode('oppilaitokset',"01901").selite[lang]}} | {{i18n.content.logout[lang]}}
-      <br>
-      <span data-ng-show="lang!='FI'"><a href="#" data-ng-click="lang='FI'">{{i18n.content.lang.FI}}</a></span>
-      <span data-ng-show="lang!='FI'">|</span>
-      <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="lang='SV'">{{i18n.content.lang.SV}}</a></span>
-      <span data-ng-show="lang=='FI'">|</span>
-      <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="lang='EN'">{{i18n.content.lang.EN}}</a></span>
-    </div>
-  </div>
-
+  <div data-ng-include src="'header.html'"></div>
   <div class="row">
     <div class="col-xs-12">
-      <h3>HYVÄKSY TALLENNUKSIA</h3>
+      <div style="display:inline-block; vertical-align:middle; float:none">
+        <img src="img/hyvaksyikoni.png" alt="{{i18n.header.logotext[lang]}}" class="img-responsive">
+      </div>
+      <div style="display:inline-block; vertical-align:middle; float:none">
+        <h3>HYVÄKSY TALLENNUKSIA</h3>
+      </div>
     </div>
   </div>
 
   <div class="row justus-block-alter">
     <div class="col-xs-12">
-      <div style="float:left;">
-        <h4 class="justus-btn-emphasized" onclick="window.location='justus.html'">
-          <i class="fa fa-download fa-3x" aria-hidden="true"></i>
-          <div style="float:right;">
-            TALLENNA UUSI<br>
-            JULKAISU
-          </div>
-        </h4>
-      </div>
     </div>
   </div>
-
+  
   <div class="row form-control">
     <div class="col-xs-12 table-responsive">
       <table class="table table-condensed table-striped">
@@ -96,8 +77,10 @@
             <th>Julkaisun nimi</th>
             <th>Julkaisun tekijät</th>
             <th>Julkaisuvuosi</th>
+            <th>Tila</th>
             <th>Muokattu</th>
             <th>Viimeisin muokkaaja</th>
+            <th>Toiminto</th>
           </tr>
         </thead>
         <tbody>
@@ -115,13 +98,18 @@
               {{d.julkaisuvuosi}}
             </td>
             <td>
+              <div data-ng-bind="getCode('julkaisuntila',getStatus(d.id).julkaisuntila).selite[lang]"></div>
             </td>
             <td>
+              <div data-ng-bind="getStatus(d.id).modified"></div>
             </td>
-            <!-- td>
-              <button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button>
+            <td>
+              <div data-ng-bind="getStatus(d.id).username"></div>
+            </td>
+            <td>
+              <!-- button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button -->
               <button data-ng-click="usePoista(d[table.pkcol])">Poista</button>
-            </td -->
+            </td>
           </tr>
         </tbody>
       </table>

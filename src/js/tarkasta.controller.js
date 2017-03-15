@@ -1,6 +1,6 @@
 'use strict';
 
-justusApp.controller('InspectController',
+justusApp.controller('TarkastaController',
 ['$scope','$http','APIService','KoodistoService',
 function($scope,$http,API,Koodisto)
 {
@@ -20,6 +20,7 @@ function($scope,$http,API,Koodisto)
     });
   }
 
+  getKoodisto('julkaisuntila');
   getKoodisto('kieli');
   getKoodisto('maatjavaltiot2');
   $scope.getKoodistoKoodi = function(koodisto,koodi) {
@@ -144,5 +145,19 @@ function($scope,$http,API,Koodisto)
 
   // init
   $scope.resetData();
+  
+  // Tarkasta specific
+  $scope.useHae("status");
+  $scope.getStatus = function(jid) {
+    console.log("getStatus "+jid)
+    console.debug($scope.data.status)
+    let ret = {};
+    angular.forEach($scope.data.status,function(s,j){
+      if (s.julkaisuid==jid) {
+        ret = s;
+      }
+    });
+    return ret;
+  }
 
-}]);//-InspectController
+}]);//-TarkastaController
