@@ -119,7 +119,7 @@ function($scope,$http,API)
         });
       }
       // move on to own publications
-      //hold on, devin': window.location = "omat.html";
+      window.location = "omat.html";
     });
   }
 
