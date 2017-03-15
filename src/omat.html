@@ -62,15 +62,14 @@
         <img src="img/omaikoni.png" alt="{{i18n.header.logotext[lang]}}" class="img-responsive">
       </div>
       <div style="display:inline-block; vertical-align:middle; float:none">
-        <h3>OMAT TALLENNUKSET<!--{{i18n.header.title[lang]}}--></h3>
-        <!-- h4>{{i18n.navi.stage[ui_vaihe][lang]}}</h4 -->
+        <h3 data-ng-bind="i18n.navi.records[lang]"></h3>
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12 col-md-12 pull-right text-right" style="vertical-align:bottom;">
-      <a href="justus.html">{{i18n.navi.form[lang]}}</a> | <a href="omat.html">{{i18n.navi.records[lang]}}</a>
+      <a href="justus.html" data-ng-bind="i18n.navi.form[lang]"></a> | <a href="omat.html" data-ng-bind="i18n.navi.records[lang]"></a>
     </div>
   </div>
 

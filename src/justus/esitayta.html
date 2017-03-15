@@ -1,46 +1,48 @@
-<!-- vaihe 2 haku -->
+<!-- vaihe 1 esitäytä -->
 <!-- https://www.flowdock.com/app/tiptop/julkaisutiedonkeruu/threads/p5pUkeuPLbnwLdQb6I6wE_b-ZCI -->
 <!-- hae julkaisua CrossRef, ARTO, VIRTA-JTP; voi myös ohittaa -->
 <!-- hakuehdot: DOI, julkaisun nimi, tekijän nimi -->
 <!-- div class="row">
   <div class="col-xs-12">
-    <span class="justus-title">{{i18n.content.tiedonhaku.title[lang]}}</span>
+    <span class="justus-title">{{i18n.content.esitayta.title[lang]}}</span>
     <br>
-    <span class="">{{i18n.content.tiedonhaku.text[lang]}}</span>
+    <span class="">{{i18n.content.esitayta.text[lang]}}</span>
     <script type="text/ng-template" id="HakuPopoverTemplate.html">
       <ol>
-        <li>{{i18n.content.tiedonhaku.text.doi[lang]}}</li>
-        <li>{{i18n.content.tiedonhaku.text.haku[lang]}}</li>
-        <li>{{i18n.content.tiedonhaku.text.ohita[lang]}}</li>
+        <li>{{i18n.content.esitayta.text.doi[lang]}}</li>
+        <li>{{i18n.content.esitayta.text.haku[lang]}}</li>
+        <li>{{i18n.content.esitayta.text.ohita[lang]}}</li>
       </ol>
     </script>
     <i class="glyphicon glyphicon-info-sign justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="bottom"
-     data-popover-title="{{i18n.content.tiedonhaku.title[lang]}}"
+     data-popover-title="{{i18n.content.esitayta.title[lang]}}"
      data-uib-popover-template="'HakuPopoverTemplate.html'"></i>
   </div>
 </div -->
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim">{{i18n.content.tiedonhaku.doihaku.title[lang]}}</h3>
+    <h3 class="justus-bg-dim"
+      data-ng-bind="i18n.content.esitayta.doihaku.title[lang]"></h3>
     <input type="text" size="50" data-ng-model="julkaisunhakudoi"
-           placeholder='{{i18n.content.tiedonhaku.doihaku.tunniste.tooltip[lang]}}'>
-    <span class="justus-btn justus-btn-default" data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)">{{i18n.content.tiedonhaku.doihaku.hae[lang]}}</span>
+      placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
+    <span class="justus-btn justus-btn-default" data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
+      data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]"></span>
     <br><br>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim">{{i18n.content.tiedonhaku.etsijulkaisu.title[lang]}}</h3>
-    <!-- {{i18n.content.tiedonhaku.etsijulkaisu.tekija[lang]}} -->
+    <h3 class="justus-bg-dim" data-ng-bind="i18n.content.esitayta.etsijulkaisu.title[lang]"></h3>
+    <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <input type="text" size="50" data-ng-model="julkaisunhakutekija"
-           placeholder="{{i18n.content.tiedonhaku.etsijulkaisu.tekija.tooltip[lang]}}">
+      placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">
     <br>
     <div class="row">
       <div class="col-xs-11">
         <ui-select data-ng-model="julkaisu.selected"
-                 theme="bootstrap" style="min-width: 100px; max-width: 700px;">
-          <ui-select-match class="ui-select-match" placeholder="{{i18n.content.tiedonhaku.etsijulkaisu.picktip[lang]}}">
+          theme="bootstrap" style="min-width: 100px; max-width: 700px;">
+          <ui-select-match class="ui-select-match" placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
             {{$select.selected.title}}
           </ui-select-match>
           <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
@@ -67,13 +69,12 @@
         data-typeahead-loading="virtaLataa"
         data-typeahead-wait-ms="600"
         data-typeahead-popup-template-url="customPopupTemplate.html"
-        placeholder="{{i18n.content.tiedonhaku.etsijulkaisu.picktip[lang]}}" -->
+        placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}" -->
 
         <i class="fa fa-spinner fa-spin fa-2x" data-ng-show="crossrefLataa||virtaLataa"></i>
         <span class="justus-btn justus-btn-default"
-         data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)">
-          {{i18n.content.tiedonhaku.hae[lang]}}
-        </span>
+          data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
+          data-ng-bind="i18n.content.esitayta.hae[lang]"></span>
       </div>
       <div class="col-xs-1">
       </div>
@@ -84,14 +85,14 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="col-xs-12 justus-btn justus-btn-default" style="text-align:left;" data-ng-click="julkaisuhaettu=true; useVaihe(2)">
-      {{i18n.content.tiedonhaku.ohita[lang]}}
+      <span data-ng-bind="i18n.content.esitayta.ohita[lang]"></span>
     </div>
     <!-- div style="display:inline-block; vertical-align:middle; float:none;">
     Voit...
     </div -->
-    <!-- input type="button" class="btn justus-btn-plain btn-sm pull-right" value="{{i18n.content.tiedonhaku.ohita[lang]}}"
+    <!-- input type="button" class="btn justus-btn-plain btn-sm pull-right" value="{{i18n.content.esitayta.ohita[lang]}}"
      data-ng-click="julkaisuhaettu=true; useVaihe(3)" -->
-    <!-- img class="justus-btn btn-sm pull-right" data-ng-src="img/ohjse,{{lang}}.png" alt="{{i18n.content.tiedonhaku.ohita[lang]}}"
+    <!-- img class="justus-btn btn-sm pull-right" data-ng-src="img/ohjse,{{lang}}.png" alt="{{i18n.content.esitayta.ohita[lang]}}"
       data-ng-click="julkaisuhaettu=true; useVaihe(3)" -->
   </div>
 </div>

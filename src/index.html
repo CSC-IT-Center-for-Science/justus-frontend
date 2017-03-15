@@ -64,24 +64,21 @@
         <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
     </div>
     <div class="col-xs-8 text-left" style="vertical-align:middle;">
-      <h3>Kirjaudu JUSTUS-palveluun</h3>
+      <h3 data-ng-bind="i18n.etusivu.kirjaudu[lang]"></h3>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
-      <h3>Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?</h3>
+      <h3 data-ng-bind="i18n.etusivu.title[lang]"></h3>
 
-      <p>JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen
-      tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa.
-      Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön
-      (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös
-      korkeakoulujen rahoitusmallissa.</p>
+      <p data-ng-repeat="text in i18n.etusivu.paragraphs">
+        <span data-ng-bind="text[lang]"></span>
+      </p>
 
-      <h4>JUSTUS-palvelun käyttöohjeet:</h4>
+      <h4 data-ng-bind="i18n.etusivu.help.title[lang]"></h4>
 
-      <h4>JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut
-      johonkin seuraavista organisaatioista:</h4>
+      <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
       <p>X ammattikorkeakoulu</p>
       <p>Y ammattikorkeakoulu</p>
     </div>

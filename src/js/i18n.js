@@ -9,14 +9,6 @@ let i18n = {
     help: {FI: "Ohje", SV: "Instruktioner", EN: "Instructions"}
   },
   navi: {
-    stage: {
-      "0": {FI: "VALITSE JULKAISUTYYPPI", SV: "VÄLJ PUBLIKATIONSTYP", EN: "CHOOSE PUBLICATION TYPE"},
-      "1": {FI: "TARKENNA JULKAISUTYYPPIÄ", SV: "*SV*TARKENNA JULKAISUTYYPPIÄ", EN: "*EN*TARKENNA JULKAISUTYYPPIÄ"},
-      "2": {FI: "HAE JULKAISUN TIETOJA MUISTA TIETOKANNOISTA TAI OHITA HAKU", SV: "*SV*HAE JULKAISUN TIETOJA MUISTA TIETOKANNOISTA TAI OHITA HAKU", EN: "*EN*HAE JULKAISUN TIETOJA MUISTA TIETOKANNOISTA TAI OHITA HAKU"},
-      "3": {FI: "SYÖTÄ JULKAISUTIEDOT", SV: "PUBLIKATIONSUPPGIFTERNA", EN: "ENTER PUBLICATION DATA"},
-      "4": {FI: "SYÖTÄ OMAAN ORGANISAATIOOSI KUULUVIEN TEKIJÖIDEN TIEDOT", SV: "*SV*SYÖTÄ OMAAN ORGANISAATIOOSI KUULUVIEN TEKIJÖIDEN TIEDOT", EN: "*EN*SYÖTÄ OMAAN ORGANISAATIOOSI KUULUVIEN TEKIJÖIDEN TIEDOT"},
-      "5": {FI: "TARKISTA TIEDOT", SV: "*SV*TARKISTA TIEDOT", EN: "*EN*TARKISTA TIEDOT"}
-    },
     form: {FI: "SYÖTTÖLOMAKE", SV: "INMATNINGSFORMULÄR", EN: "INPUT FORM"},
     records: {FI: "OMAT TALLENNUKSET", SV: "*SV*OMAT TALLENNUKSET", EN: "OWN SUBMISSIONS"}
   },
@@ -32,6 +24,25 @@ let i18n = {
       phone: {FI: "puh. (09) 457 2001", SV: "tel. +358 (0)9 457 2001", EN: "tel. +358 (0)9 457 2001"}
     }
   },
+  etusivu: {
+    kirjaudu: {FI: "Kirjaudu JUSTUS-palveluun", SV: "*SV*Kirjaudu JUSTUS-palveluun", EN: "*EN*Kirjaudu JUSTUS-palveluun"},
+    title: {FI: "Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", SV: "*SV*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", EN: "*EN*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?"},
+    paragraphs: [
+      {
+        FI: "JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.",
+        SV: "*SV*p1",
+        EN: "*EN*p1"
+      }
+    ],
+    help: {
+      title: {FI: "JUSTUS-palvelun käyttöohjeet:", SV: "*SV*JUSTUS-palvelun käyttöohjeet:", EN: "*EN*JUSTUS-palvelun käyttöohjeet:"},
+      organization: {
+        FI: "JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:",
+        SV: "*SV*JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:",
+        EN: "*EN*JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:"
+      }
+    }
+  },
   content: {
     valitse: {
       title: {FI: "VALITSE TOIMINTO", SV: "*SV*VALITSE TOIMINTO", EN: "*EN*VALITSE TOIMINTO"},
@@ -39,7 +50,7 @@ let i18n = {
       omat: {FI:"Omat tallennukset", SV:"*SV*Omat tallennukset", EN:"*EN*Omat tallennukset"},
       hyvaksy: {FI:"Hyväksy tallennuksia", SV:"*SV*Hyväksy tallennuksia", EN:"*EN*Hyväksy tallennuksia"}
     },
-    tiedonhaku: {
+    esitayta: {
       title: {FI: "Tietojen haku", SV: "*SV*Tietojen haku", EN: "*EN*Tietojen haku"},
       text: {
         FI: "Tällä näytöllä voit hakea jo tallennettuja tietoja muista järjestelmistä pohjaksi.", SV: "*SV*", EN: "*EN*",
@@ -379,20 +390,28 @@ let i18n = {
       jufotunnus: {FI: "JUFO-ID", SV: "JUFO-ID", EN: "JUFO-ID"},
       jufoluokitus: {FI: "JUFO-luokitus", SV: "JUFO-klassificering", EN: "JUFO-classification"}
     },
-    taytaviela: {
-      FI: "Täytä vielä", SV: "*SV*Täytä vielä", EN: "Required information",
-      korosta: {FI: "korosta", SV: "*SV*korosta", EN: "highlight"},
-      poistakorostus: {FI: "poista korostus", SV: "*SV*poista korostus", EN: "remove highlight"}
+    tietojensyotto: {
+      yleiset: {FI: "Yleiset julkaisutiedot", SV: "*SV*Yleiset julkaisutiedot", EN: "*EN*Yleiset julkaisutiedot"},
+      bibliografiset: {FI: "Bibliografiset tiedot", SV: "*SV*Bibliografiset tiedot", EN: "*EN*Bibliografiset tiedot"},
+      muut: {FI: "Muut julkaisutiedot", SV: "*SV*Muut julkaisutiedot", EN: "*EN*Muut julkaisutiedot"},
+      taytaviela: {
+        FI: "Täytä vielä", SV: "*SV*Täytä vielä", EN: "Required information",
+        korosta: {FI: "korosta", SV: "*SV*korosta", EN: "highlight"},
+        poistakorostus: {FI: "poista korostus", SV: "*SV*poista korostus", EN: "remove highlight"}
+      },
+      jatka: {FI: "Tallenna muutokset ja siirry esikatseluun", SV: "*SV*Tallenna muutokset ja siirry esikatseluun", EN: "Save changes and preview"}
     },
-    jatka: {FI: "Tallenna muutokset ja siirry esikatseluun", SV: "*SV*Tallenna muutokset ja siirry esikatseluun", EN: "Save changes and preview"},
-    tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "*EN*Tallenna tiedot ja palaa omiin tallennuksiin"},
+    tallennus: {
+      tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "*EN*Tallenna tiedot ja palaa omiin tallennuksiin"}
+    },
     vaihevuo: {
       julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "Väljä publikationstyp", EN: "Choose publication type"},
-      haku: {FI: "Esitäytä tiedot", SV: "*SV*Esitäytä tiedot", EN: "Prefill the form"},
+      esitayta: {FI: "Esitäytä tiedot", SV: "*SV*Esitäytä tiedot", EN: "Prefill the form"},
       tietojensyotto: {FI: "Syötä julkaisutiedot", SV: "Publikationsuppgifterna", EN: "Enter publication data"},
       organisaationtekijat: {FI: "SYÖTÄ\nTEKIJÖIDEN TIEDOT", SV: "*SV*SYÖTÄ\nTEKIJÖIDEN TIEDOT", EN: "*EN*SYÖTÄ\nTEKIJÖIDEN TIEDOT"},
       tallennus: {FI: "Tarkista ja tallenna", SV: "*SV*Tarkista ja tallenna", EN: "Verify and save"}
     },
+
     yes: {FI: "Kyllä", SV: "Ja", EN: "Yes"},
     no: {FI: "Ei", SV: "Nej", EN: "No"}
   }
