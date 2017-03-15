@@ -74,7 +74,7 @@ justusApp.service('JustusService', [function() {
   };
   this.condition = {
     "organisaationtekijat": {
-      "sukunimi": null, "etunimi": null, "alayksikot": null
+      "sukunimi": null, "etunimet": null, "alayksikot": null
       //, "alayksikko": null, "orcid": null
     },
     "orcid": {

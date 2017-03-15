@@ -14,7 +14,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
 
     // TODO haetaan alkulista kirjautuneen käyttäjän tiedoilla
     if(tekija=="10056") {
-      uriapi = "?organisaatioTunnus=10056&etunimi=Lauri";
+      uriapi = "?organisaatioTunnus=10056&etunimet=Lauri";
       input = "";
       tekija = "";
     }
@@ -39,7 +39,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
         obj.author = robj.tekijat||""; //luo tyhjä arvo
         // virta omat (saa puuttua)
         if (robj.julkaisunTunnus) obj.julkaisuntunnus = robj.julkaisunTunnus;  // sama kuin identifier
-        if (robj.jufoTunnus) obj.jufoid = robj.jufoTunnus;
+        if (robj.jufoTunnus) obj.jufotunnus = robj.jufoTunnus;
         if (robj.julkaisuTyyppi) obj.julkaisutyyppi = robj.julkaisuTyyppi;
         if (robj.julkaisuVuosi) obj.julkaisuvuosi = robj.julkaisuVuosi;
         if (robj.julkaisunNimi) obj.julkaisunnimi = robj.julkaisunNimi; // sama kuin title

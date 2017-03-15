@@ -36,7 +36,7 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'doitunniste'},
           {name: 'pysyvaverkkoosoite'},
           {name: 'avoinsaatavuus'},
-          {name: 'julkaisurinnakkaistallenettu'},
+          {name: 'julkaisurinnakkaistallennettu'},
           {name: 'rinnakkaistallenetunversionverkkoosoite'},
           {name: 'jufotunnus'},
           {name: 'jufoluokitus'}
@@ -116,7 +116,7 @@ justusApp.service('APIService', ['$http', function ($http) {
     })
     .then(function (response){
       var ret = [];
-      if(id) ret.push(reponse.data); // ei lista
+      if(id) ret.push(response.data); // ei lista
       else  ret = response.data; // lista
       return ret;
     });

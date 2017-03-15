@@ -1,55 +1,66 @@
 'use strict';
 
 justusApp.controller('saveController',
-['$scope', '$http', 'APIService',
+['$scope','$http','APIService',
 function($scope,$http,API)
 {
-  var tallennaTaulu = function(table,jid) {
-    console.log("tallennaTaulu "+table+" ("+jid+")")
+  var tallennaTaulu = function(table,refid) {
+    console.log("tallennaTaulu "+table+" ("+refid+")")
     var dnew = []; // list but often just one member
     var di = 0;
     dnew[di] = {};
     var dataIsArray = false;
 
     // mapping of columns
-    angular.forEach($scope.meta.tables,function(t,u){
-      var jsonKey = t.ui;
+    angular.forEach($scope.meta.tables,function(t,k){
       if (t.name==table) {
-        angular.forEach(t.columns,function(v,k){
+        var jsonKey = t.ui;
+        angular.forEach(t.columns,function(c,q){
           if (table=="alayksikko") {
-            dnew[di].organisaatiotekijaid = jid;
+            dnew[di].organisaatiotekijaid = refid;
+          } else if (c.name=="julkaisuid") {
+            dnew[di][c.name] = refid;
           }
-          if (v.name=="julkaisuid") {
-            dnew[di][v.name] = jid;
-          } else if (v.name!="id") {
-            var tmpObj = $scope.justus[v.name]; // TODO db vs ui
-            if (v.name) { // recognized from ui meaning it should be stored :: TODO ui
-              if (jsonKey) { // object is marked "json" or special, really just an array
-                tmpObj = $scope.justus[jsonKey];
-              } else {
-                // normal case
-                // has value
-                if (tmpObj)
-                  dnew[di][v.name] = tmpObj;
-              }
-              if (isArray(tmpObj)) {
-                angular.forEach(tmpObj,function(jv,jk){
-                  // hack: jk määrää dnew indeksin!
-                  if (di < jk) {
-                    di++;
-                    dnew[di] = {};
-                    if (table=="alayksikko") {
-                      dnew[di].organisaatiotekijaid = jid;
-                    } else {
-                      dnew[di].julkaisuid = jid;
-                    }
+
+          if (c.name!="id" && c.name!="julkaisuid" && c.name!="organisaatiotekijaid") {
+            let obj = $scope.justus[c.name]; // db vs ui names must match!
+            if (jsonKey) { // object is marked "json" or special, really just an array
+              obj = $scope.justus[jsonKey];
+            } else {
+              // normal case
+              // has value
+              if (obj!=null && obj!="") // may be 0, though
+                dnew[di][c.name] = obj;
+            }
+            console.log("tallennaTaulu TABLE:"+table+" COLUMN:"+c.name)
+            console.debug(obj)
+            if (table=="alayksikko") {
+              // inside another element, which is an array itself
+              //console.debug($scope.justus.organisaationtekijat)
+              obj = [];
+              angular.forEach($scope.justus.organisaationtekijat,function(ot,oi){
+                obj = obj.concat(ot.alayksikot)
+              });
+              console.debug(obj)
+            }
+            if (isArray(obj)) {
+              angular.forEach(obj,function(jv,jk){
+                // hack: jk määrää dnew indeksin!
+                if (di < jk) {
+                  di++;
+                  dnew[di] = {};
+                  if (table=="alayksikko") {
+                    dnew[di].organisaatiotekijaid = refid;
+                  } else {
+                    dnew[di].julkaisuid = refid;
                   }
-                  if (jv)
-                    dnew[di][v.name] = jv;
-                  // dnew yhden rivin osalta valmis
-                  console.debug(dnew)
-                });
-              }
+                }
+                if (jv)
+                  dnew[di][c.name] = jv;
+                // dnew yhden rivin osalta valmis
+                console.log("tallennaTaulu ARRAY#"+jk)
+                console.debug(dnew)
+              });
             }
           }
         });
@@ -57,6 +68,8 @@ function($scope,$http,API)
     });
     // loop'n'store
     angular.forEach(dnew,function(d,i){
+      console.log("tallennaTaulu "+table+" #"+i)
+      console.debug(d)
       API.post(table+"/",d);
     });
   }
@@ -92,21 +105,21 @@ function($scope,$http,API)
         tallennaTaulu("avainsana",jid);
         tallennaTaulu("tieteenala",jid);
         // alayksikko needs new id of organisaatiotekija also:
-        //tallennaTaulu("organisaatiotekija",jid);
+        //so dont do this: tallennaTaulu("organisaatiotekija",jid);
         angular.forEach($scope.justus.organisaationtekijat,function(ov,ok){
           var dot = {};
           dot.julkaisuid = jid;
           if(ov['sukunimi']) dot.sukunimi = ov['sukunimi'];
-          if(ov['etunimi'])  dot.etunimet = ov['etunimi'];
+          if(ov['etunimet'])  dot.etunimet = ov['etunimet'];
           if(ov['orcid'])    dot.orcid = ov['orcid'];
-          API.post('organisaatiotekija'+"/",dot).success(function(oid){
-            console.log("useTallenna post oid: "+oid);
-            tallennaTaulu("alayksikko",oid);
+          API.post('organisaatiotekija'+"/",dot).success(function(otid){
+            console.log("useTallenna post oid: "+otid);
+            tallennaTaulu("alayksikko",otid);
           });
         });
       }
       // move on to own publications
-      window.location = "omat.html";
+      //hold on, devin': window.location = "omat.html";
     });
   }
 

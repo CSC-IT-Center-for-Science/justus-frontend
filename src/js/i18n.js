@@ -129,7 +129,7 @@ let i18n = {
           EN: "Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org"
         },
         sukunimi: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "*EN*Sukunimi", picktip: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "*EN*Sukunimi"}},
-        etunimi: {FI: "Etunimi", SV: "*SV*Etunimi", EN: "*EN*Etunimi", picktip: {FI: "Etunimi", SV: "*SV*Etunimi", EN: "*EN*Etunimi"}},
+        etunimet: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "*EN*Etunimet", picktip: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "*EN*Etunimet"}},
         alayksikko: {FI: "Alayksikkö", SV: "*SV*Alayksikkö", EN: "Organisational unit", picktip: {FI: "Alayksikkö", SV: "*SV*Alayksikkö", EN: "Organisational unit"}},
         orcid: {FI: "ORCID", SV: "ORCID", EN: "ORCID", picktip: {FI: "ORCID", SV: "ORCID", EN: "ORCID"}},
         lisaa: {FI: "+", SV: "+", EN: "+", tooltip: {FI: "Lisää", SV: "*SV*Lisää", EN: "Add"}},
@@ -376,7 +376,7 @@ let i18n = {
           EN: "The website address of the self-archived version of the publication stored in the organisation- or field-specific archive (e.g. URN)."
         }
       },
-      jufoid: {FI: "JUFO-ID", SV: "JUFO-ID", EN: "JUFO-ID"},
+      jufotunnus: {FI: "JUFO-ID", SV: "JUFO-ID", EN: "JUFO-ID"},
       jufoluokitus: {FI: "JUFO-luokitus", SV: "JUFO-klassificering", EN: "JUFO-classification"}
     },
     taytaviela: {

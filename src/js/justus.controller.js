@@ -28,7 +28,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
       var ee = tempstr.indexOf(';')>=0?tempstr.indexOf(';'):tempstr.length;
       $scope.justus.organisaationtekijat[i] = {};
       $scope.justus.organisaationtekijat[i].sukunimi=tempstr.substring(sb,se).trim();
-      $scope.justus.organisaationtekijat[i].etunimi=tempstr.substring(eb,ee).trim();
+      $scope.justus.organisaationtekijat[i].etunimet=tempstr.substring(eb,ee).trim();
       $scope.justus.organisaationtekijat[i].alayksikot = [""];
       tempstr=tempstr.substring(ee+1);
     }
@@ -74,7 +74,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     JUFO.kanava(input)
     .then(function (obj){
       $scope.justus.lehdenjulkaisusarjannimi = obj.Name;
-      $scope.justus.jufoid = input; // tai vastauksesta...
+      $scope.justus.jufotunnus = input; // tai vastauksesta...
       $scope.justus.jufoluokitus = obj.Level;
       if (obj.ISSN1) $scope.justus.issn = obj.ISSN1;
       if ($scope.justus.issn == null || $scope.justus.issn == "")
@@ -88,8 +88,8 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     JUFO.etsiissn(input)
     .then(function (response){
       var jobj = response.data;
-      var jufoid = jobj[0].Jufo_ID; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
-      $scope.useLehtisarja(jufoid); // vain issn?
+      var jufotunnus = jobj[0].Jufo_ID; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
+      $scope.useLehtisarja(jufotunnus); // vain issn?
       $scope.lehtinimet.selected = jobj[0];
     });
   }
@@ -251,6 +251,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     }
   }
 
+  // TODO: justus serviceen?
   $scope.makeParams = function(input) {
     //console.log("makeParams");
     if (input==null) input = $scope.justus;
@@ -400,7 +401,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   $scope.lehtinimet = [];
   $scope.kustantajanimet = [];
   $scope.konferenssinimet = [];
-  $scope.justus.jufoid = "";
+  $scope.justus.jufotunnus = "";
   $scope.justus.jufoluokitus = "";
 
   $scope.justus.organisaationtekijat = [{}]; //pakko populoida (ei tule muuten ui:hin)
@@ -450,7 +451,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
         $scope.useTekijat($scope.justus[fkey]);
       }
       // haetaan selitteitä koodeille
-      if (fkey=="jufoid") {
+      if (fkey=="jufotunnus") {
         JUFO.kanava($scope.justus[fkey])
         .then(function (obj) {
           $scope.lehtinimet.selected = obj;

@@ -51,6 +51,7 @@
 <div class="row">
 <div class="col-xs-12 content">
 
+  <!-- todo: header -->
   <div class="row">
     <div class="col-xs-12 col-md-7">
       <img src="img/justus_logo.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
@@ -100,7 +101,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="d in data track by d.id">
+          <tr data-ng-repeat="d in data.julkaisu track by d.id">
             <td>
               {{d.id}}
             </td>

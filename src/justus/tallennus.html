@@ -39,7 +39,7 @@
       <div class="col-xs-8 justus-data">
         <div data-ng-repeat="i in justus.organisaationtekijat track by $index">
           {{justus.organisaationtekijat[$index].sukunimi}},
-          {{justus.organisaationtekijat[$index].etunimi}};
+          {{justus.organisaationtekijat[$index].etunimet}};
           <span data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot"><span data-ng-if="$index>0">,</span>
             <span data-ng-bind="a"></span>=<span data-ng-bind="getCode('oppilaitokset',a).selite[lang]"></span></span>;
           {{justus.organisaationtekijat[$index].orcid}}
@@ -75,9 +75,9 @@
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="justus.lehdenjulkaisusarjannimi"></span>
     <!-- näytä valitun lehden/sarjan tietoja -->
-    <div class="row" data-ng-show="justus.jufoid || justus.jufoluokitus">
+    <div class="row" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
       <div class="col-xs-12">
-        <span data-ng-show="justus.jufoid">{{i18n.content.form.jufoid[lang]}}: {{justus.jufoid}}</span><span data-ng-show="justus.jufoid && justus.jufoluokitus">,</span>
+        <span data-ng-show="justus.jufotunnus">{{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
         <span data-ng-show="justus.jufoluokitus">{{i18n.content.form.jufoluokitus[lang]}}: {{justus.jufoluokitus}}={{codes.jufoluokitukset[justus.jufoluokitus][lang]}}</span>
       </div>
     </div>

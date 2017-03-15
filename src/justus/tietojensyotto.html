@@ -91,7 +91,7 @@
       <div class="col-xs-5 justus-data text-right">
         <input type="button" class="justus-btn justus-btn-default btn-sm"
          data-ng-click="useKopioiTekijat(justus.tekijat)"
-         data-ng-show="justus.tekijat && !(justus.organisaationtekijat[0].sukunimi || justus.organisaationtekijat[0].etunimi)"
+         data-ng-show="justus.tekijat && !(justus.organisaationtekijat[0].sukunimi || justus.organisaationtekijat[0].etunimet)"
          value="{{i18n.content.form.organisaationtekijat.kopioi[lang]}}"
          data-popover-trigger="'mouseenter'" data-popover-placement="right"
          data-uib-popover="{{i18n.content.form.organisaationtekijat.kopioi.tooltip[lang]}}">
@@ -116,7 +116,7 @@
     <div data-ng-repeat="i in justus.organisaationtekijat track by $index"
      class="row justus-required"
      data-ng-model="req_organisaationtekijat[$index]"
-     data-ng-required="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimi
+     data-ng-required="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimet
        && justus.organisaationtekijat[$index].alayksikot[0]
        )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" -->
       <div class="col-xs-10">
@@ -128,8 +128,8 @@
           </div>
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="justus-input md justus-required"
-             data-ng-model="justus.organisaationtekijat[$index].etunimi"
-             placeholder="{{i18n.content.form.organisaationtekijat.etunimi.picktip[lang]}}">
+             data-ng-model="justus.organisaationtekijat[$index].etunimet"
+             placeholder="{{i18n.content.form.organisaationtekijat.etunimet.picktip[lang]}}">
           </div>
         </div>
         <div class="row">
@@ -198,7 +198,7 @@
         data-ng-hide="$index < justus.organisaationtekijat.length-1" -->
 
         <i class="fa fa-arrow-left pull-right"
-         data-ng-if="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimi
+         data-ng-if="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimet
           && justus.organisaationtekijat[$index].alayksikot[0]
           )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" --></i>
       </div>
@@ -325,12 +325,12 @@
       </div>
     </div>
     <!-- näytä valitun lehden/sarjan tietoja -->
-    <div class="row" data-ng-show="justus.jufoid || justus.jufoluokitus">
+    <div class="row" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
       <div class="col-xs-12">
-        <input type="hidden" data-ng-model="justus.jufoid">
+        <input type="hidden" data-ng-model="justus.jufotunnus">
         <input type="hidden" data-ng-model="justus.jufoluokitus">
-        <span data-ng-show="justus.jufoid">
-          {{i18n.content.form.jufoid[lang]}}: {{justus.jufoid}}</span><span data-ng-show="justus.jufoid && justus.jufoluokitus">,</span>
+        <span data-ng-show="justus.jufotunnus">
+          {{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
         <span data-ng-show="justus.jufoluokitus">
           {{i18n.content.form.jufoluokitus[lang]}}: {{justus.jufoluokitus}}={{codes.jufoluokitukset[justus.jufoluokitus][lang]}}</span>
       </div>
