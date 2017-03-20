@@ -14,7 +14,7 @@ let i18n = {
   },
   footer: {
     help: {
-      title: {FI: "Asiakaspalvelu", SV: "*SV*Asiakaspalvelu", EN: "*EN*Asiakaspalvelu"},
+      title: {FI: "Asiakaspalvelu", SV: "*SV*Asiakaspalvelu", EN: "Customer service"},
       email: {FI: "justus@csc.fi", SV: "justus@csc.fi", EN: "justus@csc.fi"},
       time: {FI: "ma-pe klo 8.30-16", SV: "*SV*ma-pe klo 8.30-16", EN: "Mon-Tue 8.30am-4pm"}
     },
@@ -25,30 +25,30 @@ let i18n = {
     }
   },
   etusivu: {
-    kirjaudu: {FI: "Kirjaudu JUSTUS-palveluun", SV: "*SV*Kirjaudu JUSTUS-palveluun", EN: "*EN*Kirjaudu JUSTUS-palveluun"},
-    title: {FI: "Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", SV: "*SV*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", EN: "*EN*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?"},
+    kirjaudu: {FI: "Kirjaudu JUSTUS-palveluun", SV: "*SV*Kirjaudu JUSTUS-palveluun", EN: "Log in to JUSTUS-service"},
+    title: {FI: "Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", SV: "*SV*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", EN: "What is JUSTUS–service?"},
     paragraphs: [
       {
         FI: "JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.",
         SV: "*SV*p1",
-        EN: "*EN*p1"
+        EN: "When publication data is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions."
       }
     ],
     help: {
-      title: {FI: "JUSTUS-palvelun käyttöohjeet:", SV: "*SV*JUSTUS-palvelun käyttöohjeet:", EN: "*EN*JUSTUS-palvelun käyttöohjeet:"},
+      title: {FI: "JUSTUS-palvelun käyttöohjeet:", SV: "*SV*JUSTUS-palvelun käyttöohjeet:", EN: "Instructions for JUSTUS-service:"},
       organization: {
         FI: "JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:",
         SV: "*SV*JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:",
-        EN: "*EN*JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:"
+        EN: "JUSTUS-service can be used to enter publication data if you belong to one of the following organisations:"
       }
     }
   },
   content: {
     valitse: {
-      title: {FI: "VALITSE TOIMINTO", SV: "*SV*VALITSE TOIMINTO", EN: "*EN*VALITSE TOIMINTO"},
-      tallenna: {FI: "Tallenna julkaisu", SV: "*SV*Tallenna julkaisu", EN: "*EN*Tallenna julkaisu"},
-      omat: {FI:"Omat tallennukset", SV:"*SV*Omat tallennukset", EN:"*EN*Omat tallennukset"},
-      hyvaksy: {FI:"Hyväksy tallennuksia", SV:"*SV*Hyväksy tallennuksia", EN:"*EN*Hyväksy tallennuksia"}
+      title: {FI: "VALITSE TOIMINTO", SV: "*SV*VALITSE TOIMINTO", EN: "CHOOSE FUNCTION"},
+      tallenna: {FI: "Tallenna julkaisu", SV: "*SV*Tallenna julkaisu", EN: "Save publication"},
+      omat: {FI:"Omat tallennukset", SV:"*SV*Omat tallennukset", EN:"Saved publications"},
+      hyvaksy: {FI:"Hyväksy tallennuksia", SV:"*SV*Hyväksy tallennuksia", EN:"Approve publications"}
     },
     esitayta: {
       title: {FI: "Tietojen haku", SV: "*SV*Tietojen haku", EN: "*EN*Tietojen haku"},
@@ -68,30 +68,30 @@ let i18n = {
         }
       },
       doihaku: {
-        title: {FI: "Hae tietoja DOI-tunnisteella", SV: "*SV*Hae tietoja DOI-tunnisteella", EN: "*EN*Hae tietoja DOI-tunnisteella"},
+        title: {FI: "Hae tietoja DOI-tunnisteella", SV: "*SV*Hae tietoja DOI-tunnisteella", EN: "Prefill using DOI-identifier"},
         tunniste: {
-          FI: "Kirjoita DOI-tunniste", SV: "*SV*Kirjoita DOI-tunniste", EN: "*EN*Kirjoita DOI-tunniste",
-          tooltip: {FI: "Esim. https://doi.org/10.4324/9780203841693", SV: "*SV*Kirjoita DOI-tunniste", EN: "*EN*Kirjoita DOI-tunniste"}
+          FI: "Kirjoita DOI-tunniste", SV: "*SV*Kirjoita DOI-tunniste", EN: "Enter DOI-identifier",
+          tooltip: {FI: "Esim. https://doi.org/10.4324/9780203841693", SV: "*SV*Kirjoita DOI-tunniste", EN: "e.g. https://doi.org/10.4324/9780203841693"}
         },
         klikkaa: {
           FI: "ja klikkaa", SV: "*SV*ja klikkaa", EN: "*EN*ja klikkaa",
           tooltip: {FI: "ja klikkaa", SV: "*SV*ja klikkaa", EN: "*EN*ja klikkaa"}
         },
-        hae: {FI: "Hae", SV: "*SV*Hae", EN: "*EN*Hae"}
+        hae: {FI: "Hae", SV: "*SV*Hae", EN: "Search"}
       },
       etsijulkaisu: {
-        title: {FI: "Hae tietoja julkaisun nimellä", SV: "*SV*Hae tietoja julkaisun nimellä", EN: "*EN*Hae tietoja julkaisun nimellä"},
-        picktip: {FI: "Hae julkaisun nimellä", SV: "*SV*Hae julkaisun nimellä", EN: "*EN*Hae julkaisun nimellä"},
+        title: {FI: "Hae tietoja julkaisun nimellä", SV: "*SV*Hae tietoja julkaisun nimellä", EN: "Search using publication's name"},
+        picktip: {FI: "Hae julkaisun nimellä", SV: "*SV*Hae julkaisun nimellä", EN: "Search publication's name"},
         tekija: {
-          FI: "Kirjoita hakuehto: tekijä", SV: "*SV*Kirjoita hakuehto: tekijä", EN: "*EN*Kirjoita hakuehto: tekijä",
-          tooltip: {FI: "Rajaa hakua halutessasi tekijän nimellä", SV: "*SV*Rajaa hakua halutessasi tekijän nimellä", EN: "*EN*Rajaa hakua halutessasi tekijän nimellä"}
+          FI: "Kirjoita hakuehto: tekijä", SV: "*SV*Kirjoita hakuehto: tekijä", EN: "Enter the author",
+          tooltip: {FI: "Rajaa hakua halutessasi tekijän nimellä", SV: "*SV*Rajaa hakua halutessasi tekijän nimellä", EN: "Filter search using the author's name"}
         },
       },
       uudestaan: {
         FI: "Hae julkaisua uudestaan", SV: "*SV*Hae julkaisua uudestaan", EN: "*EN*Hae julkaisua uudestaan"
       },
-      hae: {FI: "Hae", SV: "*SV*Hae", EN: "*EN*Hae"},
-      ohita: {FI: "Ohita vaihe ja syötä julkaisutiedot käsin", SV: "*SV*Ohita vaihe ja syötä julkaisutiedot käsin", EN: "*EN*Ohita vaihe ja syötä julkaisutiedot käsin"}
+      hae: {FI: "Hae", SV: "*SV*Hae", EN: "Search"},
+      ohita: {FI: "Ohita vaihe ja syötä julkaisutiedot käsin", SV: "*SV*Ohita vaihe ja syötä julkaisutiedot käsin", EN: "Skipt this phase and manually enter publication data"}
     },
     form: {
       julkaisutyyppi: {
@@ -391,9 +391,9 @@ let i18n = {
       jufoluokitus: {FI: "JUFO-luokitus", SV: "JUFO-klassificering", EN: "JUFO-classification"}
     },
     tietojensyotto: {
-      yleiset: {FI: "Yleiset julkaisutiedot", SV: "*SV*Yleiset julkaisutiedot", EN: "*EN*Yleiset julkaisutiedot"},
-      bibliografiset: {FI: "Bibliografiset tiedot", SV: "*SV*Bibliografiset tiedot", EN: "*EN*Bibliografiset tiedot"},
-      muut: {FI: "Muut julkaisutiedot", SV: "*SV*Muut julkaisutiedot", EN: "*EN*Muut julkaisutiedot"},
+      yleiset: {FI: "Yleiset julkaisutiedot", SV: "*SV*Yleiset julkaisutiedot", EN: "General publication information"},
+      bibliografiset: {FI: "Bibliografiset tiedot", SV: "*SV*Bibliografiset tiedot", EN: "Bibliographic information"},
+      muut: {FI: "Muut julkaisutiedot", SV: "*SV*Muut julkaisutiedot", EN: "Other information"},
       taytaviela: {
         FI: "Täytä vielä", SV: "*SV*Täytä vielä", EN: "Required information",
         korosta: {FI: "korosta", SV: "*SV*korosta", EN: "highlight"},
@@ -402,7 +402,7 @@ let i18n = {
       jatka: {FI: "Tallenna muutokset ja siirry esikatseluun", SV: "*SV*Tallenna muutokset ja siirry esikatseluun", EN: "Save changes and preview"}
     },
     tallennus: {
-      tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "*EN*Tallenna tiedot ja palaa omiin tallennuksiin"}
+      tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "Save changes and return to saved publications"}
     },
     vaihevuo: {
       julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "SV*Valitse julkaisutyyppi", EN: "Choose publication type"},
