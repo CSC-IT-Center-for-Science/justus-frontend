@@ -9,7 +9,7 @@ let i18n = {
     help: {FI: "Ohje", SV: "Instruktioner", EN: "Instructions"}
   },
   navi: {
-    form: {FI: "SYÖTTÖLOMAKE", SV: "INMATNINGSFORMULÄR", EN: "INPUT FORM"},
+    form: {FI: "SYÖTTÖLOMAKE", SV: "SV*SYÖTTÖLOMAKE", EN: "INPUT FORM"},
     records: {FI: "OMAT TALLENNUKSET", SV: "*SV*OMAT TALLENNUKSET", EN: "OWN SUBMISSIONS"}
   },
   footer: {
@@ -405,9 +405,9 @@ let i18n = {
       tallenna: {FI: "Tallenna tiedot ja palaa omiin tallennuksiin", SV: "*SV*Tallenna tiedot ja palaa omiin tallennuksiin", EN: "*EN*Tallenna tiedot ja palaa omiin tallennuksiin"}
     },
     vaihevuo: {
-      julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "Väljä publikationstyp", EN: "Choose publication type"},
+      julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "SV*Valitse julkaisutyyppi", EN: "Choose publication type"},
       esitayta: {FI: "Esitäytä tiedot", SV: "*SV*Esitäytä tiedot", EN: "Prefill the form"},
-      tietojensyotto: {FI: "Syötä julkaisutiedot", SV: "Publikationsuppgifterna", EN: "Enter publication data"},
+      tietojensyotto: {FI: "Syötä julkaisutiedot", SV: "SV*Syötä julkaisutiedot", EN: "Enter publication data"},
       organisaationtekijat: {FI: "SYÖTÄ\nTEKIJÖIDEN TIEDOT", SV: "*SV*SYÖTÄ\nTEKIJÖIDEN TIEDOT", EN: "*EN*SYÖTÄ\nTEKIJÖIDEN TIEDOT"},
       tallennus: {FI: "Tarkista ja tallenna", SV: "*SV*Tarkista ja tallenna", EN: "Verify and save"}
     },
