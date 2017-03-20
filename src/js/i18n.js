@@ -10,7 +10,7 @@ let i18n = {
   },
   navi: {
     form: {FI: "SYÖTTÖLOMAKE", SV: "SV*SYÖTTÖLOMAKE", EN: "INPUT FORM"},
-    records: {FI: "OMAT TALLENNUKSET", SV: "*SV*OMAT TALLENNUKSET", EN: "OWN SUBMISSIONS"}
+    records: {FI: "OMAT TALLENNUKSET", SV: "*SV*OMAT TALLENNUKSET", EN: "SAVED PUBLICATIONS"}
   },
   footer: {
     help: {
@@ -91,7 +91,7 @@ let i18n = {
         FI: "Hae julkaisua uudestaan", SV: "*SV*Hae julkaisua uudestaan", EN: "*EN*Hae julkaisua uudestaan"
       },
       hae: {FI: "Hae", SV: "*SV*Hae", EN: "Search"},
-      ohita: {FI: "Ohita vaihe ja syötä julkaisutiedot käsin", SV: "*SV*Ohita vaihe ja syötä julkaisutiedot käsin", EN: "Skipt this phase and manually enter publication data"}
+      ohita: {FI: "Ohita vaihe ja syötä julkaisutiedot käsin", SV: "*SV*Ohita vaihe ja syötä julkaisutiedot käsin", EN: "Skip this phase and manually enter publication data"}
     },
     form: {
       julkaisutyyppi: {
@@ -139,8 +139,8 @@ let i18n = {
           SV: "Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org",
           EN: "Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org"
         },
-        sukunimi: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "*EN*Sukunimi", picktip: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "*EN*Sukunimi"}},
-        etunimet: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "*EN*Etunimet", picktip: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "*EN*Etunimet"}},
+        sukunimi: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "*EN*Sukunimi", picktip: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "Surname"}},
+        etunimet: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "*EN*Etunimet", picktip: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "First names"}},
         alayksikko: {FI: "Alayksikkö", SV: "*SV*Alayksikkö", EN: "Organisational unit", picktip: {FI: "Alayksikkö", SV: "*SV*Alayksikkö", EN: "Organisational unit"}},
         orcid: {FI: "ORCID", SV: "ORCID", EN: "ORCID", picktip: {FI: "ORCID", SV: "ORCID", EN: "ORCID"}},
         lisaa: {FI: "+", SV: "+", EN: "+", tooltip: {FI: "Lisää", SV: "*SV*Lisää", EN: "Add"}},
@@ -345,11 +345,11 @@ let i18n = {
           SV: "",
           EN: ""
         },
-        '0': {FI: "Ei vastausta", SV: "*SV*Ei vastausta", EN: "*EN*Ei vastausta"},
+        '0': {FI: "Ei vastausta", SV: "*SV*Ei vastausta", EN: "No answer"},
         '1': {
           FI: "Open access -julkaisukanavassa ilmestynyt julkaisu",
           SV: "*SV*Open access -julkaisukanavassa ilmestynyt julkaisu",
-          EN: "*EN*Open access -julkaisukanavassa ilmestynyt julkaisu",
+          EN: "Published in open access publication",
           tooltip: {
             FI: "Julkaisukanavan kaikki julkaisut ovat avoimesti saatavilla.",
             SV: "Alla publikationer i publikationskanalen fritt tillgängliga.",
@@ -359,7 +359,7 @@ let i18n = {
         '2': {
           FI: "Hybridijulkaisukanavassa ilmestynyt avoin julkaisu",
           SV: "*SV*Hybridijulkaisukanavassa ilmestynyt avoin julkaisu",
-          EN: "*EN*Hybridijulkaisukanavassa ilmestynyt avoin julkaisu",
+          EN: "Published in hybrid open access journal",
           tooltip: {
             FI: "Julkaisukanavassa on sekä avoimesti että ei-avoimesti saatavilla olevia julkaisuja.",
             SV: "Fritt tillgängliga och icke-fritt tillgängliga publikationer i publikationskanalen",
