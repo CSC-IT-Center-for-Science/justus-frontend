@@ -17,5 +17,8 @@
     <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a></span>
     <span data-ng-show="lang=='FI'">|</span>
     <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a></span>
+    <span data-ng-if="developmentmode"><!-- should be "admin role" -->
+      <a href="#" data-ng-click="resetKoodisto()">reset koodisto</a>
+    </span>
   </div>
 </div>

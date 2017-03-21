@@ -8,10 +8,6 @@ let i18n = {
     logout: {FI: 'Kirjaudu ulos', SV: 'Logga ut', EN: 'Logout'},
     help: {FI: "Ohje", SV: "Instruktioner", EN: "Instructions"}
   },
-  navi: {
-    form: {FI: "SYÖTTÖLOMAKE", SV: "SV*SYÖTTÖLOMAKE", EN: "INPUT FORM"},
-    records: {FI: "OMAT TALLENNUKSET", SV: "*SV*OMAT TALLENNUKSET", EN: "SAVED PUBLICATIONS"}
-  },
   footer: {
     help: {
       title: {FI: "Asiakaspalvelu", SV: "*SV*Asiakaspalvelu", EN: "Customer service"},
@@ -408,8 +404,21 @@ let i18n = {
       julkaisutyyppi: {FI: "Valitse julkaisutyyppi", SV: "SV*Valitse julkaisutyyppi", EN: "Choose publication type"},
       esitayta: {FI: "Esitäytä tiedot", SV: "*SV*Esitäytä tiedot", EN: "Prefill the form"},
       tietojensyotto: {FI: "Syötä julkaisutiedot", SV: "SV*Syötä julkaisutiedot", EN: "Enter publication data"},
-      organisaationtekijat: {FI: "SYÖTÄ\nTEKIJÖIDEN TIEDOT", SV: "*SV*SYÖTÄ\nTEKIJÖIDEN TIEDOT", EN: "*EN*SYÖTÄ\nTEKIJÖIDEN TIEDOT"},
       tallennus: {FI: "Tarkista ja tallenna", SV: "*SV*Tarkista ja tallenna", EN: "Verify and save"}
+    },
+    tarkasta: {
+      odottavat: {FI: "Hyväksymistä odottavat julkaisut", SV: "*SV*Hyväksymistä odottavat julkaisut", EN: "*EN*Hyväksymistä odottavat julkaisut"},
+      hyvaksytyt: {FI: "Hyväksytyt julkaisut", SV: "*SV*Hyväksytyt julkaisut", EN: "*EN*Hyväksytyt julkaisut"},
+      table: {
+        julkaisuid: {FI: "JulkaisuID", SV: "*SV*JulkaisuID", EN: "*EN*JulkaisuID"},
+        julkaisunnimi: {FI: "Julkaisun nimi", SV: "*SV*Julkaisun nimi", EN: "*EN*Julkaisun nimi"},
+        julkaisuntekijat: {FI: "Julkaisun tekijät", SV: "*SV*Julkaisun tekijät", EN: "*EN*Julkaisun tekijät"},
+        tila: {FI: "Tila", SV: "*SV*Tila", EN: "*EN*Tila"},
+        muokattu: {FI: "Muokattu", SV: "*SV*Muokattu", EN: "*EN*Muokattu"},
+        viimeisinmuokkaaja: {FI: "Viimeisin muokkaaja", SV: "*SV*Viimeisin muokkaaja", EN: "*EN*Viimeisin muokkaaja"},
+        toiminnot: {FI: "Toiminnot", SV: "*SV*Toiminnot", EN: "*EN*Toiminnot"}
+      },
+      uusi: {FI: "Tallenna uusi julkaisu", SV: "*SV*Tallenna uusi julkaisu", EN: "*EN*Tallenna uusi julkaisu"}
     },
 
     yes: {FI: "Kyllä", SV: "Ja", EN: "Yes"},

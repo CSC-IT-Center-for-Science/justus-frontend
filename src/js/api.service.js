@@ -2,7 +2,6 @@
 
 justusApp.service('APIService', ['$http', function ($http) {
 
-  //* (fix with justus.save.controller!)
   this.meta = {
     tables: [
       {

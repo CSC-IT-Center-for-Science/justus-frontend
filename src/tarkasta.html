@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi" data-ng-app="justusApp" data-ng-controller="TarkastaController">
+<html lang="fi" data-ng-app="justusApp" data-ng-controller="IndexController">
 <head>
   <!-- bootstrap :: the  first 3 must be first -->
   <meta charset="utf-8">
@@ -21,12 +21,16 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   end mustache -->
   <!-- endbuild -->
-  <!-- build:js js/appcheck.js -->
+  <!-- build:js js/index.js -->
   <script src="js/generic.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/codes.js"></script>
   <script src="js/justus.app.js"></script>
   <script src="js/koodisto.service.js"></script>
+  <script src="js/index.controller.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/tarkasta.js -->
   <script src="js/justus.service.js"></script>
   <script src="js/api.service.js"></script>
   <script src="js/tarkasta.controller.js"></script>
@@ -52,7 +56,8 @@
 <div class="col-xs-12 content">
 
   <div data-ng-include src="'header.html'"></div>
-  <div class="row">
+  
+  <!-- div class="row">
     <div class="col-xs-12">
       <div style="display:inline-block; vertical-align:middle; float:none">
         <img src="img/hyvaksyikoni.png" alt="{{i18n.header.logotext[lang]}}" class="img-responsive">
@@ -61,51 +66,30 @@
         <h3>HYVÄKSY TALLENNUKSIA</h3>
       </div>
     </div>
-  </div>
+  </div -->
 
-  <div class="row justus-block-alter">
-    <div class="col-xs-12">
-    </div>
-  </div>
-  
-  <div class="row form-control">
+  <div class="row" data-ng-controller="TarkastaController">
     <div class="col-xs-12 table-responsive">
       <table class="table table-condensed table-striped">
         <thead>
           <tr>
-            <th>JulkaisuID</th>
-            <th>Julkaisun nimi</th>
-            <th>Julkaisun tekijät</th>
-            <th>Julkaisuvuosi</th>
-            <th>Tila</th>
-            <th>Muokattu</th>
-            <th>Viimeisin muokkaaja</th>
-            <th>Toiminto</th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.tila[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span></th>
+            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"><span data-ng-bind="i18n.content.tarkasta.table.toiminnot[lang]"></span></th>
           </tr>
         </thead>
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu track by d.id">
-            <td>
-              {{d.id}}
-            </td>
-            <td>
-              {{d.julkaisunnimi}}
-            </td>
-            <td>
-              {{d.tekijat}}
-            </td>
-            <td>
-              {{d.julkaisuvuosi}}
-            </td>
-            <td>
-              <div data-ng-bind="getCode('julkaisuntila',getStatus(d.id).julkaisuntila).selite[lang]"></div>
-            </td>
-            <td>
-              <div data-ng-bind="getStatus(d.id).modified"></div>
-            </td>
-            <td>
-              <div data-ng-bind="getStatus(d.id).username"></div>
-            </td>
+            <td><span data-ng-bind="d.id"></span></td>
+            <td><span data-ng-bind="d.julkaisunnimi"></span></td>
+            <td><span data-ng-bind="d.tekijat"></span></td>
+            <td><span data-ng-bind="getCode('julkaisuntila',d.status).selite[lang]"></span></td>
+            <td><span data-ng-bind="d.modified"></span></td>
+            <td><span data-ng-bind="d.username"></span></td>
             <td>
               <!-- button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button -->
               <button data-ng-click="usePoista(d[table.pkcol])">Poista</button>

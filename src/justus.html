@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi" data-ng-app="justusApp" data-ng-controller="justusController">
+<html lang="fi" data-ng-app="justusApp" data-ng-controller="IndexController">
 <head>
   <!-- bootstrap :: the  first 3 must be first -->
   <meta charset="utf-8">
@@ -21,20 +21,28 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   end mustache -->
   <!-- endbuild -->
-  <!-- build:js js/justus.js -->
+  <!-- build:js js/index.js -->
   <script src="js/generic.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/codes.js"></script>
   <script src="js/justus.app.js"></script>
+  <script src="js/koodisto.service.js"></script>
+  <script src="js/index.controller.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/service.js -->
   <script src="js/crossref.service.js"></script>
   <script src="js/virta.service.js"></script>
   <script src="js/jufo.service.js"></script>
-  <script src="js/koodisto.service.js"></script>
   <script src="js/justus.service.js"></script>
+  <script src="js/api.service.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/justus.js -->
   <script src="js/justus.controller.js"></script>
   <script src="js/justus.directive.js"></script>
-  <script src="js/api.service.js"></script>
-  <script src="js/save.controller.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/tallennus.js -->
+  <script src="js/tallennus.controller.js"></script>
   <!-- endbuild -->
 
   <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!--enddev-->
@@ -60,14 +68,8 @@
 
     <div data-ng-include src="'header.html'"></div>
 
-    <div class="row">
-      <div class="col-xs-12 col-md-12 pull-right text-right" style="vertical-align:bottom;">
-        <a href="justus.html" data-ng-bind="i18n.navi.form[lang]"></a> | <a href="omat.html" data-ng-bind="i18n.navi.records[lang]"></a>
-      </div>
-    </div>
-
     <form id="form_justus" name="fj"
-      action="justus_save.php" method="GET">
+      action="justus_save.php" method="GET" data-ng-controller="JustusController">
 
       <div data-ng-show="ui_vaihe<1" data-ng-include src="'justus/valitse.html'"></div>
 

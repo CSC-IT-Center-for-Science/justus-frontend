@@ -1,6 +1,6 @@
 'use strict';
 
-justusApp.controller('justusController',
+justusApp.controller('JustusController',
 ['$scope','$http','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService',
 function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
 {
@@ -339,19 +339,15 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   //
   // MUUTTUJAT JA ALUSTUS
   //
-  var language = QueryString.lang||"FI";
-  /* jos haluaa tarjota selaimen kielen oletuksena:
-  if(window)if(window.navigator){
-    language = window.navigator.userLanguage || window.navigator.language;
-    language = language.substr(0,2);
-    language = language.toUpperCase();
-    console.log("from browser language: "+language);
-  }
-  //*/
   $scope.lang = language;
   $scope.i18n = i18n;
   // populoi yleisimmät, jotka jyrätään yli mikäli haetaan kirjoittamalla
   $scope.codes = codes;
+
+  $scope.developmentmode=developmentmode;
+
+  $scope.resetKoodisto = Koodisto.reset;
+
   // haetaan Koodistopalvelusta sinne vietyjä
   if (!$scope.codes.julkaisutyypit) {
     /* localStorage:
@@ -501,7 +497,11 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
       // TODO näytä jokin message!?
       $scope.ui_vaihe = QueryString.vaihe||0;
     //}
+    // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
+    if ($scope.ui_vaihe>2) {
+      $scope.useVaihe(2);
+    }
     console.log('dev: ui_vaihe='+$scope.ui_vaihe)
   }
 
-}]);//-justusController
+}]);//-JustusController

@@ -1,6 +1,6 @@
 'use strict';
 
-justusApp.controller('saveController',
+justusApp.controller('TallennusController',
 ['$scope','$http','APIService',
 function($scope,$http,API)
 {
@@ -128,6 +128,6 @@ function($scope,$http,API)
   //
   $scope.meta = API.meta;
   // init
-  console.log("saveController");
+  console.log("TallennusController");
 
-}]);//-saveController
+}]);//-TallennusController

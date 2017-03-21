@@ -81,7 +81,7 @@ function($scope,$http,API,Koodisto)
       angular.forEach($scope.meta.tables,function(t,k){
         if (t.name!="julkaisu" && t.name!="alayksikko") {
           angular.forEach($scope.data[t.name],function(o,i){
-            console.log("makeParams TABLES "+t.name+" :: "+o.julkaisuid)
+            //console.log("makeParams TABLES "+t.name+" :: "+o.julkaisuid)
             //console.debug(o)
             if (o.julkaisuid==input.id) {
               //kvpairs.push(encodeURIComponent("avainsanat") + "=" + encodeURIComponent(a.avainsana));
@@ -96,8 +96,8 @@ function($scope,$http,API,Koodisto)
               if (t.name=="organisaatiotekija") {
                 let ays = [];
                 angular.forEach($scope.data["alayksikko"],function(s,j){
-                  console.log("makeParams OT+AY "+t.ui+" :: "+o.id+" ~ "+s.organisaatiotekijaid)
-                  console.debug(s)
+                  //console.log("makeParams OT+AY "+t.ui+" :: "+o.id+" ~ "+s.organisaatiotekijaid)
+                  //console.debug(s)
                   if (s.organisaatiotekijaid==o.id) {
                     ays.push(s.alayksikko)
                   }
@@ -146,18 +146,8 @@ function($scope,$http,API,Koodisto)
   // init
   $scope.resetData();
   
-  // Tarkasta specific
-  $scope.useHae("status");
-  $scope.getStatus = function(jid) {
-    console.log("getStatus "+jid)
-    console.debug($scope.data.status)
-    let ret = {};
-    angular.forEach($scope.data.status,function(s,j){
-      if (s.julkaisuid==jid) {
-        ret = s;
-      }
-    });
-    return ret;
+  $scope.odottavat = true;
+  if (QueryString['status']>0) {
+    $scope.odottavat = false;
   }
-
 }]);//-TarkastaController

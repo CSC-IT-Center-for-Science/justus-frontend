@@ -1,15 +1,15 @@
 'use strict';
 
-justusApp.service('KoodistoService', ['$http', function($http) {
-
-  //console.debug(location)
+justusApp.service('KoodistoService',
+['$http',
+function($http) {
   let baseuri = "https://virkailija.opintopolku.fi/koodisto-service/rest/json/";
-  //if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
-  //  baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
-  //}
+  if (developmentmode) {
+    baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
+  }
 
-  //let maxage = 1*60*1000; // millisekunteja
-  //console.log("KoodistoService baseuri for "+location.hostname+" is "+baseuri+" localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
+  let maxage = 1*60*60*1000; // h*mi*s*millisekunteja
+  console.log("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri+" localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
 
   //
   // internal private functions
@@ -18,8 +18,8 @@ justusApp.service('KoodistoService', ['$http', function($http) {
 
   // suorita HTTP-kutsu ja palauta JSON
   let callURI = function(fulluri) {
-    console.log("KoodistoService.callURI "+fulluri);
-    /* localStorage:
+    //console.log("KoodistoService.callURI "+fulluri);
+    //* localStorage:
     //let store = this.store;
     let stored = store(fulluri);
     if (stored) {
@@ -27,6 +27,7 @@ justusApp.service('KoodistoService', ['$http', function($http) {
       // huomaa myös että palautetaan stored-muuttuja
       return $http.get('/').then(function(response){return stored;});
     }
+    console.log("KoodistoService.callURI NOT STORED calling HTTP");
     //*/
     return $http.get(fulluri).then(function(response){
       let ret = [];
@@ -45,7 +46,7 @@ justusApp.service('KoodistoService', ['$http', function($http) {
         };
         ret.push(obj);
       });
-      /* localStorage:
+      //* localStorage:
       //console.log("callURI trying to save..."+fulluri)
       //console.debug(ret)
       store(fulluri,ret);
@@ -58,9 +59,10 @@ justusApp.service('KoodistoService', ['$http', function($http) {
   // vähän ongelmaa asynkronisuuden kanssa. sisäkkäinen http-kutsu on liikaa.
   // tai sitten ongelmaa sen kanssa, että ei palauteta http state objektia.
   // ehkä tätä ei kannata tehdä. kutsutaan vain koodistopalvelua joka kerta...
-  /* localStorage:
-  this.store = function(key,value) {
-    console.log("KoodistoService.store "+key);
+  //* localStorage:
+  //this.
+  let store = function(key,value) {
+    //console.log("KoodistoService.store "+key);
     if (!key) return;
     if (typeof(Storage) !== "undefined") {
       //console.debug(localStorage.getItem(key))
@@ -74,7 +76,7 @@ justusApp.service('KoodistoService', ['$http', function($http) {
       }
       if (localStorage.getItem(key)) {
         let age = (new Date()).getTime() - new Date(localStorage.getItem(key+'dateset')).getTime();
-        //console.debug(age)
+        //console.debug(age+" > "+maxage)
         if (age > maxage) { // remove item if outaged
           localStorage.removeItem(key);
           localStorage.removeItem(key+'dateset');
@@ -82,17 +84,30 @@ justusApp.service('KoodistoService', ['$http', function($http) {
       }
     } else {
       console.log("KoodistoService no Web Storage")
+      // TODO then what?
     }
     //console.log("store return "+key);
     //console.debug(localStorage.getItem(key))
     return JSON.parse(localStorage.getItem(key));
   }
+
+  let clearStorage = function(){
+    angular.forEach(localStorage,function(l,key){
+      //console.debug(key)
+      localStorage.removeItem(key)
+    });
+  }
   //*/
 
   //
-  // ACCESSORIT
+  // ACCESSORS
   //
 
+  // localStorage
+  this.reset = function() {
+    console.log("Koodisto.reset: clearing localStorage")
+    clearStorage()
+  }
   // hae yksittäisen koodiarvon tiedot
   this.getKoodi = function(koodisto,koodi) {
     if(!koodisto) return;
