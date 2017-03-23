@@ -86,7 +86,7 @@
             <td><a href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a></td>
             <td><span data-ng-bind="d.julkaisunnimi"></span></td>
             <td><span data-ng-bind="d.tekijat"></span></td>
-            <td><span data-ng-bind="d.modified"></span></td>
+            <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
             <td><span data-ng-bind="d.username"></span></td>
             <td>
               <!-- button data-ng-click="usePaivita('julkaisu',d.id,table.pkcol)">Päivitä</button -->

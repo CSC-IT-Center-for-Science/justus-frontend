@@ -416,7 +416,8 @@ let i18n = {
         tila: {FI: "Tila", SV: "Status", EN: "Status"},
         muokattu: {FI: "Muokattu", SV: "Ändrad", EN: "Edited"},
         viimeisinmuokkaaja: {FI: "Viimeisin muokkaaja", SV: "Senast ändrad av", EN: "Last edit by"},
-        toiminnot: {FI: "Toiminnot", SV: "Funktioner", EN: "Functions"}
+        toiminnot: {FI: "Toiminnot", SV: "Funktioner", EN: "Functions"},
+        hyvaksy: {FI: "Hyväksy", SV: "*SV*Hyväksy", EN: "*EN*Hyväksy"}
       },
       uusi: {FI: "Tallenna uusi julkaisu", SV: "*SV*Tallenna uusi julkaisu", EN: "*EN*Tallenna uusi julkaisu"}
     },

@@ -38,7 +38,11 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'julkaisurinnakkaistallennettu'},
           {name: 'rinnakkaistallenetunversionverkkoosoite'},
           {name: 'jufotunnus'},
-          {name: 'jufoluokitus'}
+          {name: 'jufoluokitus'},
+
+          {name: 'status'},
+          {name: 'username'},
+          {name: 'modified'}
         ]
       },
       {

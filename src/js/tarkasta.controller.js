@@ -41,15 +41,22 @@ function($scope,$http,API,Koodisto)
     return Koodisto.getCode($scope.codes,codeset,code);
   }
 
-  $scope.usePaivita = function(table,id,idcol) {
-    console.log("usePaivita "+table+" "+id+" "+idcol);
+  $scope.usePaivita = function(table,id,idcol,cols,vals) {
+    console.log("usePaivita "+table+" "+id+" "+idcol+" optional: "+cols+":"+vals);
     var jobj = null;
-    if($scope.data && $scope.data.length) {
-      jobj = $scope.data.filter(function(data){return data[idcol]==id;})[0];
+    if($scope.data && $scope.data[table]) {
+      jobj = $scope.data[table][id];
     }
     if (id && jobj) {
       delete jobj[idcol]; // api ei tykkää pk:n mukanaolosta datassa
+      if (table=='julkaisu') {
+        jobj.username = 'JustusDemo';
+        jobj.modified = new Date().toISOString();
+      }
+      //console.log("usePaivita sending")
+      //console.debug(jobj)
       API.put(table,id,JSON.stringify(jobj));
+      jobj[idcol]=id; // return id
     }
   }
 
@@ -124,11 +131,13 @@ function($scope,$http,API,Koodisto)
     API.get(table)
     .then(function (obj){
       angular.forEach(obj, function(o,k) { //saadaan lista, luupataan
-        console.debug("useHae: o "+o.id)
-        console.debug(o)
-        //if (table=="julkaisu"){
-          $scope.data[table][o.id] = o;
-        //}
+        //console.debug("useHae: o "+o.id)
+        //console.debug(o)
+        // convert to date type
+        if (table=="julkaisu" && o.modified){
+          o.modified = new Date(o.modified)
+        }
+        $scope.data[table][o.id] = o;
       });
     });
   }
@@ -137,10 +146,10 @@ function($scope,$http,API,Koodisto)
     angular.forEach($scope.meta.tables,function(tobj,tkey){
       $scope.useHae(tobj.name);
     });
-    angular.forEach($scope.data,function(t,k){
-      console.log("resetData "+k);
-      console.debug(t)
-    });
+    //angular.forEach($scope.data,function(t,k){
+    //  console.log("resetData "+k);
+    //  console.debug(t)
+    //});
   }
 
   // init
