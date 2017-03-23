@@ -82,7 +82,7 @@
         </thead>
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu track by d.id"
-              data-ng-if="(odottavat && d.status<=0) || (!odottavat && d.status>0)">
+              data-ng-if="(odottavat && !d.status) || (!odottavat && d.status)">
             <td><a href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a></td>
             <td><span data-ng-bind="d.julkaisunnimi"></span></td>
             <td><span data-ng-bind="d.tekijat"></span></td>

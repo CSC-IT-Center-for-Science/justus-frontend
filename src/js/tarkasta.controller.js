@@ -147,7 +147,7 @@ function($scope,$http,API,Koodisto)
   $scope.resetData();
   
   $scope.odottavat = true;
-  if (QueryString['status']>0) {
+  if (QueryString['status']) {
     $scope.odottavat = false;
   }
 }]);//-TarkastaController
