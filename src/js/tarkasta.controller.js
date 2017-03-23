@@ -11,6 +11,8 @@ function($scope,$http,API,Koodisto)
 
   $scope.meta = API.meta;
   $scope.data = [];
+  $scope.colOrder='id';
+  $scope.colOrderReverse=false;
 
   var getKoodisto = function(koodisto) {
     if(!koodisto) return;
@@ -121,13 +123,13 @@ function($scope,$http,API,Koodisto)
         }
       });
     }
-    console.debug(kvpairs)
+    //console.debug(kvpairs)
     return kvpairs;
   }
 
   $scope.useHae = function(table) {
     console.log("useHae "+table);
-    $scope.data[table] = {};
+    $scope.data[table] = [];
     API.get(table)
     .then(function (obj){
       angular.forEach(obj, function(o,k) { //saadaan lista, luupataan
@@ -137,7 +139,7 @@ function($scope,$http,API,Koodisto)
         if (table=="julkaisu" && o.modified){
           o.modified = new Date(o.modified)
         }
-        $scope.data[table][o.id] = o;
+        $scope.data[table].push(o);
       });
     });
   }

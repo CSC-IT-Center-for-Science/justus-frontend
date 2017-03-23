@@ -27,7 +27,7 @@ function($http) {
       // huomaa myös että palautetaan stored-muuttuja
       return $http.get('/').then(function(response){return stored;});
     }
-    console.log("KoodistoService.callURI NOT STORED calling HTTP");
+    console.log("KoodistoService.callURI NOT STORED calling HTTP "+fulluri);
     //*/
     return $http.get(fulluri).then(function(response){
       let ret = [];
