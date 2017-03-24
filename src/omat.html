@@ -56,14 +56,14 @@
 <div class="row">
 <div class="col-xs-12 content" data-ng-controller="TarkastaController">
 
-  <div data-ng-include src="'header.html'"></div>
+  <div data-ng-include data-src="'header.html'"></div>
 
   <div class="row">
     <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true;">
-      <h4 data-ng-bind="i18n.content.tarkasta.odottavat[lang]"></h4>
+      <h4 data-ng-bind="i18n.content.tarkasta.odottavat[lang]"> </h4>
     </div>
     <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false;">
-      <h4 data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]"></h4>
+      <h4 data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]"> </h4>
     </div>
   </div>
   
@@ -128,11 +128,11 @@
   <div class="row">
     <div class="col-xs-12">
       <h3 class="justus-btn justus-btn-default" style="text-align:left;" onclick="window.location='justus.html?vaihe=1'"
-      data-ng-bind="i18n.content.tarkasta.uusi[lang]"></h3>
+      data-ng-bind="i18n.content.tarkasta.uusi[lang]"> </h3>
     </div>
   </div>
 
-  <div data-ng-include src="'footer.html'"></div>
+  <div data-ng-include data-src="'footer.html'"></div>
 
 </div>
 </div>
