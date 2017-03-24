@@ -114,7 +114,7 @@
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
               data-ng-if="(odottavat && !d.status) || (!odottavat && d.status)">
-            <td><span data-ng-bind="d.id"></span></td>
+            <td><a href="#" data-ng-href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a></td>
             <td><span data-ng-bind="d.julkaisunnimi"></span></td>
             <td><span data-ng-bind="d.tekijat"></span></td>
             <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
