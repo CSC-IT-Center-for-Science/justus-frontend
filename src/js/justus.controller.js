@@ -339,10 +339,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   //
   // MUUTTUJAT JA ALUSTUS
   //
-  $scope.lang = language;
-  $scope.i18n = i18n;
-  // populoi yleisimmät, jotka jyrätään yli mikäli haetaan kirjoittamalla
-  $scope.codes = codes;
+  //index provides: lang, i18n, codes
 
   $scope.developmentmode=developmentmode;
 

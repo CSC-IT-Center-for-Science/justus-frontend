@@ -4,10 +4,7 @@ justusApp.controller('TarkastaController',
 ['$scope','$http','APIService','KoodistoService',
 function($scope,$http,API,Koodisto)
 {
-  var language = "FI";
-  $scope.lang = language;
-  $scope.i18n = i18n;
-  $scope.codes = codes;
+  //index provides: lang, i18n, codes
 
   $scope.meta = API.meta;
   $scope.data = [];
