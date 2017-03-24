@@ -59,14 +59,14 @@
   <div data-ng-include data-src="'header.html'"></div>
 
   <div class="row">
-    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true;">
-      <h4 data-ng-bind="i18n.content.tarkasta.odottavat[lang]"> </h4>
+    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true; resetData()">
+      <h4>{{i18n.content.tarkasta.odottavat[lang]}}</h4>
     </div>
-    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false;">
-      <h4 data-ng-bind="i18n.content.tarkasta.hyvaksytyt[lang]"> </h4>
+    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false; resetData()">
+      <h4>{{i18n.content.tarkasta.hyvaksytyt[lang]}}</h4>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-condensed table-striped">
@@ -102,23 +102,16 @@
               ><span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span
               ><span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
             </th>
-            <!-- th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;">
-              <span data-ng-bind="i18n.content.tarkasta.table.toiminnot[lang]"></span>
-            </th -->
           </tr>
         </thead>
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
               data-ng-if="(odottavat && !d.status) || (!odottavat && d.status)">
-            <td><a href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a></td>
+            <td><a href="#" data-ng-href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a></td>
             <td><span data-ng-bind="d.julkaisunnimi"></span></td>
             <td><span data-ng-bind="d.tekijat"></span></td>
             <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
             <td><span data-ng-bind="d.username"></span></td>
-            <!-- td>
-              <button data-ng-click="usePaivita('julkaisu',d.id,table.pkcol)">Päivitä</button>
-              <button data-ng-click="usePoista('julkaisu',d.id)">Poista</button>
-            </td -->
           </tr>
         </tbody>
       </table>
@@ -127,8 +120,9 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h3 class="justus-btn justus-btn-default" style="text-align:left;" onclick="window.location='justus.html?vaihe=1'"
-      data-ng-bind="i18n.content.tarkasta.uusi[lang]"> </h3>
+      <h3 class="justus-btn justus-btn-default" style="text-align:left;" onclick="window.location='justus.html?vaihe=1'">
+       {{i18n.content.tarkasta.uusi[lang]}}
+      </h3>
     </div>
   </div>
 

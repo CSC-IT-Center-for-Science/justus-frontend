@@ -22,8 +22,7 @@
 </div -->
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim"
-      data-ng-bind="i18n.content.esitayta.doihaku.title[lang]"></h3>
+    <h3 class="justus-bg-dim">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
     <input type="text" size="50" data-ng-model="julkaisunhakudoi"
       placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
     <span class="justus-btn justus-btn-default" data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
@@ -33,7 +32,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim" data-ng-bind="i18n.content.esitayta.etsijulkaisu.title[lang]"></h3>
+    <h3 class="justus-bg-dim">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <input type="text" size="50" data-ng-model="julkaisunhakutekija"
       placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">

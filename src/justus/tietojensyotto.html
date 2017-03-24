@@ -1,6 +1,6 @@
 <!-- alun yhteiset -->
 
-<h3 class="justus-bg-dim" data-ng-bind="i18n.content.tietojensyotto.yleiset[lang]"></h3>
+<h3 class="justus-bg-dim">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>
 
 <!-- Kenttä: Julkaisuvuosi -->
 <div class="row form-group">
@@ -206,7 +206,7 @@
   </div>
 </div>
 
-<h3 class="justus-bg-dim" data-ng-bind="i18n.content.tietojensyotto.bibliografiset[lang]"></h3>
+<h3 class="justus-bg-dim">{{i18n.content.tietojensyotto.bibliografiset[lang]}}</h3>
 
 <!-- julkaisutyypistä riippuvat -->
 <!-- Kenttä: Konferenssin vakiintunut nimi -->
@@ -492,10 +492,8 @@
 </div>
 
 
-<h3 class="justus-bg-dim" data-ng-bind="i18n.content.tietojensyotto.muut[lang]"></h3>
+<h3 class="justus-bg-dim">{{i18n.content.tietojensyotto.muut[lang]}}</h3>
 
-<!-- lopun yhteiset -->
-<!-- div data-ng-include src="'justus_form_tietojensyotto_loppu.html'"></div -->
 <!-- loput kentät -->
 <!-- Kenttä: Avainsanat -->
 <div class="row form-group">
@@ -866,7 +864,7 @@
       </span>
     </div -->
     <h3 class="justus-bg-dim" style="background-color:red; color:white;"
-     data-ng-click="useRequiredHighlight()" data-ng-bind="i18n.content.tietojensyotto.taytaviela[lang]"></h3>
+     data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.taytaviela[lang]}}</h3>
     <div class="justus-required" style="padding-left:5%">
       <span data-ng-repeat="o in getInvalids()">
         <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
@@ -882,10 +880,10 @@
 <!-- JATKA -->
 <div class="row form-group">
   <div class="col-xs-12">
-    <h3 class="justus-btn justus-btn-default" style="text-align:left;" data-ng-click="useJatka()"
-    data-ng-bind="i18n.content.tietojensyotto.jatka[lang]"></h3>
+    <!-- h3 class="justus-btn justus-btn-default" style="text-align:left;"
+     data-ng-click="useJatka()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3 -->
     <!-- div class="justus-btn-primary btn-lg btn-block active" data-ng-show="isJustusValid()" data-ng-click="useJatka()"><img data-ng-src="img/jatka,{{lang}}.png" alt="{{i18n.content.tietojensyotto.jatka[lang]}}"></div -->
-    <!-- div class="justus-btn-primary btn-lg btn-block active" data-ng-show="isJustusValid()" data-ng-click="useJatka()">{{i18n.content.tietojensyotto.jatka[lang]}}</div -->
-    <!-- div class="justus-btn-primary btn-lg btn-block disabled" data-ng-show="!isJustusValid()" data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.jatka[lang]}}</div -->
+    <h3 class="justus-btn justus-btn-default" data-ng-show="isJustusValid()" data-ng-click="useJatka()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
+    <h3 class="justus-btn justus-btn-default disabled" data-ng-show="!isJustusValid()" data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
   </div>
 </div>
