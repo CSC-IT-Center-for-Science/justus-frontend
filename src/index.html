@@ -53,8 +53,19 @@
 <div class="col-xs-12 content">
 
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-7">
       <div class="pull-left"><img src="img/csc_justus.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></div>
+    </div>
+
+    <div class="col-xs-12 col-md-5 pull-right text-right">
+      <span data-ng-show="lang!='FI'"><a href="#" data-ng-click="lang='FI'">{{i18n.header.lang.FI}}</a></span>
+      <span data-ng-show="lang!='FI'">|</span>
+      <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="lang='SV'">{{i18n.header.lang.SV}}</a></span>
+      <span data-ng-show="lang=='FI'">|</span>
+      <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="lang='EN'">{{i18n.header.lang.EN}}</a></span>
+      <span data-ng-if="developmentmode"><!-- should be "admin role" -->
+        <a href="#" data-ng-click="resetKoodisto()">reset koodisto</a>
+      </span>
     </div>
   </div>
 
