@@ -40,13 +40,12 @@ function($scope,$http,API,Koodisto)
     return Koodisto.getCode($scope.codes,codeset,code);
   }
 
-  $scope.usePaivita = function(table,id,idcol,cols,vals) {
-    console.log("usePaivita "+table+" "+id+" "+idcol+" optional: "+cols+":"+vals);
-    var jobj = null;
-    if($scope.data && $scope.data[table]) {
-      jobj = $scope.data[table][id];
-    }
-    if (id && jobj) {
+  $scope.usePaivita = function(table,jobj,julkaisuid,idcol,cols,vals) {
+    console.log("usePaivita "+table+" "+julkaisuid+" "+idcol+" (optional: "+cols+":"+vals+")");
+    // new params cols & vals could be used to send only changed values. now all goes.
+    //console.log("usePaivita in between...")
+    //console.debug(jobj)
+    if (julkaisuid && jobj) {
       delete jobj[idcol]; // api ei tykkää pk:n mukanaolosta datassa
       if (table=='julkaisu') {
         jobj.username = 'JustusDemo';
@@ -54,8 +53,8 @@ function($scope,$http,API,Koodisto)
       }
       //console.log("usePaivita sending")
       //console.debug(jobj)
-      API.put(table,id,JSON.stringify(jobj));
-      jobj[idcol]=id; // return id
+      API.put(table,julkaisuid,JSON.stringify(jobj));
+      jobj[idcol]=julkaisuid; // return id
     }
   }
 
