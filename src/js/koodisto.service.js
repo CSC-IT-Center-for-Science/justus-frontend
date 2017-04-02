@@ -9,7 +9,12 @@ function($http) {
   }
 
   let maxage = 1*60*60*1000; // h*mi*s*millisekunteja
-  console.log("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri+" localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
+  console.log("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri)
+  //* localStorage:
+  console.log("KoodistoService localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
+  //*/
+  $http.defaults.cache = true;
+  console.log("KoodistoService $http.defaults.cache="+$http.defaults.cache)
 
   //
   // internal private functions
@@ -31,7 +36,14 @@ function($http) {
     //*/
     return $http.get(fulluri).then(function(response){
       let ret = [];
-      angular.forEach(response.data,function(robj,skey){
+      // make an array for loop
+      let responsedataarray = [];
+      if (response.data.constructor === Array) {
+        responsedataarray = response.data
+      } else {
+        responsedataarray.push(response.data)
+      }
+      angular.forEach(responsedataarray,function(robj,skey){
         var obj={};
         obj.arvo = robj.koodiArvo;
         obj.selite = {
@@ -103,17 +115,18 @@ function($http) {
   // ACCESSORS
   //
 
-  // localStorage
+  //* localStorage
   this.reset = function() {
     console.log("Koodisto.reset: clearing localStorage")
     clearStorage()
   }
+  //*/
   // hae yksittäisen koodiarvon tiedot
   this.getKoodi = function(koodisto,koodi) {
     if(!koodisto) return;
     if(!koodi) return;
     var uri = baseuri+(koodisto+"/koodi/"+koodisto+"_"+koodi).toLowerCase();
-    return callURI(uri);
+    return callURI(uri); // nb! returning array!
   }
 
   // hae koko koodiston koodien tiedot yhdellä kutsulla
@@ -137,7 +150,7 @@ function($http) {
     //return this.getKoodisto(koodisto)
     //.then(function (robj){
     let promise = this.getKoodisto(koodisto);
-    promise.then(function (robj){
+    return promise.then(function (robj){
       let ret=[];
       angular.forEach(robj,function(aobj,akey){
         let obj=aobj;
@@ -149,7 +162,6 @@ function($http) {
       });
       return ret;
     });
-    return promise;
   }
   this.getAlatyypit = function(koodisto,arvo) {
     if(!koodisto) return;

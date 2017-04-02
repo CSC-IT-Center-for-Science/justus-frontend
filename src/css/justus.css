@@ -58,6 +58,7 @@ body {
     max-width: 1170px;
   }
 }
+
 .justus-footer {
   background-color: #99c2c8;
   color: #FFFFFF;
@@ -136,6 +137,8 @@ body {
   cursor: pointer;
   text-align: center;
   border-radius: 6px;
+  position: relative;
+  top: 5px;
 }
 .justus-btn.disabled {
   cursor: not-allowed;
@@ -161,6 +164,15 @@ body {
   background-color: #026D7C;
 }
 */
+.justus-btn-tiny {
+  background-color: #99C2C8;
+  color: #FFFFFF;
+  padding: 1px 4px;
+  margin: 0px;
+}
+.justus-btn-tiny.active {
+  background-color: #026D7C;
+}
 .justus-btn-stage {
   background-color: #99C2C8;
   color: #FFFFFF;

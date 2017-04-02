@@ -57,51 +57,30 @@
   <!-- endbuild -->
   <link rel="stylesheet" href="css/justus.css">
 
-  <title>{{i18n.header.title[lang]}}</title>
+  <title data-ng-bind="i18n.header.title[lang]"></title>
 </head>
 <body class="container-fluid">
 
 <div class="row">
-  <!-- div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
-  <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 content" -->
-  <div class="col-xs-12 content">
+  <div class="col-xs-12 content" data-ng-controller="JustusController">
 
     <div data-ng-include data-src="'header.html'"></div>
 
-    <form id="form_justus" name="fj"
-      action="justus_save.php" method="GET" data-ng-controller="JustusController">
+    <div data-ng-show="ui_vaihe<1" data-ng-include data-src="'justus/valitse.html'"></div>
 
-      <div data-ng-show="ui_vaihe<1" data-ng-include data-src="'justus/valitse.html'"></div>
-
+    <form id="form_justus" name="fj" data-ng-if="ui_vaihe>=1"
+      action="justus_save.php" method="GET">
       <div data-ng-show="ui_vaihe>=1" data-ng-include data-src="'justus/vaihevuo.html'"></div>
-
       <div data-ng-show="ui_vaihe==1" data-ng-include data-src="'justus/esitayta.html'"></div>
-
       <div data-ng-show="ui_vaihe==2" data-ng-include data-src="'justus/julkaisutyyppi.html'"></div>
-
-      <!-- Kenttä: Julkaisutyyppi -->
-      <!-- div class="row" data-ng-show="ui_vaihe>2 && ui_vaihe<=4">
-        <div class="col-xs-12 text-left">
-          <h1>{{getCode('julkaisutyypit',justus.julkaisutyyppi).selite[lang]}}</h1>
-          <br>
-        </div>
-      </div -->
-
-      <!-- TIETOJEN SYÖTTÖ -->
       <div data-ng-show="ui_vaihe==3" data-ng-include data-src="'justus/tietojensyotto.html'"></div>
-
-      <!-- div data-ng-if="ui_vaihe==4" data-ng-include data-src="'justus/organisaationtekijat.html'"></div -->
-
-      <!-- ESIKATSELU / TALLENNUS -->
       <!-- voi olla omassa ali-scopessa -->
       <div data-ng-if="ui_vaihe==4" data-ng-include data-src="'justus/tallennus.html'"></div>
-
     </form>
 
     <div data-ng-include data-src="'footer.html'"></div>
 
   </div>
-  <!-- div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div -->
 </div>
 
 </body>

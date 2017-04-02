@@ -38,8 +38,16 @@ function($scope,$http,API)
               // inside another element, which is an array itself
               //console.debug($scope.justus.organisaationtekijat)
               obj = [];
+              // must know which organisaationtekijat to use. can't concatenate them all!
+              // meaning which alayksikot to choose.
+              // now as a quick hack added id to justus object.
+              // wonder if it's okay to keep? (could be nice to keep...)
               angular.forEach($scope.justus.organisaationtekijat,function(ot,oi){
-                obj = obj.concat(ot.alayksikot)
+                //console.log("HERE SE MUST KNOW")
+                //console.debug(ot)
+                if(ot.id==refid) {
+                  obj = obj.concat(ot.alayksikot)
+                }
               });
               console.debug(obj)
             }
@@ -100,7 +108,6 @@ function($scope,$http,API)
     console.debug(dnew);
     API.post(table+"/",dnew).success(function(jid){
       console.log("useTallenna post jid: "+jid);
-
       if (jid) {
         tallennaTaulu("avainsana",jid);
         tallennaTaulu("tieteenala",jid);
@@ -109,17 +116,20 @@ function($scope,$http,API)
         angular.forEach($scope.justus.organisaationtekijat,function(ov,ok){
           var dot = {};
           dot.julkaisuid = jid;
-          if(ov['sukunimi']) dot.sukunimi = ov['sukunimi'];
+          if(ov['sukunimi'])  dot.sukunimi = ov['sukunimi'];
           if(ov['etunimet'])  dot.etunimet = ov['etunimet'];
-          if(ov['orcid'])    dot.orcid = ov['orcid'];
+          if(ov['orcid'])     dot.orcid = ov['orcid'];
+          //console.log("SHOULD SOMEHOW PASS KNOWLEDGE OF *THIS* organisaationtekijat")
+          //console.debug(dot)
           API.post('organisaatiotekija'+"/",dot).success(function(otid){
-            console.log("useTallenna post oid: "+otid);
+            //console.log("useTallenna post oid: "+otid);
+            ov.id=otid; // risky to alter object we're loopin!!
             tallennaTaulu("alayksikko",otid);
           });
         });
       }
       // move on to own publications
-      window.location = "omat.html";
+      window.location = "omat.html?lang="+$scope.lang;
     });
   }
 

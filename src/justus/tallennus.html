@@ -40,7 +40,7 @@
         <div data-ng-repeat="i in justus.organisaationtekijat track by $index">
           {{justus.organisaationtekijat[$index].sukunimi}},
           {{justus.organisaationtekijat[$index].etunimet}};
-          <span data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot"><span data-ng-if="$index>0">,</span>
+          <span data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot track by $index"><span data-ng-if="$index>0">,</span>
             <span data-ng-bind="a"></span>=<span data-ng-bind="getCode('oppilaitokset',a).selite[lang]"></span></span>;
           {{justus.organisaationtekijat[$index].orcid}}
         </div>

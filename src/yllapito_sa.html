@@ -58,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="d in data track by d.id">
+          <tr data-ng-repeat="d in data | orderBy:'id' track by d.id">
             <td data-ng-repeat="c in table.columns">
               <span data-ng-if="c.name==table.pkcol"/>{{d[c.name]}}</span>
               <input type="text" class="form-control input-sm" name="{{c.name}}" data-ng-model="d[c.name]" data-ng-if="c.name!=table.pkcol">

@@ -4,7 +4,6 @@ justusApp.controller('IndexController',
 ['$scope','$http','KoodistoService',
 function($scope,$http,Koodisto)
 {
-
   // mappaa genericistä scopeen
   $scope.getCode = function(codeset,code) {
     return Koodisto.getCode($scope.codes,codeset,code);
@@ -12,6 +11,12 @@ function($scope,$http,Koodisto)
   $scope.resetKoodisto = function(){
     Koodisto.reset();
   }
+
+  // to change location from ng-click
+  $scope.locationChange = function(path) {
+    window.location=path;
+  }
+  
   //
   // MUUTTUJAT JA ALUSTUS
   //

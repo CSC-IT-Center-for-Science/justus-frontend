@@ -5,7 +5,7 @@ justusApp.controller('JustusController',
 function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
 {
   $scope.useTekijat = function(input) { // tekijat string
-    console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
+    //console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
     if(!input){
       $scope.justus.julkaisuntekijoidenlukumaara=0;
       return;
@@ -18,7 +18,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   }
 
   $scope.useKopioiTekijat = function(input) {
-    //console.log("useKopioiTekijat "+input);
     var tempstr = input;
     for (var i=0; i<$scope.justus.julkaisuntekijoidenlukumaara; i++) {
       //console.log("useKopioiTekijat i "+i);
@@ -35,27 +34,24 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   }
 
   $scope.useOrganisaationtekijatAlayksikko = function(parIndex,index,input) {
-    console.log("useOrganisaationtekijatAlayksikko "+parIndex+" "+index+" "+input);
-    console.debug(input);
-    $scope.justus.organisaationtekijat[parIndex].alayksikot[index] = input.arvo;
+    //console.log("useOrganisaationtekijatAlayksikko "+parIndex+" "+index+" "+input)
+    $scope.justus.organisaationtekijat[parIndex].alayksikot[index] = input;
   }
 
-  $scope.useJulkaisutyyppiPaa = function(arvo) {
-    console.log("useJulkaisutyyppiPaa "+arvo);
-    if(!arvo) return
-    $scope.julkaisutyyppi_paa = arvo;
+  $scope.useJulkaisutyyppiPaa = function(input) {
+    if(!input) return
+    $scope.julkaisutyyppi_paa = input;
   }
-  $scope.useJulkaisutyyppi = function(arvo) {
-    console.log("useJulkaisutyyppi "+arvo);
-    if(!arvo) return
-    $scope.justus.julkaisutyyppi = arvo;
+  $scope.useJulkaisutyyppi = function(input) {
+    if(!input) return
+    $scope.justus.julkaisutyyppi = input;
   }
 
   $scope.refreshKanavanimet = function(tyyppi,input) {
     if(tyyppi == null) return;
     if(input == null) return;
     if(input.length < 5) return [];
-    console.log("refreshKanavanimet "+tyyppi+" "+input);
+    //console.log("refreshKanavanimet "+tyyppi+" "+input);
     return JUFO.etsikanava(input,tyyppi)
     .then(function (response){
       if (isArray(response.data)) {
@@ -68,8 +64,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     });
   }
   $scope.useLehtisarja = function(input) { //jufo_id
-    console.log("useLehtisarja "+input);
-    console.debug(input)
     if(input == null) return;
     JUFO.kanava(input)
     .then(function (obj){
@@ -83,7 +77,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     });
   }
   $scope.fetchLehtisarja = function(input) { //issn
-    console.log("fetchLehtisarja "+input);
     if(input == null) return;
     JUFO.etsiissn(input)
     .then(function (response){
@@ -117,7 +110,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   }
 
   $scope.useJulkaisunnimi = function(source, input) { // input == identifier
-    console.log("useJulkaisunnimi: "+source+" "+input)
     if(!source) return;
     if(!input) return;
     if (source=="CrossRef") {
@@ -164,7 +156,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
           $scope.julkaisuhaettu = true;
         });
         $scope.crossrefLataa = false;
-        console.log("useJulkaisunnimi loaded "+source+" "+input);
+        //console.log("useJulkaisunnimi loaded "+source+" "+input);
         $scope.useVaihe(3);//->tietojen syöttöön
       }
       , function errorCb(response){
@@ -209,7 +201,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
         $scope.julkaisuhaettu = true;
 
         $scope.virtaLataa = false;
-        console.log("useJulkaisunnimi loaded "+source+" "+input);
+        //console.log("useJulkaisunnimi loaded "+source+" "+input);
         $scope.useVaihe(3);//->tietojen syöttöön
       }
       , function errorCb(response){
@@ -238,7 +230,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   }
 
   $scope.useJulkaisuntieteenala = function(input,index) {
-    console.log("useJulkaisuntieteenala "+input+" "+index);
+    //console.log("useJulkaisuntieteenala "+input+" "+index);
     if(input == null) return;
     if(input.length==1) {
       $scope.julkaisuntieteenala_paa = input;
@@ -253,7 +245,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
 
   // TODO: justus serviceen?
   $scope.makeParams = function(input) {
-    //console.log("makeParams");
     if (input==null) input = $scope.justus;
     var kvpairs = [];
     angular.forEach(input, function(fobj,fkey){
@@ -278,25 +269,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     return kvpairs;
   }
 
-  $scope.useJatka = function() {
-    //console.log("useJatka");
-    //$scope.useVaihe(parseInt($scope.ui_vaihe)+1);//->tallennus
-    var kvpairs = [];
-    kvpairs.push("vaihe="+(parseInt($scope.ui_vaihe)+1));
-    kvpairs = kvpairs.concat($scope.makeParams());
-    var queryString = kvpairs.join("&");
-    console.log("useJatka => "+queryString);
-    window.location = "?" + queryString;
-    // TO-maybe-DO something like:
-    //var stateObj = { justusvaihe: $scope.ui_vaihe };
-    //history.pushState(stateObj, "tallennus", "?HHI=OO&"+queryString);
-    //console.debug(history.state)
-  }
-
-  $scope.useRequiredHighlight = function() {
-    $scope.requiredHighlight=!$scope.requiredHighlight;
-  }
-
   $scope.useVaihe = function(vaihe) {
     //console.log("useVaihe "+$scope.ui_vaihe+" => "+vaihe);
     //$scope.ui_vaihe=vaihe;
@@ -308,6 +280,18 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     var queryString = kvpairs.join("&");
     console.log("useVaihe => "+queryString);
     window.location = "?" + queryString;
+    // TO-maybe-DO something like:
+    //var stateObj = { justusvaihe: $scope.ui_vaihe };
+    //history.pushState(stateObj, "tallennus", "?HHI=OO&"+queryString);
+    //console.debug(history.state)
+  }
+
+  $scope.useJatka = function() {
+    $scope.useVaihe(parseInt($scope.ui_vaihe)+1);//->tallennus
+  }
+
+  $scope.useRequiredHighlight = function() {
+    $scope.requiredHighlight=!$scope.requiredHighlight;
   }
 
   $scope.useField = function(field,input) {
@@ -434,6 +418,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
         }
       }
 
+      // get displayable values (actual values were set above)
       // julkaisutyyppi-valinta
       if (fkey=="julkaisutyyppi") {
         $scope.useJulkaisutyyppiPaa($scope.justus[fkey].substring(0,1));
@@ -452,27 +437,24 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
         $scope.useLehtisarja($scope.justus[fkey]);
       }
       if (fkey=="julkaisunkieli") {
-        $scope.kieli = {};
+        //$scope.kieli = {};
+        // if we could be certain codes have already been fetched we could use getCode, but...
         Koodisto.getKoodi('kieli',$scope.justus[fkey])
-        .then(function (obj) {
-          $scope.kieli.selected = obj;
-          // oletuksena ei ladata koko koodistoa, joten laitetaan tämä arvo
-          if (!$scope.codes['kieli']) {
-            $scope.codes['kieli'] = [];
-            $scope.codes['kieli'].push(obj);
-          }
+        .then(function (data) {
+          // getting array (of one value)
+          angular.forEach(data,function(obj,k){
+            $scope.sel_julkaisunkieli = obj;
+          })
         });
       }
       if (fkey=="julkaisumaa") {
-        $scope.maa = {};
+        //$scope.sel_julkaisumaa = {};
         Koodisto.getKoodi('maatjavaltiot2',$scope.justus[fkey])
-        .then(function (obj) {
-          $scope.maa.selected = obj;
-          // oletuksena ei ladata koko koodistoa, joten laitetaan tämä arvo
-          if (!$scope.codes['maatjavaltiot2']) {
-            $scope.codes['maatjavaltiot2'] = [];
-            $scope.codes['maatjavaltiot2'].push(obj);
-          }
+        .then(function (data) {
+          // getting array (of one value)
+          angular.forEach(data,function(obj,k){
+            $scope.sel_julkaisumaa = obj;
+          })
         });
       }
     }
@@ -498,7 +480,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     if ($scope.ui_vaihe>2) {
       $scope.useVaihe(2);
     }
-    console.log('dev: ui_vaihe='+$scope.ui_vaihe)
   }
 
 }]);//-JustusController

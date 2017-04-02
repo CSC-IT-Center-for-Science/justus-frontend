@@ -73,7 +73,6 @@ justusApp.service('APIService', ['$http', function ($http) {
         pkcol: 'id',
         columns: [
           {name: 'id'},
-          {name: 'julkaisuid'},
           {name: 'organisaatiotekijaid'},
           {name: 'alayksikko'}
         ]
