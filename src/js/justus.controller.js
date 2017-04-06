@@ -459,7 +459,10 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
       }
     }
   });
-  // haetaan vielä EI formiin kuuluva parametri
+  // haetaan vielä EI formiin kuuluvat parametrit
+  // id
+  $scope.justus.id = QueryString.id;
+  // julkaisutyyppi / vaihe
   if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
     $scope.ui_vaihe = QueryString.vaihe||0;
     // päivitä varmuuden vuoksi vielä:

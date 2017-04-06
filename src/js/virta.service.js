@@ -56,7 +56,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
     });
   }
   this.get = function(input) {
-    this.uri = 'https://demo.justus.csc.fi/justus/virtahaku.php?julkaisunTunnus='; // TODO dev
+    this.uri = 'https://demo.justus.csc.fi/api/virtahaku.php?julkaisunTunnus='; // TODO dev
     //this.uri = "virtahaku.php?julkaisunTunnus=";
     return $http.get(this.uri+input);
   }

@@ -43,7 +43,7 @@ function($scope,$http,API)
               // now as a quick hack added id to justus object.
               // wonder if it's okay to keep? (could be nice to keep...)
               angular.forEach($scope.justus.organisaationtekijat,function(ot,oi){
-                //console.log("HERE SE MUST KNOW")
+                //console.log("HERE WE MUST KNOW")
                 //console.debug(ot)
                 if(ot.id==refid) {
                   obj = obj.concat(ot.alayksikot)
@@ -63,10 +63,15 @@ function($scope,$http,API)
                     dnew[di].julkaisuid = refid;
                   }
                 }
-                if (jv)
+                if (jv) {
                   dnew[di][c.name] = jv;
+                }
+                // add jnro. not sure if it's necessary. not used elsewhere (yet)
+                if (table=="tieteenala") {
+                  dnew[di].jnro = di;
+                }
                 // dnew yhden rivin osalta valmis
-                console.log("tallennaTaulu ARRAY#"+jk)
+                console.log("tallennaTaulu ARRAY#"+jk+" ("+c.name+"="+jv+")")
                 console.debug(dnew)
               });
             }
@@ -122,7 +127,7 @@ function($scope,$http,API)
           //console.log("SHOULD SOMEHOW PASS KNOWLEDGE OF *THIS* organisaationtekijat")
           //console.debug(dot)
           API.post('organisaatiotekija'+"/",dot).success(function(otid){
-            //console.log("useTallenna post oid: "+otid);
+            console.log("useTallenna post oid: "+otid);
             ov.id=otid; // risky to alter object we're loopin!!
             tallennaTaulu("alayksikko",otid);
           });
