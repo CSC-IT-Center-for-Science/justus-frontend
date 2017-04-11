@@ -154,7 +154,7 @@ function($scope,$http,API,Koodisto)
   $scope.resetData();
   
   $scope.odottavat = true;
-  if (QueryString['status']) {
+  if (QueryString['julkaisuntila']) {
     $scope.odottavat = false;
   }
 }]);//-TarkastaController

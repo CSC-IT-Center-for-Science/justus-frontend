@@ -40,7 +40,7 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'jufotunnus'},
           {name: 'jufoluokitus'},
 
-          {name: 'status'},
+          {name: 'julkaisuntila'},
           {name: 'username'},
           {name: 'modified'}
         ]
