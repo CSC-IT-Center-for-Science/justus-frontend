@@ -106,10 +106,10 @@
         </thead>
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-              data-ng-if="(odottavat && !d.status) || (!odottavat && d.status)">
+              data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
             <td>
-              <a data-ng-if="!d.status" href="#" data-ng-href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a>
-              <span data-ng-if="d.status" data-ng-bind="d.id"></span>
+              <a data-ng-if="!d.julkaisuntila" href="#" data-ng-href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a>
+              <span data-ng-if="d.julkaisuntila" data-ng-bind="d.id"></span>
             </td>
             <td><span data-ng-bind="d.julkaisunnimi"></span></td>
             <td><span data-ng-bind="d.tekijat"></span></td>
