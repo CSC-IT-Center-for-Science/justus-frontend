@@ -21,17 +21,17 @@ let i18n = {
     }
   },
   etusivu: {
-    kirjaudu: {FI: "Kirjaudu JUSTUS-palveluun", SV: "*SV*Kirjaudu JUSTUS-palveluun", EN: "Log in to JUSTUS-service"},
-    title: {FI: "Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", SV: "*SV*Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", EN: "What is JUSTUS–service?"},
+    kirjaudu: {FI: "Kirjaudu JUSTUS-palveluun", SV: "Logga in", EN: "Log in to JUSTUS-service"},
+    title: {FI: "Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?", SV: "Vad är JUSTUS?", EN: "What is JUSTUS–service?"},
     paragraphs: [
       {
         FI: "JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.",
-        SV: "I Justus kan du mata in uppgifter om dina vetenskapliga publikationer, som sedan pubilceras i Juuli-portalen. Uppgifterna överförs också automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.",
+        SV: "I JUSTUS kan du mata in uppgifter om dina vetenskapliga publikationer, som sedan pubilceras i Juuli-portalen. Uppgifterna överförs också automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.",
         EN: "When publication data is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions."
       }
     ],
     help: {
-      title: {FI: "JUSTUS-palvelun käyttöohjeet:", SV: "*SV*JUSTUS-palvelun käyttöohjeet:", EN: "Instructions for JUSTUS-service:"},
+      title: {FI: "JUSTUS-palvelun käyttöohjeet:", SV: "JUSTUS instruktioner:", EN: "Instructions for JUSTUS-service:"},
       organization: {
         FI: "JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:",
         SV: "Du kan använda Justus om du hör till någon av följande organisationer:",
@@ -47,7 +47,7 @@ let i18n = {
       hyvaksy: {FI:"Hyväksy tallennuksia", SV:"Godkänn uppgifter", EN:"Approve publications"}
     },
     esitayta: {
-      title: {FI: "Tietojen haku", SV: "*SV*Tietojen haku", EN: "*EN*Tietojen haku"},
+      title: {FI: "Tietojen haku", SV: "Sök", EN: "Search information"},
       text: {
         FI: "Tällä näytöllä voit hakea jo tallennettuja tietoja muista järjestelmistä pohjaksi.", SV: "*SV*", EN: "*EN*",
         doi: {
@@ -64,7 +64,7 @@ let i18n = {
         }
       },
       doihaku: {
-        title: {FI: "Hae tietoja DOI-tunnisteella", SV: "Sök med DOI", EN: "Prefill using DOI-identifier"},
+        title: {FI: "Hae tietoja DOI-tunnisteella", SV: "Sök uppgifter med DOI", EN: "Search using DOI-identifier"},
         tunniste: {
           FI: "Kirjoita DOI-tunniste", SV: "Agne DOI", EN: "Enter DOI-identifier",
           tooltip: {FI: "Esim. https://doi.org/10.4324/9780203841693", SV: "t.ex. https://doi.org/10.4324/9780203841693", EN: "e.g. https://doi.org/10.4324/9780203841693"}
@@ -76,7 +76,7 @@ let i18n = {
         hae: {FI: "Hae", SV: "Sök", EN: "Search"}
       },
       etsijulkaisu: {
-        title: {FI: "Hae tietoja julkaisun nimellä", SV: "Sök på titel", EN: "Search using publication's name"},
+        title: {FI: "Hae tietoja julkaisun nimellä", SV: "Sök uppgifter på titel", EN: "Search using publication's name"},
         picktip: {FI: "Hae julkaisun nimellä", SV: "Sök på titel", EN: "Search publication's name"},
         tekija: {
           FI: "Kirjoita hakuehto: tekijä", SV: "*SV*Kirjoita hakuehto: tekijä", EN: "Enter the author",
@@ -86,7 +86,7 @@ let i18n = {
       uudestaan: {
         FI: "Hae julkaisua uudestaan", SV: "*SV*Hae julkaisua uudestaan", EN: "*EN*Hae julkaisua uudestaan"
       },
-      hae: {FI: "Hae", SV: "*SV*Hae", EN: "Search"},
+      hae: {FI: "Hae", SV: "Sök", EN: "Search"},
       ohita: {FI: "Ohita vaihe ja syötä julkaisutiedot käsin", SV: "Manuell inmatning", EN: "Skip this phase and manually enter publication data"}
     },
     form: {
@@ -135,8 +135,8 @@ let i18n = {
           SV: "Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org",
           EN: "Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org"
         },
-        sukunimi: {FI: "Sukunimi", SV: "Efternamn", EN: "Surname", picktip: {FI: "Sukunimi", SV: "*SV*Sukunimi", EN: "Surname"}},
-        etunimet: {FI: "Etunimet", SV: "Förnamn", EN: "First names", picktip: {FI: "Etunimet", SV: "*SV*Etunimet", EN: "First names"}},
+        sukunimi: {FI: "Sukunimi", SV: "Efternamn", EN: "Surname", picktip: {FI: "Sukunimi", SV: "Efternamn", EN: "Surname"}},
+        etunimet: {FI: "Etunimet", SV: "Förnamn", EN: "First names", picktip: {FI: "Etunimet", SV: "Förnamn", EN: "First names"}},
         alayksikko: {FI: "Alayksikkö", SV: "Enhet", EN: "Organisational unit", picktip: {FI: "Alayksikkö", SV: "Enhet", EN: "Organisational unit"}},
         orcid: {FI: "ORCID", SV: "ORCID", EN: "ORCID", picktip: {FI: "ORCID", SV: "ORCID", EN: "ORCID"}},
         lisaa: {FI: "+", SV: "+", EN: "+", tooltip: {FI: "Lisää", SV: "Lägg till ny", EN: "Add"}},
@@ -341,7 +341,7 @@ let i18n = {
           SV: "",
           EN: ""
         },
-        '0': {FI: "Ei vastausta", SV: "*SV*Ei vastausta", EN: "No answer"},
+        '0': {FI: "Ei vastausta", SV: "Inget svar", EN: "No answer"},
         '1': {
           FI: "Open access -julkaisukanavassa ilmestynyt julkaisu",
           SV: "Publicerad i Open Access -tidskrift",
