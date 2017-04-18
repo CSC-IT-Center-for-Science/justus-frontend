@@ -101,9 +101,8 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
   //console.debug(authuser)
   authuser.then(function(au){
     console.debug("auth user:",au)
-    $scope.user = au;
-    let organization = domain_organization[au.domain];
-    $scope.user.organization = organization||$scope.user.organization;
+    $scope.user = au.data;
+    $scope.user.organization = domain_organization[$scope.user.domain];
   });
   console.debug($scope.user)
 
