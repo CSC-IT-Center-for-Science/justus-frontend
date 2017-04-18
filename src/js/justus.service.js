@@ -3,11 +3,12 @@
 //
 // JUSTUS Business Logic
 //
-justusApp.service('JustusService', [function() {
+justusApp.service('JustusService', ['$http', function ($http) {
 
   //
   // MUUTTUJAT
   //
+  // nb! these may be directive stuff?
 
   // justus-muuttujassa pidetään tallennettavat tiedot
   this.justus = {};
@@ -172,25 +173,29 @@ justusApp.service('JustusService', [function() {
     //console.log("isValid "+field+" array="+angular.isArray(this.justus[field])+" object="+typeof(this.justus[field]))
     if (field=="organisaationtekijat") {
       var thisisok = true;
-      for (let len=this.justus[field].length, i=0; i<len && i in this.justus[field]; i++) {
-        for (let c in this.condition[field]) {
-          //console.log("isValid "+field+" "+c+"="+this.justus[field][i][c])
-          // NB! ORCID ei vielä pakollinen!
-          if (c=="orcid") {
-            // TODO: vaikuttaako pattern-määre tässä?
-            if (this.justus[field][i][c]!="") {
+      if (!this.justus[field]) {
+        thisisok = false;
+      } else {
+        for (let len=this.justus[field].length, i=0; i<len && i in this.justus[field]; i++) {
+          for (let c in this.condition[field]) {
+            //console.log("isValid "+field+" "+c+"="+this.justus[field][i][c])
+            // NB! ORCID ei vielä pakollinen!
+            if (c=="orcid") {
+              // TODO: vaikuttaako pattern-määre tässä?
+              if (this.justus[field][i][c]!="") {
+                //console.log("isValid "+field+" "+c+" => NOT OK")
+                thisisok = false;
+              }
+            } else if (angular.isArray(this.justus[field][i][c])) {
+              for (let e in this.justus[field][i][c]) {
+                if (!this.justus[field][i][c][e]) {
+                  thisisok = false;
+                }
+              }
+            } else if (!this.justus[field][i][c]) {
               //console.log("isValid "+field+" "+c+" => NOT OK")
               thisisok = false;
             }
-          } else if (angular.isArray(this.justus[field][i][c])) {
-            for (let e in this.justus[field][i][c]) {
-              if (!this.justus[field][i][c][e]) {
-                thisisok = false;
-              }
-            }
-          } else if (!this.justus[field][i][c]) {
-            //console.log("isValid "+field+" "+c+" => NOT OK")
-            thisisok = false;
           }
         }
       }
@@ -208,10 +213,12 @@ justusApp.service('JustusService', [function() {
       // erityisesti ISBN js ISSN; käydään kahdessa vaiheessa läpi:
       // - ensin yksittäin ja sitten vielä yhdessä
       // - nb! pattern vaikutus objektin arvoon (=> undefined kunnes matchaa)
+      //console.log("isValid 1 "+field+" "+valid);
       if (this.justus[field]===undefined) { // pattern tekee undefinediksi!
         valid = false;
       } else {
-        if (this.justus[field]!="") {
+        // remember to handle null, "" and undefined!
+        if (this.justus[field]!==null && this.justus[field]!="") {
           if (field=="isbn"){
             valid = this.checkISBN(this.justus[field]);
           }
@@ -220,6 +227,7 @@ justusApp.service('JustusService', [function() {
           }
         }
       }
+      //console.log("isValid 2 "+field+" "+valid);
       if (valid && field=="issn") {
         // pitääkö edes katsoa?
         for (let e in this.condition.issn.julkaisutyyppi) {
@@ -254,7 +262,8 @@ justusApp.service('JustusService', [function() {
           }
         }
       }
-    } else if (!this.justus[field]) {
+      //console.log("isValid 3 "+field+" "+valid);
+  } else if (!this.justus[field]) {
       //console.log("isValid "+field+" ehkä...");
       if (this.isVisible(field)) {
         valid = false;
@@ -300,7 +309,7 @@ justusApp.service('JustusService', [function() {
 
   this.checkISBN = function (isbn) {
     //console.log("checkISBN "+isbn+" => "+(!isbn));
-    if (!isbn) return false;
+    if (!isbn) return false; // null, undefined, "", ...
     // isbn regex ja numeroita(+X) 10 tai 13! poista "-" merkit
     let d = isbn.replace(/-/g,'').replace(/ /g,'');
     return isbn.match(this.condition.isbn.pattern)&&(d.length==10||d.length==13);

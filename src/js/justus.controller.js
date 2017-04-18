@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('JustusController',
-['$scope','$http','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService',
-function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
+['$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
+function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
 {
   $scope.useTekijat = function(input) { // tekijat string
     //console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
@@ -41,10 +41,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   $scope.useJulkaisutyyppiPaa = function(input) {
     if(!input) return
     $scope.julkaisutyyppi_paa = input;
-  }
-  $scope.useJulkaisutyyppi = function(input) {
-    if(!input) return
-    $scope.justus.julkaisutyyppi = input;
   }
 
   $scope.refreshKanavanimet = function(tyyppi,input) {
@@ -212,23 +208,6 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     }
   }
 
-  $scope.getKoodisto = function(koodisto,input) {
-    if(!koodisto) return;
-    if(input == null) return; // ei vielä haettu mitään
-    if(input.length < 1) return;
-    // onko ladattu jo (nb! oletusarvot)
-    if($scope.codes[koodisto])
-      if($scope.codes[koodisto].length>5)
-        return $scope.codes[koodisto]; //ladattu jo
-    // tyhjennä oletukset pois
-    $scope.codes[koodisto] = [];
-    return Koodisto.getKoodisto(koodisto)
-    .then(function (obj) {
-      $scope.codes[koodisto] = obj;
-      return obj;
-    });
-  }
-
   $scope.useJulkaisuntieteenala = function(input,index) {
     //console.log("useJulkaisuntieteenala "+input+" "+index);
     if(input == null) return;
@@ -243,51 +222,10 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     }
   }
 
-  // TODO: justus serviceen?
-  $scope.makeParams = function(input) {
-    if (input==null) input = $scope.justus;
-    var kvpairs = [];
-    angular.forEach(input, function(fobj,fkey){
-      if (!fkey.match(/^_/)) { // skipataan sisälset
-        // muuta fkey organisaationtekijat "root" osaan (eli organisaationtekijat.sukunimi => organisaationtekijat jne)
-        if (fkey.match(/organisaationtekijat/)) {
-          fkey = fkey.match(/organisaationtekijat/);
-        }
-        if (isArray(input[fkey])) {
-          //console.log("useJatka ARRAY "+fkey);
-          angular.forEach(input[fkey], function(sobj,skey){
-            kvpairs.push(encodeURIComponent(fkey) + "=" + encodeURIComponent(angular.toJson(sobj)));
-          });
-        } else {
-          if (i18n.content.form[fkey]) {
-            //console.log("useJatka FORM "+fkey);
-            kvpairs.push(encodeURIComponent(fkey) + "=" + encodeURIComponent(fobj));
-          }
-        }
-      }
-    });
-    return kvpairs;
-  }
-
   $scope.useVaihe = function(vaihe) {
-    //console.log("useVaihe "+$scope.ui_vaihe+" => "+vaihe);
-    //$scope.ui_vaihe=vaihe;
-    // just change vaihe (above) or make browser history with: (could almost use useJatka but not quite)
-    var kvpairs = [];
-    kvpairs.push("vaihe="+(parseInt(vaihe)));
-    kvpairs.push("lang="+$scope.lang);
-    kvpairs = kvpairs.concat($scope.makeParams());
-    var queryString = kvpairs.join("&");
-    console.log("useVaihe => "+queryString);
-    window.location = "?" + queryString;
-    // TO-maybe-DO something like:
-    //var stateObj = { justusvaihe: $scope.ui_vaihe };
-    //history.pushState(stateObj, "tallennus", "?HHI=OO&"+queryString);
-    //console.debug(history.state)
-  }
-
-  $scope.useJatka = function() {
-    $scope.useVaihe(parseInt($scope.ui_vaihe)+1);//->tallennus
+    console.log("useVaihe "+$scope.ui_vaihe+" => "+vaihe);
+    $scope.ui_vaihe=vaihe;
+    $state.go('justus', $scope.justus);
   }
 
   $scope.useRequiredHighlight = function() {
@@ -298,7 +236,7 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
     $scope.justus[field] = input;
   }
 
-  // mappaa genericistä scopeen
+  // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
     return Koodisto.getCode($scope.codes,codeset,code);
   }
@@ -321,49 +259,13 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   }
 
   //
-  // MUUTTUJAT JA ALUSTUS
+  // VARIABLES AND INITIALIZE
   //
   //index provides: lang, i18n, codes
 
-  $scope.developmentmode=developmentmode;
+  $scope.meta = API.meta;
 
-  $scope.resetKoodisto = Koodisto.reset;
-
-  // haetaan Koodistopalvelusta sinne vietyjä
-  if (!$scope.codes.julkaisutyypit) {
-    /* localStorage:
-    $scope.codes.julkaisutyypit = Koodisto.store('julkaisunpaaluokka');
-    if (!$scope.codes.julkaisutyypit) {
-    //*/
-      let promise = Koodisto.getLuokitus('julkaisunpaaluokka');
-      promise.then(function(o){
-        $scope.codes.julkaisutyypit=o;
-        //Koodisto.store('julkaisunpaaluokka',o);
-      });
-      //$scope.codes.julkaisutyypit = Koodisto.getLuokitus('julkaisunpaaluokka');
-    //}
-  }
-  angular.forEach($scope.codes.julkaisutyypit,function(aobj,akey){
-    let alapromise = Koodisto.getAlatyypit('julkaisunpaaluokka',aobj.arvo);
-    alapromise.then(function (o) {
-      aobj.alatyypit = o;
-      //Koodisto.store('julkaisunpaaluokka_'+aobj.arvo,o);
-    });
-  });
-  if (!$scope.codes.tieteenalat) {
-    let promise = Koodisto.getLuokitus('paatieteenala');
-    promise.then(function(o){ $scope.codes.tieteenalat=o; });
-  }
-  if (!$scope.codes.kieli) {
-    let promise = Koodisto.getKoodisto('kieli');
-    promise.then(function(o){ $scope.codes.kieli=o; });
-  }
-  if (!$scope.codes.maatjavaltiot2) {
-    let promise = Koodisto.getKoodisto('maatjavaltiot2');
-    promise.then(function(o){ $scope.codes.maatjavaltiot2=o; });
-  }
-
-  $scope.justus = Justus.justus;
+  $scope.justus = Justus.justus; // when must have's are put in service! (see below)
   $scope.requirement = Justus.requirement;
   $scope.condition = Justus.condition;
   $scope.visible = Justus.visible;
@@ -371,118 +273,105 @@ function($scope,$http,CrossRef,VIRTA,JUFO,Koodisto,Justus)
   $scope.checkISSN = Justus.checkISSN;
   $scope.checkORCID = Justus.checkORCID;
 
-  // populoi koodistot (saatetaan tarvita jo parametrien tulkitsemisessa)
-  $scope.alatieteenalat = [];
-
-  // muut alustukset
+  // other setups
   $scope.lehtinimet = [];
   $scope.kustantajanimet = [];
   $scope.konferenssinimet = [];
-  $scope.justus.jufotunnus = "";
-  $scope.justus.jufoluokitus = "";
-
-  $scope.justus.organisaationtekijat = [{}]; //pakko populoida (ei tule muuten ui:hin)
-  $scope.justus.organisaationtekijat[0].alayksikot = [""];
   $scope.julkaisunnimet = [];
-  $scope.julkaisu = {}; // ui-select pakko alustaa! (.selected varattu)
+  $scope.julkaisu = {}; // ui-select, must set! (.selected reserved)
+
   $scope.crossrefLataa = false;
   $scope.virtaLataa = false;
 
   $scope.requiredHighlight = false;
 
-  $scope.justus.avainsanat = [""]; //pakko populoida (ei tule muuten ui:hin)
-  $scope.justus.julkaisuntieteenalat = [""];
+  // more on justus-variable
+  //$scope.justus.jufotunnus = "";
+  //$scope.justus.jufoluokitus = "";
 
-  // parametrit :: täytetään lomakkeen tiedot
-  // - luupataan formi, mutta arvot querystringistä ja arvot scope.justus:iin.
-  // - varmaan voisi luupata nyt myös vain querystringin, eli oikeasti olemassaolevat arvot
-  // - scope.justus ei käy, sillä tässä vasta alustetaan
-  angular.forEach(i18n.content.form, function(fobj,fkey){
-    //console.log("query "+fkey)
+  //
+  // INITIALIZE
+  //  * fill in the form
+  //  * read possible parameters
+  //  * sanitize variables
+  //
 
-    // tehdään fkey scope.justus:iin -- aina, oli parametri tai ei
-    // noudetaan arvo urista (ei listat)
-    if (fkey!="organisaationtekijat" && fkey!="avainsanat" && fkey!="julkaisuntieteenalat" && fkey!="julkaisuntekijoidenlukumaara") {
-      $scope.justus[fkey] = QueryString[fkey]||"";
-    }
-
-    // pitää olla annettu parametri JA vaadittu
-    if (QueryString[fkey]) {
-      // listat
-      if (fkey=="organisaationtekijat" || fkey=="avainsanat" || fkey=="julkaisuntieteenalat") {
-        var qarr = QueryString[fkey];
-        if (isArray(qarr)) {
-          $scope.justus[fkey] = qarr.map(function(o){return JSON.parse(o)});
-        } else { //vain yksi, korvataan alkupopulointi
-          $scope.justus[fkey][0] = JSON.parse(qarr);
-        }
-      }
-
-      // get displayable values (actual values were set above)
-      // julkaisutyyppi-valinta
-      if (fkey=="julkaisutyyppi") {
-        $scope.useJulkaisutyyppiPaa($scope.justus[fkey].substring(0,1));
-        $scope.useJulkaisutyyppi($scope.justus[fkey]);
-      }
-      // lasketaan pituus (uudestaan vaikka olisikin annettu; itse asiassa tekijoidenlkm skipataan kokonaan!)
-      if (fkey=="tekijat") {
-        $scope.useTekijat($scope.justus[fkey]);
-      }
-      // haetaan selitteitä koodeille
-      if (fkey=="jufotunnus") {
-        JUFO.kanava($scope.justus[fkey])
-        .then(function (obj) {
-          $scope.lehtinimet.selected = obj;
-        });
-        $scope.useLehtisarja($scope.justus[fkey]);
-      }
-      if (fkey=="julkaisunkieli") {
-        //$scope.kieli = {};
-        // if we could be certain codes have already been fetched we could use getCode, but...
-        Koodisto.getKoodi('kieli',$scope.justus[fkey])
-        .then(function (data) {
-          // getting array (of one value)
-          angular.forEach(data,function(obj,k){
-            $scope.sel_julkaisunkieli = obj;
-          })
-        });
-      }
-      if (fkey=="julkaisumaa") {
-        //$scope.sel_julkaisumaa = {};
-        Koodisto.getKoodi('maatjavaltiot2',$scope.justus[fkey])
-        .then(function (data) {
-          // getting array (of one value)
-          angular.forEach(data,function(obj,k){
-            $scope.sel_julkaisumaa = obj;
-          })
-        });
-      }
-    }
+  // TODO Coming up? UI-router and state handling
+  /* no use? or should switch to $transitions?
+  $scope.$on('$locationChangeStart', function() {
+    console.log("locationChangeStart");
+    console.debug($location)
+    console.debug($stateParams)
   });
-  // haetaan vielä EI formiin kuuluvat parametrit
-  // id
-  $scope.justus.id = QueryString.id;
-  // julkaisutyyppi / vaihe
-  if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
-    $scope.ui_vaihe = QueryString.vaihe||0;
-    // päivitä varmuuden vuoksi vielä:
-    $scope.useJulkaisutyyppi($scope.justus.julkaisutyyppi);
-    // jos ei ole validi ja yritetään tallennusvaihetta:
-    if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaationtekijat'))) {
-      // TODO näytä jokin message!?
-      $scope.useVaihe(3);
+  $scope.$on('$viewContentLoaded', function(event) {
+    console.debug("viewContentLoaded event,stateParams:",event,$stateParams);
+  });
+  //*/
+
+  // finalizeInit - all values should be in place but if there's some critical missing
+  let finalizeInit = function() {
+    
+    // sanity checks for UI
+    // must set (ui behaves poorly otherwise)
+    if (!$scope.justus.organisaationtekijat) {
+      $scope.justus.organisaationtekijat = [{}];
+      $scope.justus.organisaationtekijat[0].alayksikot = [""];
     }
-  } else {
-    //if (QueryString.vaihe) {
-    //  $scope.ui_vaihe = QueryString.vaihe;
-    //} else {
-      // TODO näytä jokin message!?
-      $scope.ui_vaihe = QueryString.vaihe||0;
-    //}
-    // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
-    if ($scope.ui_vaihe>2) {
-      $scope.useVaihe(2);
+    if (!$scope.justus.organisaationtekijat.alayksikot) {
+      $scope.justus.organisaationtekijat[0].alayksikot = [""];
+    }
+    if (!$scope.justus.avainsanat) {
+      $scope.justus.avainsanat = [""];
+    }
+    if (!$scope.justus.julkaisuntieteenalat) {
+      $scope.justus.julkaisuntieteenalat = [""];
+    }
+
+    // julkaisutyyppi / vaihe
+    $scope.ui_vaihe = $stateParams.vaihe||0;
+    console.debug("finalizeInit julkaisutyyppi",$scope.justus.julkaisutyyppi)
+    if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
+      // make sure both values are set (paa,ala):
+      $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
+      // if not valid and trying to enter saving stage:
+      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaationtekijat'))) {
+        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
+        $scope.useVaihe(3);
+      }
+    } else {
+      // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
+      if ($scope.ui_vaihe>2) {
+        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
+        $scope.useVaihe(2);
+      }
     }
   }
+
+  let startInit = function() {
+    console.debug("startInit stateParams",$stateParams)
+    if ($stateParams.id) {
+      console.debug("startInit stateParams has id:",$stateParams.id)
+      $scope.justus.id = $stateParams.id;
+      API.get("uijulkaisut",$scope.justus.id).then(function (dat){
+        angular.forEach(dat,function(jobj,jkey){
+          // dont replace service object, instead replace its values
+          angular.forEach(jobj,function(j,k){
+            //console.debug("startInit from DB",k,j)
+            $scope.justus[k]=j;
+          });
+        });
+        // convert to date type
+        $scope.justus.modified = new Date($scope.justus.modified);
+        finalizeInit();
+      });
+    } else {
+      finalizeInit();
+    }
+    // to-do: we could loop stateParams to read URI parameters and override values from database..
+    // ...but that's too fancy for now
+  }
+
+  //angular.forEach($stateParams, function(v,k){ console.debug("JUSTUS INIT stateParams",k,v); });
+  startInit();
 
 }]);//-JustusController

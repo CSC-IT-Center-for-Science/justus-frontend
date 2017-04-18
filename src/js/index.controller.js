@@ -1,10 +1,10 @@
 'use strict';
 
 justusApp.controller('IndexController',
-['$scope','$http','KoodistoService',
-function($scope,$http,Koodisto)
+['$scope','$http','$window','$location','$stateParams','KoodistoService',
+function($scope,$http,$window,$location,$stateParams,Koodisto)
 {
-  // mappaa genericistä scopeen
+  // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
     return Koodisto.getCode($scope.codes,codeset,code);
   }
@@ -14,16 +14,98 @@ function($scope,$http,Koodisto)
 
   // to change location from ng-click
   $scope.locationChange = function(path) {
-    window.location=path;
+    // TODO: howto state change...
+    //console.debug(window.location)
+    //window.location.href=path;
+    //console.debug($location.path())
+    //$location.path(path); //.replace(); // replace overwrites history
+    $window.location.href=path;
   }
-  
+
+  $scope.alterViewWidth = function() {
+    //console.debug(document.body.className)
+    if (document.body.className=='container') {
+      document.body.className='container-fluid'
+    } else {
+      document.body.className='container'
+    }
+  }
+
   //
   // MUUTTUJAT JA ALUSTUS
   //
-  $scope.lang = language;
+
+  // ui-router and stateParams (when it is loaded)
+  $scope.$on('$viewContentLoaded', function(event) {
+    //console.debug("viewContentLoaded event:",event);
+    //console.debug($stateParams)
+    $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
+    //console.debug("INDEX stateParams",$stateParams)
+  });
+
   $scope.i18n = i18n;
-  // populoi yleisimmät, jotka jyrätään yli mikäli haetaan kirjoittamalla
-  $scope.codes = codes;
+  $scope.codes = {};
+
+  Koodisto.getKoodisto('kieli').then(function(o){ $scope.codes.kieli=o; });
+  Koodisto.getKoodisto('maatjavaltiot2').then(function(o){ $scope.codes.maatjavaltiot2=o; });
+  Koodisto.getKoodisto('julkaisuntila').then(function(o){ $scope.codes.julkaisuntila=o; });
+  Koodisto.getKoodisto('julkaisufoorumitaso').then(function(o){ $scope.codes.julkaisufoorumitaso=o; });
+  // tieteenalat, julkaisutyypit, ...
+  Koodisto.getLuokitus('paatieteenala').then(function(o){ $scope.codes.tieteenalat=o; });
+  Koodisto.getLuokitus('julkaisunpaaluokka').then(function(o){
+    $scope.codes.julkaisutyypit=o;
+    angular.forEach($scope.codes.julkaisutyypit,function(aobj,akey){
+      Koodisto.getAlatyypit('julkaisunpaaluokka',aobj.arvo).then(function (o) {
+        aobj.alatyypit = o;
+      });
+    });
+  });
+
+  // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
+  // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
+  // reset variables
+  $scope.codes.organization = []; // setup
+  angular.forEach(domain_organization,function(code,domain){
+    // nb! not entire koodisto, just one code at a time
+    // not all organizations are of type oppilaitos there are tutkimusorganisaatio also 
+    let codeset = 'oppilaitosnumero';
+    if (code.length>5) {
+      codeset = 'tutkimusorganisaatio';
+    }
+    Koodisto.getKoodi(codeset,code).then(function(o){
+      Koodisto.getKoodisto('alayksikkokoodi').then(function(a){
+        $scope.codes.alayksikkokoodi=a;
+        angular.forEach(o,function(oobj,okey){
+          oobj.alatyypit = [];
+          angular.forEach(a,function(aobj,akey){
+            if (aobj.arvo.match('^'+oobj.arvo+'-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+              oobj.alatyypit.push(aobj);
+            }
+          });
+          // store in variable by pushing one at a time now
+          $scope.codes.organization.push(oobj);
+        });
+      });
+    });
+  });
+  console.debug("codes:",$scope.codes)
+
+  $scope.user = user;
+  console.debug("demo user:",$scope.user)
+  //let authuser = Justus.authget();
+  // TODO dev/demo to installation dependent
+  // no good, CORS:
+  let authuri = "https://demo.justus.csc.fi/sec/api/auth.php";
+  console.debug("auth user get:",authuri)
+  let authuser = $http.get(authuri);
+  //console.debug(authuser)
+  authuser.then(function(au){
+    console.debug("auth user:",au)
+    $scope.user = au;
+    let organization = domain_organization[au.domain];
+    $scope.user.organization = organization||$scope.user.organization;
+  });
+  console.debug($scope.user)
 
   $scope.developmentmode = developmentmode;
 

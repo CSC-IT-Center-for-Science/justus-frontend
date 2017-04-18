@@ -67,12 +67,7 @@ function($http) {
     });
   }
 
-  // ei vielä käytössä (ks callURI tai justus.controller)
-  // vähän ongelmaa asynkronisuuden kanssa. sisäkkäinen http-kutsu on liikaa.
-  // tai sitten ongelmaa sen kanssa, että ei palauteta http state objektia.
-  // ehkä tätä ei kannata tehdä. kutsutaan vain koodistopalvelua joka kerta...
   //* localStorage:
-  //this.
   let store = function(key,value) {
     //console.log("KoodistoService.store "+key);
     if (!key) return;

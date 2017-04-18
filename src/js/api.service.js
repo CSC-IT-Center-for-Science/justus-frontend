@@ -36,10 +36,11 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'pysyvaverkkoosoite'},
           {name: 'avoinsaatavuus'},
           {name: 'julkaisurinnakkaistallennettu'},
-          {name: 'rinnakkaistallenetunversionverkkoosoite'},
+          {name: 'rinnakkaistallennetunversionverkkoosoite'},
           {name: 'jufotunnus'},
           {name: 'jufoluokitus'},
-
+          
+          //{name: 'julkaisuid'},
           {name: 'julkaisuntila'},
           {name: 'username'},
           {name: 'modified'}
@@ -91,6 +92,7 @@ justusApp.service('APIService', ['$http', function ($http) {
     ]
   };
 
+  // TODO make installation dependent
   let apiuri = 'https://demo.justus.csc.fi/api/justus_save.php/';
   
   /* CREATE :: POST */
@@ -117,7 +119,7 @@ justusApp.service('APIService', ['$http', function ($http) {
       url: apiuri+api+"/"+id
     })
     .then(function (response){
-      var ret = [];
+      let ret = [];
       if(id) ret.push(response.data); // ei lista
       else  ret = response.data; // lista
       return ret;

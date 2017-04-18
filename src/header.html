@@ -1,24 +1,33 @@
 <div class="row">
   <div class="col-xs-12 col-md-7">
-    <div><a href data-ng-href="./index.html?lang={{lang}}"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a></div>
+    <!-- div class="pull-left" data-ng-if="!user || !justus">
+      <img src="img/csc_justus.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
+    </div -->
+    <div class="pull-left"><!-- data-ng-if="user && justus" -->
+      <a href data-ui-sref="index({lang: lang})"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a>
+    </div>
   </div>
   <div class="col-xs-12 col-md-5 pull-right text-right">
-    <i>JustusDemo</i>, {{getCode('oppilaitokset',"10056").selite[lang]}} | {{i18n.header.logout[lang]}}
-    <br>
-    <span><a href="#" data-ng-click="alert('ohje?')">
-      {{i18n.header.help[lang]}}
-      <i class="glyphicon glyphicon-info-sign justus-info"
-      data-popover-trigger="'mouseenter'" data-popover-placement="bottom"
-      data-uib-popover="ohje?"></i>
-    </a></span>
-    <span>|</span>
-    <span data-ng-show="lang!='FI'"><a href="#" data-ng-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a></span>
-    <span data-ng-show="lang!='FI'">|</span>
-    <span data-ng-show="lang!='SV'"><a href="#" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a></span>
-    <span data-ng-show="lang=='FI'">|</span>
-    <span data-ng-show="lang!='EN'"><a href="#" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a></span>
-    <span data-ng-if="developmentmode"><!-- should be "admin role" -->
+    <div data-ng-if="user">
+      <i>{{user.name}}</i>, {{getCode('organization',user.organization).selite[lang]}} | <a href="">{{i18n.header.logout[lang]}}</a>
+    </div>
+    <div>
+      <span><a href="#" data-ng-click="alert('ohje?')">
+        {{i18n.header.help[lang]}}
+        <i class="glyphicon glyphicon-info-sign justus-info"
+        data-popover-trigger="'mouseenter'" data-popover-placement="bottom"
+        data-uib-popover="ohje?"></i>
+      </a></span>
+      <span>|</span>
+      <a href="" data-ng-show="lang!='FI'" data-ui-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a>
+      <span data-ng-show="lang!='FI'">|</span>
+      <a href="" data-ng-show="lang!='SV'" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a>
+      <span data-ng-show="lang=='FI'">|</span>
+      <a href="" data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
+    </div>
+    <div data-ng-if="developmentmode" data-todo='should be "admin role"'>
       <a href="#" data-ng-click="resetKoodisto()">reset koodisto</a>
-    </span>
+      <a href="#" data-ng-click="alterViewWidth()">wide/narrow</a>
+    </div>
   </div>
 </div>

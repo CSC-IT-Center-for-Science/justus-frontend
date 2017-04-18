@@ -6,11 +6,11 @@ justusApp.directive('isbnDirective', function() {
     link: function(scope, element, attr, mCtrl) {
       function myValidation(isbn) {
         // NB! tyhjä käy, eli ei pakollinen (vielä)
-        if (isbn=="") {
+        if (isbn===null || isbn=="") {
           mCtrl.$setValidity('isbnValid', true);
           return isbn;
         }
-        if (!isbn) return false;
+        if (!isbn) return false; // undefined?
         
         let ret = false;
         let digits = isbn.replace(/-/g,'').replace(/ /g,'');
@@ -58,11 +58,11 @@ justusApp.directive('issnDirective', function() {
     link: function(scope, element, attr, mCtrl) {
       function myValidation(issn) {
         // NB! tyhjä käy, eli ei pakollinen (vielä)
-        if (issn=="") {
+        if (issn===null || issn=="") {
           mCtrl.$setValidity('issnValid', true);
           return issn;
         }
-        if (!issn) return false;
+        if (!issn) return false; // undefined?
         if (!issn.match(scope.condition.issn.pattern)) return false;
         let digits = issn.replace(/-/g,'').replace(/ /g,'');
         let a=digits.substr(0,1); let aa=parseInt(a);
@@ -89,11 +89,11 @@ justusApp.directive('orcidDirective', function() {
     link: function(scope, element, attr, mCtrl) {
       function myValidation(orcid) {
         // NB! tyhjä käy, eli ei pakollinen (vielä)
-        if (orcid=="") {
+        if (orcid===null || orcid=="") {
           mCtrl.$setValidity('orcidValid', true);
           return orcid;
         }
-        if (!orcid) return false;
+        if (!orcid) return false; // undefined?
         if (!orcid.match(scope.condition.orcid.pattern)) return false;
         let a=orcid.substr( 0,1); let aa=(parseInt(a)   )*2;
         let b=orcid.substr( 1,1); let bb=(parseInt(b)+aa)*2;

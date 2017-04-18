@@ -1,0 +1,24 @@
+    <div class="row justus-block-alter justus-btn" data-ui-sref="justus({lang: lang })"><!-- data-ng-click="locationChange('justus.html?lang='+lang)" -->
+      <div class="col-xs-4 text-right" style="vertical-align:middle;">
+          <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
+      </div>
+      <div class="col-xs-8 text-left" style="vertical-align:middle;">
+        <h3 data-ng-bind="i18n.etusivu.kirjaudu[lang]"></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 data-ng-bind="i18n.etusivu.title[lang]"></h3>
+
+        <p data-ng-repeat="text in i18n.etusivu.paragraphs">
+          <span data-ng-bind="text[lang]"></span>
+        </p>
+
+        <h4 data-ng-bind="i18n.etusivu.help.title[lang]"></h4>
+
+        <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
+        <p>X ammattikorkeakoulu</p>
+        <p>Y ammattikorkeakoulu</p>
+      </div>
+    </div>

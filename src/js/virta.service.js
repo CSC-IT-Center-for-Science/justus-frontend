@@ -12,13 +12,6 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
     var uriapi = "?julkaisunNimi="; // TODO dev
     //var uriapi = "haku?julkaisunNimi=";
 
-    // TODO haetaan alkulista kirjautuneen käyttäjän tiedoilla
-    if(tekija=="10056") {
-      uriapi = "?organisaatioTunnus=10056&etunimet=Lauri";
-      input = "";
-      tekija = "";
-    }
-
     var filter = "";
     //if ($scope.julkaisuvuosi != null && $scope.julkaisuvuosi != "") filter="&filter=from-pub-date:"+$scope.julkaisuvuosi+",until-pub-date:"+$scope.julkaisuvuosi;
     var authorquery = "";

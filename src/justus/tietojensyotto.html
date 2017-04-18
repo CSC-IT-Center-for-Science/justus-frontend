@@ -140,7 +140,7 @@
                 <input type="hidden" data-ng-model="justus.organisaationtekijat[$parent.$index].alayksikot[$index]">
                 <input type="text" class="justus-input"
                  data-ng-model="lab_organisaationtekijat[pIx].alayksikot$index"
-                 data-ng-value="ota+' '+getCode('oppilaitokset',ota).selite[lang]"
+                 data-ng-value="ota+' '+getCode('organization',ota).selite[lang]"
                  data-ng-show="ota"
                  data-ng-click="justus.organisaationtekijat[$parent.$index].alayksikot[$index]=''">
                 <!--
@@ -154,7 +154,7 @@
                   <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.organisaationtekijat.alayksikko.picktip[lang]}}">
                     {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                   </ui-select-match>
-                  <ui-select-choices repeat="o in getCode('oppilaitokset','10056').alatyypit | filter: $select.search">
+                  <ui-select-choices repeat="o in getCode('organization',user.organization).alatyypit | filter: $select.search">
                     {{o.arvo}} {{o.selite[lang]}}
                   </ui-select-choices>
                 </ui-select>
@@ -334,7 +334,8 @@
         <span data-ng-show="justus.jufotunnus">
           {{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
         <span data-ng-show="justus.jufoluokitus">
-          {{i18n.content.form.jufoluokitus[lang]}}: {{justus.jufoluokitus}}={{codes.jufoluokitukset[justus.jufoluokitus][lang]}}</span>
+          {{i18n.content.form.jufoluokitus[lang]}}: {{getCode('julkaisufoorumitaso',justus.jufoluokitus).selite[lang]}}
+        </span>
       </div>
     </div>
   </div>
@@ -535,14 +536,6 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.julkaisunkieli">
-        <!-- ui-select theme="bootstrap" data-ng-model="kieli.selected" on-select="useField('julkaisunkieli',kieli.selected.arvo)">
-          <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}">
-            <b>{{ $select.selected.selite[lang] }}</b>
-          </ui-select-match>
-          <ui-select-choices repeat="o in codes['kieli'] | filter: $select.search" refresh="getKoodisto('kieli',$select.search)" refresh-delay="200">
-            <span data-ng-bind-html="o.selite[lang] | highlight: $select.search"></span>
-          </ui-select-choices>
-        </ui-select -->
         <input type="text" class="justus-input md" data-ng-model="sel_julkaisunkieli"
          data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
          placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
@@ -881,7 +874,7 @@
 <!-- JATKA -->
 <div class="row form-group">
   <div class="col-xs-12">
-    <h3 class="justus-btn justus-btn-default" data-ng-show="isJustusValid()" data-ng-click="useJatka()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
+    <h3 class="justus-btn justus-btn-default" data-ng-show="isJustusValid()" data-ng-click="useVaihe(4)">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
     <h3 class="justus-btn justus-btn-default disabled" data-ng-show="!isJustusValid()" data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
   </div>
 </div>

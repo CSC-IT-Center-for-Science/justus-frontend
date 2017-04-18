@@ -1,138 +1,74 @@
-<!DOCTYPE html>
-<html lang="fi" data-ng-app="justusApp" data-ng-controller="IndexController">
-<head>
-  <!-- bootstrap :: the  first 3 must be first -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <div data-ng-controller="TarkastaController">
 
-  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script><!--enddev-->
-  <!--dev--><!-- script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script --><!--enddev-->
-  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script><!--enddev-->
-  <!--dev--><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script><!--enddev-->
-  <!--dev--><script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.js"></script><!--enddev-->
-  <!--dev--><script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script><!--enddev-->
-  <!-- build:js js/vendor.js -->
-  <!-- mustache
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  end mustache -->
-  <!-- endbuild -->
-  <!-- build:js js/index.js -->
-  <script src="js/generic.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/codes.js"></script>
-  <script src="js/justus.app.js"></script>
-  <script src="js/koodisto.service.js"></script>
-  <script src="js/index.controller.js"></script>
-  <!-- endbuild -->
-  <!-- build:js js/tarkasta.js -->
-  <script src="js/justus.service.js"></script>
-  <script src="js/api.service.js"></script>
-  <script src="js/tarkasta.controller.js"></script>
-  <!-- endbuild -->
-
-  <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!--enddev-->
-  <!--dev--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!--enddev-->
-  <!--dev--><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.4/select.min.css"><!--enddev-->
-  <!-- build:css css/vendor.css -->
-  <!-- mustache
-  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css">
-  end mustache -->
-  <!-- endbuild -->
-
-  <link rel="stylesheet" href="css/justus.css">
-
-  <title>{{i18n.header.title[lang]}}</title>
-</head>
-<body class="container-fluid">
-
-<div class="row">
-<div class="col-xs-12 content" data-ng-controller="TarkastaController">
-
-  <div data-ng-include data-src="'header.html'"></div>
-
-  <div class="row">
-    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true; resetData()">
-      <h4>{{i18n.content.tarkasta.odottavat[lang]}}</h4>
+    <div class="row">
+      <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true; resetData()">
+        <h4>{{i18n.content.tarkasta.odottavat[lang]}}</h4>
+      </div>
+      <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false; resetData()">
+        <h4>{{i18n.content.tarkasta.hyvaksytyt[lang]}}</h4>
+      </div>
     </div>
-    <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false; resetData()">
-      <h4>{{i18n.content.tarkasta.hyvaksytyt[lang]}}</h4>
+
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              data-ng-click="colOrderReverse=!(colOrder=='id'?colOrderReverse:true); colOrder='id'">
+                <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span
+                ><span class="fa fa-sort-desc" data-ng-if="colOrder=='id' && !(colOrderReverse)"></span
+                ><span class="fa fa-sort-asc" data-ng-if="colOrder=='id' && (colOrderReverse)"></span>
+              </th>
+              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisunnimi'?colOrderReverse:true); colOrder='julkaisunnimi'">
+                <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span
+                ><span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisunnimi' && !(colOrderReverse)"></span
+                ><span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisunnimi' && (colOrderReverse)"></span>
+              </th>
+              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              data-ng-click="colOrderReverse=!(colOrder=='tekijat'?colOrderReverse:true); colOrder='tekijat'">
+                <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span
+                ><span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span
+                ><span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
+              </th>
+              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
+                <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span
+                ><span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span
+                ><span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
+              </th>
+              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
+                <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span
+                ><span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span
+                ><span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
+                data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
+              <td>
+                <a data-ng-if="!d.julkaisuntila" href="" data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></a>
+                <span data-ng-if="d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+              </td>
+              <td><span data-ng-bind="d.julkaisunnimi"></span></td>
+              <td><span data-ng-bind="d.tekijat"></span></td>
+              <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
+              <td><span data-ng-bind="d.username"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="justus-btn justus-btn-default" style="text-align:left;" onclick="window.location='justus.html?vaihe=1'">
+         {{i18n.content.tarkasta.uusi[lang]}}
+        </h3>
+      </div>
+    </div>
+
   </div>
-
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-condensed table-striped">
-        <thead>
-          <tr>
-            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-            data-ng-click="colOrderReverse=!(colOrder=='id'?colOrderReverse:true); colOrder='id'">
-              <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span
-              ><span class="fa fa-sort-desc" data-ng-if="colOrder=='id' && !(colOrderReverse)"></span
-              ><span class="fa fa-sort-asc" data-ng-if="colOrder=='id' && (colOrderReverse)"></span>
-            </th>
-            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-            data-ng-click="colOrderReverse=!(colOrder=='julkaisunnimi'?colOrderReverse:true); colOrder='julkaisunnimi'">
-              <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span
-              ><span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisunnimi' && !(colOrderReverse)"></span
-              ><span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisunnimi' && (colOrderReverse)"></span>
-            </th>
-            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-            data-ng-click="colOrderReverse=!(colOrder=='tekijat'?colOrderReverse:true); colOrder='tekijat'">
-              <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span
-              ><span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span
-              ><span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
-            </th>
-            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-            data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
-              <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span
-              ><span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span
-              ><span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
-            </th>
-            <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-            data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
-              <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span
-              ><span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span
-              ><span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-              data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
-            <td>
-              <a data-ng-if="!d.julkaisuntila" href="#" data-ng-href="justus.html?vaihe=4&{{makeParams(d).join('&')}}" data-ng-bind="d.id"></a>
-              <span data-ng-if="d.julkaisuntila" data-ng-bind="d.id"></span>
-            </td>
-            <td><span data-ng-bind="d.julkaisunnimi"></span></td>
-            <td><span data-ng-bind="d.tekijat"></span></td>
-            <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
-            <td><span data-ng-bind="d.username"></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <h3 class="justus-btn justus-btn-default" style="text-align:left;" onclick="window.location='justus.html?vaihe=1'">
-       {{i18n.content.tarkasta.uusi[lang]}}
-      </h3>
-    </div>
-  </div>
-
-  <div data-ng-include data-src="'footer.html'"></div>
-
-</div>
-</div>
-
-</body>
-</html>

@@ -41,7 +41,7 @@
           {{justus.organisaationtekijat[$index].sukunimi}},
           {{justus.organisaationtekijat[$index].etunimet}};
           <span data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot track by $index"><span data-ng-if="$index>0">,</span>
-            <span data-ng-bind="a"></span>=<span data-ng-bind="getCode('oppilaitokset',a).selite[lang]"></span></span>;
+            <span data-ng-bind="a"></span>=<span data-ng-bind="getCode('organization',a).selite[lang]"></span></span>;
           {{justus.organisaationtekijat[$index].orcid}}
         </div>
       </div>
@@ -78,7 +78,7 @@
     <div class="row" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
       <div class="col-xs-12">
         <span data-ng-show="justus.jufotunnus">{{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
-        <span data-ng-show="justus.jufoluokitus">{{i18n.content.form.jufoluokitus[lang]}}: {{justus.jufoluokitus}}={{codes.jufoluokitukset[justus.jufoluokitus][lang]}}</span>
+        <span data-ng-show="justus.jufoluokitus">{{i18n.content.form.jufoluokitus[lang]}}: {{getCode('julkaisufoorumitaso',justus.jufoluokitus).selite[lang]}}</span>
       </div>
     </div>
   </div>

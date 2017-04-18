@@ -15,7 +15,7 @@ module.exports = function (grunt) {
       }
     },
     useminPrepare: {
-      html: ['src/index.html','src/justus.html','src/omat.html','src/tarkasta.html'],
+      html: ['src/index.html'],
       options: {
         dest: distDir,
         flow: {
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
       }
     },
     usemin: {
-      html: [distDir+'/index.html',distDir+'/justus.html',distDir+'/omat.html',distDir+'/tarkasta.html']
+      html: [distDir+'/index.html']
     },
     copy: {
       src: {
@@ -37,6 +37,7 @@ module.exports = function (grunt) {
         src: [
           './**/*.html',
           //usemin+concat: 'js/*',
+          'js/config.js',
           'css/*',
           'img/*'
         ],

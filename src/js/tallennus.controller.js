@@ -103,7 +103,7 @@ function($scope,$http,API)
       if (j.name==table) {
         angular.forEach(j.columns,function(v,k){
           // no id column, is "ui" (=supposed to store) and has a value
-          // TODO some names in db are not same as ui has!
+          // nb! some names in db are not same as ui has!
           if (v.name!="id" && v.name && $scope.justus[v.name]) {
             dnew[v.name] = $scope.justus[v.name];
           }

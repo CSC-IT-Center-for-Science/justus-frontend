@@ -34,30 +34,6 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
-/*
-@media (min-width: 768px){
-  .content {
-    max-width: 738px;
-  }
-}
-*/
-/*
-@media (min-width: 992px){
-  .content {
-    max-width: 968px;
-  }
-}
-*/
-@media (min-width: 1200px){
-  .content {
-    max-width: 1170px;
-  }
-}
-@media (min-width: 1580px){
-  .content {
-    max-width: 1170px;
-  }
-}
 
 .justus-footer {
   background-color: #99c2c8;

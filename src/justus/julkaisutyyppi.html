@@ -1,6 +1,5 @@
 <!-- julkaisutyyppi pääluokka -->
-<div class="row form-group"
- data-ng-sh="" data-ow="(julkaisutyyppi_paa == null || julkaisutyyppi_paa == '')">
+<div class="row form-group">
   <div class="col-xs-12">
     <div class="row" data-ng-repeat="o in codes.julkaisutyypit | orderBy: 'arvo'"
       data-ng-if="o.arvo=='A' || o.arvo=='B' || o.arvo=='C' || o.arvo=='D' || o.arvo=='E' || o.arvo=='G'"
@@ -16,7 +15,7 @@
             <input type="hidden" data-ng-model="justus.julkaisutyyppi">
             <div data-ng-repeat="a in o.alatyypit | orderBy: 'arvo'">
               <div class="col-xs-12 justus-btn justus-btn-tyyppi" data-ng-class="{'active': justus.julkaisutyyppi == a.arvo}"
-               data-ng-click="useJulkaisutyyppi(a.arvo); useVaihe(3);">
+               data-ng-click="useField('julkaisutyyppi',a.arvo); useVaihe(3);">
                 {{a.selite[lang]}}
                 <i class="fa fa-info-circle"
                 data-popover-trigger="'mouseenter'" data-popover-placement="right"
