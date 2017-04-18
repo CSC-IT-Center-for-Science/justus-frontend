@@ -4,18 +4,6 @@ justusApp.controller('YllapitoController',
 ['$scope', '$http', 'APIService',
 function($scope,$http,API)
 {
-  var language = "FI";
-  /* jos haluaa tarjota selaimen kielen oletuksena:
-  if(window)if(window.navigator){
-    language = window.navigator.userLanguage || window.navigator.language;
-    language = language.substr(0,2);
-    language = language.toUpperCase();
-    console.log("from browser language: "+language);
-  }
-  //*/
-  $scope.lang = language;
-  $scope.i18n = i18n;
-
   $scope.meta = API.meta;
   $scope.table = {};
 

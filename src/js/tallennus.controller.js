@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('TallennusController',
-['$scope','$http','APIService',
-function($scope,$http,API)
+['$scope','$http','$state','APIService',
+function($scope,$http,$state,API)
 {
   var tallennaTaulu = function(table,refid) {
     console.log("tallennaTaulu "+table+" ("+refid+")")
@@ -86,24 +86,16 @@ function($scope,$http,API)
       API.post(table+"/",d);
     });
   }
-  //
-  // ACCESSORIT
-  //
+
   $scope.useTallenna = function() {
     console.log("useTallenna")
-    // käytetään "parent" justus-objektia, josta tallennettava data
-    //console.debug($scope.justus)
-
     var dnew = {};
-
     var table = "julkaisu";
     console.log("useTallenna "+table)
     dnew = {};
     angular.forEach($scope.meta.tables,function(j,i){
       if (j.name==table) {
         angular.forEach(j.columns,function(v,k){
-          // no id column, is "ui" (=supposed to store) and has a value
-          // nb! some names in db are not same as ui has!
           if (v.name!="id" && v.name && $scope.justus[v.name]) {
             dnew[v.name] = $scope.justus[v.name];
           }
@@ -134,7 +126,7 @@ function($scope,$http,API)
         });
       }
       // move on to own publications
-      window.location = "omat.html?lang="+$scope.lang;
+      $state.go('omat', {lang: $scope.lang});
     });
   }
 

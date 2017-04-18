@@ -317,7 +317,7 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
       $scope.justus.organisaationtekijat = [{}];
       $scope.justus.organisaationtekijat[0].alayksikot = [""];
     }
-    if (!$scope.justus.organisaationtekijat.alayksikot) {
+    if (!$scope.justus.organisaationtekijat[0].alayksikot) {
       $scope.justus.organisaationtekijat[0].alayksikot = [""];
     }
     if (!$scope.justus.avainsanat) {
@@ -326,6 +326,8 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
     if (!$scope.justus.julkaisuntieteenalat) {
       $scope.justus.julkaisuntieteenalat = [""];
     }
+    // user related
+    $scope.justus.organisaatiotunnus = $scope.user.organization;
 
     // julkaisutyyppi / vaihe
     $scope.ui_vaihe = $stateParams.vaihe||0;
@@ -356,11 +358,11 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
         angular.forEach(dat,function(jobj,jkey){
           // dont replace service object, instead replace its values
           angular.forEach(jobj,function(j,k){
-            //console.debug("startInit from DB",k,j)
+            console.debug("startInit from DB",k,j)
             $scope.justus[k]=j;
           });
         });
-        // convert to date type
+        // convert to date type (modified field here doesn't matter, though)
         $scope.justus.modified = new Date($scope.justus.modified);
         finalizeInit();
       });
