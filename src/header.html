@@ -9,7 +9,13 @@
   </div>
   <div class="col-xs-12 col-md-5 pull-right text-right">
     <div data-ng-if="user">
-      <i>{{user.name}}</i>, {{getCode('organization',user.organization).selite[lang]}} | <a href="">{{i18n.header.logout[lang]}}</a>
+      <span><i>{{user.name}}</i>, {{getCode('organization',user.organization).selite[lang]}}</span>
+      <span data-ng-if="user.role=='admin'"><br>
+        | admin
+        , org: <input type="text" data-ng-model="user.organization" size="8" style="font-size:smaller;">
+        <br>
+      </span>
+      <span>| <a href="">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
       <span><a href="#" data-ng-click="alert('ohje?')">
