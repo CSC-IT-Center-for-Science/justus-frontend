@@ -112,16 +112,14 @@ justusApp.service('APIService', ['$http', function ($http) {
   }
 
   /* READ :: GET */
-  this.get = function (api,id) {
+  this.get = function (api,id,col) {
     //id voi puuttua, jolloin palautetaan kaikki
     return $http({
       method: 'GET',
-      url: apiuri+api+"/"+id
+      url: apiuri+api+(col?"/"+col:"")+"/"+id
     })
     .then(function (response){
-      let ret = [];
-      if(id) ret.push(response.data); // ei lista
-      else  ret = response.data; // lista
+      let ret = response.data; // list always
       return ret;
     });
   }
