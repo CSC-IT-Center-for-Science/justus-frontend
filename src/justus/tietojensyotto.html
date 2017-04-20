@@ -91,7 +91,7 @@
       <div class="col-xs-5 justus-data text-right">
         <input type="button" class="justus-btn justus-btn-default btn-sm"
          data-ng-click="useKopioiTekijat(justus.tekijat)"
-         data-ng-show="justus.tekijat && !(justus.organisaationtekijat[0].sukunimi || justus.organisaationtekijat[0].etunimet)"
+         data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
          value="{{i18n.content.form.organisaationtekijat.kopioi[lang]}}"
          data-popover-trigger="'mouseenter'" data-popover-placement="right"
          data-uib-popover="{{i18n.content.form.organisaationtekijat.kopioi.tooltip[lang]}}">
@@ -113,43 +113,43 @@
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-xs-8 justus-data">
-    <div data-ng-repeat="i in justus.organisaationtekijat track by $index"
+    <div data-ng-repeat="i in justus.organisaatiotekija track by $index"
      class="row justus-required"
-     data-ng-model="req_organisaationtekijat[$index]"
-     data-ng-required="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimet
-       && justus.organisaationtekijat[$index].alayksikot[0]
-       )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" -->
+     data-ng-model="req_organisaatiotekija[$index]"
+     data-ng-required="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet
+       && justus.organisaatiotekija[$index].alayksikko[0].alayksikko
+       )"><!-- nb! ei pakollinen vielä && justus.organisaatiotekija[$index].orcid)" -->
       <div class="col-xs-10">
         <div class="row">
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="justus-input md justus-required"
-             data-ng-model="justus.organisaationtekijat[$index].sukunimi"
+             data-ng-model="justus.organisaatiotekija[$index].sukunimi"
              placeholder="{{i18n.content.form.organisaationtekijat.sukunimi.picktip[lang]}}">
           </div>
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="justus-input md justus-required"
-             data-ng-model="justus.organisaationtekijat[$index].etunimet"
+             data-ng-model="justus.organisaatiotekija[$index].etunimet"
              placeholder="{{i18n.content.form.organisaationtekijat.etunimet.picktip[lang]}}">
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-6">
-            <div data-ng-repeat="ota in justus.organisaationtekijat[$index].alayksikot track by $index"
+            <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
              data-ng-init="pIx=$parent.$index" class="row">
               <div class="col-xs-9 col-sm-9">
-                <input type="hidden" data-ng-model="justus.organisaationtekijat[$parent.$index].alayksikot[$index]">
+                <input type="hidden" data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
                 <input type="text" class="justus-input"
-                 data-ng-model="lab_organisaationtekijat[pIx].alayksikot$index"
-                 data-ng-value="ota+' '+getCode('organization',ota).selite[lang]"
-                 data-ng-show="ota"
-                 data-ng-click="justus.organisaationtekijat[$parent.$index].alayksikot[$index]=''">
+                 data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
+                 data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
+                 data-ng-show="ota.alayksikko"
+                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko=''">
                 <!--
-                {{pIx}}-{{$index}}({{justus.organisaationtekijat[$parent.$index].alayksikot.length}})-
-                -{{justus.organisaationtekijat[$parent.$index].alayksikot}}-
-                -"{{justus.organisaationtekijat[$parent.$index].alayksikot[$index]}}"="{{ota}}"
+                {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
+                -{{justus.organisaatiotekija[$parent.$index].alayksikko|json}}-
+                -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{ota}}"
                 -->
-                <ui-select data-ng-model="alayksikot.selected" data-ng-hide="ota"
-                  on-select="useOrganisaationtekijatAlayksikko(pIx,$index,$select.selected.arvo)"
+                <ui-select data-ng-model="alayksikko.selected" data-ng-hide="ota.alayksikko"
+                  on-select="useOrganisaatiotekijaAlayksikko(pIx,$index,$select.selected.arvo)"
                   theme="bootstrap">
                   <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.organisaationtekijat.alayksikko.picktip[lang]}}">
                     {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
@@ -161,18 +161,18 @@
               </div>
               <div class="col-xs-3 col-sm-3">
                 <!--
-                {{pIx}}-{{$index}}({{justus.organisaationtekijat[$parent.$index].alayksikot.length}})-
-                -{{justus.organisaationtekijat[$parent.$index].alayksikot}}-
-                -"{{justus.organisaationtekijat[$parent.$index].alayksikot[$index]}}"="{{a}}"
+                {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
+                -{{justus.organisaatiotekija[$parent.$index].alayksikko}}-
+                -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{a}}"
                 -->
                 <span class="justus-btn justus-btn-tiny"
-                 data-ng-click="justus.organisaationtekijat[$parent.$index].alayksikot.splice($index, 1)"
-                 data-ng-hide="justus.organisaationtekijat[$parent.$index].alayksikot.length<2"
+                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.splice($index, 1)"
+                 data-ng-hide="justus.organisaatiotekija[$parent.$index].alayksikko.length<2"
                  title="{{i18n.content.form.organisaationtekijat.poista.tooltip[lang]}}"
                  data-ng-bind="i18n.content.form.organisaationtekijat.poista[lang]"></span>
                 <span class="justus-btn justus-btn-tiny"
-                 data-ng-click="justus.organisaationtekijat[$parent.$index].alayksikot.push('')"
-                 data-ng-show="($index == justus.organisaationtekijat[$parent.$index].alayksikot.length-1 && a!='')"
+                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.push({alayksikko:''})"
+                 data-ng-show="($index == justus.organisaatiotekija[$parent.$index].alayksikko.length-1 && a!='')"
                  title="{{i18n.content.form.organisaationtekijat.lisaa.tooltip[lang]}}"
                  data-ng-bind="i18n.content.form.organisaationtekijat.lisaa[lang]"></span>
               </div>
@@ -180,7 +180,7 @@
           </div>
           <div class="col-xs-12 col-sm-6"><!-- nb! ei pakollinen vielä -->
             <input type="text" class="justus-input md justus-required" data-orcid-directive=""
-             data-ng-model="justus.organisaationtekijat[$index].orcid"
+             data-ng-model="justus.organisaatiotekija[$index].orcid"
              data-ng-pattern="condition.orcid.pattern"
              placeholder="{{i18n.content.form.organisaationtekijat.orcid.picktip[lang]}}">
           </div>
@@ -188,20 +188,20 @@
       </div>
       <div class="col-xs-2">
         <span class="justus-btn justus-btn-default"
-         data-ng-click="justus.organisaationtekijat.splice($index, 1)"
-         data-ng-hide="justus.organisaationtekijat.length<2"
+         data-ng-click="justus.organisaatiotekija.splice($index, 1)"
+         data-ng-hide="justus.organisaatiotekija.length<2"
          title="{{i18n.content.form.organisaationtekijat.poista.tooltip[lang]}}"
          data-ng-bind="i18n.content.form.organisaationtekijat.poista.tooltip[lang]"></span>
         <span class="justus-btn justus-btn-default"
-         data-ng-click="newot={}; newot.alayksikot = ['']; justus.organisaationtekijat.push(newot);"
-         data-ng-hide="$index < justus.organisaationtekijat.length-1"
+         data-ng-click="newot={}; newot.alayksikko = [{alayksikko:''}]; justus.organisaatiotekija.push(newot);"
+         data-ng-hide="$index < justus.organisaatiotekija.length-1"
          title="{{i18n.content.form.organisaationtekijat.lisaa.tooltip[lang]}}"
          data-ng-bind="i18n.content.form.organisaationtekijat.lisaa.tooltip[lang]"></span>
 
         <i class="fa fa-arrow-left pull-right"
-         data-ng-if="requiredHighlight && !(justus.organisaationtekijat[$index].sukunimi && justus.organisaationtekijat[$index].etunimet
-          && justus.organisaationtekijat[$index].alayksikot[0]
-          )"><!-- nb! ei pakollinen vielä && justus.organisaationtekijat[$index].orcid)" --></i>
+         data-ng-if="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet
+          && justus.organisaatiotekija[$index].alayksikko[0]
+          )"><!-- nb! ei pakollinen vielä && justus.organisaatiotekija[$index].orcid)" --></i>
       </div>
     </div>
   </div>
@@ -505,19 +505,19 @@
      data-ng-show="i18n.content.form.avainsanat.tooltip[lang]"></i>
   </div>
   <div class="col-xs-8 justus-data">
-    <div data-ng-repeat="i in justus.avainsanat track by $index" class="row">
+    <div data-ng-repeat="i in justus.avainsana track by $index" class="row">
       <div class="col-xs-10">
-        <input type="text" class="justus-input lg" data-ng-model="justus.avainsanat[$index]">
+        <input type="text" class="justus-input lg" data-ng-model="justus.avainsana[$index].avainsana">
       </div>
       <div class="col-xs-2">
         <span class="justus-btn justus-btn-default"
-        data-ng-click="justus.avainsanat.splice($index, 1)"
-        data-ng-hide="justus.avainsanat.length<2"
+        data-ng-click="justus.avainsana.splice($index, 1)"
+        data-ng-hide="justus.avainsana.length<2"
         title="{{i18n.content.form.avainsanat.poista.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.avainsanat.poista.tooltip[lang]"></span>
         <span class="justus-btn justus-btn-default"
-        data-ng-click="justus.avainsanat.push('');"
-        data-ng-hide="$index < justus.avainsanat.length-1"
+        data-ng-click="justus.avainsana.push({avainsana:''});"
+        data-ng-hide="$index < justus.avainsana.length-1"
         title="{{i18n.content.form.avainsanat.lisaa.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.avainsanat.lisaa.tooltip[lang]"></span>
       </div>
@@ -537,6 +537,7 @@
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.julkaisunkieli">
         <input type="text" class="justus-input md" data-ng-model="sel_julkaisunkieli"
+         data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
          data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
          placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
          data-typeahead-on-select="useField('julkaisunkieli',$item.arvo)">
@@ -586,6 +587,7 @@
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.julkaisumaa">
         <input type="text" class="justus-input md" data-ng-model="sel_julkaisumaa"
+         data-ng-value="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
          data-uib-typeahead="o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
          data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
          placeholder="{{i18n.content.form.julkaisumaa.picktip[lang]}}">
@@ -602,22 +604,22 @@
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisuntieteenalat.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisuntieteenalat.tooltip[lang]"></i>
-    <span data-ng-if="isRequired('julkaisuntieteenalat')" class="justus-required-star">*</span>
+    <span data-ng-if="isRequired('tieteenala')" class="justus-required-star">*</span>
   </div>
-  <div class="col-xs-8 justus-data justus-required" data-ng-model="req_julkaisuntieteenalat"
+  <div class="col-xs-8 justus-data justus-required" data-ng-model="req_tieteenala"
    data-ng-required="requiredHighlight &&
-   (justus.julkaisuntieteenalat.length==0 || (justus.julkaisuntieteenalat.length==1 && !justus.julkaisuntieteenalat[0]))">
-    <div data-ng-repeat="i in justus.julkaisuntieteenalat | orderBy: 'arvo'" class="row">
+   (justus.tieteenala.length==0 || (justus.tieteenala.length==1 && !justus.tieteenala[0]))">
+    <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'" class="row">
       <div class="col-xs-10">
-        <input type="hidden" data-ng-model="justus.julkaisuntieteenalat[$index]">
-        <input type="text" class="justus-input lg justus-required" data-ng-required="1==0 && !justus.julkaisuntieteenalat[$index]"
-         data-ng-model="lab_julkaisuntieteenalat$index"
-         data-ng-value="i+' '+getCode('tieteenalat',i).selite[lang]"
-         data-ng-click="showSelectTieteenalat[$index]=true">
-        <div data-ng-show="showSelectTieteenalat[$index]">
+        <input type="hidden" data-ng-model="justus.tieteenala[$index]">
+        <input type="text" class="justus-input lg justus-required" data-ng-required="1==0 && !justus.tieteenala[$index]"
+         data-ng-model="lab_tieteenala$index"
+         data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"
+         data-ng-click="showSelectTieteenala[$index]=true">
+        <div data-ng-show="showSelectTieteenala[$index]">
           <div class="col-xs-6">
-            <ui-select data-ng-model="tieteenalat.selected"
-             on-select="useJulkaisuntieteenala($select.selected.arvo,$index)"
+            <ui-select data-ng-model="tieteenala.selected"
+             on-select="useTieteenala($select.selected.arvo,$index)"
              theme="bootstrap">
               <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.julkaisuntieteenalat.paa.picktip[lang]}}">
                 {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
@@ -627,11 +629,11 @@
               </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-xs-6" data-ng-show="julkaisuntieteenala_paa">
+          <div class="col-xs-6" data-ng-show="tieteenala_paa">
             <!--dev--><!-- hack here with ng-if and parent.parent.parent.index... --><!--enddev-->
-            <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==julkaisuntieteenala_paa">
+            <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==tieteenala_paa">
               <ui-select data-ng-model="alatieteenalat.selected"
-               on-select="useJulkaisuntieteenala($select.selected.arvo,$parent.$parent.$parent.$index)"
+               on-select="useTieteenala($select.selected.arvo,$parent.$parent.$parent.$index)"
                theme="bootstrap">
                 <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.julkaisuntieteenalat.ala.picktip[lang]}}">
                   {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
@@ -646,18 +648,18 @@
       </div>
       <div class="col-xs-2">
         <span class="justus-btn justus-btn-default"
-        data-ng-click="justus.julkaisuntieteenalat.splice($index, 1)"
-        data-ng-hide="justus.julkaisuntieteenalat.length<2"
+        data-ng-click="justus.tieteenala.splice($index, 1)"
+        data-ng-hide="justus.tieteenala.length<2"
         title="{{i18n.content.form.julkaisuntieteenalat.poista.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.julkaisuntieteenalat.poista.tooltip[lang]"></span>
         <span class="justus-btn justus-btn-default"
-        data-ng-click="justus.julkaisuntieteenalat.push('');"
-        data-ng-hide="$index < justus.julkaisuntieteenalat.length-1 || justus.julkaisuntieteenalat.length>=6 || !justus.julkaisuntieteenalat[$index]"
+        data-ng-click="justus.tieteenala.push({tieteenala:'', jnro:''+($index+1)});"
+        data-ng-hide="$index < justus.tieteenala.length-1 || justus.tieteenala.length>=6 || !justus.tieteenala[$index]"
         title="{{i18n.content.form.julkaisuntieteenalat.lisaa.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.julkaisuntieteenalat.lisaa.tooltip[lang]"></span>
 
         <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight &&
-        (justus.julkaisuntieteenalat.length==0 || (justus.julkaisuntieteenalat.length==1 && !justus.julkaisuntieteenalat[0]))"></i>
+        (justus.tieteenala.length==0 || (justus.tieteenala.length==1 && !justus.tieteenala[0]))"></i>
       </div>
       <br><br>
     </div>
@@ -846,7 +848,7 @@
   </div>
 </div>
 
-<div class="row" data-ng-if="!isJustusValid() || !isValid('organisaationtekijat')">
+<div class="row" data-ng-if="!isJustusValid() || !isValid('organisaatiotekija')">
   <div class="col-xs-12" style="padding-left:5%">
     <!-- b data-ng-bind="i18n.content.tietojensyotto.taytaviela[lang]"></b>
     (<a style="cursor:pointer" data-ng-click="useRequiredHighlight()"
@@ -864,7 +866,7 @@
         <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
         <br>
       </span>
-      <span data-ng-if="!isValid('organisaationtekijat')">
+      <span data-ng-if="!isValid('organisaatiotekija')">
         <i data-ng-bind="i18n.content.form.organisaationtekijat[lang]"></i>
       </span>
     </div>

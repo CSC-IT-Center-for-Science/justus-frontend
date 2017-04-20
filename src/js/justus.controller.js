@@ -25,17 +25,18 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
       var se = tempstr.indexOf(',');
       var eb = tempstr.indexOf(',')+1;
       var ee = tempstr.indexOf(';')>=0?tempstr.indexOf(';'):tempstr.length;
-      $scope.justus.organisaationtekijat[i] = {};
-      $scope.justus.organisaationtekijat[i].sukunimi=tempstr.substring(sb,se).trim();
-      $scope.justus.organisaationtekijat[i].etunimet=tempstr.substring(eb,ee).trim();
-      $scope.justus.organisaationtekijat[i].alayksikot = [""];
+      $scope.justus.organisaatiotekija[i] = {};
+      $scope.justus.organisaatiotekija[i].sukunimi=tempstr.substring(sb,se).trim();
+      $scope.justus.organisaatiotekija[i].etunimet=tempstr.substring(eb,ee).trim();
+      $scope.justus.organisaatiotekija[i].alayksikko = [""];
       tempstr=tempstr.substring(ee+1);
     }
   }
 
-  $scope.useOrganisaationtekijatAlayksikko = function(parIndex,index,input) {
-    //console.log("useOrganisaationtekijatAlayksikko "+parIndex+" "+index+" "+input)
-    $scope.justus.organisaationtekijat[parIndex].alayksikot[index] = input;
+  $scope.useOrganisaatiotekijaAlayksikko = function(parIndex,index,input) {
+    //console.log("useOrganisaatiotekijaAlayksikko "+parIndex+" "+index+" "+input)
+    $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = {};
+    $scope.justus.organisaatiotekija[parIndex].alayksikko[index].alayksikko = input;
   }
 
   $scope.useJulkaisutyyppiPaa = function(input) {
@@ -208,16 +209,16 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
     }
   }
 
-  $scope.useJulkaisuntieteenala = function(input,index) {
-    //console.log("useJulkaisuntieteenala "+input+" "+index);
+  $scope.useTieteenala = function(input,index) {
+    //console.log("useTieteenala "+input+" "+index);
     if(input == null) return;
     if(input.length==1) {
-      $scope.julkaisuntieteenala_paa = input;
+      $scope.tieteenala_paa = input;
       $scope.alatieteenalat = $scope.getCode('tieteenalat',input).alatyypit;
     } else {
-      if ($scope.justus.julkaisuntieteenalat.indexOf(input)<0) {
-        $scope.julkaisuntieteenala_paa = null;
-        $scope.justus.julkaisuntieteenalat[index] = input;
+      if ($scope.justus.tieteenala.indexOf(input)<0) {
+        $scope.tieteenala_paa = null;
+        $scope.justus.tieteenala[index] = {tieteenalakoodi: input, jnro: ''+(index+1)};
       }
     }
   }
@@ -296,38 +297,16 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   //  * sanitize variables
   //
 
-  // TODO Coming up? UI-router and state handling
-  /* no use? or should switch to $transitions?
-  $scope.$on('$locationChangeStart', function() {
-    console.log("locationChangeStart");
-    console.debug($location)
-    console.debug($stateParams)
-  });
-  $scope.$on('$viewContentLoaded', function(event) {
-    console.debug("viewContentLoaded event,stateParams:",event,$stateParams);
-  });
-  //*/
-
   // finalizeInit - all values should be in place but if there's some critical missing
   let finalizeInit = function() {
     
-    // sanity checks for UI
-    // must set (ui behaves poorly otherwise)
-    if (!$scope.justus.organisaationtekijat) {
-      $scope.justus.organisaationtekijat = [{}];
-      $scope.justus.organisaationtekijat[0].alayksikot = [""];
-    }
-    if (!$scope.justus.organisaationtekijat[0].alayksikot) {
-      $scope.justus.organisaationtekijat[0].alayksikot = [""];
-    }
-    if (!$scope.justus.avainsanat) {
-      $scope.justus.avainsanat = [""];
-    }
-    if (!$scope.justus.julkaisuntieteenalat) {
-      $scope.justus.julkaisuntieteenalat = [""];
-    }
     // user related
     $scope.justus.organisaatiotunnus = $scope.user.organization;
+    $scope.justus.username = $scope.user.name; // or mail or uid?
+    // remove entirely as it is not needed here and messes up things later on!
+    delete $scope.justus.modified;
+    // TODO develop
+    delete $scope.justus.julkaisuntila;
 
     // julkaisutyyppi / vaihe
     $scope.ui_vaihe = $stateParams.vaihe||0;
@@ -336,7 +315,7 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
       // make sure both values are set (paa,ala):
       $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
       // if not valid and trying to enter saving stage:
-      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaationtekijat'))) {
+      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaatiotekija'))) {
         // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
         $scope.useVaihe(3);
       }
@@ -354,17 +333,57 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
     if ($stateParams.id) {
       console.debug("startInit stateParams has id:",$stateParams.id)
       $scope.justus.id = $stateParams.id;
-      API.get("uijulkaisut",$scope.justus.id).then(function (dat){
-        angular.forEach(dat,function(jobj,jkey){
-          // dont replace service object, instead replace its values
-          angular.forEach(jobj,function(j,k){
-            console.debug("startInit from DB",k,j)
-            $scope.justus[k]=j;
+      // we need all info from database, especially id's
+      API.get("julkaisu",$scope.justus.id).then(function(julkresp){
+        angular.forEach(julkresp,function(jud,juk){
+          //console.debug("startInit db jud",jud)
+          let julkid=jud.id;
+          
+          // copy all values
+          angular.forEach(jud,function(v,k){ $scope.justus[k]=v; });
+
+          // get by foreign key!
+          //$scope.justus["avainsana"] = [];
+          API.get("avainsana",julkid,"julkaisuid").then(function(avairesp){
+            console.debug("startInit db avainsana",avairesp)
+            if (avairesp.length>0) {
+              $scope.justus.avainsana = avairesp;
+            } else {
+              $scope.justus.avainsana = [{avainsana:''}];
+            }
+          });
+          //$scope.justus["tieteenala"] = [];
+          API.get("tieteenala",julkid,"julkaisuid").then(function(tietresp){
+            console.debug("startInit db tieteenala",tietresp)
+            if (tietresp.length>0) {
+              $scope.justus.tieteenala = tietresp;
+            } else {
+              $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+            }
+          });
+          $scope.justus.organisaatiotekija = [];
+          API.get("organisaatiotekija",julkid,"julkaisuid").then(function(orgaresp){
+            console.debug("startInit db organisaatiotekija",orgaresp)
+            angular.forEach(orgaresp,function(ord,ork){
+              let orgaid=ord.id;
+              $scope.justus.organisaatiotekija.push(ord);
+              let orlen=$scope.justus.organisaatiotekija.length;
+              $scope.justus.organisaatiotekija[orlen-1].alayksikko = [];
+              API.get("alayksikko",orgaid,"organisaatiotekijaid").then(function(alayresp){
+                $scope.justus.organisaatiotekija[orlen-1].alayksikko = alayresp;
+                if (!$scope.justus.organisaatiotekija[orlen-1].alayksikko) {
+                  $scope.justus.organisaatiotekija[orlen-1].alayksikko = [{alayksikko:''}];
+                }
+              });
+            });
+            if ($scope.justus.organisaatiotekija.length==0) {
+              $scope.justus.organisaatiotekija = [{}];
+              $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+            }
+            console.debug("startInit db ready",$scope.justus)
+            finalizeInit();
           });
         });
-        // convert to date type (modified field here doesn't matter, though)
-        $scope.justus.modified = new Date($scope.justus.modified);
-        finalizeInit();
       });
     } else {
       finalizeInit();

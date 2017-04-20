@@ -62,16 +62,17 @@ function($scope,$http,$stateParams,API,Koodisto)
   }
 
   $scope.resetData = function() {
-    angular.forEach($scope.meta.tables,function(tobj,tkey){
-      $scope.useHae(tobj.name);
-    });
+    //angular.forEach($scope.meta.tables,function(tobj,tkey){
+    //  $scope.useHae(tobj.name);
+    //});
+    $scope.useHae("julkaisu");
   }
 
   // init
   $scope.resetData();
   
   $scope.odottavat = true;
-  if (QueryString['julkaisuntila']) {
-    $scope.odottavat = false;
-  }
+  //if (QueryString['julkaisuntila']) {
+  //  $scope.odottavat = false;
+  //}
 }]);//-TarkastaController

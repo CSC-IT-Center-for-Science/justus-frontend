@@ -57,7 +57,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
     "julkaisunnimi":true,
     "tekijat":true,
     "julkaisuntekijoidenlukumaara":true,
-    //"organisaationtekijat":true,
+    //"organisaatiotekija":true,
 
     "konferenssinvakiintunutnimi":true,
     "isbn":true, // joo, mutta ehdollinen/vaihtoehtoinen (issn)
@@ -65,7 +65,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
     "kustantaja":true, // joo ja ei
 
     "julkaisunkansainvalisyys":true,
-    "julkaisuntieteenalat":true,
+    "tieteenala":true,
     "kansainvalinenyhteisjulkaisu":true,
     "yhteisjulkaisuyrityksenkanssa":true,
     "avoinsaatavuus":true,
@@ -74,8 +74,8 @@ justusApp.service('JustusService', ['$http', function ($http) {
     "rinnakkaistallennetunversionverkkoosoite":true
   };
   this.condition = {
-    "organisaationtekijat": {
-      "sukunimi": null, "etunimet": null, "alayksikot": null
+    "organisaatiotekija": {
+      "sukunimi": null, "etunimet": null, "alayksikko": null
       //, "alayksikko": null, "orcid": null
     },
     "orcid": {
@@ -171,29 +171,30 @@ justusApp.service('JustusService', ['$http', function ($http) {
     var valid = true; // oletetaan että ok
     //console.debug(this.justus[field]);
     //console.log("isValid "+field+" array="+angular.isArray(this.justus[field])+" object="+typeof(this.justus[field]))
-    if (field=="organisaationtekijat") {
+    if (field=="organisaatiotekija") {
       var thisisok = true;
       if (!this.justus[field]) {
         thisisok = false;
       } else {
         for (let len=this.justus[field].length, i=0; i<len && i in this.justus[field]; i++) {
           for (let c in this.condition[field]) {
-            //console.log("isValid "+field+" "+c+"="+this.justus[field][i][c])
+            //console.debug("isValid "+field+" "+c+"=",this.justus[field][i][c])
             // NB! ORCID ei vielä pakollinen!
             if (c=="orcid") {
               // TODO: vaikuttaako pattern-määre tässä?
               if (this.justus[field][i][c]!="") {
-                //console.log("isValid "+field+" "+c+" => NOT OK")
+                //console.debug("isValid "+field+" "+c+" => NOT OK (orcid)",this.justus[field][i][c])
                 thisisok = false;
               }
             } else if (angular.isArray(this.justus[field][i][c])) {
               for (let e in this.justus[field][i][c]) {
                 if (!this.justus[field][i][c][e]) {
+                  //console.debug("isValid "+field+" "+c+" "+e+" => NOT OK ARRAY",this.justus[field][i][c][e])
                   thisisok = false;
                 }
               }
             } else if (!this.justus[field][i][c]) {
-              //console.log("isValid "+field+" "+c+" => NOT OK")
+              //console.debug("isValid "+field+" "+c+" => NOT OK",this.justus[field][i][c])
               thisisok = false;
             }
           }
@@ -202,7 +203,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
       if (!thisisok) {
         valid = false;
       }
-    } else if (angular.isArray(this.justus[field])) { // julkaisuntieteenalat, avainsanat?
+    } else if (angular.isArray(this.justus[field])) { // tieteenala, avainsana?
       //console.log("isValid "+field+" array");
       for (let e in this.justus[field]) {
         if (!this.justus[field][e]) {

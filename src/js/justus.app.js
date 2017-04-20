@@ -27,7 +27,7 @@ justusApp.config(function(
 
   let justusState = {
     name: "justus",
-    url: "/justus?lang&vaihe&id", //&jufotunnus&jufoluokitus&organisaationtekijat&avainsanat&julkaisuntieteenalat&julkaisutyyppi&julkaisuvuosi&julkaisunnimi&tekijat&julkaisuntekijoidenlukumaara&konferenssinvakiintunutnimi&emojulkaisunnimi&isbn&emojulkaisuntoimittajat&lehdenjulkaisusarjannimi&issn&volyymi&numero&sivut&artikkelinumero&kustantaja&julkaisunkustannuspaikka&julkaisunkieli&julkaisunkansainvalisyys&julkaisumaa&kansainvalinenyhteisjulkaisu&yhteisjulkaisuyrityksenkanssa&doitunniste&pysyvaverkkoosoite&avoinsaatavuus&julkaisurinnakkaistallennettu&rinnakkaistallennetunversionverkkoosoite",
+    url: "/justus?lang&vaihe&id",
     views: {
       "": {
         templateUrl: "justus.html"
@@ -37,40 +37,6 @@ justusApp.config(function(
       lang: 'FI',
       vaihe: null,
       id: null
-      /*,
-      jufotunnus: null,
-      jufoluokitus: null,
-      organisaationtekijat: null,
-      avainsanat: null,
-      julkaisuntieteenalat: null,
-      julkaisutyyppi: null,
-      julkaisuvuosi: null,
-      julkaisunnimi: null,
-      tekijat: null,
-      julkaisuntekijoidenlukumaara: null,
-      konferenssinvakiintunutnimi: null,
-      emojulkaisunnimi: null,
-      isbn: null,
-      emojulkaisuntoimittajat: null,
-      lehdenjulkaisusarjannimi: null,
-      issn: null,
-      volyymi: null,
-      numero: null,
-      sivut: null,
-      artikkelinumero: null,
-      kustantaja: null,
-      julkaisunkustannuspaikka: null,
-      julkaisunkieli: null,
-      julkaisunkansainvalisyys: null,
-      julkaisumaa: null,
-      kansainvalinenyhteisjulkaisu: null,
-      yhteisjulkaisuyrityksenkanssa: null,
-      doitunniste: null,
-      pysyvaverkkoosoite: null,
-      avoinsaatavuus: null,
-      julkaisurinnakkaistallennettu: null,
-      rinnakkaistallennetunversionverkkoosoite: null
-      */
     }
   };
 

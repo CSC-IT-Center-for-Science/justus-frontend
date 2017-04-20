@@ -28,6 +28,8 @@ let user = {
   'domain': '@csc.fi', // should get from shib-group where split(;) array item is '@...'
   'organization': '10056', // should map from shib-group where split(;) array item is '@...'
   'name': 'Justus Demo', // should join shib-givenName and shib-sn
+  'mail': 'justus@csc.fi', // should map from shib-mail
+  'uid': 'jdem', // should map from shib-uid
   '#': '' // placeholder
 };
 
@@ -59,6 +61,3 @@ let domain_organization = {
 
   //,'@': '' //...
 };
-
-
-

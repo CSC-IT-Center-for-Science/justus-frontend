@@ -4,124 +4,48 @@ justusApp.controller('TallennusController',
 ['$scope','$http','$state','APIService',
 function($scope,$http,$state,API)
 {
-  var tallennaTaulu = function(table,refid) {
-    console.log("tallennaTaulu "+table+" ("+refid+")")
-    var dnew = []; // list but often just one member
-    var di = 0;
-    dnew[di] = {};
-    var dataIsArray = false;
-
-    // mapping of columns
-    angular.forEach($scope.meta.tables,function(t,k){
-      if (t.name==table) {
-        var jsonKey = t.ui;
-        angular.forEach(t.columns,function(c,q){
-          if (table=="alayksikko") {
-            dnew[di].organisaatiotekijaid = refid;
-          } else if (c.name=="julkaisuid") {
-            dnew[di][c.name] = refid;
-          }
-
-          if (c.name!="id" && c.name!="julkaisuid" && c.name!="organisaatiotekijaid") {
-            let obj = $scope.justus[c.name]; // db vs ui names must match!
-            if (jsonKey) { // object is marked "json" or special, really just an array
-              obj = $scope.justus[jsonKey];
-            } else {
-              // normal case
-              // has value
-              if (obj!=null && obj!="") // may be 0, though
-                dnew[di][c.name] = obj;
-            }
-            console.log("tallennaTaulu TABLE:"+table+" COLUMN:"+c.name)
-            console.debug(obj)
-            if (table=="alayksikko") {
-              // inside another element, which is an array itself
-              //console.debug($scope.justus.organisaationtekijat)
-              obj = [];
-              // must know which organisaationtekijat to use. can't concatenate them all!
-              // meaning which alayksikot to choose.
-              // now as a quick hack added id to justus object.
-              // wonder if it's okay to keep? (could be nice to keep...)
-              angular.forEach($scope.justus.organisaationtekijat,function(ot,oi){
-                //console.log("HERE WE MUST KNOW")
-                //console.debug(ot)
-                if(ot.id==refid) {
-                  obj = obj.concat(ot.alayksikot)
-                }
-              });
-              console.debug(obj)
-            }
-            if (isArray(obj)) {
-              angular.forEach(obj,function(jv,jk){
-                // hack: jk määrää dnew indeksin!
-                if (di < jk) {
-                  di++;
-                  dnew[di] = {};
-                  if (table=="alayksikko") {
-                    dnew[di].organisaatiotekijaid = refid;
-                  } else {
-                    dnew[di].julkaisuid = refid;
-                  }
-                }
-                if (jv) {
-                  dnew[di][c.name] = jv;
-                }
-                // add jnro. not sure if it's necessary. not used elsewhere (yet)
-                if (table=="tieteenala") {
-                  dnew[di].jnro = di;
-                }
-                // dnew yhden rivin osalta valmis
-                console.log("tallennaTaulu ARRAY#"+jk+" ("+c.name+"="+jv+")")
-                console.debug(dnew)
-              });
-            }
-          }
-        });
-      }
-    });
-    // loop'n'store
-    angular.forEach(dnew,function(d,i){
-      console.log("tallennaTaulu "+table+" #"+i)
-      console.debug(d)
-      API.post(table+"/",d);
-    });
+  var tallennaTaulu = function(table,data) {
+    console.debug("tallennaTaulu "+table,data)
+    delete data[$scope.meta.tables[table].pkcol];
+    console.debug(data)
+    API.post(table+"/",data);
   }
 
   $scope.useTallenna = function() {
     console.log("useTallenna")
     var dnew = {};
-    var table = "julkaisu";
-    console.log("useTallenna "+table)
-    dnew = {};
-    angular.forEach($scope.meta.tables,function(j,i){
-      if (j.name==table) {
-        angular.forEach(j.columns,function(v,k){
-          if (v.name!="id" && v.name && $scope.justus[v.name]) {
-            dnew[v.name] = $scope.justus[v.name];
-          }
-        });
+    angular.forEach($scope.meta.tables.julkaisu.columns,function(v,k){
+      if (v.name!="id" && v.name && $scope.justus[v.name]) {
+        dnew[v.name] = $scope.justus[v.name];
       }
     });
-    console.debug(dnew);
-    API.post(table+"/",dnew).success(function(jid){
+    console.debug("post julkaisu",dnew);
+    API.post("julkaisu"+"/",dnew).success(function(jid){
       console.log("useTallenna post jid: "+jid);
       if (jid) {
-        tallennaTaulu("avainsana",jid);
-        tallennaTaulu("tieteenala",jid);
-        // alayksikko needs new id of organisaatiotekija also:
-        //so dont do this: tallennaTaulu("organisaatiotekija",jid);
-        angular.forEach($scope.justus.organisaationtekijat,function(ov,ok){
-          var dot = {};
-          dot.julkaisuid = jid;
-          if(ov['sukunimi'])  dot.sukunimi = ov['sukunimi'];
-          if(ov['etunimet'])  dot.etunimet = ov['etunimet'];
-          if(ov['orcid'])     dot.orcid = ov['orcid'];
-          //console.log("SHOULD SOMEHOW PASS KNOWLEDGE OF *THIS* organisaationtekijat")
-          //console.debug(dot)
-          API.post('organisaatiotekija'+"/",dot).success(function(otid){
-            console.log("useTallenna post oid: "+otid);
-            ov.id=otid; // risky to alter object we're loopin!!
-            tallennaTaulu("alayksikko",otid);
+        angular.forEach($scope.justus.avainsana,function(adata,ak){
+          adata.julkaisuid=jid;
+          tallennaTaulu("avainsana",adata);
+        })
+        angular.forEach($scope.justus.tieteenala,function(tdata,tk){
+          tdata.julkaisuid=jid;
+          tallennaTaulu("tieteenala",tdata);
+        });
+        // nb! alayksikko needs new id of organisaatiotekija!
+        angular.forEach($scope.justus.organisaatiotekija,function(odata,ok){
+          odata.julkaisuid = jid;
+          delete odata.id;
+          let alayarr = odata.alayksikko;
+          delete odata.alayksikko;
+          console.debug("post organisaatiotekija",odata);
+          API.post('organisaatiotekija'+"/",odata).success(function(otid){
+            console.log("useTallenna post otid: "+otid);
+            // adata copied above
+            console.debug("post alayksikko",alayarr);
+            angular.forEach(alayarr,function(adata,ak){
+              adata.organisaatiotekijaid=otid;
+              tallennaTaulu("alayksikko",adata);
+            });
           });
         });
       }

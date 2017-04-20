@@ -42,7 +42,7 @@ function($scope,$http,API)
 
   $scope.usePoista = function(id) {
     API.delete($scope.table.name,id);
-    $scope.useHae();
+    $scope.useTaulu($scope.table.name);
   }
 
   $scope.useTaulu = function(input) {
@@ -54,8 +54,5 @@ function($scope,$http,API)
     });
     $scope.useHae();
   }
-
-  // debug/develop init
-  //$scope.useTaulu("julkaisu");
 
 }]);//-APIController

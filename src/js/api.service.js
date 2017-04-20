@@ -3,8 +3,8 @@
 justusApp.service('APIService', ['$http', function ($http) {
 
   this.meta = {
-    tables: [
-      {
+    tables: {
+      'julkaisu': {
         name: 'julkaisu',
         pkcol: 'id',
         columns: [
@@ -46,9 +46,9 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'modified'}
         ]
       },
-      {
+      'avainsana': {
         name: 'avainsana',
-        ui: 'avainsanat', // lista
+        ui: 'avainsana', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -56,9 +56,9 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'avainsana'}
         ]
       },
-      {
+      'organisaatiotekija': {
         name: 'organisaatiotekija',
-        ui: 'organisaationtekijat', // lista
+        ui: 'organisaatiotekija', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -68,9 +68,9 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'orcid'}
         ]
       },
-      {
+      'alayksikko': {
         name: 'alayksikko',
-        ui: 'alayksikot', // lista
+        ui: 'alayksikko', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -78,9 +78,9 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'alayksikko'}
         ]
       },
-      {
+      'tieteenala': {
         name: 'tieteenala',
-        ui: 'julkaisuntieteenalat', // lista
+        ui: 'tieteenala', // lista
         pkcol: 'id',
         columns: [
           {name: 'id'},
@@ -89,7 +89,7 @@ justusApp.service('APIService', ['$http', function ($http) {
           {name: 'jnro'}
         ]
       }
-    ]
+    }
   };
 
   // TODO make installation dependent

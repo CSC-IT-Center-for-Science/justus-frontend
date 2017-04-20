@@ -31,6 +31,24 @@
     <script src="js/yllapito.controller.js"></script>
 
     <link rel="stylesheet" href="css/justus.css">
+    <style>
+    div.striped:nth-of-type(odd) {
+      background: #eeeef0;
+      padding-bottom: 8px;
+    }
+    div.striped:nth-of-type(even) {
+      background: #dddde0;
+      padding-bottom: 8px;
+    }
+    input {
+      font-size: smaller;
+      width: auto;
+      border: 1px solid gray;
+      padding: 0px;
+      margin: 0px;
+      background: #efefef;
+    }
+    </style>
 
     <title>JUSTUS ylläpito</title>
 </head>
@@ -42,53 +60,42 @@
         <ui-select-match class="ui-select-match" placeholder="">
           <b>{{ $select.selected.name }}</b>
         </ui-select-match>
-        <ui-select-choices repeat="o in meta.tables | filter: $select.search">
+        <ui-select-choices repeat="(name,o) in meta.tables | filter: $select.search">
           {{o.name}}
         </ui-select-choices>
       </ui-select>
     </div>
     <div class="col-xs-6 text-right">
-      other side
+      <i class="fa fa-refresh" aria-hidden="true" data-ng-model="btnget" data-ng-click="useHae()" title="päivitä"></i>
     </div>
   </div>
 
-  <div class="row form-control">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-condensed table-striped">
-        <thead>
-          <tr>
-            <th data-ng-repeat="c in table.columns">{{c.name}}</th>
-            <th><i class="fa fa-refresh" aria-hidden="true" data-ng-model="btnget" data-ng-click="useHae()" title="päivitä"></i></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-ng-repeat="d in data | orderBy:'id' track by d.id">
-            <td data-ng-repeat="c in table.columns">
-              <span data-ng-if="c.name==table.pkcol"/>{{d[c.name]}}</span>
-              <input type="text" class="form-control input-sm" name="{{c.name}}" data-ng-model="d[c.name]" data-ng-if="c.name!=table.pkcol">
-            </td>
-            <td>
-              <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="usePaivita(d[table.pkcol],table.pkcol)" title="tallenna"></button>
-              <button class="fa fa-trash-o" aria-hidden="true" data-ng-click="usePoista(d[table.pkcol])" title="poista"></button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <form name="myformuusi">
-              <!-- input type="hidden" data-ng-model="hideme" data-ng-init="dnew.hideme=true" -->
-              <td data-ng-repeat="c in table.columns">
-                <input type="text" class="form-control input-sm" data-ng-model="dnew[c.name]" data-ng-if="c.name!=table.pkcol">
-              </td>
-              <td>
-                <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="useLisaa()" title="Lisää data"></button>
-              </td>
-            </form>
-          </tr>
-        </tfoot>
-      </table>
+  <div class="row striped" data-ng-repeat="d in data | orderBy:'id' track by d.id">
+    <div class="col-xs-11">
+      <span data-ng-repeat="c in table.columns">
+        <span data-ng-bind="c.name">:</span>
+        <span data-ng-if="c.name==table.pkcol" data-ng-bind="d[c.name]"></span>
+        <input type="text" size="{{d[c.name].length}}" name="{{c.name}}" data-ng-model="d[c.name]" data-ng-if="c.name!=table.pkcol">
+      </span>
+    </div>
+    <div class="col-xs-1 text-right">
+      <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="usePaivita(d[table.pkcol],table.pkcol)" title="tallenna"></button>
+      <button class="fa fa-trash-o" aria-hidden="true" data-ng-click="usePoista(d[table.pkcol])" title="poista"></button>
     </div>
   </div>
+  <form name="myformuusi">
+    <div class="row">
+      <div class="col-xs-11">
+        <!-- input type="hidden" data-ng-model="hideme" data-ng-init="dnew.hideme=true" -->
+        <span data-ng-repeat="c in table.columns" data-ng-if="c.name!=table.pkcol">
+          {{c.name}}:&nbsp;<input type="text" class="input-sm" data-ng-model="dnew[c.name]">
+        </span>
+      </div>
+      <div class="col-xs-1">
+          <button class="fa fa-floppy-o" aria-hidden="true" data-ng-click="useLisaa()" title="Lisää data"></button>
+      </div>
+    </div>
+  </form>
 
   <div class="row">
     <div class="col-xs-12">

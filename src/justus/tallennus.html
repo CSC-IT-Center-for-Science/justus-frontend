@@ -37,12 +37,12 @@
     <div class="row">
       <div class="col-xs-4 justus-title">{{i18n.content.form.organisaationtekijat[lang]}}</div>
       <div class="col-xs-8 justus-data">
-        <div data-ng-repeat="i in justus.organisaationtekijat track by $index">
-          {{justus.organisaationtekijat[$index].sukunimi}},
-          {{justus.organisaationtekijat[$index].etunimet}};
-          <span data-ng-repeat="a in justus.organisaationtekijat[$index].alayksikot track by $index"><span data-ng-if="$index>0">,</span>
-            <span data-ng-bind="a"></span>=<span data-ng-bind="getCode('organization',a).selite[lang]"></span></span>;
-          {{justus.organisaationtekijat[$index].orcid}}
+        <div data-ng-repeat="i in justus.organisaatiotekija track by $index">
+          {{justus.organisaatiotekija[$index].sukunimi}},
+          {{justus.organisaatiotekija[$index].etunimet}};
+          <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index"><span data-ng-if="$index>0">,</span>
+            <span data-ng-bind="a.alayksikko"></span>=<span data-ng-bind="getCode('organization',a.alayksikko).selite[lang]"></span></span>;
+          {{justus.organisaatiotekija[$index].orcid}}
         </div>
       </div>
     </div>
@@ -124,8 +124,8 @@
 <div class="row" style="border:1px dotted gray;">
   <div class="col-xs-4 justus-title">{{i18n.content.form.avainsanat[lang]}}</div>
   <div class="col-xs-8 justus-data">
-    <span data-ng-repeat="avainsana in justus.avainsanat"><span data-ng-if="$index > 0">, </span>
-      {{avainsana}}</span>
+    <span data-ng-repeat="i in justus.avainsana"><span data-ng-if="$index > 0">, </span>
+      {{i.avainsana}}</span>
   </div>
 </div>
 
@@ -160,9 +160,9 @@
       <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisuntieteenalat[lang]}}
       </div>
       <div class="col-xs-8 justus-data">
-        <div data-ng-repeat="tieteenala in justus.julkaisuntieteenalat">
-          <span data-ng-bind="tieteenala"></span>
-          <span data-ng-bind="getCode('tieteenalat',tieteenala).selite[lang]"></span>
+        <div data-ng-repeat="i in justus.tieteenala">
+          <span data-ng-bind="i.tieteenalakoodi"></span>
+          <span data-ng-bind="getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"></span>
         </div>
       </div>
     </div>
@@ -224,9 +224,9 @@
 <div class="row" data-ng-controller="TallennusController">
   <div class="col-xs-12">
     <h3 class="justus-btn justus-btn-default" style="text-align:left;" data-ng-click="useTallenna()"
-    data-ng-if="isJustusValid() && isValid('organisaationtekijat')"
+    data-ng-if="isJustusValid() && isValid('organisaatiotekija')"
     >{{i18n.content.tallennus.tallenna[lang]}}</h3>
-    <!-- div class="justus-btn-primary btn-lg btn-block active" data-ng-if="isJustusValid() && isValid('organisaationtekijat')" data-ng-click="useTallenna()">{{i18n.content.tallenna[lang]}}</div -->
+    <!-- div class="justus-btn-primary btn-lg btn-block active" data-ng-if="isJustusValid() && isValid('organisaatiotekija')" data-ng-click="useTallenna()">{{i18n.content.tallenna[lang]}}</div -->
     <!-- div class="justus-btn-primary btn-lg btn-block disabled" data-ng-if="!isJustusValid()" data-ng-click="">{{i18n.content.tallenna[lang]}}</div -->
   </div>
 </div>
