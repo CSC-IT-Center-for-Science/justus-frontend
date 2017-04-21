@@ -154,7 +154,7 @@
                   <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.organisaationtekijat.alayksikko.picktip[lang]}}">
                     {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                   </ui-select-match>
-                  <ui-select-choices repeat="o in getCode('organization',user.organization).alatyypit | filter: $select.search">
+                  <ui-select-choices repeat="o in getCode('organization',user.organization.code).alatyypit | filter: $select.search">
                     {{o.arvo}} {{o.selite[lang]}}
                   </ui-select-choices>
                 </ui-select>

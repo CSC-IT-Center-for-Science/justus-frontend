@@ -1,11 +1,15 @@
   <div data-ng-controller="TarkastaController">
 
-    <div class="row">
-      <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true; resetData()">
-        <h4>{{i18n.content.tarkasta.odottavat[lang]}}</h4>
+    <div class="row no-gutter" style="margin-bottom: 16px;">
+      <div class="col-xs-6 text-center">
+        <div class="justus-btn justus-btn-stage" data-ng-class="{'justus-bg-bright': odottavat, 'justus-bg-dim': !odottavat}" data-ng-click="odottavat=true; resetData()">
+          {{i18n.content.tarkasta.odottavat[lang]}}
+        </div>
       </div>
-      <div class="col-xs-6 justus-btn" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false; resetData()">
-        <h4>{{i18n.content.tarkasta.hyvaksytyt[lang]}}</h4>
+      <div class="col-xs-6 text-center">
+        <div class="justus-btn justus-btn-stage" data-ng-class="{'justus-bg-bright': !odottavat, 'justus-bg-dim': odottavat}" data-ng-click="odottavat=false; resetData()">
+          {{i18n.content.tarkasta.hyvaksytyt[lang]}}
+        </div>
       </div>
     </div>
 

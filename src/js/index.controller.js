@@ -1,8 +1,10 @@
 'use strict';
 
+//from config uses: user, domain_organization, authuri
+
 justusApp.controller('IndexController',
-['$scope','$http','$window','$location','$stateParams','KoodistoService',
-function($scope,$http,$window,$location,$stateParams,Koodisto)
+['$scope','$http','$window','$stateParams','$transitions','KoodistoService',
+function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 {
   // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
@@ -14,11 +16,6 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
 
   // to change location from ng-click
   $scope.locationChange = function(path) {
-    // TODO: howto state change...
-    //console.debug(window.location)
-    //window.location.href=path;
-    //console.debug($location.path())
-    //$location.path(path); //.replace(); // replace overwrites history
     $window.location.href=path;
   }
 
@@ -32,7 +29,7 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
   }
 
   //
-  // MUUTTUJAT JA ALUSTUS
+  // VARIABLES AND INITIALIZATION
   //
 
   // ui-router and stateParams (when it is loaded)
@@ -42,6 +39,19 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
     $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
     //console.debug("INDEX stateParams",$stateParams)
   });
+  // ng1
+  let criteria = {
+    to: function(state) {
+      return state.name != null;
+    }
+  }
+  $transitions.onBefore(criteria, function(trans) {
+    var name = trans.to().name;
+    console.debug("TRANS",name,trans)
+    $scope.state = {name:name};
+    //return trans.router.stateService.target(name);
+  });
+
 
   $scope.i18n = i18n;
   $scope.codes = {};
@@ -65,14 +75,14 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
   // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
   // reset variables
   $scope.codes.organization = []; // setup
-  angular.forEach(domain_organization,function(code,domain){
+  angular.forEach(domain_organization,function(dobj,domain){
     // nb! not entire koodisto, just one code at a time
     // not all organizations are of type oppilaitos there are tutkimusorganisaatio also 
     let codeset = 'oppilaitosnumero';
-    if (code.length>5) {
+    if (dobj.code.length>5) {
       codeset = 'tutkimusorganisaatio';
     }
-    Koodisto.getKoodi(codeset,code).then(function(o){
+    Koodisto.getKoodi(codeset,dobj.code).then(function(o){
       Koodisto.getKoodisto('alayksikkokoodi').then(function(a){
         $scope.codes.alayksikkokoodi=a;
         angular.forEach(o,function(oobj,okey){
@@ -93,9 +103,6 @@ function($scope,$http,$window,$location,$stateParams,Koodisto)
   $scope.user = user;
   console.debug("demo user:",$scope.user)
   //let authuser = Justus.authget();
-  // TODO dev/demo to installation dependent
-  // no good, CORS:
-  let authuri = "https://demo.justus.csc.fi/sec/api/auth.php";
   console.debug("auth user get:",authuri)
   let authuser = $http.get(authuri);
   //console.debug(authuser)

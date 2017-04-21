@@ -1,20 +1,23 @@
 <div class="row">
   <div class="col-xs-12 col-md-7">
-    <!-- div class="pull-left" data-ng-if="!user || !justus">
-      <img src="img/csc_justus.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
-    </div -->
-    <div class="pull-left"><!-- data-ng-if="user && justus" -->
-      <a href data-ui-sref="index({lang: lang})"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a>
+    <div data-ng-if="state.name=='index'">
+      <img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive">
+    </div>
+    <div data-ng-if="state.name!='index'">
+      <div>
+        <a href data-ui-sref="justus({lang:lang,vaihe:0})"><img src="img/justus2.png" alt="{{i18n.header.logotext[lang]}" class="img-responsive"></a>
+      </div>
+      <div>
+        <a href data-ui-sref="index({lang:lang})" data-ng-bind="i18n.content.valitse.etusivu[lang]"></a> &nbsp;
+        <a href data-ui-sref="justus({lang:lang,vaihe:1})" data-ng-bind="i18n.content.valitse.tallenna[lang]"></a> &nbsp;
+        <a href data-ui-sref="omat({lang:lang})" data-ng-bind="i18n.content.valitse.omat[lang]"></a> &nbsp;
+        <a href data-ui-sref="tarkasta({lang:lang})" data-ng-bind="i18n.content.valitse.hyvaksy[lang]"></a> &nbsp;
+      </div>
     </div>
   </div>
   <div class="col-xs-12 col-md-5 pull-right text-right">
-    <div data-ng-if="user">
-      <span><i>{{user.name}}</i>, {{getCode('organization',user.organization).selite[lang]}}</span>
-      <span data-ng-if="user.role=='admin'"><br>
-        | admin
-        , org: <input type="text" data-ng-model="user.organization" size="8" style="font-size:smaller;">
-        <br>
-      </span>
+    <div  data-ng-if="state.name!='index' && user">
+      <span><i>{{user.name}}</i>, {{getCode('organization',user.organization.code).selite[lang]}}</span>
       <span>| <a href="">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
@@ -25,15 +28,17 @@
         data-uib-popover="ohje?"></i>
       </a></span>
       <span>|</span>
-      <a href="" data-ng-show="lang!='FI'" data-ui-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a>
+      <a href data-ng-show="lang!='FI'" data-ng-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a>
       <span data-ng-show="lang!='FI'">|</span>
-      <a href="" data-ng-show="lang!='SV'" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a>
+      <a href data-ng-show="lang!='SV'" data-ng-click="$parent.lang='SV'">{{i18n.header.lang.SV}}</a>
       <span data-ng-show="lang=='FI'">|</span>
-      <a href="" data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
+      <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
     </div>
-    <div data-ng-if="developmentmode" data-todo='should be "admin role"'>
-      <a href="#" data-ng-click="resetKoodisto()">reset koodisto</a>
-      <a href="#" data-ng-click="alterViewWidth()">wide/narrow</a>
-    </div>
+    <span data-ng-if="developmentmode || user.role=='admin'" style="background: lightgray;">
+      admin/demo: org: <input type="text" data-ng-model="user.organization.code" size="8" style="font-size:smaller; background: lightgray;">
+      <br>
+      <a href data-ng-click="resetKoodisto()">reset koodisto</a>
+      <a href data-ng-click="alterViewWidth()">wide/narrow</a>
+    </span>
   </div>
 </div>

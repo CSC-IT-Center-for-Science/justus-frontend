@@ -214,7 +214,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
       // erityisesti ISBN js ISSN; käydään kahdessa vaiheessa läpi:
       // - ensin yksittäin ja sitten vielä yhdessä
       // - nb! pattern vaikutus objektin arvoon (=> undefined kunnes matchaa)
-      //console.log("isValid 1 "+field+" "+valid);
+      //console.log("isValid 0 "+field+" "+valid+" initially");
       if (this.justus[field]===undefined) { // pattern tekee undefinediksi!
         valid = false;
       } else {
@@ -228,8 +228,9 @@ justusApp.service('JustusService', ['$http', function ($http) {
           }
         }
       }
-      //console.log("isValid 2 "+field+" "+valid);
-      if (valid && field=="issn") {
+      //console.log("isValid 1 "+field+" "+valid+" singleton");
+      // together part 1 issn (valid status may change!)
+      if (field=="issn") {
         // pitääkö edes katsoa?
         for (let e in this.condition.issn.julkaisutyyppi) {
           if (this.condition.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
@@ -246,7 +247,8 @@ justusApp.service('JustusService', ['$http', function ($http) {
           }
         }
       }
-      if (valid && field=="isbn") {
+      // together part 2 isbn (valid status may change!)
+      if (field=="isbn") {
         // pitääkö edes katsoa?
         for (let e in this.condition.isbn.julkaisutyyppi) {
           if (this.condition.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
@@ -263,7 +265,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
           }
         }
       }
-      //console.log("isValid 3 "+field+" "+valid);
+      //console.log("isValid 2 "+field+" "+valid+" together (final)");
   } else if (!this.justus[field]) {
       //console.log("isValid "+field+" ehkä...");
       if (this.isVisible(field)) {

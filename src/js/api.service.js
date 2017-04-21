@@ -1,5 +1,7 @@
 'use strict';
 
+// from config uses: apiuri
+
 justusApp.service('APIService', ['$http', function ($http) {
 
   this.meta = {
@@ -92,9 +94,6 @@ justusApp.service('APIService', ['$http', function ($http) {
     }
   };
 
-  // TODO make installation dependent
-  let apiuri = 'https://demo.justus.csc.fi/api/justus_save.php/';
-  
   /* CREATE :: POST */
   this.post = function(api,str) {
     return $http({

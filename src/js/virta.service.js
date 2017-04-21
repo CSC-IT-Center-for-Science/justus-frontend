@@ -1,29 +1,27 @@
 'use strict';
 
+// from config uses: virtauri, justushost (dev!)
+
 justusApp.service('VIRTAService', ['$http', function ($http) {
-  this.uri = "https://virta-jtp.csc.fi/api/julkaisut/";
-  //this.uri = "https://dwitjutife1.csc.fi/api/julkaisut/";
-  //this.uri = "https://raja-dev.csc.fi/api/julkaisut/";
-  //this.uri = "http://localhost:8080/api/julkaisut/";
-  //this.uri = "http://localhost/api/julkaisut/";
+  this.uri = virtauri;
 
   this.fetch = function(input,tekija) {
-    this.uri = 'https://demo.justus.csc.fi/api/virtahaku.php'; // TODO dev
-    var uriapi = "?julkaisunNimi="; // TODO dev
-    //var uriapi = "haku?julkaisunNimi=";
+    this.uri = 'https://'+justushost+'/api/virtahaku.php'; // TODO dev
+    let uriapi = "?julkaisunNimi="; // TODO dev
+    //let uriapi = "haku?julkaisunNimi=";
 
-    var filter = "";
+    let filter = "";
     //if ($scope.julkaisuvuosi != null && $scope.julkaisuvuosi != "") filter="&filter=from-pub-date:"+$scope.julkaisuvuosi+",until-pub-date:"+$scope.julkaisuvuosi;
-    var authorquery = "";
+    let authorquery = "";
     if (tekija != null && tekija != "") authorquery="&henkiloHaku="+tekija;
 
     console.log("call "+this.uri+uriapi+input+authorquery+filter);
     return $http.get(this.uri+uriapi+input+authorquery+filter)
     .then(function (response){
-      var ret = [];
+      let ret = [];
       //console.debug(response);
       angular.forEach(response.data, function(robj,rkey){
-        var obj={};
+        let obj={};
         obj.source = "VIRTA";
         obj.title = robj.julkaisunNimi||""; //luo tyhjä arvo jos puuttuu
         if (robj.doi) obj.doi = robj.doi; //saa puuttuakin
@@ -49,7 +47,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
     });
   }
   this.get = function(input) {
-    this.uri = 'https://demo.justus.csc.fi/api/virtahaku.php?julkaisunTunnus='; // TODO dev
+    this.uri = 'https://'+justushost+'/api/virtahaku.php?julkaisunTunnus='; // TODO dev
     //this.uri = "virtahaku.php?julkaisunTunnus=";
     return $http.get(this.uri+input);
   }

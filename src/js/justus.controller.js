@@ -1,5 +1,7 @@
 'use strict';
 
+// from .. uses: ..
+
 justusApp.controller('JustusController',
 ['$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
 function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
@@ -226,6 +228,21 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   $scope.useVaihe = function(vaihe) {
     console.log("useVaihe "+$scope.ui_vaihe+" => "+vaihe);
     $scope.ui_vaihe=vaihe;
+    if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
+      // make sure both values are set (paa,ala):
+      $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
+      // if not valid and trying to enter saving stage:
+      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaatiotekija'))) {
+        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
+        $scope.useVaihe(3);
+      }
+    } else {
+      // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
+      if ($scope.ui_vaihe>2) {
+        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
+        $scope.useVaihe(2);
+      }
+    }
     $state.go('justus', $scope.justus);
   }
 
@@ -301,31 +318,15 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   let finalizeInit = function() {
     
     // user related
-    $scope.justus.organisaatiotunnus = $scope.user.organization;
+    $scope.justus.organisaatiotunnus = $scope.user.organization.code;
     $scope.justus.username = $scope.user.name; // or mail or uid?
     // remove entirely as it is not needed here and messes up things later on!
     delete $scope.justus.modified;
-    // TODO develop
-    delete $scope.justus.julkaisuntila;
+    // keep this: $scope.justus.julkaisuntila;
 
     // julkaisutyyppi / vaihe
-    $scope.ui_vaihe = $stateParams.vaihe||0;
     console.debug("finalizeInit julkaisutyyppi",$scope.justus.julkaisutyyppi)
-    if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
-      // make sure both values are set (paa,ala):
-      $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
-      // if not valid and trying to enter saving stage:
-      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaatiotekija'))) {
-        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
-        $scope.useVaihe(3);
-      }
-    } else {
-      // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
-      if ($scope.ui_vaihe>2) {
-        // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
-        $scope.useVaihe(2);
-      }
-    }
+    $scope.useVaihe($stateParams.vaihe||0);
   }
 
   let startInit = function() {
@@ -386,6 +387,11 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
         });
       });
     } else {
+      // populate lists for UI
+      $scope.justus.avainsana = [{avainsana:''}];
+      $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+      $scope.justus.organisaatiotekija = [{}];
+      $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
       finalizeInit();
     }
     // to-do: we could loop stateParams to read URI parameters and override values from database..

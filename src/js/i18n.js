@@ -10,7 +10,7 @@ let i18n = {
   },
   footer: {
     help: {
-      title: {FI: "Asiakaspalvelu", SV: "Kundservice", EN: "Customer service"},
+      title: {FI: "Käyttötuki", SV: "*SV*Käyttötuki", EN: "*EN*Käyttötuki"},
       email: {FI: "justus@csc.fi", SV: "justus@csc.fi", EN: "justus@csc.fi"},
       time: {FI: "ma-pe klo 8.30-16", SV: "*SV*ma-pe klo 8.30-16", EN: "Mon-Tue 8.30am-4pm"}
     },
@@ -42,6 +42,7 @@ let i18n = {
   content: {
     valitse: {
       title: {FI: "VALITSE TOIMINTO", SV: "VÄLJ FUNKTION", EN: "CHOOSE FUNCTION"},
+      etusivu: {FI: "Etusivu", SV: "*SV*Etusivu", EN: "*EN*Etusivu"},
       tallenna: {FI: "Tallenna julkaisu", SV: "Spara uppgifter", EN: "Save publication"},
       omat: {FI:"Omat tallennukset", SV:"Egna publikationer", EN:"Saved publications"},
       hyvaksy: {FI:"Hyväksy tallennuksia", SV:"Godkänn uppgifter", EN:"Approve publications"}
