@@ -47,7 +47,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   }
   $transitions.onBefore(criteria, function(trans) {
     var name = trans.to().name;
-    console.debug("TRANS",name,trans)
+    //console.debug("TRANS",name,trans)
     $scope.state = {name:name};
     //return trans.router.stateService.target(name);
   });

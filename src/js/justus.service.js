@@ -169,6 +169,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
   this.isValid = function(field) {
     //console.log("isValid "+field);
     var valid = true; // oletetaan että ok
+    if (!this.isVisible(field)) return true;
     //console.debug(this.justus[field]);
     //console.log("isValid "+field+" array="+angular.isArray(this.justus[field])+" object="+typeof(this.justus[field]))
     if (field=="organisaatiotekija") {
@@ -217,6 +218,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
       //console.log("isValid 0 "+field+" "+valid+" initially");
       if (this.justus[field]===undefined) { // pattern tekee undefinediksi!
         valid = false;
+        //console.log("isValid 1 "+field+" "+valid+" A");
       } else {
         // remember to handle null, "" and undefined!
         if (this.justus[field]!==null && this.justus[field]!="") {
@@ -227,6 +229,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
             valid = this.checkISSN(this.justus[field]);
           }
         }
+        //console.log("isValid 1 "+field+" "+valid+" B");
       }
       //console.log("isValid 1 "+field+" "+valid+" singleton");
       // together part 1 issn (valid status may change!)
