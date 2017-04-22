@@ -1,17 +1,28 @@
-<!-- VAIHEVUO -->
 <div class="row no-gutter" style="margin-bottom: 16px;" data-ng-show="vaihe>=0">
-  <div class="col-xs-3 text-center">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==1}" data-ng-click="useVaihe(1)">1 {{i18n.content.vaihevuo.esitayta[lang]}}</div>
+
+  <div class="col-sm-3 text-center" data-ng-class="{'col-xs-9':vaihe==1, 'col-xs-1':vaihe!=1}">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==1}" data-ng-click="useVaihe(1)">
+      1 <span data-ng-class="{'hidden-xs':vaihe!=1}" data-ng-bind="i18n.content.vaihevuo.esitayta[lang]"></span>
+    </div>
   </div>
-  <div class="col-xs-3 text-center">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==2}" data-ng-click="useVaihe(2)">2 {{i18n.content.vaihevuo.julkaisutyyppi[lang]}}</div>
+
+  <div class="col-sm-3 text-center" data-ng-class="{'col-xs-9':vaihe==2, 'col-xs-1':vaihe!=2}">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==2}" data-ng-click="useVaihe(2)">
+      2 <span data-ng-class="{'hidden-xs':vaihe!=2}" data-ng-bind="i18n.content.vaihevuo.julkaisutyyppi[lang]"></span>
+    </div>
   </div>
-  <div class="col-xs-3 text-center">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:vaihe<3}" data-ng-if="vaihe<3">3 {{i18n.content.vaihevuo.tietojensyotto[lang]}}</div>
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:vaihe<3}" data-ng-if="vaihe>=3" data-ng-click="useVaihe(3)">3 {{i18n.content.vaihevuo.tietojensyotto[lang]}}</div>
+
+  <div class="col-sm-3 text-center" data-ng-class="{'col-xs-9':vaihe==3, 'col-xs-1':vaihe!=3}">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==3, disabled:vaihe<3}"
+    data-ng-click="vaihe>=3?useVaihe(3):null">
+      3 <span data-ng-class="{'hidden-xs':vaihe!=3}" data-ng-bind="i18n.content.vaihevuo.tietojensyotto[lang]"></span>
+    </div>
   </div>
-  <div class="col-xs-3 text-center">
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4, disabled:vaihe<4}" data-ng-if="vaihe<4">4 {{i18n.content.vaihevuo.tallennus[lang]}}</div>
-    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4, disabled:vaihe<4}" data-ng-if="vaihe>=4" data-ng-click="useVaihe(4)">4 {{i18n.content.vaihevuo.tallennus[lang]}}</div>
+
+  <div class="col-sm-3 text-center" data-ng-class="{'col-xs-9':vaihe>=4, 'col-xs-1':vaihe!=4}">
+    <div class="justus-btn justus-btn-stage" data-ng-class="{selected:vaihe==4, disabled:vaihe<4}" data-ng-click="vaihe>=4?useVaihe(4):null">
+      4 <span data-ng-class="{'hidden-xs':vaihe!=4}" data-ng-bind="i18n.content.vaihevuo.tallennus[lang]"></span>
+    </div>
   </div>
+
 </div>

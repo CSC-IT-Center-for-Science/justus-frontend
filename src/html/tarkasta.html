@@ -36,13 +36,13 @@
                 ><span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span
                 ><span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
               </th>
-              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              <th class="justus-bg-dim hidden-xs" style="vertical-align:top; border:1px white solid;"
               data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
                 <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span
                 ><span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span
                 ><span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
               </th>
-              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
+              <th class="justus-bg-dim hidden-xs" style="vertical-align:top; border:1px white solid;"
               data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
                 <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span
                 ><span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span
@@ -69,8 +69,8 @@
               </td>
               <td><span data-ng-bind="d.julkaisunnimi"></span></td>
               <td><span data-ng-bind="d.tekijat"></span></td>
-              <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
-              <td><span data-ng-bind="d.username"></span></td>
+              <td class="hidden-xs"><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
+              <td class="hidden-xs"><span data-ng-bind="d.username"></span></td>
 
               <td data-ng-if="state.name=='hyvaksy'">
                 <span data-ng-repeat="julkaisuntila in ['0','1','2']"><span
