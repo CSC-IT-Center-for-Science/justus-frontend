@@ -226,24 +226,26 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   }
 
   $scope.useVaihe = function(vaihe) {
-    console.log("useVaihe "+$scope.ui_vaihe+" => "+vaihe);
-    $scope.ui_vaihe=vaihe;
+    console.log("useVaihe "+$scope.vaihe+" => "+vaihe);
+    $scope.vaihe=vaihe;
     if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
       // make sure both values are set (paa,ala):
       $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
       // if not valid and trying to enter saving stage:
-      if ($scope.ui_vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaatiotekija'))) {
+      if ($scope.vaihe==4 && (!$scope.isJustusValid() || !$scope.isValid('organisaatiotekija'))) {
         // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
         $scope.useVaihe(3);
+        return;
       }
     } else {
       // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
-      if ($scope.ui_vaihe>2) {
+      if ($scope.vaihe>2) {
         // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
         $scope.useVaihe(2);
+        return;
       }
     }
-    $state.go('justus', $scope.justus);
+    $state.go('justus', {lang:$scope.lang,id:$scope.justus.id,vaihe:vaihe});
   }
 
   $scope.useRequiredHighlight = function() {
