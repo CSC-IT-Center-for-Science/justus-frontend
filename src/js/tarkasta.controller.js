@@ -1,13 +1,10 @@
 'use strict';
 
 justusApp.controller('TarkastaController',
-['$scope','$http','$stateParams','APIService','KoodistoService',
-function($scope,$http,$stateParams,API,Koodisto)
+['$scope','$http','APIService','KoodistoService',
+function($scope,$http,API,Koodisto)
 {
-  //index provides: i18n, codes
-
-  $scope.lang = $stateParams.lang||'FI';
-  console.debug($scope.lang)
+  //index provides: lang, i18n, codes, ...
 
   $scope.meta = API.meta;
   $scope.data = [];

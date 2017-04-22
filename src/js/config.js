@@ -17,20 +17,19 @@ if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
   developmentmode = true;
 }
 
-// authorization / demo
+// authorization / demo (shib-* mapping handled by backend)
 let user = {
-  'shib-uid': 'jdem',
-  'shib-mail': 'justus@csc.fi',
-  'shib-givenName': 'Justus',
-  'shib-sn': 'Demo',
-  'shib-group': '@csc.fi;https://tt.eduuni.fi/groups/justus#group-admins', // 
-  'role': 'admin', // should map from shib-group where split(;) array item is '.../groups/justus#...'
+  //'shib-uid': 'jdem',
+  //'shib-mail': 'justus@csc.fi',
+  //'shib-givenName': 'Justus',
+  //'shib-sn': 'Demo',
+  //'shib-group': '@csc.fi;https://tt.eduuni.fi/groups/justus#group-admins', // 
+  'uid': 'jdem', // should map from shib-uid
+  'mail': 'justus@csc.fi', // should map from shib-mail
+  'name': 'Justus Demo', // should join shib-givenName and shib-sn
   'domain': '@csc.fi', // should get from shib-group where split(;) array item is '@...'
   'organization': {code:'10056',email:'notvalid@haaga-helia.fi'}, // should map from shib-group where split(;) array item is '@...'
-  'name': 'Justus Demo', // should join shib-givenName and shib-sn
-  'mail': 'justus@csc.fi', // should map from shib-mail
-  'uid': 'jdem', // should map from shib-uid
-  '#': '' // placeholder
+  'role': 'admin' // should map from shib-group where split(;) array item is '.../groups/justus#...'
 };
 
 // mapping of organization domain to organization codes (type or codeset vary!)

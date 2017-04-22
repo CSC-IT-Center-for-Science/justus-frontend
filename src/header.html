@@ -11,7 +11,7 @@
         <a href data-ui-sref="index({lang:lang})" data-ng-bind="i18n.content.valitse.etusivu[lang]"></a> &nbsp;
         <a href data-ui-sref="justus({lang:lang,id:id,vaihe:vaihe||1})" data-ng-bind="i18n.content.valitse.tallenna[lang]"></a> &nbsp;
         <a href data-ui-sref="omat({lang:lang})" data-ng-bind="i18n.content.valitse.omat[lang]"></a> &nbsp;
-        <a href data-ui-sref="tarkasta({lang:lang})" data-ng-bind="i18n.content.valitse.hyvaksy[lang]"></a> &nbsp;
+        <a data-ng-if="hasAccess('hyvaksy')" href data-ui-sref="hyvaksy({lang:lang})" data-ng-bind="i18n.content.valitse.hyvaksy[lang]"></a> &nbsp;
       </div>
     </div>
   </div>
@@ -35,7 +35,14 @@
       <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
     </div>
     <span data-ng-if="developmentmode || user.role=='admin'" style="background: lightgray;">
-      admin/demo: org: <input type="text" data-ng-model="user.organization.code" size="8" style="font-size:smaller; background: lightgray;">
+      admin/demo:
+      user: <select data-ng-model="user.role" style="font-size:smaller; background: lightgray;">
+        <option value="admin">Admin</option>
+        <option value="member">Member</option>
+      </select>
+      org: <select data-ng-model="user.organization.code" style="font-size:smaller; background: lightgray;">
+        <option data-ng-repeat="g in codes.organization" value="{{g.arvo}}">{{g.selite[lang]}}</option>
+      </select>
       <br>
       <a href data-ng-click="resetKoodisto()">reset koodisto</a>
       <a href data-ng-click="alterViewWidth()">wide/narrow</a>

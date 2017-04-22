@@ -48,24 +48,31 @@
                 ><span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span
                 ><span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
               </th>
-              <th class="justus-bg-dim" style="vertical-align:top; border:1px white solid;"
-              data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'">
+
+              <th data-ng-if="state.name=='hyvaksy'"
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
+              class="justus-bg-dim" style="vertical-align:top; border:1px white solid;">
               <!-- nb! alternative default sort order -->
                 <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span
                 ><span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisuntila' && !(colOrderReverse)"></span
                 ><span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisuntila' && (colOrderReverse)"></span>
               </th>
+
             </tr>
           </thead>
           <tbody>
             <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
                 data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
-              <td><a href="" data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id""></a></td>
+              <td>
+                <a data-ng-if="state.name=='hyvaksy' || !d.julkaisuntila" href="" data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></a>
+                <span data-ng-if="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+              </td>
               <td><span data-ng-bind="d.julkaisunnimi"></span></td>
               <td><span data-ng-bind="d.tekijat"></span></td>
               <td><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
               <td><span data-ng-bind="d.username"></span></td>
-              <td>
+
+              <td data-ng-if="state.name=='hyvaksy'">
                 <span data-ng-repeat="julkaisuntila in ['0','1','2']"><span
                   title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
                   class="justus-btn justus-btn-default" data-ng-class="{'active': d.julkaisuntila==julkaisuntila}"
@@ -77,6 +84,7 @@
                 <!-- button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button -->
                 <!-- button data-ng-click="usePoista(d[table.pkcol])">Poista</button -->
               </td>
+
             </tr>
           </tbody>
         </table>

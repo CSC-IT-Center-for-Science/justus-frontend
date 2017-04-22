@@ -45,7 +45,7 @@ justusApp.config(function(
     url: "/omat?lang",
     views: {
       "": {
-        templateUrl: "omat.html"
+        templateUrl: "tarkasta.html"
       }
     },
     params: {
@@ -53,9 +53,9 @@ justusApp.config(function(
     }
   };
 
-  let tarkastaState = {
-    name: "tarkasta",
-    url: "/tarkasta?lang",
+  let hyvaksyState = {
+    name: "hyvaksy",
+    url: "/hyvaksy?lang",
     views: {
       "": {
         templateUrl: "tarkasta.html"
@@ -69,7 +69,7 @@ justusApp.config(function(
   $stateProvider.state(indexState);
   $stateProvider.state(justusState);
   $stateProvider.state(omatState);
-  $stateProvider.state(tarkastaState);
+  $stateProvider.state(hyvaksyState);
 
   // howto? $locationProvider.html5Mode(true).hashPrefix('!');
 });

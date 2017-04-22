@@ -3,8 +3,8 @@
 //from config uses: user, domain_organization, authuri
 
 justusApp.controller('IndexController',
-['$scope','$http','$window','$stateParams','$transitions','KoodistoService',
-function($scope,$http,$window,$stateParams,$transitions,Koodisto)
+['$scope','$http','$stateParams','$transitions','KoodistoService',
+function($scope,$http,$stateParams,$transitions,Koodisto)
 {
   // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
@@ -12,11 +12,6 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   }
   $scope.resetKoodisto = function(){
     Koodisto.reset();
-  }
-
-  // to change location from ng-click
-  $scope.locationChange = function(path) {
-    $window.location.href=path;
   }
 
   $scope.alterViewWidth = function() {
@@ -28,18 +23,27 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     }
   }
 
+  $scope.hasAccess = function(input) {
+    let ret = false;
+    // check that user has access to whatever the input
+    // TODO: organization
+    if (input=='hyvaksy'){
+      if ($scope.user.role=='admin') {
+        ret = true;
+      }
+    }
+    return ret;
+  }
   //
   // VARIABLES AND INITIALIZATION
   //
 
   // ui-router and stateParams (when it is loaded)
   $scope.$on('$viewContentLoaded', function(event) {
-    //console.debug("viewContentLoaded event:",event);
-    //console.debug($stateParams)
+    console.debug("viewContentLoaded event:",event,"stateParams",$stateParams);
     $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
-    //console.debug("INDEX stateParams",$stateParams)
   });
-  // ng1
+  // for knowing (save to scope) which "state" is selected (criteria+$transitions)
   let criteria = {
     to: function(state) {
       return state.name != null;

@@ -20,7 +20,7 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
           angular.forEach(robj, function(kobj,kkey){
             let obj={};
             obj.source = "CrossRef";
-            obj.title = "";//kobj.title; // TODO: lista?
+            obj.title = "";
             angular.forEach(kobj.title, function(tobj,tkey){
               obj.title = tobj;
             });

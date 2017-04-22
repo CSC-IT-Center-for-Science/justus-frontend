@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="col-xs-4">
-    <div class="row justus-block-alter justus-btn" data-ng-click="locationChange('./#/omat?lang='+lang)">
+    <div class="row justus-block-alter justus-btn" data-ui-sref="omat({lang:lang})">
       <div class="col-xs-4 text-right" style="vertical-align:middle;">
           <i class="fa fa-list fa-4x" aria-hidden="true"></i>
       </div>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="col-xs-4">
-    <div class="row justus-block-alter justus-btn" data-ng-click="locationChange('./#/tarkasta?lang='+lang)">
+    <div data-ng-if="hasAccess('hyvaksy')" class="row justus-block-alter justus-btn" data-ui-sref="hyvaksy({lang:lang})">
       <div class="col-xs-4 text-right" style="vertical-align:middle;">
           <i class="fa fa-check fa-4x" aria-hidden="true"></i>
       </div>

@@ -5,15 +5,12 @@
 //
 justusApp.service('JustusService', ['$http', function ($http) {
 
-  //
-  // MUUTTUJAT
-  //
+  // VARIABLES
   // nb! these may be directive stuff?
 
-  // justus-muuttujassa pidetään tallennettavat tiedot
+  // in justus we keep data to be stored in database
   this.justus = {};
 
-  // alusta sisäisiä tietoja
   this.visible = {
     "konferenssinvakiintunutnimi": {
       "julkaisutyyppi": ["A4","B3","D3"]
@@ -27,7 +24,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
     "isbn": {
       "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
     },
-    // useita näkyy aina (lehdenjulkaisusarjannimi,issn,volyymi,numero)
+    // nb! there are multiple fields that are always visible (lehdenjulkaisusarjannimi,issn,volyymi,numero)
     "issn": {
       "julkaisutyyppi": ["A1","A2","B1","D1","E1" ,"A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
     },
@@ -60,9 +57,9 @@ justusApp.service('JustusService', ['$http', function ($http) {
     //"organisaatiotekija":true,
 
     "konferenssinvakiintunutnimi":true,
-    "isbn":true, // joo, mutta ehdollinen/vaihtoehtoinen (issn)
-    "issn":true, // joo, mutta ehdollinen/vaihtoehtoinen (isbn)
-    "kustantaja":true, // joo ja ei
+    "isbn":true, // true but conditional or dependent (or covered) by issn
+    "issn":true, // true but conditional or dependent (or covered) by isbn
+    "kustantaja":true, // yes and no
 
     "julkaisunkansainvalisyys":true,
     "tieteenala":true,
@@ -76,7 +73,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
   this.condition = {
     "organisaatiotekija": {
       "sukunimi": null, "etunimet": null, "alayksikko": null
-      //, "alayksikko": null, "orcid": null
+      //, "orcid": null
     },
     "orcid": {
       "pattern": /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g
@@ -102,11 +99,9 @@ justusApp.service('JustusService', ['$http', function ($http) {
     }
   };
 
-  //
-  // FUNKTIOT
-  //
+  // FUNCTIONS
 
-  // tunnistetaan tietosisällöstä milloin parametrissa mainittu kenttä pitää näkyä
+  // identify from data when given field must show up
   this.isVisible = function(field) {
     //console.log("isVisible "+field)
     if (!this.visible[field]) return true;
@@ -135,7 +130,6 @@ justusApp.service('JustusService', ['$http', function ($http) {
       for (let k in this.condition[field]) {
         //console.log("isRequired "+field+" for "+k)
         if (angular.isArray(this.condition[field][k])) {
-        //if (k=="julkaisutyyppi" || k=="julkaisurinnakkaistallennettu"){
           required = false;
           for (let e in this.condition[field][k]) {
             if (this.condition[field][k][e]==this.justus[k]) {
@@ -146,9 +140,9 @@ justusApp.service('JustusService', ['$http', function ($http) {
           required = this.condition[field][k]==this.justus[k];
         }
       }
-      // jos lisäehtoja (toisesta riippuvia), korjataan vastausta tarvittaessa
+      // if more conditions (dependencies) fix answer accordingly
       if (field=="isbn" || field=="issn") {
-        // pattern tekee modelin undefinediksi...
+        // pattern makes model undefined...
         if ((this.justus.isbn||"").match(this.condition.isbn.pattern) || (this.justus.issn||"").match(this.condition.issn.pattern)) {
           for (let e in this.condition[field].julkaisutyyppi) {
             if (this.condition[field].julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
@@ -162,13 +156,13 @@ justusApp.service('JustusService', ['$http', function ($http) {
     return required;
   }
 
-  // tunnistetaan tietosisällöstä milloin parametrissa mainittu kenttä on validi
-  // - pitäisikö siirtää direktiiveiksi?
-  // - jolloin html-elementin tilat kertoisi suoraan onko validi vai ei
-  // - poikkeuksia on isbn ja issn joilla on keskinäinen korrelaatio, joka sekin olisi kyllä parempi hoitaa toisin
+  // identify from data when given field is valid
+  // - should this be moved as directive?
+  // - then html elements states would directly tell if valid or not
+  // - exceptions are isbn and issn which have dependency with each other (which also would be better to handle some other way)
   this.isValid = function(field) {
     //console.log("isValid "+field);
-    var valid = true; // oletetaan että ok
+    var valid = true; // assume ok!
     if (!this.isVisible(field)) return true;
     //console.debug(this.justus[field]);
     //console.log("isValid "+field+" array="+angular.isArray(this.justus[field])+" object="+typeof(this.justus[field]))
@@ -180,9 +174,9 @@ justusApp.service('JustusService', ['$http', function ($http) {
         for (let len=this.justus[field].length, i=0; i<len && i in this.justus[field]; i++) {
           for (let c in this.condition[field]) {
             //console.debug("isValid "+field+" "+c+"=",this.justus[field][i][c])
-            // NB! ORCID ei vielä pakollinen!
+            // nb! orcid is not yet(?) mandatory
             if (c=="orcid") {
-              // TODO: vaikuttaako pattern-määre tässä?
+              // nb! not fully tested: how does pattern directive affect here?
               if (this.justus[field][i][c]!="") {
                 //console.debug("isValid "+field+" "+c+" => NOT OK (orcid)",this.justus[field][i][c])
                 thisisok = false;
@@ -212,11 +206,11 @@ justusApp.service('JustusService', ['$http', function ($http) {
         }
       }
     } else if (this.condition[field] && this.condition[field].pattern) {
-      // erityisesti ISBN js ISSN; käydään kahdessa vaiheessa läpi:
-      // - ensin yksittäin ja sitten vielä yhdessä
-      // - nb! pattern vaikutus objektin arvoon (=> undefined kunnes matchaa)
+      // especially ISBN and ISSN; we go thru them in two phases:
+      // - first by them selves (single) and then together
+      // - nb! affect of pattern to objects value (=> undefined until matches)
       //console.log("isValid 0 "+field+" "+valid+" initially");
-      if (this.justus[field]===undefined) { // pattern tekee undefinediksi!
+      if (this.justus[field]===undefined) { // pattern makes undefined!
         valid = false;
         //console.log("isValid 1 "+field+" "+valid+" A");
       } else {
@@ -231,15 +225,15 @@ justusApp.service('JustusService', ['$http', function ($http) {
         }
         //console.log("isValid 1 "+field+" "+valid+" B");
       }
-      //console.log("isValid 1 "+field+" "+valid+" singleton");
+      //console.log("isValid 1 "+field+" "+valid+" single");
       // together part 1 issn (valid status may change!)
       if (field=="issn") {
-        // pitääkö edes katsoa?
+        // should we even look?
         for (let e in this.condition.issn.julkaisutyyppi) {
           if (this.condition.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-            // katsotaan...
+            // let's look...
             valid = this.checkISSN(this.justus[field]);
-            // ... ellei "kaveri" kata jo?
+            // ... unless "pal" covers?
             if ((this.justus.isbn||"").match(this.condition.isbn.pattern)) {
               for (let e in this.condition.isbn.julkaisutyyppi) {
                 if (this.condition.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
@@ -252,12 +246,12 @@ justusApp.service('JustusService', ['$http', function ($http) {
       }
       // together part 2 isbn (valid status may change!)
       if (field=="isbn") {
-        // pitääkö edes katsoa?
+        // should we even look?
         for (let e in this.condition.isbn.julkaisutyyppi) {
           if (this.condition.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-            // katsotaan...
+            // let's look...
             valid = this.checkISBN(this.justus[field]);
-            // ... ellei "kaveri" kata jo?
+            // ... unless "pal" covers?
             if ((this.justus.issn||"").match(this.condition.issn.pattern)) {
               for (let e in this.condition.issn.julkaisutyyppi) {
                 if (this.condition.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
@@ -270,13 +264,13 @@ justusApp.service('JustusService', ['$http', function ($http) {
       }
       //console.log("isValid 2 "+field+" "+valid+" together (final)");
   } else if (!this.justus[field]) {
-      //console.log("isValid "+field+" ehkä...");
+      //console.log("isValid "+field+" may be...");
       if (this.isVisible(field)) {
         valid = false;
       } else {
-        //console.log("isValid "+field+" ehkä x 2");
+        //console.log("isValid "+field+" may be x 2");
         if (this.condition[field]) {
-          var thisisok = true; // ei validi vain jos seuraava...
+          var thisisok = true; // not valid only if next...
           for (var c in this.condition[field]) {
             if (this.condition[field][c]!==undefined && this.justus[c]!==undefined) {
               if (this.condition[field][c] == this.justus[c]) {
@@ -300,7 +294,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
     let ret = [];
     for (let r in this.requirement) {
       if (!this.isValid(r)) {
-        //console.log("getInvalids EI VALIDI "+r);
+        //console.log("getInvalids NOT VALID "+r);
         ret.push(r);
       }
     }
@@ -310,13 +304,13 @@ justusApp.service('JustusService', ['$http', function ($http) {
 
   //
   // these check functions should not be needed here. they are directives.
-  // actually most of this justus service should be as directives!
+  // actually most of this justus service should be as directives, i think
   //
 
   this.checkISBN = function (isbn) {
     //console.log("checkISBN "+isbn+" => "+(!isbn));
     if (!isbn) return false; // null, undefined, "", ...
-    // isbn regex ja numeroita(+X) 10 tai 13! poista "-" merkit
+    // isbn regex and numbers(+X) 10 or 13! remove "-" chars
     let d = isbn.replace(/-/g,'').replace(/ /g,'');
     return isbn.match(this.condition.isbn.pattern)&&(d.length==10||d.length==13);
   }
@@ -328,7 +322,7 @@ justusApp.service('JustusService', ['$http', function ($http) {
     let b=issn.substr(1,1); let bb=parseInt(b);
     let c=issn.substr(2,1); let cc=parseInt(c);
     let d=issn.substr(3,1); let dd=parseInt(d);
-    // skippaa "-"
+    // skip "-"
     let e=issn.substr(5,1); let ee=parseInt(e);
     let f=issn.substr(6,1); let ff=parseInt(f);
     let g=issn.substr(7,1); let gg=parseInt(g);

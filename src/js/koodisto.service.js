@@ -91,7 +91,7 @@ function($http) {
       }
     } else {
       console.log("KoodistoService no Web Storage")
-      // TODO then what?
+      // then what? so what?
     }
     //console.log("store return "+key);
     //console.debug(localStorage.getItem(key))

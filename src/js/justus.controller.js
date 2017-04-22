@@ -117,7 +117,6 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
       .then(function successCb(response){
         angular.forEach(response.data, function(robj,rkey){
           $scope.justus.doitunniste = input;
-          //$scope.julkaisunnimi = robj.title; //TODO: lista?
           if(robj.title){
             if(typeof robj.title=="object" && robj.title.length>0){
               $scope.justus.julkaisunnimi = robj.title[0];
@@ -133,7 +132,7 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
             }
           }
           $scope.justus.volyymi = robj.volume||"";
-          $scope.justus.numero = robj.issue||""; //todo?
+          $scope.justus.numero = robj.issue||"";
           $scope.justus.sivut = robj.page||"";
           if(robj['article-number'])
             $scope.justus.artikkelinumero = robj['article-number'];
