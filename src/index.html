@@ -24,7 +24,7 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   end mustache -->
   <!-- endbuild -->
-  <script src="js/config.js"></script>
+  <script src="config.js"></script>
   <!-- build:js js/index.js -->
   <script src="js/generic.js"></script>
   <script src="js/i18n.js"></script>
@@ -70,11 +70,11 @@
 
 <div class="row">
   <div class="col-xs-12 content">
-    <div data-ng-include data-src="'header.html'"></div>
+    <div data-ng-include data-src="'html/header.html'"></div>
 
     <div data-ui-view=""></div>
 
-    <div data-ng-include data-src="'footer.html'"></div>
+    <div data-ng-include data-src="'html/footer.html'"></div>
   </div>
 </div>
 

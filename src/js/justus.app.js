@@ -17,7 +17,7 @@ justusApp.config(function(
     url: "/?lang",
     views: {
       "": {
-        templateUrl: "index_part.html"
+        templateUrl: "html/index_part.html"
       }
     },
     params: {
@@ -30,7 +30,7 @@ justusApp.config(function(
     url: "/justus?lang&vaihe&id",
     views: {
       "": {
-        templateUrl: "justus.html"
+        templateUrl: "html/justus.html"
       }
     },
     params: {
@@ -45,7 +45,7 @@ justusApp.config(function(
     url: "/omat?lang",
     views: {
       "": {
-        templateUrl: "tarkasta.html"
+        templateUrl: "html/tarkasta.html"
       }
     },
     params: {
@@ -58,7 +58,7 @@ justusApp.config(function(
     url: "/hyvaksy?lang",
     views: {
       "": {
-        templateUrl: "tarkasta.html"
+        templateUrl: "html/tarkasta.html"
       }
     },
     params: {

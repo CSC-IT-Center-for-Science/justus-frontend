@@ -35,9 +35,10 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'src',
         src: [
-          './**/*.html',
+          'index.html',
+          'html/**',
           //usemin+concat: 'js/*',
-          'js/config.js',
+          'config.js', // TODO this should be made environment specific
           'css/*',
           'img/*'
         ],
