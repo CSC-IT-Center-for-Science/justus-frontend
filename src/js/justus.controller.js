@@ -170,6 +170,7 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
         var robj = response.data;
         $scope.justus.doitunniste = robj.DOI||"";
         $scope.justus.julkaisunnimi = robj.JulkaisunNimi||"";
+        //organisaatiotunnus from auth! (info is at virta also)
         //console.log("useJulkaisunnimi ISSN "+typeof robj.ISSN+" "+robj.ISSN);
         $scope.justus.issn = robj.ISSN||"";
         $scope.justus.volyymi = robj.VolyymiTeksti||"";

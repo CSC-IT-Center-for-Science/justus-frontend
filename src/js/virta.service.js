@@ -38,6 +38,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
         if (robj.isbn) obj.isbn = robj.isbn;
         if (robj.lehdenNimi) obj.lehdenjulkaisusarjannimi = robj.lehdenNimi;
         if (robj.kustantajanNimi) obj.kustantaja = robj.kustantajanNimi;
+        if (robj.organisaatioTunnus) obj.organisaatiotunnus = robj.organisaatioTunnus;
         //console.debug(obj);
         ret.push(obj);
       });
