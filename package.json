@@ -1,12 +1,12 @@
 {
   "name": "justus",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "JUSTUS - JULKAISUTIETOJEN TALLENNUS",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "CSC / Lauri Jokipii",
-  "repository": "https://source02.csc.fi/scm/git/Virta/Julkaisutiedot/justus",
+  "author": "CSC",
+  "repository": "https://github.com/CSCfi/justus-frontend",
   "license": "MIT",
   "devDependencies": {
     "grunt": "1.0.1",

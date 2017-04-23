@@ -167,36 +167,75 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
       $scope.virtaLataa = true;
       VIRTA.get(input)
       .then(function successCb(response){
-        var robj = response.data;
-        $scope.justus.doitunniste = robj.DOI||"";
-        $scope.justus.julkaisunnimi = robj.JulkaisunNimi||"";
-        //organisaatiotunnus from auth! (info is at virta also)
-        //console.log("useJulkaisunnimi ISSN "+typeof robj.ISSN+" "+robj.ISSN);
-        $scope.justus.issn = robj.ISSN||"";
-        $scope.justus.volyymi = robj.VolyymiTeksti||"";
-        $scope.justus.numero = robj.LehdenNumeroTeksti||"";
-        $scope.justus.sivut = robj.SivunumeroTeksti||"";
-        if(robj['Artikkelinumero']) {
-          $scope.justus.artikkelinumero = robj['Artikkelinumero'];
-        }
-        var s = "";
+        let robj = response.data;
+        //  loop VIRTA services fields mapped to justus
+        angular.forEach(VIRTA.fields,function(virta,field){
+          if(robj[virta.get]!==null || robj[virta.get]!==undefined) {
+            $scope.useField(field,robj[virta.get]);
+          }
+        });
+
+        $scope.fetchLehtisarja($scope.justus.issn);
+        
+        $scope.useTekijat($scope.justus.tekijat);
+
+        //$scope.justus.organisaatiotekija = [{}];
+        //$scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+        let o = [];
         if (robj['Tekijat']) {
           if (robj.Tekijat['Tekija']) {
-            //nb! lista vai ei?
-            if (robj.Tekijat.Tekija['Sukunimi']) {
-              s+=robj.Tekijat.Tekija.Sukunimi+", "+robj.Tekijat.Tekija.Etunimet;
+            let tmp = [];
+            if (angular.isArray(robj.Tekijat.Tekija)) {
+              tmp = robj.Tekijat.Tekija;
             } else {
-              angular.forEach(robj.Tekijat.Tekija, function(aobj,akey){
-                if(s.length>0) s+="; ";
-                s+=aobj.Sukunimi+", "+aobj.Etunimet;
+              tmp.push(robj.Tekijat.Tekija);
+            }
+            angular.forEach(tmp, function(aobj,akey){
+              let a = [];
+              if (aobj.Yksikot) {
+                if (angular.isArray(aobj.Yksikot)) {
+                  angular.forEach(aobj.Yksikot,function(yobj,ykey){
+                    a.push({alayksikko:yobj.YksikkoKoodi});
+                  });
+                } else {
+                  a.push({alayksikko:aobj.Yksikot.YksikkoKoodi});
+                }
+              }
+              o.push({
+                sukunimi: aobj.Sukunimi,
+                etunimet: aobj.Etunimet,
+                orcid: null,
+                alayksikko: a
+              });
+            });
+          }
+        }
+        $scope.justus.organisaatiotekija = o;
+
+        //$scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+        let t = [];
+        if (robj['TieteenalaKoodit']) {
+          if (robj.TieteenalaKoodit['TieteenalaKoodi']) {
+            if (angular.isArray(robj.TieteenalaKoodit.TieteenalaKoodi)) {
+              angular.forEach(robj.TieteenalaKoodit.TieteenalaKoodi, function(aobj,akey){
+                t.push({tieteenalakoodi: aobj.content, jnro: aobj.JNro});
+              });
+            } else {
+              t.push({
+                tieteenalakoodi: robj.TieteenalaKoodit.TieteenalaKoodi.content,
+                jnro: robj.TieteenalaKoodit.TieteenalaKoodi.JNro
               });
             }
           }
         }
-        $scope.justus.tekijat = s;
-        $scope.useTekijat(s);
-        $scope.justus.julkaisuvuosi = robj.JulkaisuVuosi;
-        $scope.fetchLehtisarja($scope.justus.issn);
+        $scope.justus.tieteenala = t;
+        // TODO: fields in VIRTA:
+        // YhteisjulkaisuSHPKytkin?, YhteisjulkaisuMuuKytkin?, YhteisjulkaisuTutkimuslaitosKytkin?,
+        // TieteenalaKoodit.TieteenalaKoodi, JulkaisunOrgYksikot.YksikkoKoodi,
+
+        // missing lists? avainsana, tieteenala, organisaationtekija +alayksikko
+        fillMissingJustusLists();
+
         $scope.julkaisuhaettu = true;
 
         $scope.virtaLataa = false;
@@ -253,7 +292,8 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
   }
 
   $scope.useField = function(field,input) {
-    $scope.justus[field] = input;
+    if (input===null || input===undefined) return;
+    $scope.justus[field] = ''+input; // convert to text
   }
 
   // map from service (generic) to scope
@@ -327,6 +367,27 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
     });
   }
 
+  // fillMissingJustusLists - for UI setup list fields if otherwise missing
+  // - internal unscoped function
+  // - parameter input is optional
+  let fillMissingJustusLists = function(input) {
+    if ((!input || input=='avainsana') && !$scope.justus.avainsana) {
+      $scope.justus.avainsana = [{avainsana:''}];
+    }
+    if ((!input || input=='tieteenala') && !$scope.justus.tieteenala) {
+      $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+    }
+    if ((!input || input=='organisaatiotekija') && !$scope.justus.organisaatiotekija) {
+      $scope.justus.organisaatiotekija = [{}];
+    }
+    if ((!input || input=='alayksikko')) {
+      angular.forEach($scope.justus.organisaatiotekija,function(ot,oi){
+        if(!ot.alayksikko || ot.alayksikko.length==0) {
+          ot.alayksikko = [{alayksikko:''}];
+        }
+      });
+    }
+  }
   // finalizeInit - all values should be in place but if there's some critical missing
   // - internal unscoped function
   let finalizeInit = function() {
@@ -376,7 +437,7 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
               if (avairesp.length>0) {
                 $scope.justus.avainsana = avairesp;
               } else {
-                $scope.justus.avainsana = [{avainsana:''}];
+                fillMissingJustusLists('avainsana');
               }
             });
           }
@@ -385,7 +446,7 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
             if (tietresp.length>0) {
               $scope.justus.tieteenala = tietresp;
             } else {
-              $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+              fillMissingJustusLists('tieteenala');
             }
           });
           $scope.justus.organisaatiotekija = [];
@@ -404,8 +465,8 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
               });
             });
             if ($scope.justus.organisaatiotekija.length==0) {
-              $scope.justus.organisaatiotekija = [{}];
-              $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+              fillMissingJustusLists('organisaatiotekija');
+              fillMissingJustusLists('alayksikko');
             }
             console.debug("startInit db ready",$scope.justus)
             finalizeInit();
@@ -415,10 +476,7 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
     } else {
       // populate lists for UI
       if ($scope.vaihe>=3) {
-        $scope.justus.avainsana = [{avainsana:''}];
-        $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
-        $scope.justus.organisaatiotekija = [{}];
-        $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+        fillMissingJustusLists();
       }
       finalizeInit();
     }
