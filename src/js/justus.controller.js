@@ -176,7 +176,6 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
         });
 
         $scope.fetchLehtisarja($scope.justus.issn);
-        
         $scope.useTekijat($scope.justus.tekijat);
 
         //$scope.justus.organisaatiotekija = [{}];
@@ -202,10 +201,10 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
                 }
               }
               o.push({
-                sukunimi: aobj.Sukunimi,
-                etunimet: aobj.Etunimet,
-                orcid: null,
-                alayksikko: a
+                'sukunimi': aobj.Sukunimi,
+                'etunimet': aobj.Etunimet,
+                'orcid': null,
+                'alayksikko': a
               });
             });
           }
@@ -216,24 +215,20 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
         let t = [];
         if (robj['TieteenalaKoodit']) {
           if (robj.TieteenalaKoodit['TieteenalaKoodi']) {
+            let tmp = [];
             if (angular.isArray(robj.TieteenalaKoodit.TieteenalaKoodi)) {
-              angular.forEach(robj.TieteenalaKoodit.TieteenalaKoodi, function(aobj,akey){
-                t.push({tieteenalakoodi: aobj.content, jnro: aobj.JNro});
-              });
+              tmp = robj.TieteenalaKoodit.TieteenalaKoodi;
             } else {
-              t.push({
-                tieteenalakoodi: robj.TieteenalaKoodit.TieteenalaKoodi.content,
-                jnro: robj.TieteenalaKoodit.TieteenalaKoodi.JNro
-              });
+              tmp.push(robj.TieteenalaKoodit.TieteenalaKoodi);
             }
+            angular.forEach(tmp, function(tobj,tkey){
+              t.push({'tieteenalakoodi': ''+tobj.content, 'jnro': ''+tobj.JNro});
+            });
           }
         }
         $scope.justus.tieteenala = t;
-        // TODO: fields in VIRTA:
-        // YhteisjulkaisuSHPKytkin?, YhteisjulkaisuMuuKytkin?, YhteisjulkaisuTutkimuslaitosKytkin?,
-        // TieteenalaKoodit.TieteenalaKoodi, JulkaisunOrgYksikot.YksikkoKoodi,
 
-        // missing lists? avainsana, tieteenala, organisaationtekija +alayksikko
+        // missing lists?
         fillMissingJustusLists();
 
         $scope.julkaisuhaettu = true;
@@ -371,14 +366,17 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
   // - internal unscoped function
   // - parameter input is optional
   let fillMissingJustusLists = function(input) {
+    console.debug('fillMissingJustusLists',input,!$scope.justus.avainsana,!$scope.justus.tieteenala,!$scope.justus.organisaatiotekija)
     if ((!input || input=='avainsana') && !$scope.justus.avainsana) {
       $scope.justus.avainsana = [{avainsana:''}];
     }
     if ((!input || input=='tieteenala') && !$scope.justus.tieteenala) {
       $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
     }
-    if ((!input || input=='organisaatiotekija') && !$scope.justus.organisaatiotekija) {
-      $scope.justus.organisaatiotekija = [{}];
+    if ((!input || input=='organisaatiotekija')) {
+      if (!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length==0) {
+        $scope.justus.organisaatiotekija = [{}];
+      }
     }
     if ((!input || input=='alayksikko')) {
       angular.forEach($scope.justus.organisaatiotekija,function(ot,oi){
@@ -391,6 +389,9 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
   // finalizeInit - all values should be in place but if there's some critical missing
   // - internal unscoped function
   let finalizeInit = function() {
+    // populate lists for UI
+    fillMissingJustusLists();
+
     // user related
     $scope.justus.organisaatiotunnus = $scope.user.organization.code;
     $scope.justus.username = $scope.user.name; // or mail or uid?
@@ -474,10 +475,6 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
         });
       });
     } else {
-      // populate lists for UI
-      if ($scope.vaihe>=3) {
-        fillMissingJustusLists();
-      }
       finalizeInit();
     }
   }

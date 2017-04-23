@@ -2,8 +2,6 @@
 
 // from config uses: virtauri, justushost (dev!)
 
-// TODO: Add a mapping of fields from VIRTA "fetch list" and "by id" (seems different!)
-
 justusApp.service('VIRTAService', ['$http', function ($http) {
   
   this.uri = virtauri;
@@ -72,7 +70,7 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
         if (robj.julkaisuTyyppi) obj.julkaisutyyppi = robj.julkaisuTyyppi;
         if (robj.julkaisuVuosi) obj.julkaisuvuosi = robj.julkaisuVuosi;
         if (robj.julkaisunNimi) obj.julkaisunnimi = robj.julkaisunNimi; // sama kuin title
-        if (robj.tekijat) obj.tekijat = robj.tekijat.replace(/"/g,null); // melkein sama kuin author
+        if (robj.tekijat) obj.tekijat = robj.tekijat.replace(/"/g,''); // melkein sama kuin author
         if (robj.isbn) obj.isbn = robj.isbn;
         if (robj.lehdenNimi) obj.lehdenjulkaisusarjannimi = robj.lehdenNimi;
         if (robj.kustantajanNimi) obj.kustantaja = robj.kustantajanNimi;
