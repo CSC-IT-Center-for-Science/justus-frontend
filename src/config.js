@@ -1,8 +1,9 @@
 'use strict';
 
 let justushost = 'demo.justus.csc.fi';
-let apiuri = 'https://'+justushost+'/api/justus_save.php/';
-let authuri = 'https://'+justushost+'/sec/api/auth.php';
+let justusuri = 'https://'+justushost;
+let apiuri = justusuri+'/api/justus_save.php/';
+let authuri = justusuri+'/sec/api/auth.php';
 
 let virtauri = 'https://virta-jtp.csc.fi/api/julkaisut/';
   //'https://dwitjutife1.csc.fi/api/julkaisut/';

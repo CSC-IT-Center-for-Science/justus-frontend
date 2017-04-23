@@ -1,6 +1,6 @@
 'use strict';
 
-//from config uses: user, domain_organization, authuri
+//from config uses: user, domain_organization, justusuri, authuri
 
 justusApp.controller('IndexController',
 ['$scope','$http','$stateParams','$transitions','KoodistoService',
@@ -40,7 +40,7 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
 
   // ui-router and stateParams (when it is loaded)
   $scope.$on('$viewContentLoaded', function(event) {
-    console.debug("viewContentLoaded event:",event,"stateParams",$stateParams);
+    console.debug("viewContentLoaded","event",event,"stateParams",$stateParams);
     $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
   });
   // for knowing (save to scope) which "state" is selected (criteria+$transitions)
@@ -103,6 +103,8 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
     });
   });
   console.debug("codes:",$scope.codes)
+
+  $scope.justusuri = justusuri;
 
   $scope.user = user;
   console.debug("demo user:",$scope.user)

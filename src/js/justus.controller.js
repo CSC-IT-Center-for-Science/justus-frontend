@@ -3,8 +3,8 @@
 // from .. uses: ..
 
 justusApp.controller('JustusController',
-['$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
-function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
+['$rootScope','$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
+function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
 {
   $scope.useTekijat = function(input) { // tekijat string
     //console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
@@ -225,7 +225,7 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   }
 
   $scope.useVaihe = function(vaihe) {
-    console.log("useVaihe "+$scope.vaihe+" => "+vaihe);
+    console.debug("useVaihe "+$scope.vaihe+" => "+vaihe,$scope.justus.julkaisutyyppi);
     $scope.vaihe=vaihe;
     if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
       // make sure both values are set (paa,ala):
@@ -284,7 +284,7 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
 
   $scope.meta = API.meta;
 
-  $scope.justus = Justus.justus; // when must have's are put in service! (see below)
+  $scope.justus = Justus.justus; // do put "must have's" in service!
   $scope.requirement = Justus.requirement;
   $scope.condition = Justus.condition;
   $scope.visible = Justus.visible;
@@ -315,9 +315,20 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
   //  * sanitize variables
   //
 
+  // resetJustus - clear $scope.justus variable
+  // - internal unscoped function
+  let resetJustus = function(){
+    //console.debug("reset",$scope.justus)
+    // do not remove or alter service related variable as it apparently
+    // messes up things, instead remove its contents like so:
+    angular.forEach($scope.justus,function(v,k){
+      delete $scope.justus[k];
+    });
+  }
+
   // finalizeInit - all values should be in place but if there's some critical missing
+  // - internal unscoped function
   let finalizeInit = function() {
-    
     // user related
     $scope.justus.organisaatiotunnus = $scope.user.organization.code;
     $scope.justus.username = $scope.user.name; // or mail or uid?
@@ -330,33 +341,46 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
     $scope.useVaihe($stateParams.vaihe||0);
   }
 
+  // startInit - read in data and figure out parameters and messages
+  // - internal unscoped function
   let startInit = function() {
-    console.debug("startInit stateParams",$stateParams)
+    console.debug("startInit stateParams",$stateParams,"reset",$rootScope.resetJustus)
+    if ($rootScope.resetJustus) {
+      resetJustus();
+      // remove the reset message (so we won't keep resetting)
+      delete $rootScope.resetJustus;
+    }
     if ($stateParams.id) {
       console.debug("startInit stateParams has id:",$stateParams.id)
+      // id change? clean up
+      if ($scope.justus.id != $stateParams.id) {
+        resetJustus();
+      }
+      // begin populating
       $scope.justus.id = $stateParams.id;
       // we need all info from database, especially id's
       API.get("julkaisu",$scope.justus.id).then(function(julkresp){
         angular.forEach(julkresp,function(jud,juk){
           //console.debug("startInit db jud",jud)
-          let julkid=jud.id;
-          
           // copy all values
-          angular.forEach(jud,function(v,k){ $scope.justus[k]=v; });
+          angular.forEach(jud,function(v,k){
+            $scope.justus[k]=v;
+          });
 
           // get by foreign key!
-          //$scope.justus["avainsana"] = [];
-          API.get("avainsana",julkid,"julkaisuid").then(function(avairesp){
-            console.debug("startInit db avainsana",avairesp)
-            if (avairesp.length>0) {
-              $scope.justus.avainsana = avairesp;
-            } else {
-              $scope.justus.avainsana = [{avainsana:''}];
-            }
-          });
-          //$scope.justus["tieteenala"] = [];
-          API.get("tieteenala",julkid,"julkaisuid").then(function(tietresp){
-            console.debug("startInit db tieteenala",tietresp)
+          // replace only if not set already
+          if (!$scope.justus.avainsana) {
+            API.get("avainsana",jud.id,"julkaisuid").then(function(avairesp){
+              //console.debug("startInit db avainsana",avairesp)
+              if (avairesp.length>0) {
+                $scope.justus.avainsana = avairesp;
+              } else {
+                $scope.justus.avainsana = [{avainsana:''}];
+              }
+            });
+          }
+          API.get("tieteenala",jud.id,"julkaisuid").then(function(tietresp){
+            //console.debug("startInit db tieteenala",tietresp)
             if (tietresp.length>0) {
               $scope.justus.tieteenala = tietresp;
             } else {
@@ -364,8 +388,8 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
             }
           });
           $scope.justus.organisaatiotekija = [];
-          API.get("organisaatiotekija",julkid,"julkaisuid").then(function(orgaresp){
-            console.debug("startInit db organisaatiotekija",orgaresp)
+          API.get("organisaatiotekija",jud.id,"julkaisuid").then(function(orgaresp){
+            //console.debug("startInit db organisaatiotekija",orgaresp)
             angular.forEach(orgaresp,function(ord,ork){
               let orgaid=ord.id;
               $scope.justus.organisaatiotekija.push(ord);
@@ -389,17 +413,16 @@ function($scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto
       });
     } else {
       // populate lists for UI
-      $scope.justus.avainsana = [{avainsana:''}];
-      $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
-      $scope.justus.organisaatiotekija = [{}];
-      $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+      if ($scope.vaihe>=3) {
+        $scope.justus.avainsana = [{avainsana:''}];
+        $scope.justus.tieteenala = [{tieteenalakoodi:'', jnro:null}];
+        $scope.justus.organisaatiotekija = [{}];
+        $scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
+      }
       finalizeInit();
     }
-    // to-do: we could loop stateParams to read URI parameters and override values from database..
-    // ...but that's too fancy for now
   }
 
-  //angular.forEach($stateParams, function(v,k){ console.debug("JUSTUS INIT stateParams",k,v); });
   startInit();
 
 }]);//-JustusController

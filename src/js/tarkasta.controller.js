@@ -1,8 +1,10 @@
 'use strict';
 
+//from config uses: user
+
 justusApp.controller('TarkastaController',
-['$scope','$http','APIService','KoodistoService',
-function($scope,$http,API,Koodisto)
+['$rootScope','$scope','$http','APIService','KoodistoService',
+function($rootScope,$scope,$http,API,Koodisto)
 {
   //index provides: lang, i18n, codes, ...
 
@@ -24,8 +26,8 @@ function($scope,$http,API,Koodisto)
     if (julkaisuid && jobj) {
       delete jobj[idcol]; // api ei tykkää pk:n mukanaolosta datassa
       if (table=='julkaisu') {
-        jobj.username = 'JustusDemo';
-        jobj.modified = new Date().toISOString();
+        jobj.username = user.name;
+        jobj.modified = new Date();
       }
       //console.log("usePaivita sending")
       //console.debug(jobj)
@@ -42,13 +44,15 @@ function($scope,$http,API,Koodisto)
   }
 
   $scope.useHae = function(table) {
-    console.log("useHae "+table);
+    console.debug("useHae",table,user.organization.code);
     $scope.data[table] = [];
-    API.get(table)
+    // limit fetched rows by organisaatiotunnus
+    let val = user.organization.code!='00000'?user.organization.code:null;
+    let col = user.organization.code!='00000'?'organisaatiotunnus':null;
+    API.get(table,val,col)
     .then(function (obj){
-      angular.forEach(obj, function(o,k) { //saadaan lista, luupataan
-        //console.debug("useHae: o "+o.id)
-        //console.debug(o)
+      // we get a list, loop
+      angular.forEach(obj, function(o,k) {
         // convert to date type
         if (table=="julkaisu" && o.modified){
           o.modified = new Date(o.modified)
@@ -59,9 +63,6 @@ function($scope,$http,API,Koodisto)
   }
 
   $scope.resetData = function() {
-    //angular.forEach($scope.meta.tables,function(tobj,tkey){
-    //  $scope.useHae(tobj.name);
-    //});
     $scope.useHae("julkaisu");
   }
 
@@ -69,4 +70,12 @@ function($scope,$http,API,Koodisto)
   $scope.resetData();
   
   $scope.odottavat = true;
+
+  // additional
+  // pass information to another controller yet to be loaded
+  // nb! we use $rootScope to pass that information
+  $scope.resetJustus = function(){
+    $rootScope.resetJustus=true;
+  }
+
 }]);//-TarkastaController
