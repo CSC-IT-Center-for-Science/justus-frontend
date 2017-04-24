@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('TarkastaController',
-['$rootScope','$scope','$http','APIService','KoodistoService',
-function($rootScope,$scope,$http,API,Koodisto)
+['$rootScope','$scope','$http','$state','APIService','KoodistoService',
+function($rootScope,$scope,$http,$state,API,Koodisto)
 {
   //index provides: lang, i18n, codes, user, ...
 
@@ -69,16 +69,26 @@ function($rootScope,$scope,$http,API,Koodisto)
     $scope.useHae("julkaisu");
   }
 
-  // init
-  $scope.resetData();
-  
-  $scope.odottavat = true;
-
   // additional
   // pass information to another controller yet to be loaded
   // nb! we use $rootScope to pass that information
   $scope.resetJustus = function(){
     $rootScope.resetJustus=true;
   }
+
+  let init = function() {
+    // at very first test that user object is accessible
+    if (!$scope.hasAccess($scope.state.name)) {
+      console.debug($scope.state.name,"no user - move to index")
+      $state.go('index', {lang:$scope.lang});
+      // stop initializing
+      return;
+    }
+    $scope.resetData();
+    
+    $scope.odottavat = true;
+  }
+
+  init();
 
 }]);//-TarkastaController

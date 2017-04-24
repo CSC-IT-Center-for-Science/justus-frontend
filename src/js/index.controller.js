@@ -99,14 +99,22 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 
   // check that user has access to whatever the input
   $scope.hasAccess = function(input) {
-    let ret = false;
-    // TODO: organization
+    // hyvaksy - admin role is required
     if (input=='hyvaksy'){
-      if ($scope.user.role=='admin') {
-        ret = true;
+      if ($scope.user && $scope.user.name
+       && $scope.user.organization && $scope.user.organization.code
+       && $scope.user.role=='admin') {
+        return true;
+      } else {
+        return false;
       }
     }
-    return ret;
+    // basically all states - name and organization (with code) are required
+    if ($scope.user && $scope.user.name
+     && $scope.user.organization && $scope.user.organization.code) {
+      return true;
+    }
+    return false;
   }
 
   $scope.login = function() {

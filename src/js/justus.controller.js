@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('JustusController',
-['$rootScope','$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
-function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
+['$rootScope','$scope','$http','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
+function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
 {
   //index provides: lang, i18n, codes, user, ...
 
@@ -403,7 +403,14 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
   // startInit - read in data and figure out parameters and messages
   // - internal unscoped function
   let startInit = function() {
-    console.debug("startInit stateParams",$stateParams,"reset",$rootScope.resetJustus)
+    console.debug("startInit\nstateParams",$stateParams,"\nreset",$rootScope.resetJustus,"\nuser",$scope.user)
+    // at very first test that user object is accessible
+    if (!$scope.hasAccess('justus')) {
+      console.debug("startInit no user - move to index")
+      $state.go('index', {lang:$scope.lang});
+      // stop initializing
+      return;
+    }
     if ($rootScope.resetJustus) {
       resetJustus();
       // remove the reset message (so we won't keep resetting)
