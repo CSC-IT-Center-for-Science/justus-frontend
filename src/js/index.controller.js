@@ -73,11 +73,6 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   });
   console.debug("codes:",$scope.codes)
 
-  // ui-router and stateParams (when it is loaded)
-  $scope.$on('$viewContentLoaded', function(event) {
-    console.debug("viewContentLoaded","event",event,"stateParams",$stateParams);
-    $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
-  });
   // for knowing (save to scope) which "state" is selected (criteria+$transitions)
   let criteria = {
     to: function(state) {
@@ -85,9 +80,14 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     }
   }
   $transitions.onBefore(criteria, function(trans) {
+    //console.debug("TRANS",trans,trans.to())
     var name = trans.to().name;
-    //console.debug("TRANS",name,trans)
     $scope.state = {name:name};
+    //return trans.router.stateService.target(name);
+  });
+  $transitions.onSuccess(null, function(trans) {
+    console.debug("TRANS onSuccess",trans,trans.to(),$stateParams)
+    $scope.lang = $stateParams.lang||$scope.lang||'FI';
     //return trans.router.stateService.target(name);
   });
 
