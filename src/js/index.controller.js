@@ -11,20 +11,19 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 
   $scope.justusuri = justusuri;
 
-  $scope.user = user;
-  console.debug("demo user:",$scope.user)
-  //let authuser = Justus.authget();
-  $scope.authenticated = false;
   console.debug("auth user get:",authuri)
-  let authuser = $http.get(authuri);
-  //console.debug(authuser)
-  authuser.then(function(au){
+  $http.get(authuri)
+  .success(function(au){
     console.debug("auth user:",au)
     $scope.user = au.data;
     $scope.user.organization = domain_organization[$scope.user.domain];
-    $scope.authenticated = true;
+  })
+  .error(function(){
+    if (demomode) {
+      $scope.user = user;
+      console.debug("demo user:",$scope.user)
+    }
   });
-  console.debug($scope.user)
 
   $scope.i18n = i18n;
   $scope.codes = {};
@@ -80,21 +79,17 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     }
   }
   $transitions.onBefore(criteria, function(trans) {
-    //console.debug("TRANS",trans,trans.to())
     var name = trans.to().name;
     $scope.state = {name:name};
-    //return trans.router.stateService.target(name);
   });
+  // figure out selected language (part of login process)
   $transitions.onSuccess(null, function(trans) {
-    console.debug("TRANS onSuccess",trans,trans.to(),$stateParams)
     $scope.lang = $stateParams.lang||$scope.lang||'FI';
-    //return trans.router.stateService.target(name);
   });
 
   // ACCESSORIES (scope functions)
 
   $scope.alterViewWidth = function() {
-    //console.debug(document.body.className)
     if (document.body.className=='container') {
       document.body.className='container-fluid'
     } else {
@@ -102,9 +97,9 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     }
   }
 
+  // check that user has access to whatever the input
   $scope.hasAccess = function(input) {
     let ret = false;
-    // check that user has access to whatever the input
     // TODO: organization
     if (input=='hyvaksy'){
       if ($scope.user.role=='admin') {
@@ -124,6 +119,8 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   $scope.getCode = function(codeset,code) {
     return Koodisto.getCode($scope.codes,codeset,code);
   }
+
+  // helper for localStorage
   $scope.resetKoodisto = function(){
     Koodisto.reset();
   }
