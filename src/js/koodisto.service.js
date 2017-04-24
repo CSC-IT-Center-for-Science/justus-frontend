@@ -4,7 +4,7 @@ justusApp.service('KoodistoService',
 ['$http',
 function($http) {
   let baseuri = "https://virkailija.opintopolku.fi/koodisto-service/rest/json/";
-  if (developmentmode) {
+  if (developmentmode && (location.hostname=='127.0.0.1' || location.hostname=='localhost')) {
     baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
   }
 
