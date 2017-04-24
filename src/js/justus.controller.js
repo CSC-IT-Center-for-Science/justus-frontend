@@ -197,7 +197,9 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
         let robj = response.data;
         //  loop VIRTA services fields mapped to justus
         angular.forEach(VIRTA.fields,function(virta,field){
-          if(robj[virta.get]!==null || robj[virta.get]!==undefined) {
+          if ((robj[virta.get]!==null || robj[virta.get]!==undefined)
+           && field!='julkaisuntila' // exception
+          ) {
             $scope.useField(field,robj[virta.get]);
           }
         });
@@ -394,7 +396,7 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
     // keep this: $scope.justus.julkaisuntila;
 
     // julkaisutyyppi / vaihe
-    console.debug("finalizeInit julkaisutyyppi",$scope.justus.julkaisutyyppi)
+    console.debug("finalizeInit",$scope.justus)
     $scope.useVaihe($stateParams.vaihe||0);
   }
 
