@@ -18,21 +18,24 @@ function($rootScope,$scope,$http,API,Koodisto)
     return Koodisto.getCode($scope.codes,codeset,code);
   }
 
-  $scope.usePaivita = function(table,jobj,julkaisuid,idcol,cols,vals) {
-    console.log("usePaivita "+table+" "+julkaisuid+" "+idcol+" (optional: "+cols+":"+vals+")");
+  $scope.usePaivita = function(table,jobj,julkaisuid,idcol,col,val) {
+    console.log("usePaivita "+table+" "+julkaisuid+" "+idcol+" (optional: "+col+":"+val+")");
     // new params cols & vals could be used to send only changed values. now all goes.
-    //console.log("usePaivita in between...")
-    //console.debug(jobj)
     if (julkaisuid && jobj) {
-      delete jobj[idcol]; // api ei tykkää pk:n mukanaolosta datassa
       if (table=='julkaisu') {
         jobj.username = user.name;
         jobj.modified = new Date();
       }
-      //console.log("usePaivita sending")
-      //console.debug(jobj)
-      API.put(table,julkaisuid,JSON.stringify(jobj));
-      jobj[idcol]=julkaisuid; // return id
+      let copyof = {};
+      angular.forEach(jobj,function(v,k){copyof[k]=v;});
+      delete copyof[idcol]; // api doesn't like primary key in data
+      delete copyof.ui_julkaisuntila; // our own addition
+      if (col) {
+        copyof[col] = val;
+      }
+      console.debug("usePaivita sending",copyof)
+      API.put(table,julkaisuid,JSON.stringify(copyof));
+      //jobj[idcol]=julkaisuid; // return id
     }
   }
 
@@ -53,9 +56,11 @@ function($rootScope,$scope,$http,API,Koodisto)
     .then(function (obj){
       // we get a list, loop
       angular.forEach(obj, function(o,k) {
-        // convert to date type
-        if (table=="julkaisu" && o.modified){
-          o.modified = new Date(o.modified)
+        if (table=="julkaisu") {
+          // convert to date type
+          o.modified = o.modified?new Date(o.modified):null;
+          // for showing julkaisuntila even after changing it to database...
+          o.ui_julkaisuntila = o.julkaisuntila;
         }
         $scope.data[table].push(o);
       });
