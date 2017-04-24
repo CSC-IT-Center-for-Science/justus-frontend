@@ -1,6 +1,20 @@
 'use strict';
 
-let justushost = 'demo.justus.csc.fi';
+let developmentmode = false;
+if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
+  console.debug("Development mode ("+location.hostname+")")
+  developmentmode = true;
+}
+let demomode = false;
+if (location.hostname=='demo.justus.csc.fi'||developmentmode) {
+  console.debug("Demo mode ("+location.hostname+")")
+  demomode = true;
+}
+
+let justushost = location.hostname;
+if (developmentmode) {
+  justushost = 'demo.justus.csc.fi';
+}
 let justusuri = 'https://'+justushost;
 let apiuri = justusuri+'/api/justus_save.php/';
 let authuri = justusuri+'/sec/api/auth.php';
@@ -12,30 +26,22 @@ let virtauri = 'https://virta-jtp.csc.fi/api/julkaisut/';
   //'http://localhost/api/julkaisut/';
 let crossrefuri = '//api.crossref.org/works';
 
-let developmentmode = false;
-if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
-  console.debug("Development mode ("+location.hostname+")")
-  developmentmode = true;
-}
-let demomode = false;
-if (location.hostname=='demo.justus.csc.fi') {
-  console.debug("Demo mode ("+location.hostname+")")
-  demomode = true;
-}
-
 // authorization / demo (shib-* mapping handled by backend)
-let user = {
-  //'shib-uid': 'jdem',
-  //'shib-mail': 'justus@csc.fi',
-  //'shib-givenName': 'Justus',
-  //'shib-sn': 'Demo',
-  //'shib-group': '@csc.fi;https://tt.eduuni.fi/groups/justus#group-admins', // 
-  'uid': 'jdem', // should map from shib-uid
-  'mail': 'justus@csc.fi', // should map from shib-mail
-  'name': 'Justus Demo', // should join shib-givenName and shib-sn
-  'domain': '@csc.fi', // should get from shib-group where split(;) array item is '@...'
-  'organization': {code:'10056',email:'notvalid@haaga-helia.fi'}, // should map from shib-group where split(;) array item is '@...'
-  'role': 'admin' // should map from shib-group where split(;) array item is '.../groups/justus#...'
+let user = {};
+if (demomode) {
+  user = {
+    //'shib-uid': 'jdem',
+    //'shib-mail': 'justus@csc.fi',
+    //'shib-givenName': 'Justus',
+    //'shib-sn': 'Demo',
+    //'shib-group': '@csc.fi;https://tt.eduuni.fi/groups/justus#group-admins', // 
+    'uid': 'jdem', // should map from shib-uid
+    'mail': 'justus@csc.fi', // should map from shib-mail
+    'name': 'Justus Demo', // should join shib-givenName and shib-sn
+    'domain': '@csc.fi', // should get from shib-group where split(;) array item is '@...'
+    'organization': {code:'10056',email:'notvalid@haaga-helia.fi'}, // should map from shib-group where split(;) array item is '@...'
+    'role': 'admin' // should map from shib-group where split(;) array item is '.../groups/justus#...'
+  };
 };
 
 // mapping of organization domain to organization codes (type or codeset vary!)
