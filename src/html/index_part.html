@@ -1,9 +1,17 @@
-<div class="row justus-block-alter justus-btn" data-ui-sref="justus({lang: lang })">
+<div class="row justus-block-alter justus-btn" onclick="window.location=justusuri+'/Shibboleth.sso/Login?target='+encodeURIComponent(justusuri+'/#/justus?lang='+lang)">
   <div class="col-xs-4 text-right" style="vertical-align:middle;">
       <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
   </div>
   <div class="col-xs-8 text-left" style="vertical-align:middle;">
     <h3 data-ng-bind="i18n.etusivu.kirjaudu[lang]"></h3>
+  </div>
+</div>
+<div class="row justus-block-alter justus-btn" data-ui-sref="justus({lang:lang})" data-ng-show="demomode">
+  <div class="col-xs-4 text-right" style="vertical-align:middle;">
+      <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
+  </div>
+  <div class="col-xs-8 text-left" style="vertical-align:middle;">
+    <h3>Demo</h3>
   </div>
 </div>
 
