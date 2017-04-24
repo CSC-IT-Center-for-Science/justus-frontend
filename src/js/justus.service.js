@@ -1,9 +1,10 @@
 'use strict';
 
-//
-// JUSTUS Business Logic
-//
-justusApp.service('JustusService', ['$http', function ($http) {
+// from config uses: ?
+
+justusApp.service('JustusService',
+['$http',
+function ($http) {
 
   // VARIABLES
   // nb! these may be directive stuff?

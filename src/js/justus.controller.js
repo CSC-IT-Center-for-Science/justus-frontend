@@ -1,11 +1,38 @@
 'use strict';
 
-// from .. uses: ..
-
 justusApp.controller('JustusController',
 ['$rootScope','$scope','$http','$location','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
 function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
 {
+  //index provides: lang, i18n, codes, user, ...
+
+  $scope.meta = API.meta;
+
+  $scope.justus = Justus.justus; // do put "must have's" in service!
+  $scope.requirement = Justus.requirement;
+  $scope.condition = Justus.condition;
+  $scope.visible = Justus.visible;
+
+  $scope.checkISSN = Justus.checkISSN;
+  $scope.checkORCID = Justus.checkORCID;
+
+  // other setups
+  $scope.lehtinimet = [];
+  $scope.kustantajanimet = [];
+  $scope.konferenssinimet = [];
+  $scope.julkaisunnimet = [];
+  $scope.julkaisu = {}; // ui-select, must set! (.selected reserved)
+
+  $scope.crossrefLataa = false;
+  $scope.virtaLataa = false;
+
+  $scope.requiredHighlight = false;
+
+  // more on justus-variable
+  //$scope.justus.jufotunnus = "";
+  //$scope.justus.jufoluokitus = "";
+
+
   $scope.useTekijat = function(input) { // tekijat string
     //console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
     if(!input){
@@ -313,43 +340,10 @@ function($rootScope,$scope,$http,$location,$state,$stateParams,CrossRef,VIRTA,JU
     return $scope.getInvalids().length==0;
   }
 
-  //
-  // VARIABLES AND INITIALIZE
-  //
-  //index provides: lang, i18n, codes
-
-  $scope.meta = API.meta;
-
-  $scope.justus = Justus.justus; // do put "must have's" in service!
-  $scope.requirement = Justus.requirement;
-  $scope.condition = Justus.condition;
-  $scope.visible = Justus.visible;
-
-  $scope.checkISSN = Justus.checkISSN;
-  $scope.checkORCID = Justus.checkORCID;
-
-  // other setups
-  $scope.lehtinimet = [];
-  $scope.kustantajanimet = [];
-  $scope.konferenssinimet = [];
-  $scope.julkaisunnimet = [];
-  $scope.julkaisu = {}; // ui-select, must set! (.selected reserved)
-
-  $scope.crossrefLataa = false;
-  $scope.virtaLataa = false;
-
-  $scope.requiredHighlight = false;
-
-  // more on justus-variable
-  //$scope.justus.jufotunnus = "";
-  //$scope.justus.jufoluokitus = "";
-
-  //
   // INITIALIZE
   //  * fill in the form
   //  * read possible parameters
   //  * sanitize variables
-  //
 
   // resetJustus - clear $scope.justus variable
   // - internal unscoped function

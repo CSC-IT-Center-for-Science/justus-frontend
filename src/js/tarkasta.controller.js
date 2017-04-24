@@ -1,12 +1,10 @@
 'use strict';
 
-//from config uses: user
-
 justusApp.controller('TarkastaController',
 ['$rootScope','$scope','$http','APIService','KoodistoService',
 function($rootScope,$scope,$http,API,Koodisto)
 {
-  //index provides: lang, i18n, codes, ...
+  //index provides: lang, i18n, codes, user, ...
 
   $scope.meta = API.meta;
   $scope.data = [];
@@ -23,7 +21,7 @@ function($rootScope,$scope,$http,API,Koodisto)
     // new params cols & vals could be used to send only changed values. now all goes.
     if (julkaisuid && jobj) {
       if (table=='julkaisu') {
-        jobj.username = user.name;
+        jobj.username = $scope.user.name;
         jobj.modified = new Date();
       }
       let copyof = {};
@@ -47,11 +45,11 @@ function($rootScope,$scope,$http,API,Koodisto)
   }
 
   $scope.useHae = function(table) {
-    console.debug("useHae",table,user.organization.code);
+    console.debug("useHae",table,$scope.user.organization.code);
     $scope.data[table] = [];
     // limit fetched rows by organisaatiotunnus
-    let val = user.organization.code!='00000'?user.organization.code:null;
-    let col = user.organization.code!='00000'?'organisaatiotunnus':null;
+    let val = $scope.user.organization.code!='00000'?$scope.user.organization.code:null;
+    let col = $scope.user.organization.code!='00000'?'organisaatiotunnus':null;
     API.get(table,val,col)
     .then(function (obj){
       // we get a list, loop

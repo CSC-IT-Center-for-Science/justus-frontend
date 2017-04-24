@@ -4,6 +4,11 @@ justusApp.controller('TallennusController',
 ['$scope','$http','$state','APIService',
 function($scope,$http,$state,API)
 {
+  //index provides: lang, ...
+  //justus provides: justus
+
+  $scope.meta = API.meta;
+  
   let saveTable = function(table,data,putid,refid) {
     console.debug("saveTable "+table,data,putid)
     // remove primary key from data
@@ -105,12 +110,5 @@ function($scope,$http,$state,API)
       });
     }//-post
   }
-
-  //
-  // Muuttujat ja alustus
-  //
-  $scope.meta = API.meta;
-  // init
-  console.log("TallennusController");
 
 }]);//-TallennusController

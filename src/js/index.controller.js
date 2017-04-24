@@ -1,11 +1,11 @@
 'use strict';
 
-//from config uses: user, domain_organization, justusuri, authuri
-
 justusApp.controller('IndexController',
 ['$scope','$http','$stateParams','$transitions','KoodistoService',
 function($scope,$http,$stateParams,$transitions,Koodisto)
 {
+  //config provides: user, domain_organization, justusuri, authuri
+
   // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
     return Koodisto.getCode($scope.codes,codeset,code);

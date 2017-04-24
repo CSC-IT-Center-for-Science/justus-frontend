@@ -1,5 +1,7 @@
 'use strict';
 
+// from config uses: ? TODO
+
 justusApp.service('KoodistoService',
 ['$http',
 function($http) {
