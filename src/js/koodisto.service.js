@@ -9,12 +9,13 @@ function($http) {
   }
 
   let maxage = 1*60*60*1000; // h*mi*s*millisekunteja
-  console.log("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri)
+  console.debug("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri)
   //* localStorage:
-  console.log("KoodistoService localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
+  console.debug("KoodistoService localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
   //*/
-  $http.defaults.cache = true;
-  console.log("KoodistoService $http.defaults.cache="+$http.defaults.cache)
+  //placeholder for KoodistoService specific cache control ($http.defaults.cache affects the whole app!)
+  let httpcache = false;
+  console.debug("KoodistoService httpcache (for config)",httpcache)
 
   //
   // internal private functions
@@ -32,9 +33,9 @@ function($http) {
       // huomaa myös että palautetaan stored-muuttuja
       return $http.get('/').then(function(response){return stored;});
     }
-    console.log("KoodistoService.callURI NOT STORED calling HTTP "+fulluri);
+    console.debug("KoodistoService.callURI NOT STORED calling HTTP",fulluri);
     //*/
-    return $http.get(fulluri).then(function(response){
+    return $http.get(fulluri,{cache: httpcache}).then(function(response){
       let ret = [];
       // make an array for loop
       let responsedataarray = [];
