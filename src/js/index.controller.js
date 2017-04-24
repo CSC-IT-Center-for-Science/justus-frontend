@@ -6,56 +6,25 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
 {
   //config provides: user, domain_organization, justusuri, authuri
 
-  // map from service (generic) to scope
-  $scope.getCode = function(codeset,code) {
-    return Koodisto.getCode($scope.codes,codeset,code);
-  }
-  $scope.resetKoodisto = function(){
-    Koodisto.reset();
-  }
+  $scope.developmentmode = developmentmode;
+  $scope.demomode = demomode;
 
-  $scope.alterViewWidth = function() {
-    //console.debug(document.body.className)
-    if (document.body.className=='container') {
-      document.body.className='container-fluid'
-    } else {
-      document.body.className='container'
-    }
-  }
+  $scope.justusuri = justusuri;
 
-  $scope.hasAccess = function(input) {
-    let ret = false;
-    // check that user has access to whatever the input
-    // TODO: organization
-    if (input=='hyvaksy'){
-      if ($scope.user.role=='admin') {
-        ret = true;
-      }
-    }
-    return ret;
-  }
-  //
-  // VARIABLES AND INITIALIZATION
-  //
-
-  // ui-router and stateParams (when it is loaded)
-  $scope.$on('$viewContentLoaded', function(event) {
-    console.debug("viewContentLoaded","event",event,"stateParams",$stateParams);
-    $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
+  $scope.user = user;
+  console.debug("demo user:",$scope.user)
+  //let authuser = Justus.authget();
+  $scope.authenticated = false;
+  console.debug("auth user get:",authuri)
+  let authuser = $http.get(authuri);
+  //console.debug(authuser)
+  authuser.then(function(au){
+    console.debug("auth user:",au)
+    $scope.user = au.data;
+    $scope.user.organization = domain_organization[$scope.user.domain];
+    $scope.authenticated = true;
   });
-  // for knowing (save to scope) which "state" is selected (criteria+$transitions)
-  let criteria = {
-    to: function(state) {
-      return state.name != null;
-    }
-  }
-  $transitions.onBefore(criteria, function(trans) {
-    var name = trans.to().name;
-    //console.debug("TRANS",name,trans)
-    $scope.state = {name:name};
-    //return trans.router.stateService.target(name);
-  });
-
+  console.debug($scope.user)
 
   $scope.i18n = i18n;
   $scope.codes = {};
@@ -104,22 +73,53 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
   });
   console.debug("codes:",$scope.codes)
 
-  $scope.justusuri = justusuri;
-
-  $scope.user = user;
-  console.debug("demo user:",$scope.user)
-  //let authuser = Justus.authget();
-  console.debug("auth user get:",authuri)
-  let authuser = $http.get(authuri);
-  //console.debug(authuser)
-  authuser.then(function(au){
-    console.debug("auth user:",au)
-    $scope.user = au.data;
-    $scope.user.organization = domain_organization[$scope.user.domain];
+  // ui-router and stateParams (when it is loaded)
+  $scope.$on('$viewContentLoaded', function(event) {
+    console.debug("viewContentLoaded","event",event,"stateParams",$stateParams);
+    $scope.lang = $stateParams.lang||'FI'; // might not be necessary to set default here
   });
-  console.debug($scope.user)
+  // for knowing (save to scope) which "state" is selected (criteria+$transitions)
+  let criteria = {
+    to: function(state) {
+      return state.name != null;
+    }
+  }
+  $transitions.onBefore(criteria, function(trans) {
+    var name = trans.to().name;
+    //console.debug("TRANS",name,trans)
+    $scope.state = {name:name};
+    //return trans.router.stateService.target(name);
+  });
 
-  $scope.developmentmode = developmentmode;
-  $scope.demomode = demomode;
+  // ACCESSORIES (scope functions)
+
+  $scope.alterViewWidth = function() {
+    //console.debug(document.body.className)
+    if (document.body.className=='container') {
+      document.body.className='container-fluid'
+    } else {
+      document.body.className='container'
+    }
+  }
+
+  $scope.hasAccess = function(input) {
+    let ret = false;
+    // check that user has access to whatever the input
+    // TODO: organization
+    if (input=='hyvaksy'){
+      if ($scope.user.role=='admin') {
+        ret = true;
+      }
+    }
+    return ret;
+  }
+
+  // map from service (generic) to scope
+  $scope.getCode = function(codeset,code) {
+    return Koodisto.getCode($scope.codes,codeset,code);
+  }
+  $scope.resetKoodisto = function(){
+    Koodisto.reset();
+  }
 
 }]);//-IndexController
