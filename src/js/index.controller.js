@@ -15,7 +15,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   $http.get(authuri)
   .success(function(au){
     console.debug("auth user:",au)
-    $scope.user = au.data;
+    $scope.user = au;
     $scope.user.organization = domain_organization[$scope.user.domain];
   })
   .error(function(){
