@@ -120,5 +120,6 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
   console.debug($scope.user)
 
   $scope.developmentmode = developmentmode;
+  $scope.demomode = demomode;
 
 }]);//-IndexController

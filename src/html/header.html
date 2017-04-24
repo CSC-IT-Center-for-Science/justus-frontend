@@ -34,7 +34,7 @@
       <span data-ng-show="lang=='FI'">|</span>
       <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
     </div>
-    <span data-ng-if="developmentmode || user.role=='admin'" style="background: lightgray;">
+    <span data-ng-if="developmentmode || demomode || user.role=='admin'" style="background: lightgray;">
       admin/demo:
       user: <select data-ng-model="user.role" style="font-size:smaller; background: lightgray;">
         <option value="admin">Admin</option>

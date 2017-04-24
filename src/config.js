@@ -13,10 +13,14 @@ let virtauri = 'https://virta-jtp.csc.fi/api/julkaisut/';
 let crossrefuri = '//api.crossref.org/works';
 
 let developmentmode = false;
-if (location.hostname=='127.0.0.1' || location.hostname=='localhost'
- || location.hostname=='demo.justus.csc.fi') {
+if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
   console.debug("Development mode ("+location.hostname+")")
   developmentmode = true;
+}
+let demomode = false;
+if (location.hostname=='demo.justus.csc.fi') {
+  console.debug("Demo mode ("+location.hostname+")")
+  demomode = true;
 }
 
 // authorization / demo (shib-* mapping handled by backend)
