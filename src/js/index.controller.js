@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('IndexController',
-['$scope','$http','$stateParams','$transitions','KoodistoService',
-function($scope,$http,$stateParams,$transitions,Koodisto)
+['$scope','$http','$window','$stateParams','$transitions','KoodistoService',
+function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 {
   //config provides: user, domain_organization, justusuri, authuri
 
@@ -112,6 +112,12 @@ function($scope,$http,$stateParams,$transitions,Koodisto)
       }
     }
     return ret;
+  }
+
+  $scope.login = function() {
+    let target = encodeURIComponent(justusuri+'/#/justus?lang='+$scope.lang);
+    console.debug("login",justusuri,target)
+    $window.location.href = justusuri+'/Shibboleth.sso/Login?target='+target;
   }
 
   // map from service (generic) to scope

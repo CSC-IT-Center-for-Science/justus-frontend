@@ -21,7 +21,7 @@ justusApp.config(function(
       }
     },
     params: {
-      lang: 'FI'
+      lang: null
     }
   };
 
@@ -34,7 +34,7 @@ justusApp.config(function(
       }
     },
     params: {
-      lang: 'FI',
+      lang: null,
       vaihe: null,
       id: null
     }
@@ -49,7 +49,7 @@ justusApp.config(function(
       }
     },
     params: {
-      lang: 'FI'
+      lang: null
     }
   };
 
@@ -62,7 +62,7 @@ justusApp.config(function(
       }
     },
     params: {
-      lang: 'FI',
+      lang: null
     }
   };
 
