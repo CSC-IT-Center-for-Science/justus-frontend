@@ -34,7 +34,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
 
 
   $scope.useTekijat = function(input) { // tekijat string
-    //console.log("useTekijat "+input+" => "+((input.match(/[^;]+;?/g) || []).length));
     if(!input){
       $scope.justus.julkaisuntekijoidenlukumaara=0;
       return;
@@ -49,7 +48,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   $scope.useKopioiTekijat = function(input) {
     var tempstr = input;
     for (var i=0; i<$scope.justus.julkaisuntekijoidenlukumaara; i++) {
-      //console.log("useKopioiTekijat i "+i);
       var sb = 0;
       var se = tempstr.indexOf(',');
       var eb = tempstr.indexOf(',')+1;
@@ -63,7 +61,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   }
 
   $scope.useOrganisaatiotekijaAlayksikko = function(parIndex,index,input) {
-    //console.log("useOrganisaatiotekijaAlayksikko "+parIndex+" "+index+" "+input)
     $scope.justus.organisaatiotekija[parIndex].alayksikko[index] = {};
     $scope.justus.organisaatiotekija[parIndex].alayksikko[index].alayksikko = input;
   }
@@ -77,14 +74,12 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
     if(tyyppi == null) return;
     if(input == null) return;
     if(input.length < 5) return [];
-    //console.log("refreshKanavanimet "+tyyppi+" "+input);
     return JUFO.etsikanava(input,tyyppi)
     .then(function (response){
       if (isArray(response.data)) {
         if (tyyppi==3) $scope.konferenssinimet = response.data;
         if (tyyppi==2) $scope.kustantajanimet = response.data;
         if (tyyppi==1) $scope.lehtinimet = response.data;
-        //console.debug(response.data);
         return response.data;
       }
     });
@@ -181,7 +176,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
           $scope.julkaisuhaettu = true;
         });
         $scope.crossrefLataa = false;
-        //console.log("useJulkaisunnimi loaded "+source+" "+input);
         $scope.useVaihe(3);//->tietojen syöttöön
       }
       , function errorCb(response){
@@ -263,7 +257,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
         $scope.julkaisuhaettu = true;
 
         $scope.virtaLataa = false;
-        //console.log("useJulkaisunnimi loaded "+source+" "+input);
         $scope.useVaihe(3);//->tietojen syöttöön
       }
       , function errorCb(response){
@@ -275,7 +268,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   }
 
   $scope.useTieteenala = function(input,index) {
-    //console.log("useTieteenala "+input+" "+index);
     if(input == null) return;
     if(input.length==1) {
       $scope.tieteenala_paa = input;
@@ -289,7 +281,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   }
 
   $scope.useVaihe = function(vaihe) {
-    console.debug("useVaihe "+$scope.vaihe+" => "+vaihe,$scope.justus.julkaisutyyppi);
     $scope.vaihe=vaihe;
     if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
       // make sure both values are set (paa,ala):
@@ -350,7 +341,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   // resetJustus - clear $scope.justus variable
   // - internal unscoped function
   let resetJustus = function(){
-    //console.debug("reset",$scope.justus)
     // do not remove or alter service related variable as it apparently
     // messes up things, instead remove its contents like so:
     angular.forEach($scope.justus,function(v,k){
@@ -362,7 +352,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   // - internal unscoped function
   // - parameter input is optional
   let fillMissingJustusLists = function(input) {
-    console.debug('fillMissingJustusLists',input,!$scope.justus.avainsana,!$scope.justus.tieteenala,!$scope.justus.organisaatiotekija)
     if ((!input || input=='avainsana') && !$scope.justus.avainsana) {
       $scope.justus.avainsana = [{avainsana:''}];
     }
@@ -396,17 +385,14 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
     // keep this: $scope.justus.julkaisuntila;
 
     // julkaisutyyppi / vaihe
-    console.debug("finalizeInit",$scope.justus)
     $scope.useVaihe($stateParams.vaihe||0);
   }
 
   // startInit - read in data and figure out parameters and messages
   // - internal unscoped function
   let startInit = function() {
-    console.debug("startInit\nstateParams",$stateParams,"\nreset",$rootScope.resetJustus,"\nuser",$scope.user)
     // at very first test that user object is accessible
     if (!$scope.hasAccess('justus')) {
-      console.debug("startInit no user - move to index")
       $state.go('index', {lang:$scope.lang});
       // stop initializing
       return;
@@ -417,7 +403,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
       delete $rootScope.resetJustus;
     }
     if ($stateParams.id) {
-      console.debug("startInit stateParams has id:",$stateParams.id)
       // id change? clean up
       if ($scope.justus.id != $stateParams.id) {
         resetJustus();
@@ -427,7 +412,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
       // we need all info from database, especially id's
       API.get("julkaisu",$scope.justus.id).then(function(julkresp){
         angular.forEach(julkresp,function(jud,juk){
-          //console.debug("startInit db jud",jud)
           // copy all values
           angular.forEach(jud,function(v,k){
             $scope.justus[k]=v;
@@ -437,7 +421,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
           // replace only if not set already
           if (!$scope.justus.avainsana) {
             API.get("avainsana",jud.id,"julkaisuid").then(function(avairesp){
-              //console.debug("startInit db avainsana",avairesp)
               if (avairesp.length>0) {
                 $scope.justus.avainsana = avairesp;
               } else {
@@ -446,7 +429,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
             });
           }
           API.get("tieteenala",jud.id,"julkaisuid").then(function(tietresp){
-            //console.debug("startInit db tieteenala",tietresp)
             if (tietresp.length>0) {
               $scope.justus.tieteenala = tietresp;
             } else {
@@ -455,7 +437,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
           });
           $scope.justus.organisaatiotekija = [];
           API.get("organisaatiotekija",jud.id,"julkaisuid").then(function(orgaresp){
-            //console.debug("startInit db organisaatiotekija",orgaresp)
             angular.forEach(orgaresp,function(ord,ork){
               let orgaid=ord.id;
               $scope.justus.organisaatiotekija.push(ord);
@@ -472,7 +453,6 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
               fillMissingJustusLists('organisaatiotekija');
               fillMissingJustusLists('alayksikko');
             }
-            console.debug("startInit db ready",$scope.justus)
             finalizeInit();
           });
         });

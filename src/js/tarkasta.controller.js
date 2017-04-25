@@ -17,7 +17,6 @@ function($rootScope,$scope,$http,$state,API,Koodisto)
   }
 
   $scope.usePaivita = function(table,jobj,julkaisuid,idcol,col,val) {
-    console.log("usePaivita "+table+" "+julkaisuid+" "+idcol+" (optional: "+col+":"+val+")");
     // new params cols & vals could be used to send only changed values. now all goes.
     if (julkaisuid && jobj) {
       if (table=='julkaisu') {
@@ -31,21 +30,17 @@ function($rootScope,$scope,$http,$state,API,Koodisto)
       if (col) {
         copyof[col] = val;
       }
-      console.debug("usePaivita sending",copyof)
       API.put(table,julkaisuid,JSON.stringify(copyof));
-      //jobj[idcol]=julkaisuid; // return id
     }
   }
 
   $scope.usePoista = function(table,id) {
-    console.log("usePoista "+table+" "+id);
     API.delete(table,id);
     // delete from scope
     delete $scope.data[table][id];
   }
 
   $scope.useHae = function(table) {
-    console.debug("useHae",table,$scope.user.organization.code);
     $scope.data[table] = [];
     // limit fetched rows by organisaatiotunnus
     let val = $scope.user.organization.code!='00000'?$scope.user.organization.code:null;
@@ -79,7 +74,6 @@ function($rootScope,$scope,$http,$state,API,Koodisto)
   let init = function() {
     // at very first test that user object is accessible
     if (!$scope.hasAccess($scope.state.name)) {
-      console.debug($scope.state.name,"no user - move to index")
       $state.go('index', {lang:$scope.lang});
       // stop initializing
       return;

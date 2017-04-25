@@ -51,11 +51,9 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
     let authorquery = "";
     if (tekija != null && tekija != "") authorquery="&henkiloHaku="+tekija;
 
-    console.log("call "+this.uri+uriapi+input+authorquery+filter);
     return $http.get(this.uri+uriapi+input+authorquery+filter)
     .then(function (response){
       let ret = [];
-      //console.debug(response);
       angular.forEach(response.data, function(robj,rkey){
         let obj={};
         obj.source = "VIRTA";
@@ -75,7 +73,6 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
         if (robj.lehdenNimi) obj.lehdenjulkaisusarjannimi = robj.lehdenNimi;
         if (robj.kustantajanNimi) obj.kustantaja = robj.kustantajanNimi;
         if (robj.organisaatioTunnus) obj.organisaatiotunnus = robj.organisaatioTunnus;
-        //console.debug(obj);
         ret.push(obj);
       });
       // järjestetään lista

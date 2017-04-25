@@ -6,18 +6,13 @@ justusApp.service('KoodistoService',
 ['$http',
 function($http) {
   let baseuri = "https://virkailija.opintopolku.fi/koodisto-service/rest/json/";
-  if (developmentmode || demomode) {
+  if (demomode) {
     baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
   }
 
   let maxage = 1*60*60*1000; // h*mi*s*millisekunteja
-  console.debug("KoodistoService baseuri for developmentmode="+developmentmode+" demomode="+demomode+" is "+baseuri)
-  //* localStorage:
-  console.debug("KoodistoService localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
-  //*/
   //placeholder for KoodistoService specific cache control ($http.defaults.cache affects the whole app!)
   let httpcache = false;
-  console.debug("KoodistoService httpcache (for config)",httpcache)
 
   //
   // internal private functions
@@ -26,7 +21,6 @@ function($http) {
 
   // suorita HTTP-kutsu ja palauta JSON
   let callURI = function(fulluri) {
-    //console.log("KoodistoService.callURI "+fulluri);
     //* localStorage:
     //let store = this.store;
     let stored = store(fulluri);
@@ -62,8 +56,6 @@ function($http) {
         ret.push(obj);
       });
       //* localStorage:
-      //console.log("callURI trying to save..."+fulluri)
-      //console.debug(ret)
       store(fulluri,ret);
       //*/
       return ret;
@@ -72,21 +64,15 @@ function($http) {
 
   //* localStorage:
   let store = function(key,value) {
-    //console.log("KoodistoService.store "+key);
     if (!key) return;
     if (typeof(Storage) !== "undefined") {
-      //console.debug(localStorage.getItem(key))
-      //console.debug(localStorage.getItem(key+"dateset"))
       if (value) { // store given value no matter what
         // tallenna localStorageen
         localStorage.setItem(key+'dateset',new Date());
-        //console.log("store save "+key);
-        //console.debug(value);
         localStorage.setItem(key,JSON.stringify(value));
       }
       if (localStorage.getItem(key)) {
         let age = (new Date()).getTime() - new Date(localStorage.getItem(key+'dateset')).getTime();
-        //console.debug(age+" > "+maxage)
         if (age > maxage) { // remove item if outaged
           localStorage.removeItem(key);
           localStorage.removeItem(key+'dateset');
@@ -96,14 +82,11 @@ function($http) {
       console.log("KoodistoService no Web Storage")
       // then what? so what?
     }
-    //console.log("store return "+key);
-    //console.debug(localStorage.getItem(key))
     return JSON.parse(localStorage.getItem(key));
   }
 
   let clearStorage = function(){
     angular.forEach(localStorage,function(l,key){
-      //console.debug(key)
       localStorage.removeItem(key)
     });
   }
@@ -115,7 +98,6 @@ function($http) {
 
   //* localStorage
   this.reset = function() {
-    console.log("Koodisto.reset: clearing localStorage")
     clearStorage()
   }
   //*/

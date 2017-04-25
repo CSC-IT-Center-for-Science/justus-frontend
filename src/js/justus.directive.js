@@ -29,7 +29,6 @@ justusApp.directive('isbnDirective', function() {
           let sum = (10*aa)+(9*bb)+(8*cc)+(7*dd)+(6*ee)+(5*ff)+(4*gg)+(3*hh)+(2*ii)+(1*xx);
           let mod = sum%11;
           ret = 0==mod;
-          console.log("isbnDirective "+isbn+" pat="+scope.condition.isbn.pattern+" sum="+sum+" mod="+mod+" == "+x+"? "+ret)
         }
         if (digits.length == 13) {
           let j=digits.substr(9,1); let jj=parseInt(j);
@@ -43,7 +42,6 @@ justusApp.directive('isbnDirective', function() {
           } else {
             ret = mod==x;
           }
-          console.log("isbnDirective "+isbn+" .. "+scope.condition.isbn.pattern+" sum="+sum+" mod="+mod+" => "+x+"? "+ret)
         }
         mCtrl.$setValidity('isbnValid', ret);
         return isbn;
@@ -74,7 +72,6 @@ justusApp.directive('issnDirective', function() {
         let g=digits.substr(6,1); let gg=parseInt(g);
         let x=digits.substr(7,1); let xx=(x=="X"?10:parseInt(x));
         let sum = (8*aa)+(7*bb)+(6*cc)+(5*dd)+(4*ee)+(3*ff)+(2*gg)+(xx);
-        //console.log("issnDirective "+issn+" .. "+scope.condition.issn.pattern+" sum="+sum+" mod="+(sum%11)+" ==0?" )
         let ret = 0==sum%11;
         mCtrl.$setValidity('issnValid', ret);
         return issn;
@@ -113,7 +110,6 @@ justusApp.directive('orcidDirective', function() {
         let remainder = oo%11;
         let result = (12-remainder)%11;
         let x=orcid.substr(18,1); let xx=(x=="X"?10:parseInt(x));
-        //console.log("orcidDirective "+orcid+" .. "+scope.condition.orcid.pattern+" rem="+remainder+" result="+result+" =="+xx+"?");
         let ret = x==result;
         mCtrl.$setValidity('orcidValid', ret);
         return orcid;

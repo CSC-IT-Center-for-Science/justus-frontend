@@ -11,7 +11,6 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
     let authorquery = "";
     if (tekija != null && tekija != "") authorquery="&query.author="+tekija;
 
-    console.log("call "+uri+"+"+uriapi+"+"+input+"+"+authorquery+"+"+filter);
     return $http.get(uri+uriapi+input+authorquery+filter)
     .then(function (response){
       let ret=[];

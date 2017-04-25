@@ -104,7 +104,6 @@ function ($http) {
 
   // identify from data when given field must show up
   this.isVisible = function(field) {
-    //console.log("isVisible "+field)
     if (!this.visible[field]) return true;
     let visible = false;
     for (let k in this.visible[field]) {
@@ -118,18 +117,15 @@ function ($http) {
         visible = this.visible[field][k] == this.justus[k];
       }
     }
-    //console.log("isVisible "+field+" "+visible)
     return visible;
   }
 
   this.isRequired = function(field) {
-    //console.log("isRequired "+field)
     if (!this.isVisible(field)) return false;
     if (!this.requirement[field]) return false;
     let required = true;
     if (field in this.condition) {
       for (let k in this.condition[field]) {
-        //console.log("isRequired "+field+" for "+k)
         if (angular.isArray(this.condition[field][k])) {
           required = false;
           for (let e in this.condition[field][k]) {
@@ -153,7 +149,6 @@ function ($http) {
         }
       }
     }
-    //console.log("isRequired "+field+" "+required)
     return required;
   }
 
@@ -162,11 +157,8 @@ function ($http) {
   // - then html elements states would directly tell if valid or not
   // - exceptions are isbn and issn which have dependency with each other (which also would be better to handle some other way)
   this.isValid = function(field) {
-    //console.log("isValid "+field);
     var valid = true; // assume ok!
     if (!this.isVisible(field)) return true;
-    //console.debug(this.justus[field]);
-    //console.log("isValid "+field+" array="+angular.isArray(this.justus[field])+" object="+typeof(this.justus[field]))
     if (field=="organisaatiotekija") {
       var thisisok = true;
       if (!this.justus[field]) {
@@ -174,23 +166,19 @@ function ($http) {
       } else {
         for (let len=this.justus[field].length, i=0; i<len && i in this.justus[field]; i++) {
           for (let c in this.condition[field]) {
-            //console.debug("isValid "+field+" "+c+"=",this.justus[field][i][c])
             // nb! orcid is not yet(?) mandatory
             if (c=="orcid") {
               // nb! not fully tested: how does pattern directive affect here?
               if (this.justus[field][i][c]!="") {
-                //console.debug("isValid "+field+" "+c+" => NOT OK (orcid)",this.justus[field][i][c])
                 thisisok = false;
               }
             } else if (angular.isArray(this.justus[field][i][c])) {
               for (let e in this.justus[field][i][c]) {
                 if (!this.justus[field][i][c][e]) {
-                  //console.debug("isValid "+field+" "+c+" "+e+" => NOT OK ARRAY",this.justus[field][i][c][e])
                   thisisok = false;
                 }
               }
             } else if (!this.justus[field][i][c]) {
-              //console.debug("isValid "+field+" "+c+" => NOT OK",this.justus[field][i][c])
               thisisok = false;
             }
           }
@@ -200,7 +188,6 @@ function ($http) {
         valid = false;
       }
     } else if (angular.isArray(this.justus[field])) { // tieteenala, avainsana?
-      //console.log("isValid "+field+" array");
       for (let e in this.justus[field]) {
         if (!this.justus[field][e]) {
           valid = false;
@@ -210,10 +197,8 @@ function ($http) {
       // especially ISBN and ISSN; we go thru them in two phases:
       // - first by them selves (single) and then together
       // - nb! affect of pattern to objects value (=> undefined until matches)
-      //console.log("isValid 0 "+field+" "+valid+" initially");
       if (this.justus[field]===undefined) { // pattern makes undefined!
         valid = false;
-        //console.log("isValid 1 "+field+" "+valid+" A");
       } else {
         // remember to handle null, "" and undefined!
         if (this.justus[field]!==null && this.justus[field]!="") {
@@ -224,9 +209,7 @@ function ($http) {
             valid = this.checkISSN(this.justus[field]);
           }
         }
-        //console.log("isValid 1 "+field+" "+valid+" B");
       }
-      //console.log("isValid 1 "+field+" "+valid+" single");
       // together part 1 issn (valid status may change!)
       if (field=="issn") {
         // should we even look?
@@ -263,13 +246,10 @@ function ($http) {
           }
         }
       }
-      //console.log("isValid 2 "+field+" "+valid+" together (final)");
   } else if (!this.justus[field]) {
-      //console.log("isValid "+field+" may be...");
       if (this.isVisible(field)) {
         valid = false;
       } else {
-        //console.log("isValid "+field+" may be x 2");
         if (this.condition[field]) {
           var thisisok = true; // not valid only if next...
           for (var c in this.condition[field]) {
@@ -287,19 +267,15 @@ function ($http) {
         }
       }
     }
-    //console.log("isValid "+field+" "+valid);
     return valid;
   }
   this.getInvalids = function() {
-    //console.log("getInvalids");
     let ret = [];
     for (let r in this.requirement) {
       if (!this.isValid(r)) {
-        //console.log("getInvalids NOT VALID "+r);
         ret.push(r);
       }
     }
-    //console.debug(ret)
     return ret;
   }
 
@@ -309,7 +285,6 @@ function ($http) {
   //
 
   this.checkISBN = function (isbn) {
-    //console.log("checkISBN "+isbn+" => "+(!isbn));
     if (!isbn) return false; // null, undefined, "", ...
     // isbn regex and numbers(+X) 10 or 13! remove "-" chars
     let d = isbn.replace(/-/g,'').replace(/ /g,'');
@@ -329,7 +304,6 @@ function ($http) {
     let g=issn.substr(7,1); let gg=parseInt(g);
     let x=issn.substr(8,1); let xx=(x=="X"?10:parseInt(x));
     let sum = (8*aa)+(7*bb)+(6*cc)+(5*dd)+(4*ee)+(3*ff)+(2*gg)+(xx);
-    //console.log("checkISSN "+issn+" .. "+a+b+c+d+e+f+g+x+" sum="+sum+" mod="+(sum%11)+" ==0?" )
     return 0==sum%11;
   }
 
@@ -354,7 +328,6 @@ function ($http) {
     let remainder = oo%11;
     let result = (12-remainder)%11;
     let x=orcid.substr(18,1); let xx=(x=="X"?10:parseInt(x));
-    //console.log("checkORCID "+orcid+" .. "+a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+x+" rem="+remainder+" result="+result+" =="+xx+"?");
     return x==result;
   }
 

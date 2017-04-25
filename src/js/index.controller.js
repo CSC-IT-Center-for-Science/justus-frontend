@@ -4,39 +4,40 @@ justusApp.controller('IndexController',
 ['$scope','$http','$window','$stateParams','$transitions','KoodistoService',
 function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 {
-  //config provides: user, domain_organization, justusuri, authuri
+  //config provides: demomode, justusuri, authuri, domain_organization
+  //i18n provides: i18n
+  //config provides also for demo/dev: user, codes
 
-  $scope.developmentmode = developmentmode;
-  $scope.demomode = demomode;
+  $scope.demomode = (typeof(demomode) !== 'undefined') ? demomode : false;
 
-  $scope.justusuri = justusuri;
+  $scope.justusuri = (typeof(justusuri) !== 'undefined') ? justusuri : 'https://'+location.hostname;
 
-  console.debug("auth user get:",authuri)
-  $http.get(authuri)
-  .success(function(au){
-    console.debug("auth user:",au)
-    $scope.user = au;
-    $scope.user.organization = domain_organization[$scope.user.domain];
-    $scope.initrole=$scope.user.role;
-  })
-  .error(function(){
-    if (demomode) {
-      $scope.user = user;
-      console.debug("demo user:",$scope.user)
+  if (typeof(authuri) !== 'undefined') {
+    $http.get(authuri)
+    .success(function(au){
+      $scope.user = au;
+      $scope.user.organization = domain_organization[$scope.user.domain];
       $scope.initrole=$scope.user.role;
-    }
-  });
+    })
+    .error(function(){
+      if (demomode) {
+        $scope.user = user;
+        $scope.initrole=$scope.user.role;
+      }
+    });
+  }
 
-  $scope.i18n = i18n;
-  $scope.codes = {};
+  $scope.i18n = (typeof(i18n) !== 'undefined') ? i18n : {};
+  $scope.codes = (typeof(codes) !== 'undefined') ? codes : {}; // config
 
-  Koodisto.getKoodisto('kieli').then(function(o){ $scope.codes.kieli=o; });
-  Koodisto.getKoodisto('maatjavaltiot2').then(function(o){ $scope.codes.maatjavaltiot2=o; });
-  Koodisto.getKoodisto('julkaisuntila').then(function(o){ $scope.codes.julkaisuntila=o; });
-  Koodisto.getKoodisto('julkaisufoorumitaso').then(function(o){ $scope.codes.julkaisufoorumitaso=o; });
+  // test before setting (development helper)
+  !$scope.codes.kieli && Koodisto.getKoodisto('kieli').then(function(o){ $scope.codes.kieli=o; });
+  !$scope.codes.maatjavaltiot2 && Koodisto.getKoodisto('maatjavaltiot2').then(function(o){ $scope.codes.maatjavaltiot2=o; });
+  !$scope.codes.julkaisuntila && Koodisto.getKoodisto('julkaisuntila').then(function(o){ $scope.codes.julkaisuntila=o; });
+  !$scope.codes.julkaisufoorumitaso && Koodisto.getKoodisto('julkaisufoorumitaso').then(function(o){ $scope.codes.julkaisufoorumitaso=o; });
   // tieteenalat, julkaisutyypit, ...
-  Koodisto.getLuokitus('paatieteenala').then(function(o){ $scope.codes.tieteenalat=o; });
-  Koodisto.getLuokitus('julkaisunpaaluokka').then(function(o){
+  !$scope.codes.tieteenalat && Koodisto.getLuokitus('paatieteenala').then(function(o){ $scope.codes.tieteenalat=o; });
+  !$scope.codes.julkaisutyypit && Koodisto.getLuokitus('julkaisunpaaluokka').then(function(o){
     $scope.codes.julkaisutyypit=o;
     angular.forEach($scope.codes.julkaisutyypit,function(aobj,akey){
       Koodisto.getAlatyypit('julkaisunpaaluokka',aobj.arvo).then(function (o) {
@@ -48,31 +49,36 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
   // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
   // reset variables
-  $scope.codes.organization = []; // setup
-  angular.forEach(domain_organization,function(dobj,domain){
-    // nb! not entire koodisto, just one code at a time
-    // not all organizations are of type oppilaitos there are tutkimusorganisaatio also 
-    let codeset = 'oppilaitosnumero';
-    if (dobj.code.length>5) {
-      codeset = 'tutkimusorganisaatio';
-    }
-    Koodisto.getKoodi(codeset,dobj.code).then(function(o){
-      Koodisto.getKoodisto('alayksikkokoodi').then(function(a){
-        $scope.codes.alayksikkokoodi=a;
-        angular.forEach(o,function(oobj,okey){
-          oobj.alatyypit = [];
-          angular.forEach(a,function(aobj,akey){
-            if (aobj.arvo.match('^'+oobj.arvo+'-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
-              oobj.alatyypit.push(aobj);
-            }
+  if (!$scope.codes.organization) {
+    $scope.codes.organization = []; // setup
+    let org_pushed = []; // collect codes which have been pushed (multiple domains cases)
+    angular.forEach(domain_organization,function(dobj,domain){
+      if (org_pushed.indexOf(dobj.code)<0) {
+        // nb! not entire koodisto, just one code at a time
+        // not all organizations are of type oppilaitos there are tutkimusorganisaatio also 
+        let codeset = 'oppilaitosnumero';
+        if (dobj.code.length>5) {
+          codeset = 'tutkimusorganisaatio';
+        }
+        Koodisto.getKoodi(codeset,dobj.code).then(function(o){
+          Koodisto.getKoodisto('alayksikkokoodi').then(function(a){
+            $scope.codes.alayksikkokoodi=a;
+            angular.forEach(o,function(oobj,okey){
+              oobj.alatyypit = [];
+              angular.forEach(a,function(aobj,akey){
+                if (aobj.arvo.match('^'+oobj.arvo+'-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+                  oobj.alatyypit.push(aobj);
+                }
+              });
+              // store in variable by pushing one at a time now
+              $scope.codes.organization.push(oobj);
+              org_pushed.push(oobj.arvo);
+            });
           });
-          // store in variable by pushing one at a time now
-          $scope.codes.organization.push(oobj);
         });
-      });
+      }
     });
-  });
-  console.debug("codes:",$scope.codes)
+  }
 
   // for knowing (save to scope) which "state" is selected (criteria+$transitions)
   let criteria = {
@@ -124,7 +130,6 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 
   $scope.login = function() {
     let target = encodeURIComponent(justusuri+'/#/justus?lang='+$scope.lang);
-    console.debug("login",justusuri,target)
     $window.location.href = justusuri+'/Shibboleth.sso/Login?target='+target;
   }
 

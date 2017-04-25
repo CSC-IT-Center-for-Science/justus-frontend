@@ -10,7 +10,6 @@ function($scope,$http,$state,API)
   $scope.meta = API.meta;
   
   let saveTable = function(table,data,putid,refid) {
-    console.debug("saveTable "+table,data,putid)
     // remove primary key from data
     let saveid = data[$scope.meta.tables[table].pkcol];
     delete data[$scope.meta.tables[table].pkcol];
@@ -46,7 +45,6 @@ function($scope,$http,$state,API)
       delete odata.id;
       // put or post
       if (putid) {
-        console.debug("put organisaatiotekija",odata);
         API.put('organisaatiotekija',putid,odata);
         // alayarr copied above
         angular.forEach(alayarr,function(adata,ak){
@@ -55,7 +53,6 @@ function($scope,$http,$state,API)
         // restore id
         odata.id=putid;
       } else {
-        console.debug("post organisaatiotekija",odata);
         API.post('organisaatiotekija'+"/",odata).success(function(otid){
           // alayarr copied above
           angular.forEach(alayarr,function(adata,ak){
@@ -69,7 +66,6 @@ function($scope,$http,$state,API)
   // ACCESSORS (scope)
 
   $scope.useTallenna = function() {
-    console.log("useTallenna")
     let dnew = {};
     // from main table julkaisu drop not significant columns, and id
     angular.forEach($scope.meta.tables.julkaisu.columns,function(v,k){
@@ -78,7 +74,6 @@ function($scope,$http,$state,API)
       }
     });
     dnew.modified = new Date();
-    console.debug("useTallenna julkaisu",dnew,$scope.justus.id)
     if ($scope.justus.id) { // we have id so we're updating
       API.put("julkaisu",$scope.justus.id,dnew);
       angular.forEach($scope.justus.avainsana,function(adata,ak){
@@ -92,10 +87,7 @@ function($scope,$http,$state,API)
       // move on to own publications
       $state.go('omat', {lang:$scope.lang});
     } else {
-      console.debug("post julkaisu",dnew);
-
       API.post("julkaisu",dnew).success(function(jid){
-        console.log("useTallenna post jid: "+jid);
         if (jid) {
           angular.forEach($scope.justus.avainsana,function(adata,ak){
             saveTable("avainsana",adata,adata.id,jid);
