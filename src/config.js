@@ -56,8 +56,12 @@ let domain_organization = {
   ,'@jamk.fi': {code:'02504',email:'helpdesk@jamk.fi'} //Jyväskylän ammattikorkeakoulu  #jamk-admins
   ,'@kamk.fi': {code:'02473',email:'amkkirjasto@kamk.fi'} //Kajaanin ammattikorkeakoulu  #kamk-admins
   ,'@karelia.fi': {code:'02469',email:'julkaisut@karelia.fi'} //Karelia-ammattikorkeakoulu  #karelia-admins
-  ,'@xamk.fi': {code:'10118',email:'julkaisut@xamk.fi'} //(mahd. kyamk.fi ja mamk.fi) //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  ,'@lamk.fi': {code:'02470',email:'pyydetty'} //Lahden ammattikorkeakoulu  #lamk-admins (odottaa jäseniä)
+  // nb! xamk may have 3 domains (mahd. kyamk.fi ja mamk.fi)
+  ,'@xamk.fi': {code:'10118',email:'julkaisut@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+  ,'@kyamk.fi': {code:'10118',email:'julkaisut@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+  ,'@mamk.fi': {code:'10118',email:'julkaisut@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+
+  ,'@lamk.fi': {code:'02470',email:'julkaisut@lamk.fi'} //Lahden ammattikorkeakoulu  #lamk-admins
   ,'@laurea.fi': {code:'02629',email:'julkaisut@laurea.fi'} //Laurea-ammattikorkeakoulu  #laurea-admins
   ,'@metropolia.fi': {code:'10065',email:'annika.hayrynen@metropolia.fi'} //Metropolia ammattikorkeakoulu  #metropolia-admins
   ,'@samk.fi': {code:'02507',email:'lib.samk@samk.fi'} //Satakunnan ammattikorkeakoulu  #samk-admins
@@ -68,7 +72,10 @@ let domain_organization = {
 
   // tutkimusorganisaatio
   ,'@fmi.fi': {code:'4940015',email:'achim.drebs@fmi.fi'} //Ilmatieteen laitos  #fmi-admins
-  ,'@nls.fi': {code:'4020217',email:'MML.VIRTA@maanmittauslaitos.fi'} //Maanmittauslaitos maanmittauslaitos.fi  #mml-admins
+  
+  // nb! mml has 2 domains
+  ,'@nls.fi': {code:'4020217',email:'MML.VIRTA@maanmittauslaitos.fi'} //Maanmittauslaitos  #mml-admins
+  ,'@maanmittauslaitos.fi': {code:'4020217',email:'MML.VIRTA@maanmittauslaitos.fi'} //Maanmittauslaitos  #mml-admins
 
   //,'@': '' //...
 };
