@@ -6,12 +6,12 @@ justusApp.service('KoodistoService',
 ['$http',
 function($http) {
   let baseuri = "https://virkailija.opintopolku.fi/koodisto-service/rest/json/";
-  if (developmentmode) {
+  if (developmentmode || demomode) {
     baseuri = "https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/";
   }
 
   let maxage = 1*60*60*1000; // h*mi*s*millisekunteja
-  console.debug("KoodistoService baseuri for developmentmode="+developmentmode+" is "+baseuri)
+  console.debug("KoodistoService baseuri for developmentmode="+developmentmode+" demomode="+demomode+" is "+baseuri)
   //* localStorage:
   console.debug("KoodistoService localStorage "+(typeof(Storage) !== "undefined")+" maxage "+maxage)
   //*/
