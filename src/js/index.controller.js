@@ -17,11 +17,13 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     console.debug("auth user:",au)
     $scope.user = au;
     $scope.user.organization = domain_organization[$scope.user.domain];
+    $scope.initrole=$scope.user.role;
   })
   .error(function(){
     if (demomode) {
       $scope.user = user;
       console.debug("demo user:",$scope.user)
+      $scope.initrole=$scope.user.role;
     }
   });
 
@@ -103,15 +105,18 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     if (input=='hyvaksy'){
       if ($scope.user && $scope.user.name
        && $scope.user.organization && $scope.user.organization.code
-       && $scope.user.role=='admin') {
+       && ($scope.user.role=='owner' || $scope.user.role=='admin')
+      ) {
         return true;
       } else {
         return false;
       }
     }
-    // basically all states - name and organization (with code) are required
+    // basically all states - name, organization (with code) and a role are required
     if ($scope.user && $scope.user.name
-     && $scope.user.organization && $scope.user.organization.code) {
+     && $scope.user.organization && $scope.user.organization.code
+     && ($scope.user.role=='owner' || $scope.user.role=='admin' || $scope.user.role=='member')
+    ) {
       return true;
     }
     return false;
