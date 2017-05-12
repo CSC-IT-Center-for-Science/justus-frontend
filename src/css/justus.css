@@ -81,8 +81,11 @@ body {
 .justus-data {
 }
 .justus-info {
-  // background-color: #FFFFFF;
   color: #99C2C8;
+}
+.justus-info-bw {
+  background-color: #FFFFFF;
+  color: #000000;
 }
 .justus-info:hover {
   color: #026D7C;
