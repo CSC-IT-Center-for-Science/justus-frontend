@@ -16,6 +16,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     $http.get(authuri)
     .success(function(au){
       $scope.user = au;
+      //backend/auth provides but config has more info (code+mail):
       $scope.user.organization = domain_organization[$scope.user.domain];
       $scope.initrole=$scope.user.role;
     })
