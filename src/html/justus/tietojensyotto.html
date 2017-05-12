@@ -225,7 +225,6 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="justus-input lg justus-required"
-         data-ng-required="1==0 && isRequired('konferenssinvakiintunutnimi')"
          data-ng-model="justus.konferenssinvakiintunutnimi"
          data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
          data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
@@ -272,10 +271,9 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="justus-input md justus-required"
-         data-ng-required="1==0 && isRequired('isbn')" data-isbn-directive=""
-         data-ng-model="justus.isbn"
-         data-ng-pattern="condition.isbn.pattern"
-         >
+         data-isbn-directive=""
+         data-n00g-pattern="condition.isbn.pattern"
+         data-ng-model="justus.isbn">
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && isRequired('isbn')"></i>
@@ -313,7 +311,6 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="justus-input lg justus-required"
-         data-ng-required="1==0 && isRequired('lehdenjulkaisusarjannimi')"
          data-ng-model="justus.lehdenjulkaisusarjannimi"
          data-uib-typeahead="nimet.Name for nimet in refreshKanavanimet(1,$viewValue)"
          data-typeahead-loading="jufoLataa" data-typeahead-no-results="jufoNoResults"
@@ -347,15 +344,16 @@
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.issn.tooltip[lang]}}"
      data-ng-show="i18n.content.form.issn.tooltip[lang]"></i>
-    <span class="justus-required-star">*</span>
+    <span data-ng-show="isRequired('issn')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
    data-ng-model="req_issn" data-ng-required="requiredHighlight && isRequired('issn')">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="justus-input md justus-required" data-issn-directive=""
-         data-ng-model="justus.issn"
-         data-ng-pattern="condition.issn.pattern">
+        <input type="text" class="justus-input md justus-required"
+         data-issn-directive=""
+         data-ng-pattern="condition.issn.pattern"
+         data-ng-model="justus.issn">
       </div>
       <div class="col-xs-6">
       </div>
@@ -459,7 +457,6 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="justus-input lg justus-required"
-         data-ng-required="1==0 && isRequired('kustantaja')"
          data-ng-model="justus.kustantaja"
          data-uib-typeahead="kustantajanimet.Name for kustantajanimet in refreshKanavanimet(2,$viewValue)"
          data-typeahead-loading="jufoKustantajaLataa" data-typeahead-no-results="jufoNoResults"
@@ -559,11 +556,11 @@
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisunkansainvalisyys" data-ng-required="requiredHighlight && !isValid('julkaisunkansainvalisyys')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_julkaisunkansainvalisyys" class="justus-required" data-ng-required="1==0 && !isValid('julkaisunkansainvalisyys')">
+        <label data-ng-model="lab1_julkaisunkansainvalisyys" class="justus-required">
           <input type="radio" data-ng-model="justus.julkaisunkansainvalisyys" value="1">
           {{i18n.content.form.julkaisunkansainvalisyys['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_julkaisunkansainvalisyys" class="justus-required" data-ng-required="1==0 && !isValid('julkaisunkansainvalisyys')">
+        <label data-ng-model="lab2_julkaisunkansainvalisyys" class="justus-required">
           <input type="radio" data-ng-model="justus.julkaisunkansainvalisyys" value="0">
           {{i18n.content.form.julkaisunkansainvalisyys['0'][lang]}}
         </label>
@@ -612,7 +609,7 @@
     <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'" class="row">
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.tieteenala[$index]">
-        <input type="text" class="justus-input lg justus-required" data-ng-required="1==0 && !justus.tieteenala[$index]"
+        <input type="text" class="justus-input lg justus-required"
          data-ng-model="lab_tieteenala$index"
          data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"
          data-ng-click="showSelectTieteenala[$index]=true">
@@ -677,11 +674,11 @@
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_kansainvalinenyhteisjulkaisu" data-ng-required="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_kansainvalinenyhteisjulkaisu" class="justus-required" data-ng-required="1==0 && !isValid('kansainvalinenyhteisjulkaisu')">
+        <label data-ng-model="lab1_kansainvalinenyhteisjulkaisu" class="justus-required">
           <input type="radio" data-ng-model="justus.kansainvalinenyhteisjulkaisu" value="1">
           {{i18n.content.form.kansainvalinenyhteisjulkaisu['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_kansainvalinenyhteisjulkaisu" class="justus-required" data-ng-required="1==0 && !isValid('kansainvalinenyhteisjulkaisu')">
+        <label data-ng-model="lab2_kansainvalinenyhteisjulkaisu" class="justus-required">
           <input type="radio" data-ng-model="justus.kansainvalinenyhteisjulkaisu" value="0">
           {{i18n.content.form.kansainvalinenyhteisjulkaisu['0'][lang]}}
         </label>
@@ -704,11 +701,11 @@
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_yhteisjulkaisuyrityksenkanssa" data-ng-required="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa" class="justus-required" data-ng-required="1==0 && !isValid('yhteisjulkaisuyrityksenkanssa')">
+        <label data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa" class="justus-required">
           <input type="radio" data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" value="1">
           {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_yhteisjulkaisuyrityksenkanssa" class="justus-required" data-ng-required="1==0 && !isValid('yhteisjulkaisuyrityksenkanssa')">
+        <label data-ng-model="lab2_yhteisjulkaisuyrityksenkanssa" class="justus-required">
           <input type="radio" data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" value="0">
           {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['0'][lang]}}
         </label>
@@ -769,12 +766,12 @@
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_avoinsaatavuus" data-ng-required="requiredHighlight && !isValid('avoinsaatavuus')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_avoinsaatavuus" class="justus-required" data-ng-required="1==0 && !isValid('avoinsaatavuus')">
+        <label data-ng-model="lab1_avoinsaatavuus" class="justus-required">
           <input type="radio" data-ng-model="justus.avoinsaatavuus" value="0">
           {{i18n.content.form.avoinsaatavuus['0'][lang]}}
         </label>
         <br>
-        <label data-ng-model="lab2_avoinsaatavuus" class="justus-required" data-ng-required="1==0 && !isValid('avoinsaatavuus')">
+        <label data-ng-model="lab2_avoinsaatavuus" class="justus-required">
           <input type="radio" data-ng-model="justus.avoinsaatavuus" value="1">
             {{i18n.content.form.avoinsaatavuus['1'][lang]}}
             <i class="glyphicon glyphicon-info-sign justus-info"
@@ -783,7 +780,7 @@
              data-ng-show="i18n.content.form.avoinsaatavuus['1'].tooltip[lang]"></i>
         </label>
         <br>
-        <label data-ng-model="lab3_avoinsaatavuus" class="justus-required" data-ng-required="1==0 && !isValid('avoinsaatavuus')">
+        <label data-ng-model="lab3_avoinsaatavuus" class="justus-required">
           <input type="radio" data-ng-model="justus.avoinsaatavuus" value="2">
             {{i18n.content.form.avoinsaatavuus['2'][lang]}}
             <i class="glyphicon glyphicon-info-sign justus-info"
@@ -810,11 +807,11 @@
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisurinnakkaistallennettu" data-ng-required="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="justus-required" data-ng-required="1==0 && !isValid('julkaisurinnakkaistallennettu')">
+        <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="justus-required">
           <input type="radio" data-ng-model="justus.julkaisurinnakkaistallennettu" value="1">
           {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_julkaisurinnakkaistallennettu" class="justus-required" data-ng-required="1==0 && !isValid('julkaisurinnakkaistallennettu')">
+        <label data-ng-model="lab2_julkaisurinnakkaistallennettu" class="justus-required">
           <input type="radio" data-ng-model="justus.julkaisurinnakkaistallennettu" value="0">
           {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
         </label>
@@ -838,8 +835,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="justus-input lg justus-required"
-         data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite"
-         data-ng-required="1==0 && isRequired('rinnakkaistallennetunversionverkkoosoite')">
+         data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite">
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')"></i>

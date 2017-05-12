@@ -374,6 +374,11 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
   // finalizeInit - all values should be in place but if there's some critical missing
   // - internal unscoped function
   let finalizeInit = function() {
+    // pattern and directive fields
+    $scope.justus.isbn = $scope.justus.isbn||"";
+    $scope.justus.issn = $scope.justus.issn||"";
+    //orcid? $scope.justus.orcid = $scope.justus.orcid||"";
+    
     // populate lists for UI
     fillMissingJustusLists();
 
