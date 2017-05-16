@@ -649,7 +649,7 @@
                 <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.julkaisuntieteenalat.ala.picktip[lang]}}">
                   {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                 </ui-select-match>
-                <ui-select-choices repeat="o in codes.alatieteenalat | orderBy: 'arvo'" ui-disable-choice="o.nogo">
+                <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'" ui-disable-choice="o.nogo">
                   {{o.arvo}} {{o.selite[lang]}}
                 </ui-select-choices>
               </ui-select>
