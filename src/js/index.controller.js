@@ -91,25 +91,16 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
       }
     });
   }
-  // for ui listing organizations ordered!
-  /*
-  if (!$scope.organization) {
-    $scope.organization = {'FI': [], 'SV': [], 'EN': []};
+  // for ui listing unique organizations ordered!
+  $scope.allowedOrganizations = function() {
+    let ret = []; //
     angular.forEach($scope.codes.organization,function(oobj,okey){
-      if (oobj.arvo!='00000') {
-        $scope.organization.FI.selite.push(oobj.selite.FI);
-        $scope.organization.SV.selite.push(oobj.selite.SV);
-        $scope.organization.EN.selite.push(oobj.selite.EN);
+      if (oobj.arvo!='00000' && !ret.includes(oobj.selite[$scope.lang])) {
+        ret.push(oobj.selite[$scope.lang]);
       }
     });
+    return ret.sort();
   }
-  */
-
-  // sort / order help with languages
-  $scope.localeComparator = function(v1, v2) {
-    // Compare strings alphabetically, taking locale into account
-    return v1.value[$scope.lang] < v2.value[$scope.lang] ? -1 : 1;
-  };
 
   // for knowing (save to scope) which "state" is selected (criteria+$transitions)
   let criteria = {

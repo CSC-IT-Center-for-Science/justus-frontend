@@ -1,7 +1,7 @@
 'use strict';
 
 let justusApp = angular.module('justusApp',
-['ui.router', 'ui.select', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular.filter']
+['ui.router', 'ui.select', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']
 );
 
 justusApp.config(function(
