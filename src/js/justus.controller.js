@@ -76,7 +76,7 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
     if(input.length < 5) return [];
     return JUFO.etsikanava(input,tyyppi)
     .then(function (response){
-      if (isArray(response.data)) {
+      if (angular.isArray(response.data)) {
         if (tyyppi==3) $scope.konferenssinimet = response.data;
         if (tyyppi==2) $scope.kustantajanimet = response.data;
         if (tyyppi==1) $scope.lehtinimet = response.data;
@@ -299,7 +299,7 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
         return;
       }
     }
-    $state.go('justus', {lang:$scope.lang,id:$scope.justus.id,vaihe:vaihe});
+    //messes up initialization even though brings history to use...: $state.go('justus', {lang:$scope.lang,id:$scope.justus.id,vaihe:vaihe});
   }
 
   $scope.useRequiredHighlight = function() {

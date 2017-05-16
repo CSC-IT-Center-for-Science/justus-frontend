@@ -89,12 +89,12 @@
          maxlength="2" pattern="^[0-9]*$">
       </div>
       <div class="col-xs-5 justus-data text-right">
-        <input type="button" class="justus-btn justus-btn-default btn-sm"
+        <span class="justus-btn justus-btn-default"
          data-ng-click="useKopioiTekijat(justus.tekijat)"
          data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
-         value="{{i18n.content.form.organisaationtekijat.kopioi[lang]}}"
          data-popover-trigger="'mouseenter'" data-popover-placement="right"
-         data-uib-popover="{{i18n.content.form.organisaationtekijat.kopioi.tooltip[lang]}}">
+         data-uib-popover="{{i18n.content.form.organisaationtekijat.kopioi.tooltip[lang]}}"
+         data-ng-bind="i18n.content.form.organisaationtekijat.kopioi[lang]"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !justus.julkaisuntekijoidenlukumaara"></i>
@@ -584,8 +584,8 @@
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.julkaisumaa">
         <input type="text" class="justus-input md" data-ng-model="sel_julkaisumaa"
-         data-ng-value="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
-         data-uib-typeahead="o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
+         data-ng-value="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
+         data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
          data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
          placeholder="{{i18n.content.form.julkaisumaa.picktip[lang]}}">
       </div>
@@ -626,7 +626,7 @@
               </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-xs-6" data-ng-show="tieteenala_paa">
+          <div class="col-xs-6" data-ALWAYS-ng-show="tieteenala_paa">
             <!--dev--><!-- hack here with ng-if and parent.parent.parent.index... --><!--enddev-->
             <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==tieteenala_paa">
               <ui-select data-ng-model="alatieteenalat.selected"
@@ -636,6 +636,20 @@
                   {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                 </ui-select-match>
                 <ui-select-choices repeat="o in alatieteenalat | orderBy: 'arvo' | filter: $select.search">
+                  {{o.arvo}} {{o.selite[lang]}}
+                </ui-select-choices>
+              </ui-select>
+            </div>
+            <!--dev--><!-- when paatieteenala not selected/used above --><!--enddev-->
+            <!--dev--><!-- hack... now parent.index... --><!--enddev-->
+            <div data-ng-show="!tieteenala_paa">
+              <ui-select data-ng-model="alatieteenalat.selected"
+               on-select="useTieteenala($select.selected.arvo,$parent.$index); showSelectTieteenala[$index]=false;"
+               theme="bootstrap">
+                <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.julkaisuntieteenalat.ala.picktip[lang]}}">
+                  {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                </ui-select-match>
+                <ui-select-choices repeat="o in codes.alatieteenalat | orderBy: 'arvo'" ui-disable-choice="o.nogo">
                   {{o.arvo}} {{o.selite[lang]}}
                 </ui-select-choices>
               </ui-select>

@@ -148,8 +148,7 @@
 <div class="row">
   <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisumaa[lang]}}</div>
   <div class="col-xs-8 justus-data">
-    <!-- {{justus.julkaisumaa}} -->
-    <span data-ng-bind="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"></span>
+    <span data-ng-bind="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"></span>
   </div>
 </div>
 

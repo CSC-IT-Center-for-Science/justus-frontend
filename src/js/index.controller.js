@@ -47,6 +47,17 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     });
   });
 
+  // ugly hack to get ALL alatieteenalas in one list
+  $scope.codes.alatieteenalat = [];
+  angular.forEach($scope.codes.tieteenalat,function(tobj,tkey){
+    tobj.nogo=true;
+    $scope.codes.alatieteenalat.push(tobj);
+    angular.forEach(tobj.alatyypit,function(aobj,akey){
+      $scope.codes.alatieteenalat.push(aobj);
+    });
+  });
+
+
   // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
   // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
   // reset variables
