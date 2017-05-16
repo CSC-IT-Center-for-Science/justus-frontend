@@ -104,11 +104,11 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     });
   }
   */
-  
+
   // sort / order help with languages
   $scope.localeComparator = function(v1, v2) {
     // Compare strings alphabetically, taking locale into account
-    return v1.value[$scope.lang].localeCompare(v2.value[$scope.lang]);
+    return v1.value[$scope.lang] < v2.value[$scope.lang] ? -1 : 1;
   };
 
   // for knowing (save to scope) which "state" is selected (criteria+$transitions)
