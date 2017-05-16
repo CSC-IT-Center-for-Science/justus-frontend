@@ -49,7 +49,6 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
 
   // ugly hack to get ALL alatieteenalas in one list
   $scope.getAlltieteenalat = function() {
-    console.debug("getAlltieteenalat")
     let ret = [];
     angular.forEach($scope.codes.tieteenalat,function(tobj,tkey){
       tobj.nogo=true;
