@@ -169,8 +169,8 @@ function($http) {
         let alapromise = getAlatyypit(koodisto,aobj.arvo);
         alapromise.then(function (o) {
           obj.alatyypit = o;
-          ret.push(obj);
         });
+        ret.push(obj);
       });
       return ret;
     });
