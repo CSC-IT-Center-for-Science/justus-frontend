@@ -26,7 +26,16 @@
     <h4 data-ng-bind="i18n.etusivu.help.title[lang]"></h4>
 
     <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
-    <p>X ammattikorkeakoulu</p>
-    <p>Y ammattikorkeakoulu</p>
+    <div class="row">
+      <div class="col-xs-4">
+        <p data-ng-repeat="o in codes.organization | orderBy: 'selite':false:localeComparator" data-ng-if="o.arvo!='00000' && $index < codes.organization.length/3"><span data-ng-bind="o.selite[lang]"></span></p>
+      </div>
+      <div class="col-xs-4">
+        <p data-ng-repeat="o in codes.organization | orderBy: 'selite':false:localeComparator" data-ng-if="o.arvo!='00000' && $index >= codes.organization.length/3 && $index < codes.organization.length*2/3"><span data-ng-bind="o.selite[lang]"></span></p>
+      </div>
+      <div class="col-xs-4">
+        <p data-ng-repeat="o in codes.organization | orderBy: 'selite':false:localeComparator" data-ng-if="o.arvo!='00000' && $index >= codes.organization.length*2/3"><span data-ng-bind="o.selite[lang]"></span></p>
+      </div>
+    </div>
   </div>
 </div>
