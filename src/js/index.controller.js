@@ -37,7 +37,26 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   !$scope.codes.julkaisuntila && Koodisto.getKoodisto('julkaisuntila').then(function(o){ $scope.codes.julkaisuntila=o; });
   !$scope.codes.julkaisufoorumitaso && Koodisto.getKoodisto('julkaisufoorumitaso').then(function(o){ $scope.codes.julkaisufoorumitaso=o; });
   // tieteenalat, julkaisutyypit, ...
-  !$scope.codes.tieteenalat && Koodisto.getLuokitus('paatieteenala').then(function(o){ $scope.codes.tieteenalat=o; });
+  // ugly hack to get ALL alatieteenalas in one list
+  let makeAlatieteenalat = function() {
+    $scope.codes.alatieteenalat = [];
+    angular.forEach($scope.codes.tieteenalat,function(tobj,tkey){
+      tobj.nogo=true;
+      $scope.codes.alatieteenalat.push(tobj);
+      angular.forEach(tobj.alatyypit,function(aobj,akey){
+        $scope.codes.alatieteenalat.push(aobj);
+      });
+    });
+  };
+  if (!$scope.codes.tieteenalat) {
+    Koodisto.getLuokitus('paatieteenala').then(function(o){
+      $scope.codes.tieteenalat=o;
+      makeAlatieteenalat();
+    });
+  } else {
+    makeAlatieteenalat();
+  }
+
   !$scope.codes.julkaisutyypit && Koodisto.getLuokitus('julkaisunpaaluokka').then(function(o){
     $scope.codes.julkaisutyypit=o;
     angular.forEach($scope.codes.julkaisutyypit,function(aobj,akey){
@@ -46,17 +65,6 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
       });
     });
   });
-
-  // ugly hack to get ALL alatieteenalas in one list
-  $scope.codes.alatieteenalat = [];
-  angular.forEach($scope.codes.tieteenalat,function(tobj,tkey){
-    tobj.nogo=true;
-    $scope.codes.alatieteenalat.push(tobj);
-    angular.forEach(tobj.alatyypit,function(aobj,akey){
-      $scope.codes.alatieteenalat.push(aobj);
-    });
-  });
-
 
   // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
   // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
