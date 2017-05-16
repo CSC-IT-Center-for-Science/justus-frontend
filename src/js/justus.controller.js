@@ -94,7 +94,15 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
       if (obj.ISSN1) $scope.justus.issn = obj.ISSN1;
       if ($scope.justus.issn == null || $scope.justus.issn == "")
         if (obj.ISSN2) $scope.justus.issn = obj.ISSN2;
-      if (obj.Publisher) $scope.justus.kustantaja = htmlUnescape(obj.Publisher);
+      if (obj.Publisher) {
+        $scope.justus.kustantaja = obj.Publisher
+          // "html unescape"
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&');
+      }
     });
   }
   $scope.fetchLehtisarja = function(input) { //issn

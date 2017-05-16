@@ -75,8 +75,6 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
         if (robj.organisaatioTunnus) obj.organisaatiotunnus = robj.organisaatioTunnus;
         ret.push(obj);
       });
-      // järjestetään lista
-      //obj.sort(sort_by('title',false,function(a){return a.toUpperCase()}));
       return ret;
     });
   }

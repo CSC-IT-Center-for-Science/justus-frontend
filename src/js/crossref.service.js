@@ -32,8 +32,6 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
               obj.author += aobj.family+", "+aobj.given;
             });
             ret.push(obj);
-            // järjestetään lista
-            //obj.sort(sort_by('title',false,function(a){return a.toUpperCase()}));
           });
         }
       });
