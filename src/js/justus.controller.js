@@ -280,6 +280,8 @@ function($rootScope,$scope,$http,$state,$stateParams
   }
 
   $scope.refreshAvainsanat = function(input) {
+    if(input == null) return;
+    if(input.length < 3) return [];
     return Finto.search($scope.lang,input)
     .then(
       function successCb(response){
