@@ -1,8 +1,12 @@
 'use strict';
 
 justusApp.controller('JustusController',
-['$rootScope','$scope','$http','$state','$stateParams','CrossRefService','VIRTAService','JUFOService','KoodistoService','JustusService','APIService',
-function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodisto,Justus,API)
+['$rootScope','$scope','$http','$state','$stateParams'
+,'CrossRefService','VIRTAService','JUFOService','FintoService','KoodistoService'
+,'JustusService','APIService',
+function($rootScope,$scope,$http,$state,$stateParams
+,CrossRef,VIRTA,JUFO,Finto,Koodisto
+,Justus,API)
 {
   //index provides: lang, i18n, codes, user, ...
 
@@ -273,6 +277,21 @@ function($rootScope,$scope,$http,$state,$stateParams,CrossRef,VIRTA,JUFO,Koodist
         return false;
       });
     }
+  }
+
+  $scope.refreshAvainsanat = function(input) {
+    return Finto.search($scope.lang,input)
+    .then(
+      function successCb(response){
+        console.debug("refreshAvainsanat",input,response,response.data.results)
+        $scope.avainsanatLataa = false;
+        return response.data.results;
+      },function errorCb(response){
+        console.log("refreshAvainsanat "+input+" ei löytynyt!");
+        $scope.avainsanatLataa = false;
+        return false;
+      }
+    );
   }
 
   $scope.useTieteenala = function(input,index) {
