@@ -283,7 +283,6 @@ function($rootScope,$scope,$http,$state,$stateParams
     return Finto.search($scope.lang,input)
     .then(
       function successCb(response){
-        console.debug("refreshAvainsanat",input,response,response.data.results)
         $scope.avainsanatLataa = false;
         return response.data.results;
       },function errorCb(response){
