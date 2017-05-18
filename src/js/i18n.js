@@ -129,7 +129,7 @@ let i18n = {
           EN: "The total number of authors in the publication."
         }
       },
-      organisaationtekijat: {
+      organisaatiotekija: {
         FI: "Organisaation tekijät", SV: "Organisationens upphovsmän", EN: "Organisations authors",
         tooltip: {
           FI: "Organisaatioon kuuluvat tutkijat, jotka ovat osallistuneet julkaisun tekemiseen. Organisaation tiedekunta, osasto, laitos tai yksikkö, jonka henkilöstöön julkaisun tekijä kuuluu. Tekijän ORCID-tunniste esim. 0000-0000-0000-0000, ks. http://www.orcid.org",
@@ -287,7 +287,7 @@ let i18n = {
         },
         picktip: {FI: "Valitse maa", SV: "Välj land", EN: "Choose country"}
       },
-      julkaisuntieteenalat: {
+      tieteenala: {
         FI: "Julkaisun tieteenalat", SV: "Publikationens vetenskapsområde", EN: "Field of science of the publication",
         tooltip: {
           FI: "1-6 tieteenalaa Tilastokeskuksen tieteenalaluokituksen mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee. Ensimmäinen, ns. ensisijainen tieteenala, on pakollinen tieto.",

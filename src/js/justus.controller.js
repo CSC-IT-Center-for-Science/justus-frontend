@@ -13,12 +13,7 @@ function($rootScope,$scope,$http,$state,$stateParams
   $scope.meta = API.meta;
 
   $scope.justus = Justus.justus; // do put "must have's" in service!
-  $scope.requirement = Justus.requirement;
-  $scope.condition = Justus.condition;
-  $scope.visible = Justus.visible;
-
-  $scope.checkISSN = Justus.checkISSN;
-  $scope.checkORCID = Justus.checkORCID;
+  $scope.pattern = Justus.pattern; // ng-pattern
 
   // other setups
   $scope.lehtinimet = [];
