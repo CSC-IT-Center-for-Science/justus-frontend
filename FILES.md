@@ -10,15 +10,11 @@ Unpackaged
 
     File is for giving environment specific values to variables. Meant to be maintained on site.
 
-    NB! This file is _NOT_ deployed to production from repository!
+    NB! This file is _NOT_ deployed to production from repository (or is but will and should be overwritten by a local copy)!
 
 Packaged
 
   * js/index.js
-
-    * js/generic.js
-
-      Some helpful functions which might be mostly unnecessary (used only once). So, may be considered to drop out.
 
     * js/i18n.js
 
@@ -51,11 +47,15 @@ Packaged
 
       Handles HTTP calls and data conversion for JUFO Service.
 
+    * js/finto.service.js
+
+      Handles HTTP calls and data conversion for Finto (YSA/YSO) Service.
+
     * js/justus.service.js
 
       Handles variables visibility and dependency settings. File api.service.js handles stuff which could be in this file.
 
-      File might be unnecessary and content should be moved to justus.directive.js instead!
+      (At least some) content may be moved to justus.directive.js!
 
     * js/api.service.js
 
@@ -71,7 +71,7 @@ Packaged
 
       AngularJS directive file which has some field specific requirements for the JUSTUS applications main "form" (actual data that is collected).
 
-      This file and justus.service.js should be put together!
+      This file and justus.service.js have very tight relation and some parts may be misplaced now!
 
   * js/tallennus.js
 
