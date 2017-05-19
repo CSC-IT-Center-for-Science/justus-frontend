@@ -16,3 +16,5 @@ Run:
 * `grunt build`
 
 Copy directory `dist` wherever...
+
+See FILES.md for some more specifics.
