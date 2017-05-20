@@ -97,7 +97,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   $scope.allowedOrganizations = function() {
     let ret = []; //
     angular.forEach($scope.codes.organization,function(oobj,okey){
-      if (oobj.arvo!='00000' && !ret.includes(oobj.selite[$scope.lang])) {
+      if (oobj.arvo!='00000' && ret.indexOf(oobj.selite[$scope.lang])<0) {
         ret.push(oobj.selite[$scope.lang]);
       }
     });

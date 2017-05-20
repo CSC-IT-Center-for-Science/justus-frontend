@@ -51,7 +51,14 @@ function($rootScope,$scope,$http,$state,API,Koodisto)
       angular.forEach(obj, function(o,k) {
         if (table=="julkaisu") {
           // convert to date type
-          o.modified = o.modified?new Date(o.modified):null;
+          // NB! API returns "2017-03-24 12:37:47.18+02"
+          // => convert string first (as illustrated in http://dygraphs.com/date-formats.html)
+          if (o.modified) {
+            let m = o.modified;
+            m = m.replace(/-/g,"/"); // date separator to "/"
+            m = m.replace(/\..*$/,""); // strip milliseconds away
+            o.modified = new Date(m);
+          }
           // for showing julkaisuntila even after changing it to database...
           o.ui_julkaisuntila = o.julkaisuntila;
         }
