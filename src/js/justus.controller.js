@@ -406,7 +406,7 @@ function($rootScope,$scope,$http,$state,$stateParams
     fillMissingJustusLists();
 
     // user related
-    $scope.justus.organisaatiotunnus = $scope.user.organization.code;
+    $scope.justus.userorganization = $scope.user.organization.code;
     $scope.justus.username = $scope.user.name; // or mail or uid?
     // remove entirely as it is not needed here and messes up things later on!
     delete $scope.justus.modified;

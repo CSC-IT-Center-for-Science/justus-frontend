@@ -194,7 +194,7 @@ justusApp.service('JustusService',['$http',function ($http) {
         } else {
           // exception regarding alayksikko based on users organization
           // megahack: use from controller to justus stored user.organization
-          if (['00000','4940015','4020217'].indexOf(this.justus.organisaatiotunnus)<0) {
+          if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
             // loop alayksikko list
             for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
               if (!this.justus[field][i].alayksikko[a].alayksikko) {
