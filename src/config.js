@@ -46,36 +46,216 @@ if (demomode) {
 
 // mapping of organization domain to organization codes (type or codeset vary!)
 let domain_organization = {
-  '@csc.fi': {code:'00000',email:'notvalid@csc.fi'} // debug/develop/demo (de3)
-
-  ,'@arcada.fi': {code:'02535',email:'notvalid@arcada.fi'} //Arcada - Nylands svenska yrkeshögskola  #arcada-admins
-  ,'@centria.fi': {code:'02536',email:'notvalid@centria'} //Centria-ammattikorkeakoulu  #centria-admins
-  ,'@diak.fi': {code:'02623',email:'notvalid@diak.fi'} //Diakonia-ammattikorkeakoulu  #diak-admins
-  ,'@haaga-helia.fi': {code:'10056',email:'notvalid@haaga-helia.fi'} //Haaga-Helia ammattikorkeakoulu  #haaga-helia-admins
-  ,'@humak.fi': {code:'02631',email:'notvalid@humak.fi'} //Humanistinen ammattikorkeakoulu  #humak-admins
-  ,'@jamk.fi': {code:'02504',email:'notvalid@jamk.fi'} //Jyväskylän ammattikorkeakoulu  #jamk-admins
-  ,'@kamk.fi': {code:'02473',email:'notvalid@kamk.fi'} //Kajaanin ammattikorkeakoulu  #kamk-admins
-  ,'@karelia.fi': {code:'02469',email:'notvalid@karelia.fi'} //Karelia-ammattikorkeakoulu  #karelia-admins
+  // debug/develop/demo (de3)
+  '@csc.fi': {
+    code:'00000',
+    email:'notvalid@csc.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Arcada - Nylands svenska yrkeshögskola  #arcada-admins
+  '@arcada.fi': {
+    code:'02535',
+    email:'notvalid@arcada.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite'] 
+  },
+  //Centria-ammattikorkeakoulu  #centria-admins
+  '@centria.fi': {
+    code:'02536',
+    email:'notvalid@centria', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Diakonia-ammattikorkeakoulu  #diak-admins
+  '@diak.fi': {
+    code:'02623',
+    email:'notvalid@diak.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Haaga-Helia ammattikorkeakoulu  #haaga-helia-admins
+  '@haaga-helia.fi': {
+    code:'10056',
+    email:'notvalid@haaga-helia.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Humanistinen ammattikorkeakoulu  #humak-admins
+  '@humak.fi': {
+    code:'02631',
+    email:'notvalid@humak.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Jyväskylän ammattikorkeakoulu  #jamk-admins
+  '@jamk.fi': {
+    code:'02504',
+    email:'notvalid@jamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Kajaanin ammattikorkeakoulu  #kamk-admins
+  '@kamk.fi': {
+    code:'02473',
+    email:'notvalid@kamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Karelia-ammattikorkeakoulu  #karelia-admins
+  '@karelia.fi': {
+    code:'02469',
+    email:'notvalid@karelia.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
   // nb! xamk may have 3 domains (mahd. kyamk.fi ja mamk.fi)
-  ,'@xamk.fi': {code:'10118',email:'notvalid@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  ,'@kyamk.fi': {code:'10118',email:'notvalid@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  ,'@mamk.fi': {code:'10118',email:'notvalid@xamk.fi'} //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-
-  ,'@lamk.fi': {code:'02470',email:'notvalid@lamk.fi'} //Lahden ammattikorkeakoulu  #lamk-admins
-  ,'@laurea.fi': {code:'02629',email:'notvalid@laurea.fi'} //Laurea-ammattikorkeakoulu  #laurea-admins
-  ,'@metropolia.fi': {code:'10065',email:'notvalid@metropolia.fi'} //Metropolia ammattikorkeakoulu  #metropolia-admins
-  ,'@samk.fi': {code:'02507',email:'notvalid@samk.fi'} //Satakunnan ammattikorkeakoulu  #samk-admins
-  ,'@seamk.fi': {code:'02472',email:'notvalid@seamk.fi'} //Seinäjoen ammattikorkeakoulu  #seamk-admins
-  ,'@tamk.fi': {code:'02630',email:'notvalid@tamk.fi'} //Tampereen ammattikorkeakoulu  #tamk-admins
-  ,'@novia.fi': {code:'10066',email:'notvalid@novia.fi'} //Yrkeshögskolan Novia  #novia-admins
-  ,'@polamk.fi': {code:'02557',email:'notvalid@polamk.fi'} //Poliisiammattikorkeakoulu  #polamk-admins
-
+  //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+  '@xamk.fi': {
+    code:'10118',
+    email:'notvalid@xamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+  '@kyamk.fi': {
+    code:'10118',
+    email:'notvalid@xamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
+  '@mamk.fi': {
+    code:'10118',
+    email:'notvalid@xamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Lahden ammattikorkeakoulu  #lamk-admins
+  '@lamk.fi': {
+    code:'02470',
+    email:'notvalid@lamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Laurea-ammattikorkeakoulu  #laurea-admins
+  '@laurea.fi': {
+    code:'02629',
+    email:'notvalid@laurea.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Metropolia ammattikorkeakoulu  #metropolia-admins
+  '@metropolia.fi': {
+    code:'10065',
+    email:'notvalid@metropolia.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Satakunnan ammattikorkeakoulu  #samk-admins
+  '@samk.fi': {
+    code:'02507',
+    email:'notvalid@samk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  }, 
+  //Seinäjoen ammattikorkeakoulu  #seamk-admins
+  '@seamk.fi': {
+    code:'02472',
+    email:'notvalid@seamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Tampereen ammattikorkeakoulu  #tamk-admins
+  '@tamk.fi': {
+    code:'02630',
+    email:'notvalid@tamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Yrkeshögskolan Novia  #novia-admins
+  '@novia.fi': {
+    code:'10066',
+    email:'notvalid@novia.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Poliisiammattikorkeakoulu  #polamk-admins
+  '@polamk.fi': {
+    code:'02557',
+    email:'notvalid@polamk.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
   // tutkimusorganisaatio
-  ,'@fmi.fi': {code:'4940015',email:'notvalid@fmi.fi'} //Ilmatieteen laitos  #fmi-admins
-  
+  //Ilmatieteen laitos  #fmi-admins
+  '@fmi.fi': {
+    code:'4940015',
+    email:'notvalid@fmi.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  }, 
   // nb! mml has 2 domains
-  ,'@nls.fi': {code:'4020217',email:'notvalid@maanmittauslaitos.fi'} //Maanmittauslaitos  #mml-admins
-  ,'@maanmittauslaitos.fi': {code:'4020217',email:'notvalid@maanmittauslaitos.fi'} //Maanmittauslaitos  #mml-admins
+  //Maanmittauslaitos  #mml-admins
+  '@nls.fi': { 
+    code:'4020217', 
+    email:'notvalid@maanmittauslaitos.fi', 
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  //Maanmittauslaitos  #mml-admins
+  '@maanmittauslaitos.fi': {
+    code:'4020217',
+    email:'notvalid@maanmittauslaitos.fi',
+    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  }
 
   //,'@': '' //...
 };

@@ -2,7 +2,7 @@
 
 // from config uses: ?
 
-justusApp.service('JustusService',['$http',function ($http) {
+justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootScope) {
 
   // VARIABLES
 
@@ -191,16 +191,14 @@ justusApp.service('JustusService',['$http',function ($http) {
       for (let i=0; i<this.justus[field].length; i++) {
         if (!this.justus[field][i].sukunimi || !this.justus[field][i].etunimet) {
           valid = false;
-        } else {
-          // exception regarding alayksikko based on users organization
-          // megahack: use from controller to justus stored user.organization
-          if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
-            // loop alayksikko list
-            for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
-              if (!this.justus[field][i].alayksikko[a].alayksikko) {
-                valid = false;
-              }
-            }
+        }
+      }
+    } else if (field == 'alayksikko') {
+      if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
+        // loop alayksikko list
+        for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
+          if (!this.justus[field][i].alayksikko[a].alayksikko) {
+            valid = false;
           }
         }
       }
@@ -284,6 +282,11 @@ justusApp.service('JustusService',['$http',function ($http) {
       }
     }
     return ret;
+  }
+
+  this.isFieldRequired = function(fieldName) {
+    let organizationConfig = domain_organization[$rootScope.user.domain];
+    return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
   // pattern checkers (for validity)

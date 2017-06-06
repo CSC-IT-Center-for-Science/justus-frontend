@@ -99,10 +99,6 @@ body {
 .justus-required {
   transition: all linear 0.5s;
 }
-.justus-required.ng-invalid {
-  border: 1px solid red;
-  color: red;
-}
 .justus-input {
   border: 1px solid #ccc;
   border-radius: 4px;

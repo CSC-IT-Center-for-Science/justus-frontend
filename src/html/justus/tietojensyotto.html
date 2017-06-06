@@ -88,7 +88,7 @@
    data-ng-required="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')">
     <div class="row">
       <div class="col-xs-5">
-        <input type="text" class="justus-input sm justus-required"
+        <input type="text" class="form-control justus-input sm justus-required"
          data-ng-model="justus.julkaisuntekijoidenlukumaara"
          maxlength="2" pattern="^[0-9]*$">
       </div>
@@ -108,7 +108,7 @@
 </div>
 
 <!-- Kenttä: Organisaation tekijät -->
-<div class="row form-group">
+<div class="row">
   <div class="col-sm-4 col-xs-12 justus-title"><span data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></span>
     <i class="glyphicon glyphicon-info-sign justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
@@ -120,23 +120,21 @@
     <div data-ng-repeat="i in justus.organisaatiotekija track by $index"
      class="row justus-required"
      data-ng-model="req_organisaatiotekija[$index]"
-     data-ng-required="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet
-       && justus.organisaatiotekija[$index].alayksikko[0].alayksikko
-       )"><!-- nb! ei pakollinen vielä && justus.organisaatiotekija[$index].orcid)" -->
+     data-ng-required="isFieldRequired('organisaatiotekija')">
       <div class="col-xs-10">
-        <div class="row">
+        <div class="row form-group" id="organisaatiotekijaGroup">
           <div class="col-xs-12 col-sm-6">
-            <input type="text" class="justus-input md justus-required"
+            <input type="text" class="form-control justus-input md justus-required"
              data-ng-model="justus.organisaatiotekija[$index].sukunimi"
              placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
           </div>
           <div class="col-xs-12 col-sm-6">
-            <input type="text" class="justus-input md justus-required"
+            <input type="text" class="form-control justus-input md justus-required"
              data-ng-model="justus.organisaatiotekija[$index].etunimet"
              placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
           </div>
         </div>
-        <div class="row">
+        <div class="row form-group" data-ng-if="isFieldRequired('alayksikko')">
           <div class="col-xs-12 col-sm-6">
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
              data-ng-init="pIx=$parent.$index" class="row">

@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('IndexController',
-['$scope','$http','$window','$stateParams','$transitions','KoodistoService',
-function($scope,$http,$window,$stateParams,$transitions,Koodisto)
+['$scope','$rootScope', '$http', '$window', '$stateParams', '$transitions', 'KoodistoService',
+function($scope, $rootScope, $http, $window, $stateParams, $transitions, Koodisto)
 {
   //config provides: demomode, justusuri, authuri, domain_organization
   //i18n provides: i18n
@@ -15,6 +15,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
   if (typeof(authuri) !== 'undefined') {
     $http.get(authuri)
     .success(function(au){
+      $rootScope.user = au;
       $scope.user = au;
       //backend/auth provides but config has more info (code+mail):
       $scope.user.organization = domain_organization[$scope.user.domain];
@@ -22,6 +23,7 @@ function($scope,$http,$window,$stateParams,$transitions,Koodisto)
     })
     .error(function(){
       if (demomode) {
+        $rootScope.user = user;
         $scope.user = user;
         $scope.initrole=$scope.user.role;
       }
