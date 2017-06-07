@@ -124,7 +124,7 @@
 </div>
 
 <!-- Kenttä: Organisaation tekijät -->
-<div class="row">
+<div class="row form-group" id="organisaatiotekijaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
     <i class="glyphicon glyphicon-info-sign justus-info"
@@ -156,7 +156,7 @@
         <div class="row form-group" data-ng-if="isFieldRequired('alayksikko')">
           <div class="col-xs-12 col-sm-6">
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
-             data-ng-init="pIx=$parent.$index" class="row">
+             data-ng-init="pIx=$parent.$index" class="row form-group">
               <div class="col-xs-9 col-sm-9">
                 <input type="hidden" data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
                 <input type="text" class="justus-input"
@@ -187,12 +187,12 @@
                 -{{justus.organisaatiotekija[$parent.$index].alayksikko}}-
                 -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{a}}"
                 -->
-                <span class="justus-btn justus-btn-tiny"
+                <span class="btn btn-primary"
                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.splice($index, 1)"
                  data-ng-hide="justus.organisaatiotekija[$parent.$index].alayksikko.length<2"
                  title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
                  data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]"></span>
-                <span class="justus-btn justus-btn-tiny"
+                <span class="btn btn-primary"
                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.push({alayksikko:''})"
                  data-ng-show="($index == justus.organisaatiotekija[$parent.$index].alayksikko.length-1 && a!='')"
                  title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
@@ -210,12 +210,12 @@
         </div>
       </div>
       <div class="col-xs-2">
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
          data-ng-click="justus.organisaatiotekija.splice($index, 1)"
          data-ng-hide="justus.organisaatiotekija.length<2"
          title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
          data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]"></span>
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
          data-ng-click="newot={}; newot.alayksikko = [{alayksikko:''}]; justus.organisaatiotekija.push(newot);"
          data-ng-hide="$index < justus.organisaatiotekija.length-1"
          title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
@@ -572,12 +572,12 @@
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='avainsanatLataa'></i>
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
         data-ng-click="justus.avainsana.splice($index, 1)"
         data-ng-hide="justus.avainsana.length<2"
         title="{{i18n.content.form.avainsanat.poista.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.avainsanat.poista.tooltip[lang]"></span>
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
         data-ng-click="justus.avainsana.push({avainsana:''});"
         data-ng-hide="$index < justus.avainsana.length-1"
         title="{{i18n.content.form.avainsanat.lisaa.tooltip[lang]}}"
@@ -735,12 +735,12 @@
         </div>
       </div>
       <div class="col-xs-2">
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
         data-ng-click="justus.tieteenala.splice($index, 1)"
         data-ng-hide="justus.tieteenala.length<2"
         title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.tieteenala.poista.tooltip[lang]"></span>
-        <span class="justus-btn justus-btn-default"
+        <span class="btn btn-primary"
         data-ng-click="justus.tieteenala.push({});"
         data-ng-hide="$index < justus.tieteenala.length-1 || justus.tieteenala.length>=6 || !justus.tieteenala[$index].tieteenalakoodi"
         title="{{i18n.content.form.tieteenala.lisaa.tooltip[lang]}}"
@@ -968,23 +968,17 @@
 </div>
 
 <div class="row" data-ng-if="!isJustusValid() || !isValid('organisaatiotekija')">
-  <div class="col-xs-12" style="padding-left:5%">
-    <!-- b data-ng-bind="i18n.content.tietojensyotto.taytaviela[lang]"></b>
-    (<a style="cursor:pointer" data-ng-click="useRequiredHighlight()"
-      data-ng-bind="!requiredHighlight?i18n.content.tietojensyotto.taytaviela.korosta[lang]:i18n.content.tietojensyotto.taytaviela.poistakorostus[lang]"></a>)
-    <div class="justus-required" style="background:lightgray; color:red; border:1px solid red; padding:15px;">
-      <span data-ng-repeat="o in getInvalids()">
-        <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
-        <br>
-      </span>
-    </div -->
-    <h3 class="justus-bg-dim" style="background-color:red; color:white;"
-     data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.taytaviela[lang]}}</h3>
-    <div class="justus-required" style="padding-left:5%">
-      <span data-ng-repeat="o in getInvalids()">
-        <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
-        <br>
-      </span>
+  <div class="col-xs-12">
+    <div class="alert alert-danger">
+      <h3 data-ng-click="useRequiredHighlight()">
+      {{i18n.content.tietojensyotto.taytaviela[lang]}}
+      </h3>
+      <div class="justus-required">
+        <span data-ng-repeat="o in getInvalids()">
+          <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
+          <br>
+        </span>
+      </div>
     </div>
   </div>
 </div>
