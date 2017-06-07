@@ -72,16 +72,6 @@ body {
   color: #FFFFFF;
 }
 
-.justus-bg-dim {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-}
-
-.justus-dim-sm {
-  color: #BFC4C6;
-  font-size: smaller;
-}
-
 .justus-title {
   font-weight: bold;
   font-size: larger;
@@ -110,25 +100,6 @@ body {
 
 .justus-required {
   transition: all linear 0.5s;
-}
-
-.justus-input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 34px;
-  padding: 6px 12px;
-}
-
-.justus-input.sm{
-  min-width: 150px;
-}
-
-.justus-input.md{
-  min-width: 350px;
-}
-
-.justus-input.lg{
-  min-width: 700px;
 }
 
 .justus-btn {

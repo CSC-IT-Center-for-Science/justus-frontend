@@ -22,59 +22,72 @@
 </div -->
 
 <div class="row justus-bottom-space">
-  <div class="col-xs-12">
-    <h3 class="justus-bg-dim">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
-    <input type="text" size="50" data-ng-model="julkaisunhakudoi"
-      placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
-    <span class="justus-btn justus-btn-default" data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
-      data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]"></span>
+  <div class="col-sm-6 col-xs-12">
+    <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
+    <div class="input-group">
+      <input type="text" 
+        data-ng-model="julkaisunhakudoi" 
+        class="form-control"
+        placeholder='{{i18n.content.esitayta.doihaku.tunniste.tooltip[lang]}}'>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" 
+          data-ng-click="useJulkaisunnimi('CrossRef',julkaisunhakudoi)"
+          data-ng-bind="i18n.content.esitayta.doihaku.hae[lang]">
+        </button>
+      </span>
+    </div>
   </div>
 </div>
 
 <div class="row justus-bottom-space">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
+    <h3 class="form-header">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
-    <input type="text" size="50" data-ng-model="julkaisunhakutekija"
+    <input type="text" class="form-control" data-ng-model="julkaisunhakutekija"
       placeholder="{{i18n.content.esitayta.etsijulkaisu.tekija.tooltip[lang]}}">
     <br>
     <div class="row">
       <div class="col-xs-11">
-        <ui-select data-ng-model="julkaisu.selected"
-          theme="bootstrap" style="min-width: 100px; max-width: 700px;">
-          <ui-select-match class="ui-select-match" placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
-            {{$select.selected.title}}
-          </ui-select-match>
-          <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
-                             refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
-                             refresh-delay="600">
+        <div class="input-group">
+          <ui-select data-ng-model="julkaisu.selected"
+            theme="bootstrap">
+            <ui-select-match class="ui-select-match" placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
+              {{$select.selected.title}}
+            </ui-select-match>
+            <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
+                              refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
+                              refresh-delay="600">
+              <div style="border-top:1px solid black;">
+                <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
+                <br>{{o.title}}
+                <br>{{o.author}}
+              </div>
+            </ui-select-choices>
+          </ui-select>
+          <!-- script type="text/ng-template" id="customPopupTemplate.html">
             <div style="border-top:1px solid black;">
-              <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
-              <br>{{o.title}}
-              <br>{{o.author}}
+              tulosta pukkaa {{match}} {{julkaisu.selected}}
+              <span class="justus-dim-sm">{{source}} {{doi}}</span>
+              <br>{{title}}
+              <br>{{author}}
             </div>
-          </ui-select-choices>
-        </ui-select>
-        <!-- script type="text/ng-template" id="customPopupTemplate.html">
-          <div style="border-top:1px solid black;">
-            tulosta pukkaa {{match}} {{julkaisu.selected}}
-            <span class="justus-dim-sm">{{source}} {{doi}}</span>
-            <br>{{title}}
-            <br>{{author}}
-          </div>
-        </script>
-        <input type="text" class="justus-input lg"
-        data-ng-model="julkaisu.selected"
-        data-uib-typeahead="o as o.title for o in refreshJulkaisunnimet($viewValue,julkaisunhakutekija)"
-        data-typeahead-loading="virtaLataa"
-        data-typeahead-wait-ms="600"
-        data-typeahead-popup-template-url="customPopupTemplate.html"
-        placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}" -->
+          </script>
+          <input type="text" class="form-control"
+          data-ng-model="julkaisu.selected"
+          data-uib-typeahead="o as o.title for o in refreshJulkaisunnimet($viewValue,julkaisunhakutekija)"
+          data-typeahead-loading="virtaLataa"
+          data-typeahead-wait-ms="600"
+          data-typeahead-popup-template-url="customPopupTemplate.html"
+          placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}" -->
 
-        <i class="fa fa-spinner fa-spin fa-2x" data-ng-show="crossrefLataa||virtaLataa"></i>
-        <span class="justus-btn justus-btn-default"
-          data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
-          data-ng-bind="i18n.content.esitayta.hae[lang]"></span>
+          <i class="fa fa-spinner fa-spin fa-2x" data-ng-show="crossrefLataa||virtaLataa"></i>
+          <span class="input-group-btn">
+            <button class="btn btn-primary"
+              data-ng-click="useJulkaisunnimi(julkaisu.selected.source, julkaisu.selected.identifier)"
+              data-ng-bind="i18n.content.esitayta.hae[lang]">
+            </button>
+          </span>
+        </div>
       </div>
       <div class="col-xs-1">
       </div>
@@ -84,7 +97,7 @@
 
 <div class="row" data-ng-show="julkaisu.selected.organisaatiotunnus == user.organization.code">
   <div class="col-xs-12">
-    <h3 class="justus-bg-dim" style="background-color:red; color:white;">
+    <h3 class="form-header" style="background-color:red; color:white;">
       *Mahdollinen duplikaatti*
     </h3>
   </div>
