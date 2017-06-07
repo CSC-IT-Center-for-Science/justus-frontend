@@ -6,7 +6,7 @@
 <div class="row form-group" id="julkaisuvuosiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuosi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info justus-color"
+    <i class="fa fa-info-circle justus-info justus-color"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisuvuosi.tooltip[lang]"></i>
@@ -20,7 +20,7 @@
         data-ng-model="justus.julkaisuvuosi"
         maxlength="4" pattern="^[0-9]{4}$"
         title="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
@@ -35,7 +35,7 @@
 <div class="row form-group" id="julkaisunnimiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunnimi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisunnimi.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]"></i>
@@ -47,7 +47,7 @@
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg justus-required"
          data-ng-model="justus.julkaisunnimi">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
@@ -62,7 +62,7 @@
 <div class="row form-group" id="tekijatGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
      data-ng-show="i18n.content.form.tekijat.tooltip[lang]"></i>
@@ -76,7 +76,7 @@
          data-ng-model="justus.tekijat"
          placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
          data-ng-change="useTekijat(justus.tekijat)">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
@@ -91,7 +91,7 @@
 <div class="row form-group" id="julkaisuntekijoidenlukumaaraGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisuntekijoidenlukumaara[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]"></i>
@@ -104,7 +104,7 @@
         <input type="text" class="form-control justus-input sm justus-required"
          data-ng-model="justus.julkaisuntekijoidenlukumaara"
          maxlength="2" pattern="^[0-9]*$">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-5 justus-data text-right">
         <span class="justus-btn justus-btn-default"
@@ -127,7 +127,7 @@
 <div class="row form-group" id="organisaatiotekijaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.organisaatiotekija.tooltip[lang]}}"
      data-ng-show="i18n.content.form.organisaatiotekija.tooltip[lang]"></i>
@@ -144,13 +144,13 @@
             <input type="text" class="form-control justus-input md justus-required"
              data-ng-model="justus.organisaatiotekija[$index].sukunimi"
              placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
-            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control justus-input md justus-required"
              data-ng-model="justus.organisaatiotekija[$index].etunimet"
              placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
-            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
         <div class="row form-group" data-ng-if="isFieldRequired('alayksikko')">
@@ -164,7 +164,7 @@
                  data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
                  data-ng-show="ota.alayksikko"
                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko=''">
-                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                 <!--
                 {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
                 -{{justus.organisaatiotekija[$parent.$index].alayksikko|json}}-
@@ -205,7 +205,7 @@
              data-ng-model="justus.organisaatiotekija[$index].orcid"
              data-ng-pattern="pattern.orcid" data-orcid-directive=""
              placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
-            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
       </div>
@@ -238,7 +238,7 @@
 <div class="row form-group" data-ng-show="isVisible('konferenssinvakiintunutnimi')" id="konferenssinvakiintunutnimiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.konferenssinvakiintunutnimi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.konferenssinvakiintunutnimi.tooltip[lang]}}"
       data-ng-show="i18n.content.form.konferenssinvakiintunutnimi.tooltip[lang]"></i>
@@ -255,7 +255,7 @@
          data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
          data-typeahead-wait-ms="300"
          placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKonferenssiLataa'></i>
@@ -270,7 +270,7 @@
 <div class="row form-group" data-ng-show="isVisible('emojulkaisunnimi')" id="emojulkaisunnimiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.emojulkaisunnimi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.emojulkaisunnimi.tooltip[lang]}}"
       data-ng-show="i18n.content.form.emojulkaisunnimi.tooltip[lang]"></i>
@@ -279,7 +279,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg" data-ng-model="justus.emojulkaisunnimi">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -290,7 +290,7 @@
 <div class="row form-group" data-ng-show="isVisible('isbn')" id="isbnGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.isbn[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.isbn.tooltip[lang]}}"
       data-ng-show="i18n.content.form.isbn.tooltip[lang]"></i>
@@ -303,7 +303,7 @@
         <input type="text" class="form-control justus-input md justus-required"
          data-ng-pattern="pattern.isbn" data-isbn-directive=""
          data-ng-model="justus.isbn">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
@@ -317,7 +317,7 @@
 <div class="row form-group" data-ng-show="isVisible('emojulkaisuntoimittajat')" id="emojulkaisuntoimittajatGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.emojulkaisuntoimittajat[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.emojulkaisuntoimittajat.tooltip[lang]}}"
       data-ng-show="i18n.content.form.emojulkaisuntoimittajat.tooltip[lang]"></i>
@@ -326,7 +326,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg" data-ng-model="justus.emojulkaisuntoimittajat">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -337,7 +337,7 @@
 <div class="row form-group" id="lehdenjulkaisusarjannimiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.lehdenjulkaisusarjannimi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.lehdenjulkaisusarjannimi.tooltip[lang]}}"
       data-ng-show="i18n.content.form.lehdenjulkaisusarjannimi.tooltip[lang]"></i>
@@ -354,7 +354,7 @@
          data-typeahead-wait-ms="300"
          placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
          data-typeahead-on-select="useLehtisarja($item.Jufo_ID)">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoLataa'></i>
@@ -382,7 +382,7 @@
 <div class="row form-group" id="issnGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.issn[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.issn.tooltip[lang]}}"
      data-ng-show="i18n.content.form.issn.tooltip[lang]"></i>
@@ -395,7 +395,7 @@
         <input type="text" class="form-control justus-input md justus-required"
          data-ng-pattern="pattern.issn" data-issn-directive=""
          data-ng-model="justus.issn">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -411,7 +411,7 @@
 <div class="row form-group" id="volyymiGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.volyymi[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.volyymi.tooltip[lang]}}"
       data-ng-show="i18n.content.form.volyymi.tooltip[lang]"></i>
@@ -420,7 +420,7 @@
     <div class="row">
       <div class="col-xs-4">
         <input type="text" class="form-control justus-input sm" data-ng-model="justus.volyymi">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -433,7 +433,7 @@
 <div class="row form-group" id="numeroGroup">
   <div class="col-sm-4 col-xs-12 col-md-4 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.numero[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.numero.tooltip[lang]}}"
       data-ng-show="i18n.content.form.numero.tooltip[lang]"></i>
@@ -442,7 +442,7 @@
     <div class="row">
       <div class="col-xs-4">
         <input type="text" class="form-control justus-input sm" data-ng-model="justus.numero">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -455,7 +455,7 @@
 <div class="row form-group" data-ng-show="isVisible('sivut')" id="sivutGroup">
   <div class="col-sm-4 col-xs-12 col-md-4 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.sivut[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.sivut.tooltip[lang]}}"
       data-ng-show="i18n.content.form.sivut.tooltip[lang]"></i>
@@ -464,7 +464,7 @@
     <div class="row">
       <div class="col-xs-4">
         <input type="text" class="form-control justus-input sm" data-ng-model="justus.sivut">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -477,7 +477,7 @@
 <div class="row form-group" data-ng-show="isVisible('artikkelinumero')" id="artikkelinumeroGroup">
   <div class="col-sm-4 col-xs-12 col-md-4 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.artikkelinumero[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.artikkelinumero.tooltip[lang]}}"
       data-ng-show="i18n.content.form.artikkelinumero.tooltip[lang]"></i>
@@ -486,7 +486,7 @@
     <div class="row">
       <div class="col-xs-4">
         <input type="text" class="form-control justus-input sm" data-ng-model="justus.artikkelinumero">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -499,7 +499,7 @@
 <div class="row form-group" data-ng-show="isVisible('kustantaja')" id="kustantajaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.kustantaja[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
       data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.kustantaja.tooltip[lang]}}"
       data-ng-show="i18n.content.form.kustantaja.tooltip[lang]"></i>
@@ -515,7 +515,7 @@
          data-typeahead-loading="jufoKustantajaLataa" data-typeahead-no-results="jufoNoResults"
          data-typeahead-wait-ms="300"
          placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKustantajaLataa'></i>
@@ -530,7 +530,7 @@
 <div class="row form-group" data-ng-show="isVisible('julkaisunkustannuspaikka')" id="julkaisunkustannuspaikkaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkustannuspaikka[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
+    <i class="fa fa-info-circle justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
       data-uib-popover="{{i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]}}"
       data-ng-show="i18n.content.form.julkaisunkustannuspaikka.tooltip[lang]"></i>
   </div>
@@ -538,7 +538,7 @@
     <div class="row">
       <div class="col-xs-4">
         <input type="text" class="form-control justus-input md" data-ng-model="justus.julkaisunkustannuspaikka">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
       </div>
@@ -556,7 +556,7 @@
 <div class="row form-group" id="avainsanatGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.avainsanat[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
+    <i class="fa fa-info-circle justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.avainsanat.tooltip[lang]}}"
      data-ng-show="i18n.content.form.avainsanat.tooltip[lang]"></i>
   </div>
@@ -568,7 +568,7 @@
          data-typeahead-loading="avainsanatLataa" data-typeahead-no-results="avainsanatNoResults"
          data-typeahead-wait-ms="300"
          placeholder="{{i18n.content.form.avainsana.picktip[lang]}}">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='avainsanatLataa'></i>
@@ -590,7 +590,7 @@
 <div class="row form-group" id="julkaisunkieliGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisunkieli.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisunkieli.tooltip[lang]"></i>
@@ -604,7 +604,7 @@
          data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
          placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
          data-typeahead-on-select="useField('julkaisunkieli',$item.arvo)">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -615,7 +615,7 @@
 <div class="row form-group" id="julkaisunkansainvalisyysGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkansainvalisyys[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]"></i>
@@ -647,7 +647,7 @@
 <div class="row form-group" data-ng-show="isVisible('julkaisumaa')" id="julkaisumaaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisumaa[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisumaa.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisumaa.tooltip[lang]"></i>
@@ -661,7 +661,7 @@
          data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
          data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
          placeholder="{{i18n.content.form.julkaisumaa.picktip[lang]}}">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -672,7 +672,7 @@
 <div class="row form-group" id="tieteenalaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.tieteenala[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.tieteenala.tooltip[lang]}}"
      data-ng-show="i18n.content.form.tieteenala.tooltip[lang]"></i>
@@ -689,7 +689,7 @@
          data-ng-model="lab_tieteenala$index"
          data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"
          data-ng-click="showSelectTieteenala[$index]=true">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         <div data-ng-show="showSelectTieteenala[$index]">
           <div class="col-xs-6">
             <ui-select data-ng-model="tieteenala.selected"
@@ -757,7 +757,7 @@
 <div class="row form-group" id="kansainvalinenyhteisjulkaisuGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.kansainvalinenyhteisjulkaisu[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]}}"
      data-ng-show="i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]"></i>
@@ -789,7 +789,7 @@
 <div class="row form-group" id="yhteisjulkaisuyrityksenkanssaGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]}}"
      data-ng-show="i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]"></i>
@@ -822,7 +822,7 @@
 <div class="row form-group" id="doitunnisteGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.doitunniste[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.doitunniste.tooltip[lang]}}"
      data-ng-show="i18n.content.form.doitunniste.tooltip[lang]"></i>
@@ -831,7 +831,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input md" data-ng-model="justus.doitunniste">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -843,7 +843,7 @@
 <div class="row form-group" id="pysyvaverkkoosoiteGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.pysyvaverkkoosoite[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.pysyvaverkkoosoite.tooltip[lang]}}"
      data-ng-show="i18n.content.form.pysyvaverkkoosoite.tooltip[lang]"></i>
@@ -852,7 +852,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg" data-ng-model="justus.pysyvaverkkoosoite">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
       </div>
@@ -863,7 +863,7 @@
 <div class="row form-group" id="avoinsaatavuusGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.avoinsaatavuus[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.avoinsaatavuus.tooltip[lang]}}"
      data-ng-show="i18n.content.form.avoinsaatavuus.tooltip[lang]"></i>
@@ -882,7 +882,7 @@
         <label data-ng-model="lab2_avoinsaatavuus" class="control-label justus-required">
           <input type="radio" data-ng-model="justus.avoinsaatavuus" value="1">
             {{i18n.content.form.avoinsaatavuus['1'][lang]}}
-            <i class="glyphicon glyphicon-info-sign justus-info"
+            <i class="fa fa-info-circle justus-info"
              data-popover-trigger="'mouseenter'" data-popover-placement="right"
              data-uib-popover="{{i18n.content.form.avoinsaatavuus['1'].tooltip[lang]}}"
              data-ng-show="i18n.content.form.avoinsaatavuus['1'].tooltip[lang]"></i>
@@ -891,7 +891,7 @@
         <label data-ng-model="lab3_avoinsaatavuus" class="control-label justus-required">
           <input type="radio" data-ng-model="justus.avoinsaatavuus" value="2">
             {{i18n.content.form.avoinsaatavuus['2'][lang]}}
-            <i class="glyphicon glyphicon-info-sign justus-info"
+            <i class="fa fa-info-circle justus-info"
              data-popover-trigger="'mouseenter'" data-popover-placement="right"
              data-uib-popover="{{i18n.content.form.avoinsaatavuus['2'].tooltip[lang]}}"
              data-ng-show="i18n.content.form.avoinsaatavuus['2'].tooltip[lang]"></i>
@@ -909,7 +909,7 @@
 <div class="row form-group" id="julkaisurinnakkaistallennettuGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]}}"
      data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]"></i>
@@ -943,7 +943,7 @@
   id="rinnakkaistallennetunversionverkkoosoiteGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]"></label>
-    <i class="glyphicon glyphicon-info-sign justus-info"
+    <i class="fa fa-info-circle justus-info"
      data-popover-trigger="'mouseenter'" data-popover-placement="right"
      data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
      data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]"></i>
@@ -956,7 +956,7 @@
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg justus-required"
          data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite">
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 

@@ -59,7 +59,21 @@ module.exports = function (grunt) {
         src: ['**/*.{ttf,woff,woff2,eot,svg,otf}'],
         dest: distDir + '/fonts'
       }
-    }
+    },
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          'src/css/main.css': 'src/scss/main.scss'
+        }
+      }
+    },
+    watch: {
+      files: ['**/*'],
+      tasks: ['sass'],
+    },
   });
 
   grunt.registerTask('default', [
@@ -72,5 +86,10 @@ module.exports = function (grunt) {
     'concat',
     'copy',
     'usemin'
+  ]);
+
+  grunt.registerTask('dev', [
+    'sass',
+    'watch'
   ]);
 };

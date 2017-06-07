@@ -17,4 +17,9 @@ Run:
 
 Copy directory `dist` wherever...
 
+## Development
+
+To build SASS files and keep watching for changes run:
+* `grunt dev`
+
 See FILES.md for some more specifics.

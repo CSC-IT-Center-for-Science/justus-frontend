@@ -260,15 +260,3 @@ body {
   right: 15px;
   top: 10px;
 }
-
-.btn-primary {
-  border-color: #99C2C8;
-  background: #99C2C8;
-  color: #FFFFFF;
-}
-
-.btn-primary:hover {
-  border-color: #026D7C;
-  background: #026D7C;
-  color: #FFFFFF;
-}
