@@ -255,3 +255,7 @@ body {
 .row.no-gutter [class*='col-']:not(:last-child) {
   padding-right:0;
 }
+
+.form-control-feedback {
+  right: 15px;
+}
