@@ -23,7 +23,9 @@
         <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('julkaisuvuosi')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('julkaisuvuosi')">
+        </i>
       </div>
     </div>
   </div>
@@ -48,7 +50,9 @@
         <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('julkaisunnimi')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('julkaisunnimi')">
+        </i>
       </div>
     </div>
   </div>
@@ -75,7 +79,9 @@
         <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('tekijat')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('tekijat')">
+        </i>
       </div>
     </div>
   </div>
@@ -109,7 +115,9 @@
          data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')">
+        </i>
       </div>
     </div>
   </div>
@@ -213,10 +221,11 @@
          title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
          data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]"></span>
 
-        <i class="fa fa-arrow-left pull-right"
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
          data-ng-if="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet
           && justus.organisaatiotekija[$index].alayksikko[0].alayksikko
-          )"><!-- nb! ei pakollinen vielä && justus.organisaatiotekija[$index].orcid)" --></i>
+          )"><!-- nb! ei pakollinen vielä && justus.organisaatiotekija[$index].orcid)" -->
+        </i>
       </div>
     </div>
   </div>
@@ -250,8 +259,9 @@
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKonferenssiLataa'></i>
-        <i class="fa fa-arrow-left pull-right"
-         data-ng-if="requiredHighlight && !isValid('konferenssinvakiintunutnimi')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+         data-ng-if="requiredHighlight && !isValid('konferenssinvakiintunutnimi')">
+        </i>
       </div>
     </div>
   </div>
@@ -296,7 +306,9 @@
         <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('isbn')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('isbn')">
+        </i>
       </div>
     </div>
   </div>
@@ -346,7 +358,9 @@
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoLataa'></i>
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('lehdenjulkaisusarjannimi')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('lehdenjulkaisusarjannimi')">
+        </i>
       </div>
     </div>
     <!-- näytä valitun lehden/sarjan tietoja -->
@@ -386,7 +400,9 @@
       <div class="col-xs-6">
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('issn')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('issn')">
+        </i>
       </div>
     </div>
   </div>
@@ -503,7 +519,9 @@
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='jufoKustantajaLataa'></i>
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('kustantaja')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('kustantaja')">
+        </i>
       </div>
     </div>
   </div>
@@ -603,7 +621,9 @@
      data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]"></i>
     <span data-ng-if="isRequired('julkaisunkansainvalisyys')" class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisunkansainvalisyys" data-ng-required="requiredHighlight && !isValid('julkaisunkansainvalisyys')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_julkaisunkansainvalisyys" 
+    data-ng-required="requiredHighlight && !isValid('julkaisunkansainvalisyys')">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_julkaisunkansainvalisyys" class="control-label justus-required">
@@ -616,7 +636,9 @@
         </label>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('julkaisunkansainvalisyys')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('julkaisunkansainvalisyys')">
+        </i>
       </div>
     </div>
   </div>
@@ -724,8 +746,9 @@
         title="{{i18n.content.form.tieteenala.lisaa.tooltip[lang]}}"
         data-ng-bind="i18n.content.form.tieteenala.lisaa.tooltip[lang]"></span>
 
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight &&
-        (justus.tieteenala.length==0 || (justus.tieteenala.length>=1 && !justus.tieteenala[$index].tieteenalakoodi))"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && (justus.tieteenala.length==0 || (justus.tieteenala.length>=1 && !justus.tieteenala[$index].tieteenalakoodi))">
+        </i>
       </div>
     </div>
   </div>
@@ -740,7 +763,9 @@
      data-ng-show="i18n.content.form.kansainvalinenyhteisjulkaisu.tooltip[lang]"></i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_kansainvalinenyhteisjulkaisu" data-ng-required="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_kansainvalinenyhteisjulkaisu" 
+    data-ng-required="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_kansainvalinenyhteisjulkaisu" class="control-label justus-required">
@@ -753,7 +778,9 @@
         </label>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('kansainvalinenyhteisjulkaisu')">
+        </i>
       </div>
     </div>
   </div>
@@ -768,7 +795,9 @@
      data-ng-show="i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]"></i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_yhteisjulkaisuyrityksenkanssa" data-ng-required="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_yhteisjulkaisuyrityksenkanssa" 
+    data-ng-required="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa" class="control-label justus-required">
@@ -781,7 +810,9 @@
         </label>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('yhteisjulkaisuyrityksenkanssa')">
+        </i>
       </div>
     </div>
   </div>
@@ -838,7 +869,9 @@
      data-ng-show="i18n.content.form.avoinsaatavuus.tooltip[lang]"></i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_avoinsaatavuus" data-ng-required="requiredHighlight && !isValid('avoinsaatavuus')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_avoinsaatavuus" 
+    data-ng-required="requiredHighlight && !isValid('avoinsaatavuus')">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_avoinsaatavuus" class="control-label justus-required">
@@ -865,7 +898,9 @@
         </label>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('avoinsaatavuus')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('avoinsaatavuus')">
+        </i>
       </div>
     </div>
   </div>
@@ -880,7 +915,9 @@
      data-ng-show="i18n.content.form.julkaisurinnakkaistallennettu.tooltip[lang]"></i>
      <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisurinnakkaistallennettu" data-ng-required="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_julkaisurinnakkaistallennettu" 
+    data-ng-required="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="control-label justus-required">
@@ -893,13 +930,17 @@
         </label>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')">
+        </i>
       </div>
     </div>
   </div>
 </div>
 <!-- Kenttä: Rinnakkaistallennetun version verkko-osoite -->
-<div class="row form-group" data-ng-show="isVisible('rinnakkaistallennetunversionverkkoosoite')" id="rinnakkaistallennetunversionverkkoosoiteGroup">
+<div class="row form-group" 
+  data-ng-show="isVisible('rinnakkaistallennetunversionverkkoosoite')" 
+  id="rinnakkaistallennetunversionverkkoosoiteGroup">
   <div class="col-sm-4 col-xs-12 justus-title">
     <label class="control-label" data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]"></label>
     <i class="glyphicon glyphicon-info-sign justus-info"
@@ -908,7 +949,9 @@
      data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]"></i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_rinnakkaistallennetunversionverkkoosoite" data-ng-required="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_rinnakkaistallennetunversionverkkoosoite" 
+    data-ng-required="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-input lg justus-required"
@@ -916,7 +959,9 @@
         <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
-        <i class="fa fa-arrow-left pull-right" data-ng-if="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')"></i>
+        <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          data-ng-if="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')">
+        </i>
       </div>
     </div>
   </div>

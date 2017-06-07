@@ -259,3 +259,9 @@ body {
 .form-control-feedback {
   right: 15px;
 }
+
+.form-control-feedback-extra {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
