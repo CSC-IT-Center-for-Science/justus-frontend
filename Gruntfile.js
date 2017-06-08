@@ -83,6 +83,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean',
+    'sass',
     'useminPrepare',
     'concat',
     'copy',

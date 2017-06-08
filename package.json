@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "JUSTUS - JULKAISUTIETOJEN TALLENNUS",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "grunt dev",
+    "build": "grunt build"
   },
   "author": "CSC",
   "repository": "https://github.com/CSCfi/justus-frontend",
