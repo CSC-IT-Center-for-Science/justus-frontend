@@ -4,7 +4,7 @@
 <!-- hakuehdot: DOI, julkaisun nimi, tekijän nimi -->
 <!-- div class="row">
   <div class="col-xs-12">
-    <span class="justus-title">{{i18n.content.esitayta.title[lang]}}</span>
+    <span>{{i18n.content.esitayta.title[lang]}}</span>
     <br>
     <span class="">{{i18n.content.esitayta.text[lang]}}</span>
     <script type="text/ng-template" id="HakuPopoverTemplate.html">
@@ -21,7 +21,7 @@
   </div>
 </div -->
 
-<div class="row justus-bottom-space">
+<div class="row m-b">
   <div class="col-sm-6 col-xs-12">
     <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
     <div class="input-group">
@@ -37,10 +37,8 @@
       </span>
     </div>
   </div>
-</div>
 
-<div class="row justus-bottom-space">
-  <div class="col-xs-12">
+  <div class="col-sm-6 col-xs-12">
     <h3 class="form-header">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <input type="text" class="form-control" data-ng-model="julkaisunhakutekija"

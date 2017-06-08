@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'src/css/main.css': 'src/scss/main.scss'
+          'src/css/justus.css': 'src/scss/main.scss'
         }
       }
     },

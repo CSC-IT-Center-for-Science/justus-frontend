@@ -1,7 +1,7 @@
 
 <!-- Kenttä: Julkaisutyyppi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisutyyppi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisutyyppi[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="getCode('julkaisutyypit',justus.julkaisutyyppi).selite[lang]"></span>
   </div>
@@ -9,25 +9,25 @@
 
 <!-- Kenttä: Julkaisuvuosi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisuvuosi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisuvuosi[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.julkaisuvuosi}}</div>
 </div>
 
 <!-- Kenttä: Julkaisun nimi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisunnimi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisunnimi[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.julkaisunnimi}}</div>
 </div>
 
 <!-- Kenttä: Tekijät -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.tekijat[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.tekijat[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.tekijat}}</div>
 </div>
 
 <!-- Kenttä: Julkaisun tekijöiden lukumäärä -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisuntekijoidenlukumaara[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisuntekijoidenlukumaara[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.julkaisuntekijoidenlukumaara}}</div>
 </div>
 
@@ -35,7 +35,7 @@
 <div class="row" style="border:1px dotted gray;">
   <div class="col-xs-12">
     <div class="row">
-      <div class="col-xs-4 justus-title">{{i18n.content.form.organisaatiotekija[lang]}}</div>
+      <div class="col-xs-4">{{i18n.content.form.organisaatiotekija[lang]}}</div>
       <div class="col-xs-8 justus-data">
         <div data-ng-repeat="i in justus.organisaatiotekija track by $index">
           {{justus.organisaatiotekija[$index].sukunimi}},
@@ -51,27 +51,27 @@
 
 <!-- Kenttä: Konferenssin vakiintunut nimi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.konferenssinvakiintunutnimi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.konferenssinvakiintunutnimi[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.konferenssinvakiintunutnimi}}</div>
 </div>
 <!-- Kenttä: Emojulkaisun nimi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.emojulkaisunnimi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.emojulkaisunnimi[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.emojulkaisunnimi}}</div>
 </div>
 <!-- Kenttä: ISBN :: nb! isbn vs issn. -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.isbn[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.isbn[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.isbn}}</div>
 </div>
 <!-- Kenttä: Emojulkaisun toimittajat -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.emojulkaisuntoimittajat[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.emojulkaisuntoimittajat[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.emojulkaisuntoimittajat}}</div>
 </div>
 <!-- Kenttä: Lehden / julkaisusarjan nimi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.lehdenjulkaisusarjannimi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.lehdenjulkaisusarjannimi[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="justus.lehdenjulkaisusarjannimi"></span>
     <!-- näytä valitun lehden/sarjan tietoja -->
@@ -85,44 +85,44 @@
 </div>
 <!-- Kenttä: ISSN :: nb! issn vs isbn. required-ehto toimii vaikka isbn:ää ei lomakkeella olisikaan -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.issn[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.issn[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.issn}}</div>
 </div>
 <!-- Kenttä: Volyymi -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.volyymi[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.volyymi[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.volyymi}}</div>
 </div>
 <!-- Kenttä: Numero -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.numero[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.numero[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.numero}}</div>
 </div>
 <!-- Kenttä: Sivut -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.sivut[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.sivut[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.sivut}}</div>
 </div>
 <!-- Kenttä: Artikkelinumero -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.artikkelinumero[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.artikkelinumero[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.artikkelinumero}}</div>
 </div>
 <!-- Kenttä: Kustantaja -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.kustantaja[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.kustantaja[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.kustantaja}}</div>
 </div>
 <!-- Kenttä: Julkaisun kustannuspaikka -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisunkustannuspaikka[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisunkustannuspaikka[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.julkaisunkustannuspaikka}}</div>
 </div>
 
 <!-- loput kentät -->
 <!-- Kenttä: Avainsanat -->
 <div class="row" style="border:1px dotted gray;">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.avainsanat[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.avainsanat[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-repeat="i in justus.avainsana"><span data-ng-if="$index > 0">, </span>
       {{i.avainsana}}</span>
@@ -131,7 +131,7 @@
 
 <!-- Kenttä: Julkaisun kieli -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisunkieli[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisunkieli[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <!-- {{justus.julkaisunkieli}} -->
     <span data-ng-bind="getCode('kieli',justus.julkaisunkieli).selite[lang]"></span>
@@ -139,14 +139,14 @@
 </div>
 <!-- Kenttä: Julkaisun kansainvälisyys -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisunkansainvalisyys[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisunkansainvalisyys[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="i18n.content.form.julkaisunkansainvalisyys[justus.julkaisunkansainvalisyys][lang]"></span>
   </div>
 </div>
 <!-- Kenttä: Julkaisumaa -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisumaa[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.julkaisumaa[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"></span>
   </div>
@@ -156,7 +156,7 @@
 <div class="row" style="border:1px dotted gray;">
   <div class="col-xs-12">
     <div class="row">
-      <div class="col-xs-4 justus-title">{{i18n.content.form.tieteenala[lang]}}
+      <div class="col-xs-4">{{i18n.content.form.tieteenala[lang]}}
       </div>
       <div class="col-xs-8 justus-data">
         <div data-ng-repeat="i in justus.tieteenala">
@@ -170,14 +170,14 @@
 
 <!-- Kenttä: Kansainvälinen yhteisjulkaisu -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.kansainvalinenyhteisjulkaisu[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.kansainvalinenyhteisjulkaisu[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="i18n.content.form.kansainvalinenyhteisjulkaisu[justus.kansainvalinenyhteisjulkaisu][lang]"></span>
   </div>
 </div>
 <!-- Kenttä: Yhteisjulkaisu yrityksen kanssa -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <span data-ng-bind="i18n.content.form.yhteisjulkaisuyrityksenkanssa[justus.yhteisjulkaisuyrityksenkanssa][lang]"></span>
   </div>
@@ -185,18 +185,18 @@
 
 <!-- Kenttä: DOI-tunniste -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.doitunniste[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.doitunniste[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.doitunniste}}</div>
 </div>
 
 <!-- Kenttä: Pysyvä verkko-osoite -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.pysyvaverkkoosoite[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.pysyvaverkkoosoite[lang]}}</div>
   <div class="col-xs-8 justus-data">{{justus.pysyvaverkkoosoite}}</div>
 </div>
 <!-- Kenttä: Avoin saatavuus -->
 <div class="row">
-  <div class="col-xs-4 justus-title">{{i18n.content.form.avoinsaatavuus[lang]}}</div>
+  <div class="col-xs-4">{{i18n.content.form.avoinsaatavuus[lang]}}</div>
   <div class="col-xs-8 justus-data ">
     <span data-ng-bind="i18n.content.form.avoinsaatavuus[justus.avoinsaatavuus][lang]"></span>
   </div>
@@ -206,14 +206,14 @@
 <div class="row" style="border:1px dotted gray;">
   <div class="col-xs-12">
     <div class="row">
-      <div class="col-xs-4 justus-title">{{i18n.content.form.julkaisurinnakkaistallennettu[lang]}}</div>
+      <div class="col-xs-4">{{i18n.content.form.julkaisurinnakkaistallennettu[lang]}}</div>
       <div class="col-xs-8 justus-data">
         <span data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[justus.julkaisurinnakkaistallennettu][lang]"></span>
       </div>
     </div>
     <!-- Kenttä: Rinnakkaistallennetun version verkko-osoite -->
     <div class="row">
-      <div class="col-xs-4 justus-title">{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]}}</div>
+      <div class="col-xs-4">{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]}}</div>
       <div class="col-xs-8 justus-data">{{justus.rinnakkaistallennetunversionverkkoosoite}}</div>
     </div>
   </div>
