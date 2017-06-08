@@ -39,7 +39,7 @@ module.exports = function (grunt) {
           'html/**',
           //usemin+concat: 'js/*',
           'config.js', // TODO this should be made environment specific
-          'css/*',
+          'css/justus.css',
           'img/*'
         ],
         dest: distDir,
@@ -62,18 +62,28 @@ module.exports = function (grunt) {
     },
     sass: {
       options: {
-        sourceMap: true,
+        sourceMap: false,
         sourceComments: false
       },
       dist: {
         files: {
-          'src/css/justus.css': 'src/scss/main.scss'
+          'src/css/main.css': 'src/scss/main.scss'
         }
+      }
+    },
+    concat: {
+      dist: {
+        src: [
+          'src/bower_components/fontawesome/css/font-awesome.css',
+          'src/bower_components/angular-ui-select/dist/select.css',
+          'src/css/*.css',
+        ],
+        dest: 'src/css/justus.css',
       }
     },
     watch: {
       files: ['**/*'],
-      tasks: ['sass'],
+      tasks: ['sass', 'concat'],
     },
   });
 
@@ -92,6 +102,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dev', [
     'sass',
+    'concat',
     'watch'
   ]);
 };
