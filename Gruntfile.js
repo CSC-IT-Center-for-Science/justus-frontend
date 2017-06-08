@@ -72,7 +72,7 @@ module.exports = function (grunt) {
       }
     },
     concat: {
-      dist: {
+      css: {
         src: [
           'src/bower_components/fontawesome/css/font-awesome.css',
           'src/bower_components/angular-ui-select/dist/select.css',
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
     },
     watch: {
       files: ['**/*'],
-      tasks: ['sass', 'concat'],
+      tasks: ['sass', 'concat:css'],
     },
   });
 
@@ -94,6 +94,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean',
     'sass',
+    'concat:css',
     'useminPrepare',
     'concat',
     'copy',
@@ -102,7 +103,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dev', [
     'sass',
-    'concat',
+    'concat:css',
     'watch'
   ]);
 };
