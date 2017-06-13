@@ -339,8 +339,8 @@ justusApp.controller('JustusController', [
     $scope.isVisible = function(field) {
       return Justus.isVisible(field);
     }
-    $scope.isRequired = function(field) {
-      return Justus.isRequired(field);
+    $scope.isFieldRequired = function(field) {
+      return Justus.isFieldRequired(field);
     }
     $scope.isValid = function(field) {
       return Justus.isValid(field);
@@ -353,7 +353,7 @@ justusApp.controller('JustusController', [
     }
 
     $scope.isFieldRequired = function(fieldName) {
-      return Justus.isFieldRequired(fieldName);
+      return Justus.isFieldRequiredByOrganization(fieldName);
     }
 
     // INITIALIZE

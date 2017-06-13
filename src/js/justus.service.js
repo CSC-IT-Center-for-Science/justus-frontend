@@ -9,6 +9,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // in justus we keep data to be stored in database
   this.justus = {};
 
+  // Depicts visible fields on each publication type
   this.visible = {
     "konferenssinvakiintunutnimi": {
       "julkaisutyyppi": ["A4","B3","D3"]
@@ -123,10 +124,22 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
         visible = this.visible[field][k] == this.justus[k];
       }
     }
+
+    // If the field is visible for the current publication type, it
+    // can still be hidden by the active organization
+    if (visible === true) {
+      visible = this.isFieldVisibleByOrganization(field);
+    }
     return visible;
   }
 
-  this.isRequired = function(field) {
+  // Checks if the provided field is configured as visible in config.js
+  this.isFieldVisibleByOrganization = function(fieldName) {
+    let organizationConfig = domain_organization[$rootScope.user.domain];
+    return organizationConfig.visibleFields.includes(fieldName) ? true : false; 
+  }
+
+  this.isFieldRequired = function(field) {
     if (!this.isVisible(field)) return false;
     if (!this.requirement[field]) return false;
     let required = true; // field IS in requirement, so assume requirement
@@ -178,6 +191,11 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       }
     }
     return required;
+  }
+
+  this.isFieldRequiredByOrganization = function(fieldName) {
+    let organizationConfig = domain_organization[$rootScope.user.domain];
+    return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
   // identify from data when given field is valid
@@ -268,7 +286,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
         }
       }
     } else if ((this.justus[field]||"")=="") {
-      if (this.isRequired(field)) {
+      if (this.isFieldRequired(field)) {
         valid = false;
       }
     }
@@ -283,11 +301,6 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       }
     }
     return ret;
-  }
-
-  this.isFieldRequired = function(fieldName) {
-    let organizationConfig = domain_organization[$rootScope.user.domain];
-    return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
   // pattern checkers (for validity)
