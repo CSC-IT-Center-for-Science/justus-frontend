@@ -7,19 +7,21 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuosi[lang]"></label>
     <i class="fa fa-info-circle justus-info justus-color"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.julkaisuvuosi.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.julkaisuvuosi.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisuvuosi"
-   data-ng-required="requiredHighlight && !isValid('julkaisuvuosi')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_julkaisuvuosi"
+    data-ng-required="isFieldRequired('julkaisuvuosi')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-        data-ng-model="justus.julkaisuvuosi"
-        maxlength="4" pattern="^[0-9]{4}$"
-        title="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}">
+          data-ng-model="justus.julkaisuvuosi"
+          maxlength="4" pattern="^[0-9]{4}$"
+          title="{{i18n.content.form.julkaisuvuosi.tooltip[lang]}}">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -36,13 +38,14 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunnimi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.julkaisunnimi.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.julkaisunnimi.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.julkaisunnimi.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
    </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisunnimi"
-   data-ng-required="requiredHighlight && !isValid('julkaisunnimi')">
+   data-ng-required="isFieldRequired('julkaisunnimi')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -63,19 +66,20 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.tekijat.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.tekijat.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.tekijat.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_tekijat"
-   data-ng-required="requiredHighlight && !isValid('tekijat')">
+   data-ng-required="isFieldRequired('tekijat')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-         data-ng-model="justus.tekijat"
-         placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
-         data-ng-change="useTekijat(justus.tekijat)">
+          data-ng-model="justus.tekijat"
+          placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
+          data-ng-change="useTekijat(justus.tekijat)">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -98,7 +102,7 @@
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisuntekijoidenlukumaara"
-   data-ng-required="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')">
+   data-ng-required="isFieldRequired('julkaisuntekijoidenlukumaara')">
     <div class="row">
       <div class="col-xs-5">
         <input type="text" class="form-control justus-required"
@@ -108,11 +112,12 @@
       </div>
       <div class="col-xs-5 justus-data text-right">
         <span class="justus-btn justus-btn-default"
-         data-ng-click="useKopioiTekijat(justus.tekijat)"
-         data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
-         data-popover-trigger="'mouseenter'" data-popover-placement="right"
-         data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"
-         data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]"></span>
+          data-ng-click="useKopioiTekijat(justus.tekijat)"
+          data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
+          data-popover-trigger="'mouseenter'" data-popover-placement="right"
+          data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]">
+        </span>
       </div>
       <div class="col-xs-2">
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
@@ -128,28 +133,29 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.organisaatiotekija.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.organisaatiotekija.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.organisaatiotekija.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.organisaatiotekija.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div data-ng-repeat="i in justus.organisaatiotekija track by $index"
-     class="row justus-required"
-     data-ng-model="req_organisaatiotekija[$index]"
-     data-ng-required="isFieldRequired('organisaatiotekija')">
+      class="row justus-required"
+      data-ng-model="req_organisaatiotekija[$index]"
+      data-ng-required="isFieldRequired('organisaatiotekija')">
       <div class="col-xs-10">
         <div class="row form-group" id="organisaatiotekijaGroup">
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control justus-required"
-             data-ng-model="justus.organisaatiotekija[$index].sukunimi"
-             placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
+              data-ng-model="justus.organisaatiotekija[$index].sukunimi"
+              placeholder="{{i18n.content.form.organisaatiotekija.sukunimi.picktip[lang]}}">
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
           <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control justus-required"
-             data-ng-model="justus.organisaatiotekija[$index].etunimet"
-             placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
+              data-ng-model="justus.organisaatiotekija[$index].etunimet"
+              placeholder="{{i18n.content.form.organisaatiotekija.etunimet.picktip[lang]}}">
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
@@ -158,12 +164,13 @@
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
              data-ng-init="pIx=$parent.$index" class="row form-group">
               <div class="col-xs-9 col-sm-9">
-                <input type="hidden" data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
+                <input type="hidden" 
+                  data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
                 <input type="text"
-                 data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
-                 data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
-                 data-ng-show="ota.alayksikko"
-                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko=''">
+                  data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
+                  data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
+                  data-ng-show="ota.alayksikko"
+                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko=''">
                 <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                 <!--
                 {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
@@ -188,38 +195,42 @@
                 -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{a}}"
                 -->
                 <span class="btn btn-primary"
-                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.splice($index, 1)"
-                 data-ng-hide="justus.organisaatiotekija[$parent.$index].alayksikko.length<2"
-                 title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
-                 data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]"></span>
+                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.splice($index, 1)"
+                  data-ng-hide="justus.organisaatiotekija[$parent.$index].alayksikko.length<2"
+                  title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.poista[lang]">
+                 </span>
                 <span class="btn btn-primary"
-                 data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.push({alayksikko:''})"
-                 data-ng-show="($index == justus.organisaatiotekija[$parent.$index].alayksikko.length-1 && a!='')"
-                 title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
-                 data-ng-bind="i18n.content.form.organisaatiotekija.lisaa[lang]"></span>
+                  data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko.push({alayksikko:''})"
+                  data-ng-show="($index == justus.organisaatiotekija[$parent.$index].alayksikko.length-1 && a!='')"
+                  title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.organisaatiotekija.lisaa[lang]">
+                 </span>
               </div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-6"><!-- nb! ei pakollinen vielä -->
             <input type="text" class="form-control justus-required"
-             data-ng-model="justus.organisaatiotekija[$index].orcid"
-             data-ng-pattern="pattern.orcid" data-orcid-directive=""
-             placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
+              data-ng-model="justus.organisaatiotekija[$index].orcid"
+              data-ng-pattern="pattern.orcid" data-orcid-directive=""
+              placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
       </div>
       <div class="col-xs-2">
         <span class="btn btn-primary"
-         data-ng-click="justus.organisaatiotekija.splice($index, 1)"
-         data-ng-hide="justus.organisaatiotekija.length<2"
-         title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
-         data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]"></span>
+          data-ng-click="justus.organisaatiotekija.splice($index, 1)"
+          data-ng-hide="justus.organisaatiotekija.length<2"
+          title="{{i18n.content.form.organisaatiotekija.poista.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.organisaatiotekija.poista.tooltip[lang]">
+         </span>
         <span class="btn btn-primary"
-         data-ng-click="newot={}; newot.alayksikko = [{alayksikko:''}]; justus.organisaatiotekija.push(newot);"
-         data-ng-hide="$index < justus.organisaatiotekija.length-1"
-         title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
-         data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]"></span>
+          data-ng-click="newot={}; newot.alayksikko = [{alayksikko:''}]; justus.organisaatiotekija.push(newot);"
+          data-ng-hide="$index < justus.organisaatiotekija.length-1"
+          title="{{i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.organisaatiotekija.lisaa.tooltip[lang]">
+         </span>
 
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
          data-ng-if="requiredHighlight && !(justus.organisaatiotekija[$index].sukunimi && justus.organisaatiotekija[$index].etunimet
@@ -245,16 +256,16 @@
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-    data-ng-model="req_konferenssinvakiintunutnimi"
-    data-ng-required="requiredHighlight && !isValid('konferenssinvakiintunutnimi')">
+    data-ng-model="req_konferenssinvakiintunutnimi">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-         data-ng-model="justus.konferenssinvakiintunutnimi"
-         data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
-         data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
-         data-typeahead-wait-ms="300"
-         placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
+          data-ng-model="justus.konferenssinvakiintunutnimi"
+          data-ng-required="isFieldRequired('konferenssinvakiintunutnimi')"
+          data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
+          data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
+          data-typeahead-wait-ms="300"
+          placeholder="{{i18n.content.form.konferenssinvakiintunutnimi.picktip[lang]}}">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -278,7 +289,11 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" data-ng-model="justus.emojulkaisunnimi">
+        <input 
+          type="text" 
+          class="form-control" 
+          data-ng-model="justus.emojulkaisunnimi"
+          data-ng-required="isFieldRequired('emojulkaisunnimi')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -297,12 +312,13 @@
     <span data-ng-show="isRequired('isbn')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_isbn" data-ng-required="requiredHighlight && !isValid('isbn')">
+   data-ng-model="req_isbn" 
+   data-ng-required="isFieldRequired('isbn')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-         data-ng-pattern="pattern.isbn" data-isbn-directive=""
-         data-ng-model="justus.isbn">
+          data-ng-pattern="pattern.isbn" data-isbn-directive=""
+          data-ng-model="justus.isbn">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -325,7 +341,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" data-ng-model="justus.emojulkaisuntoimittajat">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.emojulkaisuntoimittajat"
+          data-ng-required="isFieldRequired('emojulkaisuntoimittajat')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -344,16 +363,17 @@
     <span data-ng-show="isRequired('lehdenjulkaisusarjannimi')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_lehdenjulkaisusarjannimi" data-ng-required="requiredHighlight && !isValid('lehdenjulkaisusarjannimi')">
+   data-ng-model="req_lehdenjulkaisusarjannimi" 
+   data-ng-required="isFieldRequired('lehdenjulkaisusarjannimi')">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-         data-ng-model="justus.lehdenjulkaisusarjannimi"
-         data-uib-typeahead="nimet.Name for nimet in refreshKanavanimet(1,$viewValue)"
-         data-typeahead-loading="jufoLataa" data-typeahead-no-results="jufoNoResults"
-         data-typeahead-wait-ms="300"
-         placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
-         data-typeahead-on-select="useLehtisarja($item.Jufo_ID)">
+          data-ng-model="justus.lehdenjulkaisusarjannimi"
+          data-uib-typeahead="nimet.Name for nimet in refreshKanavanimet(1,$viewValue)"
+          data-typeahead-loading="jufoLataa" data-typeahead-no-results="jufoNoResults"
+          data-typeahead-wait-ms="300"
+          placeholder="{{i18n.content.form.lehdenjulkaisusarjannimi.picktip[lang]}}"
+          data-typeahead-on-select="useLehtisarja($item.Jufo_ID)">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -366,8 +386,12 @@
     <!-- näytä valitun lehden/sarjan tietoja -->
     <div class="row" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
       <div class="col-xs-12">
-        <input type="hidden" data-ng-model="justus.jufotunnus">
-        <input type="hidden" data-ng-model="justus.jufoluokitus">
+        <input type="hidden" 
+          data-ng-model="justus.jufotunnus"
+          data-ng-required="isFieldRequired('jufotunnus')">
+        <input type="hidden" 
+          data-ng-model="justus.jufoluokitus"
+          data-ng-required="isFieldRequired('jufoluokitus')">
         <!-- TODO show or not? -->
         <span data-ng-show="justus.jufotunnus">
           {{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
@@ -389,12 +413,14 @@
     <span data-ng-show="isRequired('issn')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_issn" data-ng-required="requiredHighlight && !isValid('issn')">
+   data-ng-model="req_issn" 
+   data-ng-required="isFieldRequired('issn')">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control justus-required"
-         data-ng-pattern="pattern.issn" data-issn-directive=""
-         data-ng-model="justus.issn">
+        <input type="text" 
+          class="form-control justus-required"
+          data-ng-pattern="pattern.issn" data-issn-directive=""
+          data-ng-model="justus.issn">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -419,7 +445,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control" data-ng-model="justus.volyymi">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.volyymi"
+          data-ng-required="isFieldRequired('volyymi')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -441,7 +470,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control" data-ng-model="justus.numero">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.numero"
+          data-ng-required="isFieldRequired('numero')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -463,7 +495,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control" data-ng-model="justus.sivut">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.sivut"
+          data-ng-required="isFieldRequired('sivut')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -485,7 +520,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control" data-ng-model="justus.artikkelinumero">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.artikkelinumero"
+          data-ng-required="isFieldRequired('artikkelinumero')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -510,11 +548,12 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
-         data-ng-model="justus.kustantaja"
-         data-uib-typeahead="kustantajanimet.Name for kustantajanimet in refreshKanavanimet(2,$viewValue)"
-         data-typeahead-loading="jufoKustantajaLataa" data-typeahead-no-results="jufoNoResults"
-         data-typeahead-wait-ms="300"
-         placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}">
+          data-ng-model="justus.kustantaja"
+          data-ng-required="isFieldRequired('kustantaja')"
+          data-uib-typeahead="kustantajanimet.Name for kustantajanimet in refreshKanavanimet(2,$viewValue)"
+          data-typeahead-loading="jufoKustantajaLataa" data-typeahead-no-results="jufoNoResults"
+          data-typeahead-wait-ms="300"
+          placeholder="{{i18n.content.form.kustantaja.picktip[lang]}}">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -537,7 +576,10 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-4">
-        <input type="text" class="form-control" data-ng-model="justus.julkaisunkustannuspaikka">
+        <input type="text" 
+        class="form-control" 
+        data-ng-model="justus.julkaisunkustannuspaikka"
+        data-ng-required="isFieldRequired('julkaisunkustannuspaikka')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -556,32 +598,40 @@
 <div class="row form-group" id="avainsanatGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.avainsanat[lang]"></label>
-    <i class="fa fa-info-circle justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.avainsanat.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.avainsanat.tooltip[lang]"></i>
+    <i class="fa fa-info-circle justus-info" 
+      data-popover-trigger="'mouseenter'" 
+      data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.avainsanat.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.avainsanat.tooltip[lang]">
+    </i>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div data-ng-repeat="i in justus.avainsana track by $index" class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" data-ng-model="justus.avainsana[$index].avainsana"
-         data-uib-typeahead="sanat.prefLabel for sanat in refreshAvainsanat($viewValue)"
-         data-typeahead-loading="avainsanatLataa" data-typeahead-no-results="avainsanatNoResults"
-         data-typeahead-wait-ms="300"
-         placeholder="{{i18n.content.form.avainsana.picktip[lang]}}">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.avainsana[$index].avainsana"
+          data-ng-required="isFieldRequired('avainsana')"
+          data-uib-typeahead="sanat.prefLabel for sanat in refreshAvainsanat($viewValue)"
+          data-typeahead-loading="avainsanatLataa" data-typeahead-no-results="avainsanatNoResults"
+          data-typeahead-wait-ms="300"
+          placeholder="{{i18n.content.form.avainsana.picktip[lang]}}">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
         <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='avainsanatLataa'></i>
         <span class="btn btn-primary"
-        data-ng-click="justus.avainsana.splice($index, 1)"
-        data-ng-hide="justus.avainsana.length<2"
-        title="{{i18n.content.form.avainsanat.poista.tooltip[lang]}}"
-        data-ng-bind="i18n.content.form.avainsanat.poista.tooltip[lang]"></span>
+          data-ng-click="justus.avainsana.splice($index, 1)"
+          data-ng-hide="justus.avainsana.length<2"
+          title="{{i18n.content.form.avainsanat.poista.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.avainsanat.poista.tooltip[lang]">
+        </span>
         <span class="btn btn-primary"
-        data-ng-click="justus.avainsana.push({avainsana:''});"
-        data-ng-hide="$index < justus.avainsana.length-1"
-        title="{{i18n.content.form.avainsanat.lisaa.tooltip[lang]}}"
-        data-ng-bind="i18n.content.form.avainsanat.lisaa.tooltip[lang]"></span>
+          data-ng-click="justus.avainsana.push({avainsana:''});"
+          data-ng-hide="$index < justus.avainsana.length-1"
+          title="{{i18n.content.form.avainsanat.lisaa.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.avainsanat.lisaa.tooltip[lang]">
+        </span>
       </div>
     </div>
   </div>
@@ -591,19 +641,23 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.julkaisunkieli.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.julkaisunkieli.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.julkaisunkieli.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.julkaisunkieli.tooltip[lang]">
+    </i>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.julkaisunkieli">
-        <input type="text" class="form-control" data-ng-model="sel_julkaisunkieli"
-         data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
-         data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
-         placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
-         data-typeahead-on-select="useField('julkaisunkieli',$item.arvo)">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="sel_julkaisunkieli"
+          data-ng-required="isFieldRequired('julkaisunkieli')"
+          data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
+          data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
+          placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
+          data-typeahead-on-select="useField('julkaisunkieli',$item.arvo)">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -616,23 +670,30 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkansainvalisyys[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.julkaisunkansainvalisyys.tooltip[lang]">
+    </i>
     <span data-ng-if="isRequired('julkaisunkansainvalisyys')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
     data-ng-model="req_julkaisunkansainvalisyys" 
-    data-ng-required="requiredHighlight && !isValid('julkaisunkansainvalisyys')">
+    data-ng-required="isFieldRequired('julkaisunkansainvalisyys')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_julkaisunkansainvalisyys" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.julkaisunkansainvalisyys" value="1">
-          {{i18n.content.form.julkaisunkansainvalisyys['1'][lang]}}
+        <label data-ng-model="lab1_julkaisunkansainvalisyys" 
+          class="control-label justus-required">
+          <input type="radio" 
+            data-ng-model="justus.julkaisunkansainvalisyys" 
+            value="1">
+            {{i18n.content.form.julkaisunkansainvalisyys['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_julkaisunkansainvalisyys" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.julkaisunkansainvalisyys" value="0">
-          {{i18n.content.form.julkaisunkansainvalisyys['0'][lang]}}
+        <label data-ng-model="lab2_julkaisunkansainvalisyys" 
+          class="control-label justus-required">
+          <input type="radio" 
+            data-ng-model="justus.julkaisunkansainvalisyys" 
+            value="0">
+            {{i18n.content.form.julkaisunkansainvalisyys['0'][lang]}}
         </label>
       </div>
       <div class="col-xs-2">
@@ -648,19 +709,24 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisumaa[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.julkaisumaa.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.julkaisumaa.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.julkaisumaa.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.julkaisumaa.tooltip[lang]">
+    </i>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
-        <input type="hidden" data-ng-model="justus.julkaisumaa">
-        <input type="text" class="form-control" data-ng-model="sel_julkaisumaa"
-         data-ng-value="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
-         data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
-         data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
-         placeholder="{{i18n.content.form.julkaisumaa.picktip[lang]}}">
+        <input type="hidden" 
+          data-ng-model="justus.julkaisumaa" 
+          data-ng-required="isFieldRequired('julkaisumaa')">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="sel_julkaisumaa"
+          data-ng-value="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
+          data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
+          data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
+          placeholder="{{i18n.content.form.julkaisumaa.picktip[lang]}}">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -673,16 +739,17 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.tieteenala[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.tieteenala.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.tieteenala.tooltip[lang]"></i>
-    <span data-ng-if="isRequired('tieteenala')" class="justus-required-star">*</span>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.tieteenala.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.tieteenala.tooltip[lang]">
+    </i>
+    <span data-ng-if="isFieldRequired('tieteenala')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'"
-    class="row justus-required"
-    data-ng-model="req_tieteenala[$index]"
-    data-ng-required="requiredHighlight && (justus.tieteenala.length==0 || (justus.tieteenala.length>0 && !justus.tieteenala[$index].tieteenalakoodi))">
+      class="row justus-required"
+      data-ng-model="req_tieteenala[$index]"
+      data-ng-required="isFieldRequired('tieteenala')">
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.tieteenala[$index]">
         <input type="text" class="form-control justus-required"
@@ -769,12 +836,18 @@
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_kansainvalinenyhteisjulkaisu" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.kansainvalinenyhteisjulkaisu" value="1">
-          {{i18n.content.form.kansainvalinenyhteisjulkaisu['1'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.kansainvalinenyhteisjulkaisu" 
+            data-ng-required="isFieldRequired('kansainvalinenyhteisjulkaisu')"
+            value="1">
+            {{i18n.content.form.kansainvalinenyhteisjulkaisu['1'][lang]}}
         </label>
         <label data-ng-model="lab2_kansainvalinenyhteisjulkaisu" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.kansainvalinenyhteisjulkaisu" value="0">
-          {{i18n.content.form.kansainvalinenyhteisjulkaisu['0'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.kansainvalinenyhteisjulkaisu" 
+            data-ng-required="isFieldRequired('kansainvalinenyhteisjulkaisu')"
+            value="0">
+            {{i18n.content.form.kansainvalinenyhteisjulkaisu['0'][lang]}}
         </label>
       </div>
       <div class="col-xs-2">
@@ -790,9 +863,10 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.yhteisjulkaisuyrityksenkanssa.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
@@ -801,12 +875,18 @@
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" value="1">
+          <input type="radio" 
+            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" 
+            data-ng-required="isFieldRequired('yhteisjulkaisuyrityksenkanssa')"
+            value="1">
           {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['1'][lang]}}
         </label>
         <label data-ng-model="lab2_yhteisjulkaisuyrityksenkanssa" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" value="0">
-          {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['0'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" 
+            data-ng-required="isFieldRequired('yhteisjulkaisuyrityksenkanssa')"
+            value="0">
+            {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['0'][lang]}}
         </label>
       </div>
       <div class="col-xs-2">
@@ -823,14 +903,18 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.doitunniste[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.doitunniste.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.doitunniste.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.doitunniste.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.doitunniste.tooltip[lang]">
+    </i>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" data-ng-model="justus.doitunniste">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.doitunniste"
+          data-ng-required="isFieldRequired('doitunniste')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -844,14 +928,18 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.pysyvaverkkoosoite[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.pysyvaverkkoosoite.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.pysyvaverkkoosoite.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.pysyvaverkkoosoite.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.pysyvaverkkoosoite.tooltip[lang]">
+    </i>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" data-ng-model="justus.pysyvaverkkoosoite">
+        <input type="text" 
+          class="form-control" 
+          data-ng-model="justus.pysyvaverkkoosoite"
+          data-ng-required="isFieldRequired('pysyvaverkkoosoite')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -864,9 +952,10 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.avoinsaatavuus[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.avoinsaatavuus.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.avoinsaatavuus.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.avoinsaatavuus.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.avoinsaatavuus.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
@@ -875,26 +964,37 @@
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_avoinsaatavuus" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.avoinsaatavuus" value="0">
-          {{i18n.content.form.avoinsaatavuus['0'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.avoinsaatavuus" 
+            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            value="0">
+            {{i18n.content.form.avoinsaatavuus['0'][lang]}}
         </label>
         <br>
         <label data-ng-model="lab2_avoinsaatavuus" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.avoinsaatavuus" value="1">
+          <input type="radio" 
+            data-ng-model="justus.avoinsaatavuus" 
+            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            value="1">
             {{i18n.content.form.avoinsaatavuus['1'][lang]}}
             <i class="fa fa-info-circle justus-info"
-             data-popover-trigger="'mouseenter'" data-popover-placement="right"
-             data-uib-popover="{{i18n.content.form.avoinsaatavuus['1'].tooltip[lang]}}"
-             data-ng-show="i18n.content.form.avoinsaatavuus['1'].tooltip[lang]"></i>
+              data-popover-trigger="'mouseenter'" data-popover-placement="right"
+              data-uib-popover="{{i18n.content.form.avoinsaatavuus['1'].tooltip[lang]}}"
+              data-ng-show="i18n.content.form.avoinsaatavuus['1'].tooltip[lang]">
+            </i>
         </label>
         <br>
         <label data-ng-model="lab3_avoinsaatavuus" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.avoinsaatavuus" value="2">
+          <input type="radio" 
+            data-ng-model="justus.avoinsaatavuus" 
+            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            value="2">
             {{i18n.content.form.avoinsaatavuus['2'][lang]}}
             <i class="fa fa-info-circle justus-info"
-             data-popover-trigger="'mouseenter'" data-popover-placement="right"
-             data-uib-popover="{{i18n.content.form.avoinsaatavuus['2'].tooltip[lang]}}"
-             data-ng-show="i18n.content.form.avoinsaatavuus['2'].tooltip[lang]"></i>
+              data-popover-trigger="'mouseenter'" data-popover-placement="right"
+              data-uib-popover="{{i18n.content.form.avoinsaatavuus['2'].tooltip[lang]}}"
+              data-ng-show="i18n.content.form.avoinsaatavuus['2'].tooltip[lang]">
+            </i>
         </label>
       </div>
       <div class="col-xs-2">
@@ -921,12 +1021,18 @@
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.julkaisurinnakkaistallennettu" value="1">
-          {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.julkaisurinnakkaistallennettu" 
+            data-ng-required="isFieldRequired('julkaisurinnakkaistallennettu')"
+            value="1">
+            {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
         </label>
         <label data-ng-model="lab2_julkaisurinnakkaistallennettu" class="control-label justus-required">
-          <input type="radio" data-ng-model="justus.julkaisurinnakkaistallennettu" value="0">
-          {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
+          <input type="radio" 
+            data-ng-model="justus.julkaisurinnakkaistallennettu" 
+            data-ng-required="isFieldRequired('julkaisurinnakkaistallennettu')"
+            value="0">
+            {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
         </label>
       </div>
       <div class="col-xs-2">
@@ -944,9 +1050,10 @@
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]"></label>
     <i class="fa fa-info-circle justus-info"
-     data-popover-trigger="'mouseenter'" data-popover-placement="right"
-     data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
-     data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]"></i>
+      data-popover-trigger="'mouseenter'" data-popover-placement="right"
+      data-uib-popover="{{i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]}}"
+      data-ng-show="i18n.content.form.rinnakkaistallennetunversionverkkoosoite.tooltip[lang]">
+    </i>
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
@@ -954,8 +1061,10 @@
     data-ng-required="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control justus-required"
-         data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite">
+        <input type="text" 
+          class="form-control justus-required"
+          data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite"
+          data-ng-required="isFieldRequired('rinnakkaistallennetunversionverkkoosoite')">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">

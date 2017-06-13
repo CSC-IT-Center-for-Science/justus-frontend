@@ -274,6 +274,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
     return valid;
   }
+  
   this.getInvalids = function() {
     let ret = [];
     for (let r in this.requirement) {
