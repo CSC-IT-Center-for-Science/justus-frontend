@@ -23,6 +23,7 @@ justusApp.controller('JustusController', [
     $scope.virtaLataa = false;
 
     $scope.requiredHighlight = false;
+    $scope.invalidFields = [];
 
     // more on justus-variable
     //$scope.justus.jufotunnus = "";
@@ -345,13 +346,10 @@ justusApp.controller('JustusController', [
       return Justus.isValid(field);
     }
 
-    $scope.getInvalids = function() {
-      let invalidFields = Justus.getInvalids();
-      Validation.setValidationErrors(invalidFields);
-      return invalidFields;
-    }
     $scope.isJustusValid = function() {
-      return $scope.getInvalids().length==0;
+      $scope.invalidFields = Justus.getInvalids();
+      Validation.setValidationErrors($scope.invalidFields);
+      return $scope.invalidFields.length == 0;
     }
 
     $scope.isFieldRequired = function(fieldName) {

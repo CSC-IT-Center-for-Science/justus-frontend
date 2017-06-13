@@ -14,8 +14,7 @@
     <span class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
-    data-ng-model="req_julkaisuvuosi"
-    data-ng-required="isFieldRequired('julkaisuvuosi')">
+    data-ng-model="req_julkaisuvuosi">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -44,8 +43,8 @@
     </i>
     <span class="justus-required-star">*</span>
    </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisunnimi"
-   data-ng-required="isFieldRequired('julkaisunnimi')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_julkaisunnimi">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -72,8 +71,8 @@
     </i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_tekijat"
-   data-ng-required="isFieldRequired('tekijat')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_tekijat">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -101,8 +100,8 @@
      data-ng-show="i18n.content.form.julkaisuntekijoidenlukumaara.tooltip[lang]"></i>
     <span class="justus-required-star">*</span>
   </div>
-  <div class="col-sm-8 col-xs-12 justus-data justus-required" data-ng-model="req_julkaisuntekijoidenlukumaara"
-   data-ng-required="isFieldRequired('julkaisuntekijoidenlukumaara')">
+  <div class="col-sm-8 col-xs-12 justus-data justus-required" 
+    data-ng-model="req_julkaisuntekijoidenlukumaara">
     <div class="row">
       <div class="col-xs-5">
         <input type="text" class="form-control justus-required"
@@ -142,8 +141,7 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div data-ng-repeat="i in justus.organisaatiotekija track by $index"
       class="row justus-required"
-      data-ng-model="req_organisaatiotekija[$index]"
-      data-ng-required="isFieldRequired('organisaatiotekija')">
+      data-ng-model="req_organisaatiotekija[$index]">
       <div class="col-xs-10">
         <div class="row form-group" id="organisaatiotekijaGroup">
           <div class="col-xs-12 col-sm-6">
@@ -261,7 +259,6 @@
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
           data-ng-model="justus.konferenssinvakiintunutnimi"
-          data-ng-required="isFieldRequired('konferenssinvakiintunutnimi')"
           data-uib-typeahead="konferenssinimet.Name for konferenssinimet in refreshKanavanimet(3,$viewValue)"
           data-typeahead-loading="jufoKonferenssiLataa" data-typeahead-no-results="jufoNoResults"
           data-typeahead-wait-ms="300"
@@ -292,8 +289,7 @@
         <input 
           type="text" 
           class="form-control" 
-          data-ng-model="justus.emojulkaisunnimi"
-          data-ng-required="isFieldRequired('emojulkaisunnimi')">
+          data-ng-model="justus.emojulkaisunnimi">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -312,8 +308,7 @@
     <span data-ng-show="isRequired('isbn')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_isbn" 
-   data-ng-required="isFieldRequired('isbn')">
+   data-ng-model="req_isbn">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -343,8 +338,7 @@
       <div class="col-xs-10">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.emojulkaisuntoimittajat"
-          data-ng-required="isFieldRequired('emojulkaisuntoimittajat')">
+          data-ng-model="justus.emojulkaisuntoimittajat">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -363,8 +357,7 @@
     <span data-ng-show="isRequired('lehdenjulkaisusarjannimi')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_lehdenjulkaisusarjannimi" 
-   data-ng-required="isFieldRequired('lehdenjulkaisusarjannimi')">
+   data-ng-model="req_lehdenjulkaisusarjannimi">
     <div class="row">
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
@@ -387,11 +380,9 @@
     <div class="row" data-ng-show="justus.jufotunnus || justus.jufoluokitus">
       <div class="col-xs-12">
         <input type="hidden" 
-          data-ng-model="justus.jufotunnus"
-          data-ng-required="isFieldRequired('jufotunnus')">
+          data-ng-model="justus.jufotunnus">
         <input type="hidden" 
-          data-ng-model="justus.jufoluokitus"
-          data-ng-required="isFieldRequired('jufoluokitus')">
+          data-ng-model="justus.jufoluokitus">
         <!-- TODO show or not? -->
         <span data-ng-show="justus.jufotunnus">
           {{i18n.content.form.jufotunnus[lang]}}: {{justus.jufotunnus}}</span><span data-ng-show="justus.jufotunnus && justus.jufoluokitus">,</span>
@@ -413,8 +404,7 @@
     <span data-ng-show="isRequired('issn')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required"
-   data-ng-model="req_issn" 
-   data-ng-required="isFieldRequired('issn')">
+   data-ng-model="req_issn">
     <div class="row">
       <div class="col-xs-4">
         <input type="text" 
@@ -447,8 +437,7 @@
       <div class="col-xs-4">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.volyymi"
-          data-ng-required="isFieldRequired('volyymi')">
+          data-ng-model="justus.volyymi">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -472,8 +461,7 @@
       <div class="col-xs-4">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.numero"
-          data-ng-required="isFieldRequired('numero')">
+          data-ng-model="justus.numero">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -497,8 +485,7 @@
       <div class="col-xs-4">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.sivut"
-          data-ng-required="isFieldRequired('sivut')">
+          data-ng-model="justus.sivut">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -522,8 +509,7 @@
       <div class="col-xs-4">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.artikkelinumero"
-          data-ng-required="isFieldRequired('artikkelinumero')">
+          data-ng-model="justus.artikkelinumero">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -549,7 +535,6 @@
       <div class="col-xs-10">
         <input type="text" class="form-control justus-required"
           data-ng-model="justus.kustantaja"
-          data-ng-required="isFieldRequired('kustantaja')"
           data-uib-typeahead="kustantajanimet.Name for kustantajanimet in refreshKanavanimet(2,$viewValue)"
           data-typeahead-loading="jufoKustantajaLataa" data-typeahead-no-results="jufoNoResults"
           data-typeahead-wait-ms="300"
@@ -578,8 +563,7 @@
       <div class="col-xs-4">
         <input type="text" 
         class="form-control" 
-        data-ng-model="justus.julkaisunkustannuspaikka"
-        data-ng-required="isFieldRequired('julkaisunkustannuspaikka')">
+        data-ng-model="justus.julkaisunkustannuspaikka">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
@@ -611,7 +595,6 @@
         <input type="text" 
           class="form-control" 
           data-ng-model="justus.avainsana[$index].avainsana"
-          data-ng-required="isFieldRequired('avainsana')"
           data-uib-typeahead="sanat.prefLabel for sanat in refreshAvainsanat($viewValue)"
           data-typeahead-loading="avainsanatLataa" data-typeahead-no-results="avainsanatNoResults"
           data-typeahead-wait-ms="300"
@@ -653,7 +636,6 @@
         <input type="text" 
           class="form-control" 
           data-ng-model="sel_julkaisunkieli"
-          data-ng-required="isFieldRequired('julkaisunkieli')"
           data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
           data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
           placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
@@ -677,8 +659,7 @@
     <span data-ng-if="isRequired('julkaisunkansainvalisyys')" class="justus-required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data justus-required" 
-    data-ng-model="req_julkaisunkansainvalisyys" 
-    data-ng-required="isFieldRequired('julkaisunkansainvalisyys')">
+    data-ng-model="req_julkaisunkansainvalisyys">
     <div class="row">
       <div class="col-xs-10">
         <label data-ng-model="lab1_julkaisunkansainvalisyys" 
@@ -718,8 +699,7 @@
     <div class="row">
       <div class="col-xs-10">
         <input type="hidden" 
-          data-ng-model="justus.julkaisumaa" 
-          data-ng-required="isFieldRequired('julkaisumaa')">
+          data-ng-model="justus.julkaisumaa">
         <input type="text" 
           class="form-control" 
           data-ng-model="sel_julkaisumaa"
@@ -748,8 +728,7 @@
   <div class="col-sm-8 col-xs-12 justus-data">
     <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'"
       class="row justus-required"
-      data-ng-model="req_tieteenala[$index]"
-      data-ng-required="isFieldRequired('tieteenala')">
+      data-ng-model="req_tieteenala[$index]">
       <div class="col-xs-10">
         <input type="hidden" data-ng-model="justus.tieteenala[$index]">
         <input type="text" class="form-control justus-required"
@@ -837,15 +816,13 @@
       <div class="col-xs-10">
         <label data-ng-model="lab1_kansainvalinenyhteisjulkaisu" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.kansainvalinenyhteisjulkaisu" 
-            data-ng-required="isFieldRequired('kansainvalinenyhteisjulkaisu')"
+            data-ng-model="justus.kansainvalinenyhteisjulkaisu"
             value="1">
             {{i18n.content.form.kansainvalinenyhteisjulkaisu['1'][lang]}}
         </label>
         <label data-ng-model="lab2_kansainvalinenyhteisjulkaisu" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.kansainvalinenyhteisjulkaisu" 
-            data-ng-required="isFieldRequired('kansainvalinenyhteisjulkaisu')"
+            data-ng-model="justus.kansainvalinenyhteisjulkaisu"
             value="0">
             {{i18n.content.form.kansainvalinenyhteisjulkaisu['0'][lang]}}
         </label>
@@ -876,15 +853,13 @@
       <div class="col-xs-10">
         <label data-ng-model="lab1_yhteisjulkaisuyrityksenkanssa" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" 
-            data-ng-required="isFieldRequired('yhteisjulkaisuyrityksenkanssa')"
+            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa"
             value="1">
           {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['1'][lang]}}
         </label>
         <label data-ng-model="lab2_yhteisjulkaisuyrityksenkanssa" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa" 
-            data-ng-required="isFieldRequired('yhteisjulkaisuyrityksenkanssa')"
+            data-ng-model="justus.yhteisjulkaisuyrityksenkanssa"
             value="0">
             {{i18n.content.form.yhteisjulkaisuyrityksenkanssa['0'][lang]}}
         </label>
@@ -913,8 +888,7 @@
       <div class="col-xs-10">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.doitunniste"
-          data-ng-required="isFieldRequired('doitunniste')">
+          data-ng-model="justus.doitunniste">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -938,8 +912,7 @@
       <div class="col-xs-10">
         <input type="text" 
           class="form-control" 
-          data-ng-model="justus.pysyvaverkkoosoite"
-          data-ng-required="isFieldRequired('pysyvaverkkoosoite')">
+          data-ng-model="justus.pysyvaverkkoosoite">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -965,16 +938,14 @@
       <div class="col-xs-10">
         <label data-ng-model="lab1_avoinsaatavuus" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.avoinsaatavuus" 
-            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            data-ng-model="justus.avoinsaatavuus"
             value="0">
             {{i18n.content.form.avoinsaatavuus['0'][lang]}}
         </label>
         <br>
         <label data-ng-model="lab2_avoinsaatavuus" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.avoinsaatavuus" 
-            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            data-ng-model="justus.avoinsaatavuus"
             value="1">
             {{i18n.content.form.avoinsaatavuus['1'][lang]}}
             <i class="fa fa-info-circle justus-info"
@@ -986,8 +957,7 @@
         <br>
         <label data-ng-model="lab3_avoinsaatavuus" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.avoinsaatavuus" 
-            data-ng-required="isFieldRequired('avoinsaatavuus')"
+            data-ng-model="justus.avoinsaatavuus"
             value="2">
             {{i18n.content.form.avoinsaatavuus['2'][lang]}}
             <i class="fa fa-info-circle justus-info"
@@ -1022,15 +992,13 @@
       <div class="col-xs-10">
         <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.julkaisurinnakkaistallennettu" 
-            data-ng-required="isFieldRequired('julkaisurinnakkaistallennettu')"
+            data-ng-model="justus.julkaisurinnakkaistallennettu"
             value="1">
             {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
         </label>
         <label data-ng-model="lab2_julkaisurinnakkaistallennettu" class="control-label justus-required">
           <input type="radio" 
-            data-ng-model="justus.julkaisurinnakkaistallennettu" 
-            data-ng-required="isFieldRequired('julkaisurinnakkaistallennettu')"
+            data-ng-model="justus.julkaisurinnakkaistallennettu"
             value="0">
             {{i18n.content.form.julkaisurinnakkaistallennettu['0'][lang]}}
         </label>
@@ -1063,8 +1031,7 @@
       <div class="col-xs-10">
         <input type="text" 
           class="form-control justus-required"
-          data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite"
-          data-ng-required="isFieldRequired('rinnakkaistallennetunversionverkkoosoite')">
+          data-ng-model="justus.rinnakkaistallennetunversionverkkoosoite">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
@@ -1076,14 +1043,14 @@
   </div>
 </div>
 
-<div class="row" data-ng-if="!isJustusValid() || !isValid('organisaatiotekija')">
+<div class="row" data-ng-if="invalidFields.length > 0">
   <div class="col-xs-12">
     <div class="alert alert-danger">
       <h3 data-ng-click="useRequiredHighlight()">
       {{i18n.content.tietojensyotto.taytaviela[lang]}}
       </h3>
       <div class="justus-required">
-        <span data-ng-repeat="o in getInvalids()">
+        <span data-ng-repeat="o in invalidFields">
           <i data-ng-bind="i18n.content.form[o][lang]?i18n.content.form[o][lang]:o"></i>
           <br>
         </span>
@@ -1095,7 +1062,6 @@
 <!-- JATKA -->
 <div class="row form-group">
   <div class="col-xs-12">
-    <h3 class="justus-btn justus-btn-default" data-ng-show="isJustusValid()" data-ng-click="useVaihe(4)">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
-    <h3 class="justus-btn justus-btn-default disabled" data-ng-show="!isJustusValid()" data-ng-click="useRequiredHighlight()">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
+    <h3 class="justus-btn justus-btn-default" data-ng-click="useVaihe(4)">{{i18n.content.tietojensyotto.jatka[lang]}}</h3>
   </div>
 </div>
