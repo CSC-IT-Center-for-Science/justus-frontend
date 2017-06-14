@@ -9,104 +9,6 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // in justus we keep data to be stored in database
   this.justus = {};
 
-  // Depicts visible fields on each publication type
-  this.visible = {
-    'julkaisutyyppi': {
-      "julkaisutyyppi": []
-    },
-    'julkaisuvuosi': {
-      "julkaisutyyppi": []
-    },
-    'julkaisunnimi': {
-      "julkaisutyyppi": []
-    },
-    'tekijat': {
-      "julkaisutyyppi": []
-    },
-    'julkaisuntekijoidenlukumaara': {
-      "julkaisutyyppi": []
-    },
-    'organisaatiotekija': {
-      "julkaisutyyppi": []
-    },
-    'alayksikko': {
-      "julkaisutyyppi": []
-    },
-    "konferenssinvakiintunutnimi": {
-      "julkaisutyyppi": ["A4","B3","D3"]
-    },
-    "isbn": {
-      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
-    },
-    // nb! there are multiple fields that are always visible (lehdenjulkaisusarjannimi,issn,volyymi,numero)
-    "issn": {
-      "julkaisutyyppi": ["A1","A2","B1","D1","E1" ,"A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
-    },
-    'volyymi': {
-      "julkaisutyyppi": []
-    },
-    'numero': {
-      "julkaisutyyppi": []
-    },
-    'lehdenjulkaisusarjannimi': {
-      "julkaisutyyppi": []
-    },
-    "kustantaja": {
-      "julkaisutyyppi": ['A3','B2','D2' ,'A4','B3','D3' ,'C1','D4','D5','E2','G4','G5' ,'C2','D6','E3' ,'E1']
-    },
-    'julkaisunkansainvalisyys': {
-      "julkaisutyyppi": []
-    },
-    'tieteenala': {
-      "julkaisutyyppi": []
-    },
-    'kansainvalinenyhteisjulkaisu': {
-      "julkaisutyyppi": []
-    },
-    'yhteisjulkaisuyrityksenkanssa': {
-      "julkaisutyyppi": []
-    },
-    'avoinsaatavuus': {
-      "julkaisutyyppi": []
-    },
-    'julkaisurinnakkaistallennettu': {
-      "julkaisutyyppi": []
-    },
-    "rinnakkaistallennetunversionverkkoosoite": {
-      "julkaisurinnakkaistallennettu": 1
-    },
-    "emojulkaisunnimi": {
-      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
-    },
-    "emojulkaisuntoimittajat": {
-      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
-    },
-    "sivut": {
-      "julkaisutyyppi": ['A1','A2','B1','D1','E1' ,'A4','B3','D3']
-    },
-    "artikkelinumero": {
-      "julkaisutyyppi": ['A1','A2','B1','D1','E1' ,'A4','B3','D3']
-    },
-    "julkaisunkustannuspaikka": {
-      "julkaisutyyppi": ['A3','B2','D2' ,'A4','B3','D3' ,'C1','D4','D5','E2','G4','G5' ,'C2','D6','E3']
-    },
-    'avainsanat': {
-      "julkaisutyyppi": []
-    },
-    "julkaisumaa": {
-      "julkaisunkansainvalisyys": 1
-    },
-    'julkaisunkieli': {
-      "julkaisutyyppi": []
-    },
-    'doitunniste': {
-      "julkaisutyyppi": []
-    },
-    'pysyvaverkkoosoite': {
-      "julkaisutyyppi": []
-    }
-  };
-
   this.pattern = {
     "orcid": /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
     "isbn": /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
@@ -145,13 +47,9 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // Returns true if the provided field is configured to be visible, false if not
   this.isFieldVisible = function(field) {
     let visible = false;
-
-    // If the field is visible in specific publication types or specific publication types were not defined
-    if (this.visible[field] && angular.isArray(this.visible[field]['julkaisutyyppi'])) {
-      if (this.visible[field]['julkaisutyyppi'].includes(this.justus['julkaisutyyppi']) || 
-      this.visible[field]['julkaisutyyppi'].length === 0) {
-        visible = true;
-      }
+    
+    if ( formFieldDefaults[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi']) ) {
+      visible = true;
     }
   
     // If the field is visible for the current publication type, it
@@ -164,56 +62,10 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     return visible;
   }
 
-  this.isFieldRequired = function(field) {
-    let required = true;
-    
-    // dependencies may change requirement still
-    if (field in this.dependency) {
-      // loop all dependencies
-      for (let k in this.dependency[field]) {
-        // handle most generic dependency julkaisutyyppi first
-        if (k=='julkaisutyyppi') {
-          required = false; // so NOT required unless...
-          for (let i in this.dependency[field][k]) { // i=index num
-            if (this.dependency[field][k][i]==this.justus[k]) {
-              required = true;
-            }
-          }
-        } else {
-          let ftype = typeof(this.dependency[field][k]);
-          if (k in this.justus && ftype in ['string','number']) { // element exists and is not an object (array, json, ...)
-            required = this.dependency[field][k]==this.justus[k];
-          }
-        }
-      }
-      // special dependencies to fix answer accordingly
-      if (field=="isbn" || field=="issn") {
-        // for relaxing the answer based on if the *other* is filled in and covers for *field*
-        let other = field=="isbn"?"issn":"isbn";
-        // nb! use pattern (pattern vs filled in value) here to see are we even interested in altering the answer...
-        // nb! pattern makes model undefined...
-        if ((this.justus[other]||"N/A").match(this.pattern[other])) {
-          // so filled in value is ok
-          for (let i in this.dependency[field][other].julkaisutyyppi) {
-            if (this.dependency[field][other].julkaisutyyppi[i] == this.justus.julkaisutyyppi) {
-              required = false;
-            }
-          }
-        }
-      }
-      if (field=="lehdenjulkaisusarjannimi" || field=="kustantaja") {
-        // for relaxing the answer based on if the *other* is filled in and covers for *field*
-        let other = field=="kustantaja"?"lehdenjulkaisusarjannimi":"kustantaja";
-        if ((this.justus[other]||"")!="") { // empty is NOT ok, doesn't cover
-          for (let i in this.dependency[field][other].julkaisutyyppi) {
-            if (this.dependency[field][other].julkaisutyyppi[i] == this.justus.julkaisutyyppi) {
-              required = false;
-            }
-          }
-        }
-      }
-    }
-    return required;
+  this.isFieldRequired = function(fieldName) {
+    return formFieldDefaults[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
+    this.isFieldRequiredByOrganization(fieldName) ? 
+    true : false;
   }
 
   this.isFieldRequiredByOrganization = function(fieldName) {
@@ -221,15 +73,33 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
-  // identify from data when given field is valid
-  // - then html elements states would directly tell if valid or not
-  // - exceptions are isbn and issn which have dependency with each other (which also would be better to handle some other way)
-  this.isValid = function(field) {
-    if (this.isFieldVisible(field) === false) {
+  this.isValid = function(fieldName) {
+    // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
+    let valid = true;
+
+    if (this.isFieldVisible(fieldName) === false) {
       return true;
     }
 
-    let valid = true;
+    // If the field is empty we need to check if it is required for validation
+    if ( !(fieldName in this.justus) || 
+    this.justus[fieldName] === '' || 
+    this.justus[fieldName] === {} || 
+    this.justus[fieldName] === [] ) {
+      valid = this.isFieldRequired(fieldName) === true ? false : true;
+    }
+
+    // Validate the field has against a possible validation pattern
+    if (formFieldDefaults[fieldName].pattern !== null && valid === true) {
+      valid = this.justus[fieldName].match(formFieldDefaults[fieldName].pattern) !== null ? true : false;
+    }
+
+    // Validate a field that contains a list of values
+    if (formFieldDefaults[fieldName].requiredAmount > 0 && valid === true) {
+      valid = angular.isArray(this.justus[fieldName]) === true && 
+      this.justus[fieldName].length >= formFieldDefaults[fieldName].requiredAmount ? 
+      true : false;
+    }
 
     // Todo field specific validations need to be rewritten
     // if (field === 'organisaatiotekija') {
@@ -257,74 +127,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     //     }
     //   }
     // } 
-    // else if (angular.isArray(this.justus[field])) { // avainsana?
-    //   for (let i in this.justus[field]) {
-    //     if (!this.justus[field][i]) {
-    //       valid = false;
-    //     }
-    //   }
-    // } 
-    // else if (this.pattern[field]) { // isbn, issn orcid
-    //   // especially ISBN and ISSN; we go thru them in two phases:
-    //   // - first by them selves (single) and then together
-    //   // - nb! affect of pattern to objects value (=> undefined until matches)
-    //   if (this.justus[field]===undefined) { // pattern makes undefined!
-    //     valid = false;
-    //   } 
-    //   else {
-    //     // remember to handle null, "" and undefined!
-    //     if (this.justus[field]!==null && this.justus[field]!="") {
-    //       if (field=="isbn"){
-    //         valid = this.checkISBN(this.justus[field]);
-    //       }
-    //       if (field=="issn"){
-    //         valid = this.checkISSN(this.justus[field]);
-    //       }
-    //     }
-    //   }
-    //   // together part 1 issn (valid status may change!)
-    //   if (field=="issn") {
-    //     // should we even look?
-    //     for (let e in this.dependency.issn.julkaisutyyppi) {
-    //       if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-    //         // let's look...
-    //         valid = this.checkISSN(this.justus[field]);
-    //         // ... unless "pal" covers?
-    //         if ((this.justus.isbn||"").match(this.pattern.isbn)) {
-    //           for (let e in this.dependency.isbn.julkaisutyyppi) {
-    //             if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-    //               valid = true;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   // together part 2 isbn (valid status may change!)
-    //   if (field=="isbn") {
-    //     // should we even look?
-    //     for (let e in this.dependency.isbn.julkaisutyyppi) {
-    //       if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-    //         // let's look...
-    //         valid = this.checkISBN(this.justus[field]);
-    //         // ... unless "pal" covers?
-    //         if ((this.justus.issn||"").match(this.pattern.issn)) {
-    //           for (let e in this.dependency.issn.julkaisutyyppi) {
-    //             if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-    //               valid = true;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    
-    if ((this.justus[field]||"")=="") {
-      if (this.isFieldRequired(field)) {
-        valid = false;
-      }
-    }
+
     return valid;
   }
   

@@ -399,7 +399,7 @@ let domain_organization = {
 
 // Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:
 // requiredInPublicationTypes: Publication type codes for which the field is mandatory
-// visibleInPublicationTypes: Publication type codes for which the field is visible
+// visibleInPublicationTypes: Publication type codes for which the field is visible. Field can be still hidden by organization specific settings in domain_organization config
 // optionalWithFields: Other field or fields which makes the mandatory field optional if filled
 // requiredWithFields: Fields that only when filled makes the field mandatory
 // requiredAmountOfValues: Some fields are lists of values, depicts the required amount of values required, will be 0 for fields with a single value 
@@ -469,6 +469,14 @@ this.formFieldDefaults = {
     'requiredAmount': 1,
     'pattern': null
   },
+  'orchid': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g
+  },
   'konferenssinvakiintunutnimi': {
     'requiredInPublicationTypes': ['A4', 'B3', 'D3'],
     'visibleInPublicationTypes': ['A4', 'B3', 'D3'],
@@ -483,7 +491,7 @@ this.formFieldDefaults = {
     'optionalWithFields': ['issn'],
     'requiredWithFields': [],
     'requiredAmount': 0,
-    'pattern': null
+    'pattern': /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g
   },
   'issn': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
@@ -491,7 +499,7 @@ this.formFieldDefaults = {
     'optionalWithFields': ['isbn'],
     'requiredWithFields': [],
     'requiredAmount': 0,
-    'pattern': null
+    'pattern': /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g
   },
   'volyymi': {
     'requiredInPublicationTypes': [],
