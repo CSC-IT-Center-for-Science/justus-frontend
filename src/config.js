@@ -397,6 +397,271 @@ let domain_organization = {
   //,'@': '' //...
 };
 
+// Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:
+// requiredInPublicationTypes: Publication type codes for which the field is mandatory
+// visibleInPublicationTypes: Publication type codes for which the field is visible
+// optionalWithFields: Other field or fields which makes the mandatory field optional if filled
+// requiredWithFields: Fields that only when filled makes the field mandatory
+// requiredAmountOfValues: Some fields are lists of values, depicts the required amount of values required, will be 0 for fields with a single value 
+// pattern: A regex pattern for a valid field value or null if the field does not need to match a pattern to be valid
+this.formFieldDefaults = {
+  'organisaatiotunnus': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisutyyppi': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisuvuosi': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisunnimi': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'tekijat': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisuntekijoidenlukumaara': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'organisaatiotekija': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 1,
+    'pattern': null
+  },
+  'alayksikko': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 1,
+    'pattern': null
+  },
+  'konferenssinvakiintunutnimi': {
+    'requiredInPublicationTypes': ['A4', 'B3', 'D3'],
+    'visibleInPublicationTypes': ['A4', 'B3', 'D3'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'isbn': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': ['issn'],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'issn': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': ['isbn'],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'volyymi': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'numero': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'lehdenjulkaisusarjannimi': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'kustantaja': {
+    'requiredInPublicationTypes': ['A3', 'B2', 'C1', 'C2', 'D2', 'D4', 'D5', 'D6', 'E2', 'E3'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisunkansainvalisyys': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'tieteenala': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 1,
+    'pattern': null
+  },
+  'kansainvalinenyhteisjulkaisu': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'yhteisjulkaisuyrityksenkanssa': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'avoinsaatavuus': {
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisurinnakkaistallennettu': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'rinnakkaistallennetunversionverkkoosoite': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': ['julkaisurinnakkaistallennettu'],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'emojulkaisunnimi': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'emojulkaisuntoimittajat': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'sivut': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'artikkelinumero': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisunkustannuspaikka': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'avainsanat': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisumaa': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'julkaisunkieli': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'doitunniste': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  },
+  'pysyvaverkkoosoite': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null
+  }
+};
+
 let codes = {};
 // DEVELOPMENT THINGS
 if (developmentmode) {
