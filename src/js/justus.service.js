@@ -11,14 +11,29 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
 
   // Depicts visible fields on each publication type
   this.visible = {
+    'julkaisutyyppi': {
+      "julkaisutyyppi": []
+    },
+    'julkaisuvuosi': {
+      "julkaisutyyppi": []
+    },
+    'julkaisunnimi': {
+      "julkaisutyyppi": []
+    },
+    'tekijat': {
+      "julkaisutyyppi": []
+    },
+    'julkaisuntekijoidenlukumaara': {
+      "julkaisutyyppi": []
+    },
+    'organisaatiotekija': {
+      "julkaisutyyppi": []
+    },
+    'alayksikko': {
+      "julkaisutyyppi": []
+    },
     "konferenssinvakiintunutnimi": {
       "julkaisutyyppi": ["A4","B3","D3"]
-    },
-    "emojulkaisunnimi": {
-      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
-    },
-    "emojulkaisuntoimittajat": {
-      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
     },
     "isbn": {
       "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
@@ -27,24 +42,68 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     "issn": {
       "julkaisutyyppi": ["A1","A2","B1","D1","E1" ,"A3","B2","D2" ,"A4","B3","D3" ,"C1","D4","D5","E2","G4","G5" ,"C2","D6","E3"]
     },
+    'volyymi': {
+      "julkaisutyyppi": []
+    },
+    'numero': {
+      "julkaisutyyppi": []
+    },
+    'lehdenjulkaisusarjannimi': {
+      "julkaisutyyppi": []
+    },
+    "kustantaja": {
+      "julkaisutyyppi": ['A3','B2','D2' ,'A4','B3','D3' ,'C1','D4','D5','E2','G4','G5' ,'C2','D6','E3' ,'E1']
+    },
+    'julkaisunkansainvalisyys': {
+      "julkaisutyyppi": []
+    },
+    'tieteenala': {
+      "julkaisutyyppi": []
+    },
+    'kansainvalinenyhteisjulkaisu': {
+      "julkaisutyyppi": []
+    },
+    'yhteisjulkaisuyrityksenkanssa': {
+      "julkaisutyyppi": []
+    },
+    'avoinsaatavuus': {
+      "julkaisutyyppi": []
+    },
+    'julkaisurinnakkaistallennettu': {
+      "julkaisutyyppi": []
+    },
+    "rinnakkaistallennetunversionverkkoosoite": {
+      "julkaisurinnakkaistallennettu": 1
+    },
+    "emojulkaisunnimi": {
+      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
+    },
+    "emojulkaisuntoimittajat": {
+      "julkaisutyyppi": ["A3","B2","D2" ,"A4","B3","D3"]
+    },
     "sivut": {
       "julkaisutyyppi": ['A1','A2','B1','D1','E1' ,'A4','B3','D3']
     },
     "artikkelinumero": {
       "julkaisutyyppi": ['A1','A2','B1','D1','E1' ,'A4','B3','D3']
     },
-    "kustantaja": {
-      "julkaisutyyppi": ['A3','B2','D2' ,'A4','B3','D3' ,'C1','D4','D5','E2','G4','G5' ,'C2','D6','E3' ,'E1']
-    },
     "julkaisunkustannuspaikka": {
       "julkaisutyyppi": ['A3','B2','D2' ,'A4','B3','D3' ,'C1','D4','D5','E2','G4','G5' ,'C2','D6','E3']
     },
-
+    'avainsanat': {
+      "julkaisutyyppi": []
+    },
     "julkaisumaa": {
       "julkaisunkansainvalisyys": 1
     },
-    "rinnakkaistallennetunversionverkkoosoite": {
-      "julkaisurinnakkaistallennettu": 1
+    'julkaisunkieli': {
+      "julkaisutyyppi": []
+    },
+    'doitunniste': {
+      "julkaisutyyppi": []
+    },
+    'pysyvaverkkoosoite': {
+      "julkaisutyyppi": []
     }
   };
 
@@ -52,30 +111,6 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     "orcid": /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
     "isbn": /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
     "issn": /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g
-  };
-
-  this.requirement = {
-    "julkaisutyyppi":true,
-    "julkaisuvuosi":true,
-    "julkaisunnimi":true,
-    "tekijat":true,
-    "julkaisuntekijoidenlukumaara":true,
-    "organisaatiotekija":true,
-
-    "konferenssinvakiintunutnimi":true,
-    "isbn":true, // true but dependent (or covered partially) by issn
-    "issn":true, // true but dependent (or covered partially) by isbn
-    "lehdenjulkaisusarjannimi":true, // true but dependent by kustantaja and julkaisutyyppi)
-    "kustantaja":true, // true but dependent by lehdenjulkaisusarjannimi and julkaisutyyppi)
-
-    "julkaisunkansainvalisyys":true,
-    "tieteenala":true,
-    "kansainvalinenyhteisjulkaisu":true,
-    "yhteisjulkaisuyrityksenkanssa":true,
-    "avoinsaatavuus":true,
-    "julkaisurinnakkaistallennettu":true,
-
-    "rinnakkaistallennetunversionverkkoosoite":true
   };
 
   this.dependency = {
@@ -107,42 +142,30 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
   };
 
-  // FUNCTIONS
-
-  // identify from data when given field must show up
-  this.isVisible = function(field) {
-    if (!this.visible[field]) return true;
+  // Returns true if the provided field is configured to be visible, false if not
+  this.isFieldVisible = function(field) {
     let visible = false;
-    for (let k in this.visible[field]) {
-      if (angular.isArray(this.visible[field][k])) {
-        for (let e in this.visible[field][k]) {
-          if (this.visible[field][k][e]==this.justus[k]) {
-            visible = true;
-          }
-        }
-      } else {
-        visible = this.visible[field][k] == this.justus[k];
+
+    // If the field is visible in specific publication types or specific publication types were not defined
+    if (this.visible[field] && angular.isArray(this.visible[field]['julkaisutyyppi'])) {
+      if (this.visible[field]['julkaisutyyppi'].includes(this.justus['julkaisutyyppi']) || 
+      this.visible[field]['julkaisutyyppi'].length === 0) {
+        visible = true;
       }
     }
-
+  
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
     if (visible === true) {
-      visible = this.isFieldVisibleByOrganization(field);
+      let organizationConfig = domain_organization[$rootScope.user.domain];
+      visible = organizationConfig.visibleFields.includes(field) ? true : false; 
     }
+
     return visible;
   }
 
-  // Checks if the provided field is configured as visible in config.js
-  this.isFieldVisibleByOrganization = function(fieldName) {
-    let organizationConfig = domain_organization[$rootScope.user.domain];
-    return organizationConfig.visibleFields.includes(fieldName) ? true : false; 
-  }
-
   this.isFieldRequired = function(field) {
-    if (!this.isVisible(field)) return false;
-    if (!this.requirement[field]) return false;
-    let required = true; // field IS in requirement, so assume requirement
+    let required = true;
     
     // dependencies may change requirement still
     if (field in this.dependency) {
@@ -202,90 +225,102 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // - then html elements states would directly tell if valid or not
   // - exceptions are isbn and issn which have dependency with each other (which also would be better to handle some other way)
   this.isValid = function(field) {
-    var valid = true; // assume ok!
-    if (!this.isVisible(field)) return true;
-    if (field=="organisaatiotekija") {
-      // loop organisaatiotekija list
-      for (let i=0; i<this.justus[field].length; i++) {
-        if (!this.justus[field][i].sukunimi || !this.justus[field][i].etunimet) {
-          valid = false;
-        }
-      }
-    } else if (field == 'alayksikko') {
-      if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
-        // loop alayksikko list
-        for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
-          if (!this.justus[field][i].alayksikko[a].alayksikko) {
-            valid = false;
-          }
-        }
-      }
-    } else if (field=="tieteenala") {
-      for (let i in this.justus[field]) {
-        if (!this.justus[field][i].tieteenalakoodi) {
-          valid = false;
-        }
-      }
-    } else if (angular.isArray(this.justus[field])) { // avainsana?
-      for (let i in this.justus[field]) {
-        if (!this.justus[field][i]) {
-          valid = false;
-        }
-      }
-    } else if (this.pattern[field]) { // isbn, issn orcid
-      // especially ISBN and ISSN; we go thru them in two phases:
-      // - first by them selves (single) and then together
-      // - nb! affect of pattern to objects value (=> undefined until matches)
-      if (this.justus[field]===undefined) { // pattern makes undefined!
-        valid = false;
-      } else {
-        // remember to handle null, "" and undefined!
-        if (this.justus[field]!==null && this.justus[field]!="") {
-          if (field=="isbn"){
-            valid = this.checkISBN(this.justus[field]);
-          }
-          if (field=="issn"){
-            valid = this.checkISSN(this.justus[field]);
-          }
-        }
-      }
-      // together part 1 issn (valid status may change!)
-      if (field=="issn") {
-        // should we even look?
-        for (let e in this.dependency.issn.julkaisutyyppi) {
-          if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-            // let's look...
-            valid = this.checkISSN(this.justus[field]);
-            // ... unless "pal" covers?
-            if ((this.justus.isbn||"").match(this.pattern.isbn)) {
-              for (let e in this.dependency.isbn.julkaisutyyppi) {
-                if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-                  valid = true;
-                }
-              }
-            }
-          }
-        }
-      }
-      // together part 2 isbn (valid status may change!)
-      if (field=="isbn") {
-        // should we even look?
-        for (let e in this.dependency.isbn.julkaisutyyppi) {
-          if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-            // let's look...
-            valid = this.checkISBN(this.justus[field]);
-            // ... unless "pal" covers?
-            if ((this.justus.issn||"").match(this.pattern.issn)) {
-              for (let e in this.dependency.issn.julkaisutyyppi) {
-                if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
-                  valid = true;
-                }
-              }
-            }
-          }
-        }
-      }
-    } else if ((this.justus[field]||"")=="") {
+    if (this.isFieldVisible(field) === false) {
+      return true;
+    }
+
+    let valid = true;
+
+    // Todo field specific validations need to be rewritten
+    // if (field === 'organisaatiotekija') {
+    //   // loop organisaatiotekija list
+    //   for (let i=0; i<this.justus[field].length; i++) {
+    //     if (!this.justus[field][i].sukunimi || !this.justus[field][i].etunimet) {
+    //       valid = false;
+    //     }
+    //   }
+    // } 
+    // else if (field === 'alayksikko') {
+    //   if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
+    //     // loop alayksikko list
+    //     for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
+    //       if (!this.justus[field][i].alayksikko[a].alayksikko) {
+    //         valid = false;
+    //       }
+    //     }
+    //   }
+    // }
+    // else if (field === "tieteenala") {
+    //   for (let i in this.justus[field]) {
+    //     if (!this.justus[field][i].tieteenalakoodi) {
+    //       valid = false;
+    //     }
+    //   }
+    // } 
+    // else if (angular.isArray(this.justus[field])) { // avainsana?
+    //   for (let i in this.justus[field]) {
+    //     if (!this.justus[field][i]) {
+    //       valid = false;
+    //     }
+    //   }
+    // } 
+    // else if (this.pattern[field]) { // isbn, issn orcid
+    //   // especially ISBN and ISSN; we go thru them in two phases:
+    //   // - first by them selves (single) and then together
+    //   // - nb! affect of pattern to objects value (=> undefined until matches)
+    //   if (this.justus[field]===undefined) { // pattern makes undefined!
+    //     valid = false;
+    //   } 
+    //   else {
+    //     // remember to handle null, "" and undefined!
+    //     if (this.justus[field]!==null && this.justus[field]!="") {
+    //       if (field=="isbn"){
+    //         valid = this.checkISBN(this.justus[field]);
+    //       }
+    //       if (field=="issn"){
+    //         valid = this.checkISSN(this.justus[field]);
+    //       }
+    //     }
+    //   }
+    //   // together part 1 issn (valid status may change!)
+    //   if (field=="issn") {
+    //     // should we even look?
+    //     for (let e in this.dependency.issn.julkaisutyyppi) {
+    //       if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
+    //         // let's look...
+    //         valid = this.checkISSN(this.justus[field]);
+    //         // ... unless "pal" covers?
+    //         if ((this.justus.isbn||"").match(this.pattern.isbn)) {
+    //           for (let e in this.dependency.isbn.julkaisutyyppi) {
+    //             if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
+    //               valid = true;
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // together part 2 isbn (valid status may change!)
+    //   if (field=="isbn") {
+    //     // should we even look?
+    //     for (let e in this.dependency.isbn.julkaisutyyppi) {
+    //       if (this.dependency.isbn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
+    //         // let's look...
+    //         valid = this.checkISBN(this.justus[field]);
+    //         // ... unless "pal" covers?
+    //         if ((this.justus.issn||"").match(this.pattern.issn)) {
+    //           for (let e in this.dependency.issn.julkaisutyyppi) {
+    //             if (this.dependency.issn.julkaisutyyppi[e]==this.justus.julkaisutyyppi) {
+    //               valid = true;
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    
+    if ((this.justus[field]||"")=="") {
       if (this.isFieldRequired(field)) {
         valid = false;
       }
@@ -293,14 +328,15 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     return valid;
   }
   
-  this.getInvalids = function() {
-    let ret = [];
-    for (let r in this.requirement) {
-      if (!this.isValid(r)) {
-        ret.push(r);
+  this.getInvalidFields = function() {
+    let invalidFields = [];
+    let organizationConfig = domain_organization[$rootScope.user.domain];
+    angular.forEach(organizationConfig.visibleFields, function(field) {
+      if (this.isValid(field) === false) {
+        invalidFields.push(field);
       }
-    }
-    return ret;
+    }, this);
+    return invalidFields;
   }
 
   // pattern checkers (for validity)

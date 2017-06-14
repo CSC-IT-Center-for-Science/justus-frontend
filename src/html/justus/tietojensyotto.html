@@ -3,7 +3,7 @@
 <h3 class="form-header">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>
 
 <!-- Kenttä: Julkaisuvuosi -->
-<div class="row form-group" id="julkaisuvuosiGroup">
+<div class="row form-group" id="julkaisuvuosiGroup" data-ng-if="isFieldVisible('julkaisuvuosi')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuosi[lang]"></label>
     <i class="fa fa-info-circle justus-info justus-color"
@@ -33,7 +33,7 @@
 </div>
 
 <!-- Kenttä: Julkaisun nimi -->
-<div class="row form-group" id="julkaisunnimiGroup">
+<div class="row form-group" id="julkaisunnimiGroup" data-ng-if="isFieldVisible('julkaisunnimi')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunnimi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -61,7 +61,7 @@
 </div>
 
 <!-- Kenttä: Tekijät -->
-<div class="row form-group" id="tekijatGroup">
+<div class="row form-group" id="tekijatGroup" data-ng-if="isFieldVisible('tekijat')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.tekijat[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -91,7 +91,7 @@
 </div>
 
 <!-- Kenttä: Julkaisun tekijöiden lukumäärä -->
-<div class="row form-group" id="julkaisuntekijoidenlukumaaraGroup">
+<div class="row form-group" id="julkaisuntekijoidenlukumaaraGroup" data-ng-if="isFieldVisible('julkaisuntekijoidenlukumaara')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisuntekijoidenlukumaara[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -128,7 +128,7 @@
 </div>
 
 <!-- Kenttä: Organisaation tekijät -->
-<div class="row form-group" id="organisaatiotekijaGroup">
+<div class="row form-group" id="organisaatiotekijaGroup" data-ng-if="isFieldVisible('organisaatiotekija')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -157,7 +157,7 @@
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="row form-group" data-ng-if="isFieldRequired('alayksikko')">
+        <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')">
           <div class="col-xs-12 col-sm-6">
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
              data-ng-init="pIx=$parent.$index" class="row form-group">
@@ -244,7 +244,7 @@
 
 <!-- julkaisutyypistä riippuvat -->
 <!-- Kenttä: Konferenssin vakiintunut nimi -->
-<div class="row form-group" data-ng-show="isVisible('konferenssinvakiintunutnimi')" id="konferenssinvakiintunutnimiGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('konferenssinvakiintunutnimi')" id="konferenssinvakiintunutnimiGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.konferenssinvakiintunutnimi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -274,8 +274,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Emojulkaisun nimi -->
-<div class="row form-group" data-ng-show="isVisible('emojulkaisunnimi')" id="emojulkaisunnimiGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('emojulkaisunnimi')" id="emojulkaisunnimiGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.emojulkaisunnimi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -297,8 +298,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: ISBN :: nb! isbn vs issn. -->
-<div class="row form-group" data-ng-show="isVisible('isbn')" id="isbnGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('isbn')" id="isbnGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.isbn[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -324,8 +326,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Emojulkaisun toimittajat -->
-<div class="row form-group" data-ng-show="isVisible('emojulkaisuntoimittajat')" id="emojulkaisuntoimittajatGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('emojulkaisuntoimittajat')" id="emojulkaisuntoimittajatGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.emojulkaisuntoimittajat[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -346,8 +349,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Lehden / julkaisusarjan nimi :: näkyy aina -->
-<div class="row form-group" id="lehdenjulkaisusarjannimiGroup">
+<div class="row form-group" id="lehdenjulkaisusarjannimiGroup" data-ng-if="isFieldVisible('lehdenjulkaisusarjannimi')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.lehdenjulkaisusarjannimi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -393,8 +397,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: ISSN :: nb! issn vs isbn. required-ehto toimii vaikka isbn:ää ei lomakkeella olisikaan :: näkyy aina -->
-<div class="row form-group" id="issnGroup">
+<div class="row form-group" id="issnGroup" data-ng-if="isFieldVisible('issn')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.issn[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -423,8 +428,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Volyymi :: näkyy aina -->
-<div class="row form-group" id="volyymiGroup">
+<div class="row form-group" id="volyymiGroup" data-ng-if="isFieldVisible('volyymi')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.volyymi[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -447,8 +453,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Numero :: näkyy aina -->
-<div class="row form-group" id="numeroGroup">
+<div class="row form-group" id="numeroGroup" data-ng-if="isFieldVisible('numero')">
   <div class="col-sm-4 col-xs-12 col-md-4">
     <label class="control-label" data-ng-bind="i18n.content.form.numero[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -471,8 +478,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Sivut -->
-<div class="row form-group" data-ng-show="isVisible('sivut')" id="sivutGroup">
+<div class="row form-group" id="sivutGroup" data-ng-if="isFieldVisible('sivut')">
   <div class="col-sm-4 col-xs-12 col-md-4">
     <label class="control-label" data-ng-bind="i18n.content.form.sivut[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -495,8 +503,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Artikkelinumero -->
-<div class="row form-group" data-ng-show="isVisible('artikkelinumero')" id="artikkelinumeroGroup">
+<div class="row form-group" data-ng-show="isFieldVisible('artikkelinumero')" id="artikkelinumeroGroup">
   <div class="col-sm-4 col-xs-12 col-md-4">
     <label class="control-label" data-ng-bind="i18n.content.form.artikkelinumero[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -519,8 +528,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Kustantaja -->
-<div class="row form-group" data-ng-show="isVisible('kustantaja')" id="kustantajaGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('kustantaja')" id="kustantajaGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.kustantaja[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -550,8 +560,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Julkaisun kustannuspaikka -->
-<div class="row form-group" data-ng-show="isVisible('julkaisunkustannuspaikka')" id="julkaisunkustannuspaikkaGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('julkaisunkustannuspaikka')" id="julkaisunkustannuspaikkaGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkustannuspaikka[lang]"></label>
     <i class="fa fa-info-circle justus-info" data-popover-trigger="'mouseenter'" data-popover-placement="right"
@@ -579,7 +590,7 @@
 
 <!-- loput kentät -->
 <!-- Kenttä: Avainsanat -->
-<div class="row form-group" id="avainsanatGroup">
+<div class="row form-group" id="avainsanatGroup" data-ng-if="isFieldVisible('avainsanat')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.avainsanat[lang]"></label>
     <i class="fa fa-info-circle justus-info" 
@@ -619,8 +630,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Julkaisun kieli -->
-<div class="row form-group" id="julkaisunkieliGroup">
+<div class="row form-group" id="julkaisunkieliGroup" data-ng-if="isFieldVisible('julkaisunkieli')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkieli[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -647,8 +659,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Julkaisun kansainvälisyys -->
-<div class="row form-group" id="julkaisunkansainvalisyysGroup">
+<div class="row form-group" id="julkaisunkansainvalisyysGroup" data-ng-if="isFieldVisible('julkaisunkansainvalisyys')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisunkansainvalisyys[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -686,7 +699,7 @@
   </div>
 </div>
 <!-- Kenttä: Julkaisumaa -->
-<div class="row form-group" data-ng-show="isVisible('julkaisumaa')" id="julkaisumaaGroup">
+<div class="row form-group" data-ng-if="isFieldVisible('julkaisumaa')" id="julkaisumaaGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisumaa[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -714,8 +727,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Julkaisun tieteenala -->
-<div class="row form-group" id="tieteenalaGroup">
+<div class="row form-group" id="tieteenalaGroup" data-ng-if="isFieldVisible('tieteenala')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.tieteenala[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -799,8 +813,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Kansainvälinen yhteisjulkaisu -->
-<div class="row form-group" id="kansainvalinenyhteisjulkaisuGroup">
+<div class="row form-group" id="kansainvalinenyhteisjulkaisuGroup" data-ng-if="isFieldVisible('kansainvalinenyhteisjulkaisu')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.kansainvalinenyhteisjulkaisu[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -835,8 +850,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Yhteisjulkaisu yrityksen kanssa -->
-<div class="row form-group" id="yhteisjulkaisuyrityksenkanssaGroup">
+<div class="row form-group" id="yhteisjulkaisuyrityksenkanssaGroup" data-ng-if="isFieldVisible('yhteisjulkaisuyrityksenkanssa')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.yhteisjulkaisuyrityksenkanssa[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -874,7 +890,7 @@
 </div>
 
 <!-- Kenttä: DOI-tunniste -->
-<div class="row form-group" id="doitunnisteGroup">
+<div class="row form-group" id="doitunnisteGroup" data-ng-if="isFieldVisible('doitunniste')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.doitunniste[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -898,7 +914,7 @@
 </div>
 
 <!-- Kenttä: Pysyvä verkko-osoite -->
-<div class="row form-group" id="pysyvaverkkoosoiteGroup">
+<div class="row form-group" id="pysyvaverkkoosoiteGroup" data-ng-if="isFieldVisible('pysyvaverkkoosoite')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.pysyvaverkkoosoite[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -920,8 +936,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Avoin saatavuus -->
-<div class="row form-group" id="avoinsaatavuusGroup">
+<div class="row form-group" id="avoinsaatavuusGroup" data-ng-if="isFieldVisible('avoinsaatavuus')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.avoinsaatavuus[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -975,8 +992,9 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Julkaisu rinnakkaistallennettu -->
-<div class="row form-group" id="julkaisurinnakkaistallennettuGroup">
+<div class="row form-group" id="julkaisurinnakkaistallennettuGroup" data-ng-if="isFieldVisible('julkaisurinnakkaistallennettu')">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.julkaisurinnakkaistallennettu[lang]"></label>
     <i class="fa fa-info-circle justus-info"
@@ -1011,9 +1029,10 @@
     </div>
   </div>
 </div>
+
 <!-- Kenttä: Rinnakkaistallennetun version verkko-osoite -->
 <div class="row form-group" 
-  data-ng-show="isVisible('rinnakkaistallennetunversionverkkoosoite')" 
+  data-ng-if="isFieldVisible('rinnakkaistallennetunversionverkkoosoite')" 
   id="rinnakkaistallennetunversionverkkoosoiteGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]"></label>

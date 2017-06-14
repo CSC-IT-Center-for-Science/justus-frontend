@@ -307,11 +307,14 @@ justusApp.controller('JustusController', [
         // make sure both values are set (paa,ala):
         $scope.useJulkaisutyyppiPaa($scope.justus.julkaisutyyppi.substring(0,1));
         // Stay on stage 3 if stage form not valid
-        if ($scope.vaihe==4 && !$scope.isJustusValid()) {
-          $scope.useVaihe(3);
-          return;
+        if ($scope.vaihe == 4) {
+          if(!$scope.isJustusValid()) {
+            $scope.useVaihe(3);
+            return;
+          }
         }
-      } else {
+      } 
+      else {
         // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
         if ($scope.vaihe>2) {
           // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
@@ -336,19 +339,22 @@ justusApp.controller('JustusController', [
       return Koodisto.getCode($scope.codes,codeset,code);
     }
 
-    $scope.isVisible = function(field) {
-      return Justus.isVisible(field);
+    $scope.isFieldVisible = function(field) {
+      return Justus.isFieldVisible(field);
     }
+
     $scope.isFieldRequired = function(field) {
       return Justus.isFieldRequired(field);
     }
+
     $scope.isValid = function(field) {
       return Justus.isValid(field);
     }
 
     $scope.isJustusValid = function() {
-      $scope.invalidFields = Justus.getInvalids();
+      $scope.invalidFields = Justus.getInvalidFields();
       Validation.setValidationErrors($scope.invalidFields);
+      console.log($scope.invalidFields.length)
       return $scope.invalidFields.length == 0;
     }
 

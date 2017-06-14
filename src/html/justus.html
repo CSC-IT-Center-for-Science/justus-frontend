@@ -4,10 +4,10 @@
 
     <form id="form_justus" name="fj" data-ng-if="vaihe>=1"
       action="justus_save.php" method="GET">
-      <div data-ng-show="vaihe>=1" data-ng-include data-src="'html/justus/vaihevuo.html'"></div>
-      <div data-ng-show="vaihe==1" data-ng-include data-src="'html/justus/esitayta.html'"></div>
-      <div data-ng-show="vaihe==2" data-ng-include data-src="'html/justus/julkaisutyyppi.html'"></div>
-      <div data-ng-show="vaihe==3" data-ng-include data-src="'html/justus/tietojensyotto.html'"></div>
+      <div data-ng-if="vaihe>=1" data-ng-include data-src="'html/justus/vaihevuo.html'"></div>
+      <div data-ng-if="vaihe==1" data-ng-include data-src="'html/justus/esitayta.html'"></div>
+      <div data-ng-if="vaihe==2" data-ng-include data-src="'html/justus/julkaisutyyppi.html'"></div>
+      <div data-ng-if="vaihe==3" data-ng-include data-src="'html/justus/tietojensyotto.html'"></div>
       <!-- voi olla omassa ali-scopessa -->
       <div data-ng-if="vaihe==4" data-ng-include data-src="'html/justus/tallennus.html'"></div>
     </form>
