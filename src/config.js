@@ -518,7 +518,7 @@ this.formFieldDefaults = {
     'pattern': null
   },
   'lehdenjulkaisusarjannimi': {
-    'requiredInPublicationTypes': [],
+    'requiredInPublicationTypes': ['D1', 'E1'],
     'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
     'optionalWithFields': [],
     'requiredWithFields': [],
