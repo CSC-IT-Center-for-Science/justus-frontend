@@ -70,7 +70,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // If the field was required we need to check if the field required attribute depends on another filled field
     if(fieldRequired === true) {
       angular.forEach(formFieldDefaults[fieldName].optionalWithFields, function(field) {
-        if(this.fieldIsEmpty(field) === false) {
+        if(this.fieldIsEmpty(this.justus[fieldName]) === false) {
           fieldRequired = false;
         }
       }, this);
@@ -78,7 +78,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // Otherwise the field can be made mandatory by another filled field
     else {
       angular.forEach(formFieldDefaults[fieldName].requiredWithFields, function(field) {
-        if (this.fieldIsEmpty(field) === false) {
+        if (this.fieldIsEmpty(this.justus[fieldName]) === false) {
           fieldRequired = true;
         }
       }, this);
@@ -92,12 +92,11 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
-  this.fieldIsEmpty = function(fieldName) {
-    if ( !(fieldName in this.justus) || 
-    this.justus[fieldName] === '' || 
-    this.justus[fieldName] === {} || 
-    this.justus[fieldName] === [] ||
-    this.justus[fieldName] === undefined ) {
+  this.fieldIsEmpty = function(fieldValue) {
+    if ( fieldValue === '' || 
+    fieldValue === {} || 
+    fieldValue === [] ||
+    fieldValue === undefined ) {
       return true;
     }
     return false;
@@ -113,7 +112,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
 
     // If the field is empty we need to check if it is required for validation
-    if ( this.fieldIsEmpty(fieldName) ) {
+    if ( this.fieldIsEmpty(this.justus[fieldName]) ) {
       valid = this.isFieldRequired(fieldName) === true ? false : true;
     }
     else {
@@ -138,15 +137,26 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       true : false;
     }
 
-    // Todo field specific validations need to be rewritten
-    // if (field === 'organisaatiotekija') {
-    //   // loop organisaatiotekija list
-    //   for (let i=0; i<this.justus[field].length; i++) {
-    //     if (!this.justus[field][i].sukunimi || !this.justus[field][i].etunimet) {
-    //       valid = false;
-    //     }
-    //   }
-    // } 
+    // Validate a field which consists of multiple subfields
+    if (formFieldDefaults[fieldName].subfields.length > 0 && valid === true) {
+      angular.forEach(formFieldDefaults[fieldName].subfields, function(subfieldName) {
+        // If the field consists of a list of objects, we need to validate each index
+        if ( angular.isArray(this.justus[fieldName]) ) {
+          angular.forEach(this.justus[fieldName], function(fieldIndex) {
+            if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
+              valid = false;
+            }
+          }, this);
+        }
+        // Otherwise we can just validate the direct child field
+        else {
+          if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true) {
+            valid = false;
+          }
+        }
+      }, this);
+    }
+
     // else if (field === 'alayksikko') {
     //   if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
     //     // loop alayksikko list
@@ -157,13 +167,6 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     //     }
     //   }
     // }
-    // else if (field === "tieteenala") {
-    //   for (let i in this.justus[field]) {
-    //     if (!this.justus[field][i].tieteenalakoodi) {
-    //       valid = false;
-    //     }
-    //   }
-    // } 
 
     return valid;
   }
