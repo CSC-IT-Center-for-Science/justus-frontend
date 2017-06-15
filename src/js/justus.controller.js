@@ -354,12 +354,11 @@ justusApp.controller('JustusController', [
     $scope.isJustusValid = function() {
       $scope.invalidFields = Justus.getInvalidFields();
       Validation.setValidationErrors($scope.invalidFields);
-      console.log($scope.invalidFields.length)
       return $scope.invalidFields.length == 0;
     }
 
     $scope.isFieldRequired = function(fieldName) {
-      return Justus.isFieldRequiredByOrganization(fieldName);
+      return Justus.isFieldRequired(fieldName);
     }
 
     // INITIALIZE
