@@ -63,9 +63,28 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   this.isFieldRequired = function(fieldName) {
-    return formFieldDefaults[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
+    let fieldRequired = formFieldDefaults[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
     this.isFieldRequiredByOrganization(fieldName) ? 
     true : false;
+
+    // If the field was required we need to check if the field required attribute depends on another filled field
+    if(fieldRequired === true) {
+      angular.forEach(formFieldDefaults[fieldName].optionalWithFields, function(field) {
+        if(this.fieldIsEmpty(field) === false) {
+          fieldRequired = false;
+        }
+      }, this);
+    }
+    // Otherwise the field can be made mandatory by another filled field
+    else {
+      angular.forEach(formFieldDefaults[fieldName].requiredWithFields, function(field) {
+        if (this.fieldIsEmpty(field) === false) {
+          fieldRequired = true;
+        }
+      }, this);
+    }
+
+    return fieldRequired;
   }
 
   this.isFieldRequiredByOrganization = function(fieldName) {
@@ -73,25 +92,43 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
+  this.fieldIsEmpty = function(fieldName) {
+    if ( !(fieldName in this.justus) || 
+    this.justus[fieldName] === '' || 
+    this.justus[fieldName] === {} || 
+    this.justus[fieldName] === [] ||
+    this.justus[fieldName] === undefined ) {
+      return true;
+    }
+    return false;
+  }
+
   this.isValid = function(fieldName) {
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
+    let fieldIsFilled = false;
 
     if (this.isFieldVisible(fieldName) === false) {
       return true;
     }
 
     // If the field is empty we need to check if it is required for validation
-    if ( !(fieldName in this.justus) || 
-    this.justus[fieldName] === '' || 
-    this.justus[fieldName] === {} || 
-    this.justus[fieldName] === [] ) {
+    if ( this.fieldIsEmpty(fieldName) ) {
       valid = this.isFieldRequired(fieldName) === true ? false : true;
+    }
+    else {
+      fieldIsFilled = true;
     }
 
     // Validate the field has against a possible validation pattern
-    if (formFieldDefaults[fieldName].pattern !== null && valid === true) {
-      valid = this.justus[fieldName].match(formFieldDefaults[fieldName].pattern) !== null ? true : false;
+    if (formFieldDefaults[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
+      // If trying to pattern match something else than a string the value is invalid
+      if(typeof this.justus[fieldName] === 'string') {
+        valid = this.justus[fieldName].match(formFieldDefaults[fieldName].pattern) !== null ? true : false;
+      }
+      else {
+        valid = false;
+      }
     }
 
     // Validate a field that contains a list of values

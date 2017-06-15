@@ -157,7 +157,7 @@
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="row form-group" data-ng-if="isFieldVisible('alayksikko')">
+        <div class="row form-group" data-ng-if="isFieldVisible('alayksikko') && isFieldRequired('alayksikko')">
           <div class="col-xs-12 col-sm-6">
             <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
              data-ng-init="pIx=$parent.$index" class="row form-group">
@@ -421,7 +421,8 @@
         <input type="text" 
           class="form-control justus-required"
           data-ng-pattern="pattern.issn" data-issn-directive=""
-          data-ng-model="justus.issn">
+          data-ng-model="justus.issn"
+          placeholder="1234-567X">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-6">
