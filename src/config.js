@@ -57,7 +57,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -72,7 +72,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite'] 
   },
@@ -87,7 +87,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -102,7 +102,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -116,7 +116,7 @@ let domain_organization = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 'emojulkaisunnimi',
     'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'julkaisumaa'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -131,7 +131,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -146,7 +146,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -161,7 +161,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -176,7 +176,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -207,7 +207,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -222,7 +222,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -237,7 +237,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -252,7 +252,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -282,7 +282,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   }, 
@@ -297,7 +297,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -312,7 +312,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -327,7 +327,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -342,7 +342,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
@@ -358,7 +358,7 @@ let domain_organization = {
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
     requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
-    'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   }, 
@@ -466,7 +466,7 @@ this.formFieldDefaults = {
     'requiredWithFields': [],
     'requiredAmount': 1,
     'pattern': null,
-    'subfields': ['etunimet', 'sukunimi', 'alayksikko', 'orcid']
+    'subfields': ['etunimet', 'sukunimi', 'alayksikko']
   },
   'konferenssinvakiintunutnimi': {
     'requiredInPublicationTypes': ['A4', 'B3', 'D3'],
