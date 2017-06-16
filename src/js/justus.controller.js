@@ -312,6 +312,8 @@ justusApp.controller('JustusController', [
             $scope.useVaihe(3);
             return;
           }
+          // Add user's organisaatiotunnus to the form
+          this.justus.organisaatiotunnus = domain_organization[$rootScope.user.domain].code;
         }
       } 
       else {
