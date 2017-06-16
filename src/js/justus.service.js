@@ -9,52 +9,17 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // in justus we keep data to be stored in database
   this.justus = {};
 
-  this.pattern = {
-    "orcid": /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
-    "isbn": /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
-    "issn": /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g
-  };
-
-  this.dependency = {
-    "organisaatiotekija": {
-      "sukunimi": null, "etunimet": null, "alayksikko": null
-      //, "orcid": null
-    },
-    "konferenssinvakiintunutnimi": {
-      "julkaisutyyppi": ["A4","B3","D3"]
-    },
-    "isbn": {
-      "issn": {"julkaisutyyppi": ["A1","A2","A3","A4","B1","B2","B3","C1","C2"]},
-      "julkaisutyyppi": ["A1","A2","A3","A4","B1","B2","B3","C1","C2"]
-    },
-    "issn": {
-      "isbn": {"julkaisutyyppi": ["A1","A2","A3","A4","B1","B2","B3","C1","C2"]},
-      "julkaisutyyppi": ["A1","A2","A3","A4","B1","B2","B3","C1","C2"]
-    },
-    "lehdenjulkaisusarjannimi": {
-      "julkaisutyyppi": ["E1"],
-      "kustantaja": {"julkaisutyyppi": ["E1"]}
-    },
-    "kustantaja": {
-      "julkaisutyyppi": ["A3","B2","C1","C2","D2","D4","D5","D6","E2","E3" ,"E1"],
-      "lehdenjulkaisusarjannimi": {"julkaisutyyppi": ["E1"]}
-    },
-    "rinnakkaistallennetunversionverkkoosoite": {
-      "julkaisurinnakkaistallennettu": 1
-    }
-  };
-
   // Returns true if the provided field is configured to be visible, false if not
   this.isFieldVisible = function(field) {
     let visible = false;
     
-    if ( formFieldDefaults[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi']) ) {
+    if ( formFieldDefaults[field] && formFieldDefaults[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi']) ) {
       visible = true;
     }
   
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
-    if (visible === true) {
+    if (visible === true || !formFieldDefaults[field]) {
       let organizationConfig = domain_organization[$rootScope.user.domain];
       visible = organizationConfig.visibleFields.includes(field) ? true : false; 
     }
@@ -63,6 +28,14 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   this.isFieldRequired = function(fieldName) {
+    // If the field is missing from the configuration, it cannot be mandatory unless made mandatory by organization config
+    if(!formFieldDefaults[fieldName]) {
+      if( this.isFieldRequiredByOrganization(fieldName) === true ) {
+        return true;
+      }
+      return false;
+    }
+
     let fieldRequired = formFieldDefaults[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
     this.isFieldRequiredByOrganization(fieldName) ? 
     true : false;
@@ -105,7 +78,12 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   this.isValid = function(fieldName) {
     // Assume the field is valid, for performance we will continue validating until the field is first decided as invalid
     let valid = true;
+    let reason = '';
     let fieldIsFilled = false;
+
+    if(!formFieldDefaults[fieldName]) {
+      return true;
+    }
 
     if (this.isFieldVisible(fieldName) === false) {
       return true;
@@ -114,6 +92,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // If the field is empty we need to check if it is required for validation
     if ( this.fieldIsEmpty(this.justus[fieldName]) ) {
       valid = this.isFieldRequired(fieldName) === true ? false : true;
+      reason = valid === false ? 'Field is empty' : '';
     }
     else {
       fieldIsFilled = true;
@@ -128,6 +107,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       else {
         valid = false;
       }
+      reason = valid === false ? 'Field value is invalid' : '';
     }
 
     // Validate a field that contains a list of values
@@ -135,38 +115,46 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       valid = angular.isArray(this.justus[fieldName]) === true && 
       this.justus[fieldName].length >= formFieldDefaults[fieldName].requiredAmount ? 
       true : false;
+      reason = valid === false ? 'At least ' +  formFieldDefaults[fieldName].requiredAmount + ' value is required': '';
     }
 
     // Validate a field which consists of multiple subfields
     if (formFieldDefaults[fieldName].subfields.length > 0 && valid === true) {
-      angular.forEach(formFieldDefaults[fieldName].subfields, function(subfieldName) {
-        // If the field consists of a list of objects, we need to validate each index
-        if ( angular.isArray(this.justus[fieldName]) ) {
-          angular.forEach(this.justus[fieldName], function(fieldIndex) {
-            if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
-              valid = false;
-            }
-          }, this);
-        }
-        // Otherwise we can just validate the direct child field
-        else {
-          if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true) {
+      valid = this.validateNestedField(fieldName);
+      reason = valid === false ? 'One or more subfield value is invalid': '';
+    }
+    
+    return valid;
+  }
+
+  this.validateNestedField = function(fieldName) {
+    let valid = true;
+    angular.forEach(formFieldDefaults[fieldName].subfields, function(subfieldName) {
+      // If the field consists of a list of objects, we need to validate each index
+      if ( angular.isArray(this.justus[fieldName]) ) {
+        angular.forEach(this.justus[fieldName], function(fieldIndex) {
+          if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
             valid = false;
           }
+          else if ( angular.isArray(fieldIndex[subfieldName]) ) {
+            if (fieldIndex[subfieldName].length > 0) {
+              if(!fieldIndex[subfieldName][0][subfieldName]) {
+                valid = false;
+              }
+            }
+            else {
+              valid = false;
+            }
+          }
+        }, this);
+      }
+      // Otherwise we can just validate the direct child field
+      else {
+        if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true) {
+          valid = false;
         }
-      }, this);
-    }
-
-    // else if (field === 'alayksikko') {
-    //   if (['00000','4940015','4020217'].indexOf(this.justus.userorganization)<0) {
-    //     // loop alayksikko list
-    //     for (let a=0; a<this.justus[field][i].alayksikko.length; a++) {
-    //       if (!this.justus[field][i].alayksikko[a].alayksikko) {
-    //         valid = false;
-    //       }
-    //     }
-    //   }
-    // }
+      }
+    }, this);
 
     return valid;
   }
@@ -183,6 +171,12 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   // pattern checkers (for validity)
+
+  this.pattern = {
+    "orcid": /^(|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X])$/g,
+    "isbn": /^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/g,
+    "issn": /^([0-9]{4}[- ][0-9]{3}[0-9X])$/g
+  };
 
   this.checkISBN = function (isbn) {
     if (!isbn) return false;
