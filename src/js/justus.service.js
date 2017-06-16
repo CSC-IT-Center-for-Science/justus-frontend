@@ -43,7 +43,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // If the field was required we need to check if the field required attribute depends on another filled field
     if(fieldRequired === true) {
       angular.forEach(formFieldDefaults[fieldName].optionalWithFields, function(field) {
-        if(this.fieldIsEmpty(this.justus[fieldName]) === false) {
+        if(this.fieldIsEmpty(this.justus[field]) === false) {
           fieldRequired = false;
         }
       }, this);
