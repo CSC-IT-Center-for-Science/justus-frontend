@@ -12,6 +12,9 @@ module.exports = function (grunt) {
       files: distDir,
       options: {
         force: true
+      },
+      dev: {
+        src: ['src/css/justus.css']
       }
     },
     useminPrepare: {
@@ -82,8 +85,8 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      files: ['**/*'],
-      tasks: ['sass', 'concat:css'],
+      files: ['**/*.scss'],
+      tasks: ['clean:dev', 'sass', 'concat:css'],
     },
   });
 
@@ -102,6 +105,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', [
+    'clean:dev',
     'sass',
     'concat:css',
     'watch'
