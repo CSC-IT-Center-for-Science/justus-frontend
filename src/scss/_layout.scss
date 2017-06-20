@@ -12,7 +12,7 @@ body {
 }
 
 .header-wrapper {
-  padding-top: $padding-large-vertical;
+  padding: $padding-large-vertical 0;
 }
 
 .content-wrapper {
@@ -24,11 +24,16 @@ body {
   padding-bottom: $padding-large-vertical;
 }
 
+.view-wrapper {
+  padding-top: $padding-large-vertical;
+  padding-bottom: $padding-large-vertical*10;
+}
+
 .footer {
   background-color: $brand-primary;
   color: $brand-white;
   padding: $padding-large-vertical $padding-large-horizontal;
-  margin-top: $padding-large-vertical;
+  margin: 0;
 }
 
 // Todo
