@@ -51,7 +51,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // Otherwise the field can be made mandatory by another filled field
     else {
       angular.forEach(formFieldDefaults[fieldName].requiredWithFields, function(field) {
-        if (this.fieldIsEmpty(this.justus[fieldName]) === false) {
+        if (this.fieldIsEmpty(this.justus[field]) === false) {
           fieldRequired = true;
         }
       }, this);
