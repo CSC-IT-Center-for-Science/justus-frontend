@@ -61,10 +61,14 @@
 </head>
 <body>
 
-  <div class="container content-wrapper">
-    <div data-ng-include data-src="'html/header.html'"></div>
-    <div data-ui-view=""></div>
-    <div data-ng-include data-src="'html/footer.html'"></div>
+  <div class="main-wrapper">
+    <div class="content-wrapper">
+      <div class="container main-container">
+        <div class="header-wrapper" data-ng-include data-src="'html/header.html'"></div>
+        <div class="view-wrapper" data-ui-view=""></div>
+      </div>
+    </div>
+    <div class="footer-wrapper" data-ng-include data-src="'html/footer.html'"></div>
   </div>
 
 </body>

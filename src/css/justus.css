@@ -7740,15 +7740,25 @@ body {
   height: 100%;
   width: 100%; }
 
+.main-wrapper {
+  background-color: #99c2c8;
+  min-height: 100%; }
+
+.header-wrapper {
+  padding-top: 10px; }
+
 .content-wrapper {
+  background-color: #dddddd; }
+
+.main-container {
   background-color: #ffffff;
-  height: 100%; }
+  padding-bottom: 10px; }
 
 .footer {
   background-color: #99c2c8;
   color: #ffffff;
   padding: 10px 16px;
-  margin: 10px 0; }
+  margin-top: 10px; }
 
 .justus-block {
   padding: 8px 0px;
