@@ -66,13 +66,8 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   this.fieldIsEmpty = function(fieldValue) {
-    if ( fieldValue === '' || 
-    fieldValue === {} || 
-    fieldValue === [] ||
-    fieldValue === undefined ) {
-      return true;
-    }
-    return false;
+    var fieldIsEmpty = (fieldValue === '' || fieldValue === {} || fieldValue === [] || fieldValue === undefined) ? true : false;
+    return fieldIsEmpty;
   }
 
   this.isValid = function(fieldName) {
@@ -119,19 +114,20 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
 
     // Validate a field which consists of multiple subfields
-    if (formFieldDefaults[fieldName].subfields.length > 0 && valid === true) {
+    if (formFieldDefaults[fieldName].subfields.length > 0 && valid === true && fieldIsFilled === true) {
       valid = this.validateNestedField(fieldName);
       reason = valid === false ? 'One or more subfield value is invalid': '';
     }
-    
+
     return valid;
   }
 
   this.validateNestedField = function(fieldName) {
     let valid = true;
     angular.forEach(formFieldDefaults[fieldName].subfields, function(subfieldName) {
+      let subfieldIsRequired = this.isFieldRequired(subfieldName);
       // If the field consists of a list of objects, we need to validate each index
-      if ( angular.isArray(this.justus[fieldName]) ) {
+      if ( angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
         angular.forEach(this.justus[fieldName], function(fieldIndex) {
           if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
             valid = false;
@@ -150,7 +146,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       }
       // Otherwise we can just validate the direct child field
       else {
-        if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true) {
+        if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true && subfieldIsRequired === true) {
           valid = false;
         }
       }

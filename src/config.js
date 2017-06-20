@@ -39,7 +39,7 @@ if (demomode) {
     'mail': 'notvalid@csc.fi', // should map from shib-mail
     'name': 'Justus Demo', // should join shib-givenName and shib-sn
     'domain': '@csc.fi', // should get from shib-group where split(;) array item is '@...'
-    'organization': {code:'10056',email:'notvalid@haaga-helia.fi'}, // should map from shib-group where split(;) array item is '@...'
+    'organization': {code:'00000',email:'notvalid@csc.fi'}, // should map from shib-group where split(;) array item is '@...'
     'role': 'admin' // should map from shib-group where split(;) array item is '.../groups/justus#...'
   };
 };
@@ -50,13 +50,13 @@ let domain_organization = {
   '@csc.fi': {
     code:'00000',
     email:'notvalid@csc.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -65,13 +65,13 @@ let domain_organization = {
   '@arcada.fi': {
     code:'02535',
     email:'notvalid@arcada.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite'] 
@@ -80,13 +80,13 @@ let domain_organization = {
   '@centria.fi': {
     code:'02536',
     email:'notvalid@centria', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -95,13 +95,13 @@ let domain_organization = {
   '@diak.fi': {
     code:'02623',
     email:'notvalid@diak.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -110,12 +110,12 @@ let domain_organization = {
   '@haaga-helia.fi': {
     code:'10056',
     email:'notvalid@haaga-helia.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 'emojulkaisunnimi',
     'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'julkaisumaa'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -124,13 +124,13 @@ let domain_organization = {
   '@humak.fi': {
     code:'02631',
     email:'notvalid@humak.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -139,13 +139,13 @@ let domain_organization = {
   '@jamk.fi': {
     code:'02504',
     email:'notvalid@jamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -169,13 +169,13 @@ let domain_organization = {
   '@karelia.fi': {
     code:'02469',
     email:'notvalid@karelia.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -185,13 +185,13 @@ let domain_organization = {
   '@xamk.fi': {
     code:'10118',
     email:'notvalid@xamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -200,13 +200,13 @@ let domain_organization = {
   '@kyamk.fi': {
     code:'10118',
     email:'notvalid@xamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -215,13 +215,13 @@ let domain_organization = {
   '@mamk.fi': {
     code:'10118',
     email:'notvalid@xamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -230,13 +230,13 @@ let domain_organization = {
   '@lamk.fi': {
     code:'02470',
     email:'notvalid@lamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -245,13 +245,13 @@ let domain_organization = {
   '@laurea.fi': {
     code:'02629',
     email:'notvalid@laurea.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -260,13 +260,13 @@ let domain_organization = {
   '@metropolia.fi': {
     code:'10065',
     email:'notvalid@metropolia.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -275,13 +275,13 @@ let domain_organization = {
   '@samk.fi': {
     code:'02507',
     email:'notvalid@samk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -290,13 +290,13 @@ let domain_organization = {
   '@seamk.fi': {
     code:'02472',
     email:'notvalid@seamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -305,13 +305,13 @@ let domain_organization = {
   '@tamk.fi': {
     code:'02630',
     email:'notvalid@tamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -320,13 +320,13 @@ let domain_organization = {
   '@novia.fi': {
     code:'10066',
     email:'notvalid@novia.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'orcid', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -335,13 +335,13 @@ let domain_organization = {
   '@polamk.fi': {
     code:'02557',
     email:'notvalid@polamk.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -351,13 +351,13 @@ let domain_organization = {
   '@fmi.fi': {
     code:'4940015',
     email:'notvalid@fmi.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -367,13 +367,13 @@ let domain_organization = {
   '@nls.fi': { 
     code:'4020217', 
     email:'notvalid@maanmittauslaitos.fi', 
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
@@ -382,13 +382,13 @@ let domain_organization = {
   '@maanmittauslaitos.fi': {
     code:'4020217',
     email:'notvalid@maanmittauslaitos.fi',
-    visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
     'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
     'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
     'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
     'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
-    requiredFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
