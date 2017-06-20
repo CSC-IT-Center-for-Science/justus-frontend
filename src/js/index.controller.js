@@ -123,14 +123,6 @@ function($scope, $rootScope, $http, $window, $stateParams, $transitions, Koodist
 
   // ACCESSORIES (scope functions)
 
-  $scope.alterViewWidth = function() {
-    if (document.body.className=='container') {
-      document.body.className='container-fluid'
-    } else {
-      document.body.className='container'
-    }
-  }
-
   // check that user has access to whatever the input
   $scope.hasAccess = function(input) {
     // hyvaksy - admin role is required

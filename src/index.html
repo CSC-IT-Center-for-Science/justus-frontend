@@ -59,17 +59,13 @@
 
   <title data-ng-bind="i18n.header.title[lang]">JUSTUS</title>
 </head>
-<body class="container-fluid">
+<body>
 
-<div class="row">
-  <div class="col-xs-12 content">
+  <div class="container content-wrapper">
     <div data-ng-include data-src="'html/header.html'"></div>
-
     <div data-ui-view=""></div>
-
     <div data-ng-include data-src="'html/footer.html'"></div>
   </div>
-</div>
 
 </body>
 </html>
