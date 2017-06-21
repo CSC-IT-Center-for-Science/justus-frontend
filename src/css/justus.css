@@ -7902,3 +7902,33 @@ body {
   position: absolute;
   right: 15px;
   top: 10px; }
+
+.navigation a,
+.navigation a:focus,
+.navigation a:active {
+  font-size: 14px;
+  margin-right: 16px;
+  text-decoration: none;
+  color: #99c2c8; }
+  .navigation a:hover,
+  .navigation a:focus:hover,
+  .navigation a:active:hover {
+    color: #67a4ad;
+    text-decoration: none; }
+  .navigation a.active,
+  .navigation a:focus.active,
+  .navigation a:active.active {
+    color: #67a4ad;
+    text-decoration: underline; }
+  @media (min-width: 1200px) {
+    .navigation a,
+    .navigation a:focus,
+    .navigation a:active {
+      font-size: 18px; } }
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0; }
+  .row.no-gutter [class*='col-'] {
+    padding-left: 0;
+    padding-right: 0; }

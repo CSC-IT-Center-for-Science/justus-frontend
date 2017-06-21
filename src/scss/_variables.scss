@@ -12,6 +12,8 @@ $brand-info: #5bc0de;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 
+$brand-primary-dark: #67a4ad;
+
 $brand-white: #ffffff;
 
 $body-bg: #dddddd;
@@ -31,3 +33,10 @@ $padding-xs-horizontal: 5px;
 
 // Typography
 $font-size-base: 14px;
+
+// Breakpoints
+$width-xxs: 320px;
+$width-xs: 480px;
+$width-sm: 768px;
+$width-md: 992px;
+$width-lg: 1200px; 

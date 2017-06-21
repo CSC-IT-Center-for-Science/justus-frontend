@@ -1,8 +1,8 @@
 'use strict';
 
 justusApp.controller('IndexController',
-['$scope','$rootScope', '$http', '$window', '$stateParams', '$transitions', 'KoodistoService',
-function($scope, $rootScope, $http, $window, $stateParams, $transitions, Koodisto)
+['$scope','$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService',
+function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, Koodisto)
 {
   //config provides: demomode, justusuri, authuri, domain_organization
   //i18n provides: i18n
@@ -160,5 +160,9 @@ function($scope, $rootScope, $http, $window, $stateParams, $transitions, Koodist
   $scope.resetKoodisto = function(){
     Koodisto.reset();
   }
+
+  $scope.getMenuClass = function(menuPath) {
+    return ($location.path().indexOf(menuPath) !== -1) ? 'active' : '';
+  };
 
 }]);//-IndexController
