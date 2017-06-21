@@ -1,19 +1,12 @@
-<div class="row justus-block-alter justus-btn" data-ng-click="login()">
-  <div class="col-xs-4 text-right" style="vertical-align:middle;">
-      <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
-  </div>
-  <div class="col-xs-8 text-left" style="vertical-align:middle;">
-    <h3 data-ng-bind="i18n.etusivu.kirjaudu[lang]"></h3>
-  </div>
-</div>
-<div class="row justus-block-alter justus-btn" data-ui-sref="justus({lang:lang})" data-ng-show="demomode">
-  <div class="col-xs-4 text-right" style="vertical-align:middle;">
-      <i class="fa fa-sign-in fa-4x" aria-hidden="true"></i>
-  </div>
-  <div class="col-xs-8 text-left" style="vertical-align:middle;">
-    <h3>Demo</h3>
-  </div>
-</div>
+<button class="btn btn-block btn-lg btn-primary"
+  data-ng-click="login()">
+  <i class="fa fa-sign-in" aria-hidden="true"></i> {{i18n.etusivu.kirjaudu[lang]}}
+</button>
+<button class="btn btn-block btn-lg btn-primary" 
+  data-ui-sref="justus({lang:lang})" 
+  data-ng-if="demomode">
+  <i class="fa fa-sign-in" aria-hidden="true"></i> Demo
+</button>
 
 <div class="row">
   <div class="col-xs-12">

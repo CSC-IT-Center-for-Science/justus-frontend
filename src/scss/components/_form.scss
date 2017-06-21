@@ -1,11 +1,18 @@
 .form-header {
-  background-color: $brand-primary;
+  background-color: $brand-secondary;
   color: $brand-white;
   padding: $padding-base-vertical $padding-base-horizontal;
 }
 
 .form-control-feedback {
+  display: none;
   right: 15px;
+}
+
+.has-feedback {
+  .form-control-feedback {
+    display: block;
+  }
 }
 
 .form-control-feedback-extra {

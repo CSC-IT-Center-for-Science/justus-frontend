@@ -51,140 +51,20 @@ body {
 }
 
 .justus-block-alter {
-  background-color: #99c2c8;
-  color: #FFFFFF;
+  background-color: $body-bg;
+  color: $brand-white;
   padding: 8px 0px;
   margin: 8px 0px;
 }
 
-.justus-info {
-  color: #99C2C8;
-}
-
-.justus-info-bw {
-  background-color: #FFFFFF;
-  color: #000000;
-}
-
-.justus-info:hover {
-  color: #026D7C;
-}
-
 .justus-highlight {
-  color: #026D7C;
+  color: $brand-primary;
 }
 
 .justus-required-star {
-  color: red;
+  color: $brand-danger;
 }
 
 .justus-required {
   transition: all linear 0.5s;
-}
-
-.justus-btn {
-  cursor: pointer;
-  text-align: center;
-  border-radius: 6px;
-  position: relative;
-}
-
-.justus-btn.disabled {
-  cursor: not-allowed;
-}
-
-.justus-btn:hover {
-  transition: all 0.5s ease-in-out;
-  background-color: #026D7C;
-}
-
-.justus-btn.selected {
-  background-color: #026D7C;
-}
-
-.justus-btn-default {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  padding: 5px 8px;
-  margin: 0px;
-}
-
-.justus-btn-default.active {
-  background-color: #026D7C;
-}
-
-.justus-btn-tiny {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  padding: 1px 4px;
-  margin: 0px;
-}
-
-.justus-btn-tiny.active {
-  background-color: #026D7C;
-}
-
-.justus-btn-stage {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  font-size: larger;
-  padding: 12px;
-  margin: 2px;
-}
-
-.justus-btn-stage.disabled {
-  background-color: #99C2C8;
-  padding: 12px;
-  margin: 2px;
-}
-
-.justus-btn-primary {
-  background-color: #7dc243;
-  color: #FFFFFF;
-  border: 10px solid #7dc243;
-  padding: 2px;
-  margin: 2px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.justus-btn-primary.disabled {
-  background-color: #FFFFFF;
-  color: #7dc243;
-  border: 10px solid #7dc243;
-  padding: 2px;
-  margin: 2px;
-  cursor: not-allowed;
-  text-align: center;
-}
-
-.justus-btn-plain {
-  background-color: #FFFFFF;
-  color: #000000;
-  border: 1px solid #000000;
-}
-
-.justus-btn-tyyppi {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  display: inline-block;
-  padding: 9px;
-  margin: 4px 0px;
-  cursor: pointer;
-  text-align: left;
-  font-size: larger;
-}
-
-.justus-btn-tyyppi.active {
-  background-color: #026D7C;
-}
-
-.justus-btn-emphasized {
-  background-color: #FFFFFF;
-  color: #006574;
-  border: 10px solid #006574;
-  padding: 24px 6px;
-  margin: 6px;
-  cursor: pointer;
-  text-align: center;
 }
