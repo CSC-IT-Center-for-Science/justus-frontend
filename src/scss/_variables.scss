@@ -6,16 +6,21 @@ $gray: lighten($gray-base, 33.5%);
 $gray-light: lighten($gray-base, 46.7%);
 $gray-lighter: lighten($gray-base, 93.5%);
 
-$brand-primary: #99c2c8;
+$brand-primary: #026D7C;
+$brand-secondary: #99c2c8; 
 $brand-success: #5cb85c;
 $brand-info: #5bc0de;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
-
-$brand-primary-dark: #67a4ad;
-
 $brand-white: #ffffff;
+$brand-gray: $gray-light;
 
+$darken-intensity-base: 10%;
+$lighten-intensity-base: 10%;
+
+$brand-primary-dark: darken($brand-primary, $darken-intensity-base);
+
+$text-color: $brand-primary;
 $body-bg: #dddddd;
 
 // Spacing
@@ -33,6 +38,7 @@ $padding-xs-horizontal: 5px;
 
 // Typography
 $font-size-base: 14px;
+$label-font-weight: normal;
 
 // Breakpoints
 $width-xxs: 320px;
