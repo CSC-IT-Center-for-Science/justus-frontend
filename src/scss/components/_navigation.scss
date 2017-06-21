@@ -1,0 +1,24 @@
+.navigation {
+  a,
+  a:focus,
+  a:active {
+    font-size: $font-size-base;
+    margin-right: $padding-large-horizontal;
+    text-decoration: none;
+    color: $brand-primary;
+
+    &:hover {
+      color: $brand-primary-dark;
+      text-decoration: none;
+    }
+
+    &.active {
+      color: $brand-primary-dark;
+      text-decoration: underline;
+    }
+
+    @media(min-width: $width-lg) {
+      font-size: $font-size-large;
+    }
+  }
+}
