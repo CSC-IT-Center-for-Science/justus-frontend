@@ -7766,29 +7766,6 @@ body {
   padding: 10px 16px;
   margin: 0; }
 
-.justus-block {
-  padding: 8px 0px;
-  margin: 8px 0px; }
-
-.justus-block.sm {
-  padding: 4px 0px;
-  margin: 4px 0px; }
-
-.justus-block-alter {
-  background-color: #dddddd;
-  color: #ffffff;
-  padding: 8px 0px;
-  margin: 8px 0px; }
-
-.justus-highlight {
-  color: #026D7C; }
-
-.justus-required-star {
-  color: #d9534f; }
-
-.justus-required {
-  transition: all linear 0.5s; }
-
 .btn.btn-lg, .btn-group-lg > .btn {
   padding: 20px 16px; }
 
@@ -7899,6 +7876,9 @@ body {
   position: absolute;
   right: 15px;
   top: 10px; }
+
+.required-star {
+  color: #d9534f; }
 
 label {
   font-weight: normal; }

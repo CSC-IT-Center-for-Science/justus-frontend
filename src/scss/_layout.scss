@@ -37,34 +37,3 @@ body {
   padding: $padding-large-vertical $padding-large-horizontal;
   margin: 0;
 }
-
-// Todo
-// Old theme css, replace with SASS and rename to be more generic
-.justus-block {
-  padding: 8px 0px;
-  margin: 8px 0px;
-}
-
-.justus-block.sm {
-  padding: 4px 0px;
-  margin: 4px 0px;
-}
-
-.justus-block-alter {
-  background-color: $body-bg;
-  color: $brand-white;
-  padding: 8px 0px;
-  margin: 8px 0px;
-}
-
-.justus-highlight {
-  color: $brand-primary;
-}
-
-.justus-required-star {
-  color: $brand-danger;
-}
-
-.justus-required {
-  transition: all linear 0.5s;
-}
