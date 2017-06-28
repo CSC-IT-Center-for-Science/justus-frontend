@@ -13,14 +13,14 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   this.isFieldVisible = function(field) {
     let visible = false;
     
-    if ( formFieldDefaults[field] && formFieldDefaults[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi']) ) {
+    if ( field_default_config[field] && field_default_config[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi']) ) {
       visible = true;
     }
   
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
-    if (visible === true || !formFieldDefaults[field]) {
-      let organizationConfig = domain_organization[$rootScope.user.domain];
+    if (visible === true || !field_default_config[field]) {
+      let organizationConfig = organization_field_config[$rootScope.user.domain];
       visible = organizationConfig.visibleFields.includes(field) ? true : false; 
     }
 
@@ -29,20 +29,20 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
 
   this.isFieldRequired = function(fieldName) {
     // If the field is missing from the configuration, it cannot be mandatory unless made mandatory by organization config
-    if(!formFieldDefaults[fieldName]) {
+    if(!field_default_config[fieldName]) {
       if( this.isFieldRequiredByOrganization(fieldName) === true ) {
         return true;
       }
       return false;
     }
 
-    let fieldRequired = formFieldDefaults[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
+    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) && 
     this.isFieldRequiredByOrganization(fieldName) ? 
     true : false;
 
     // If the field was required we need to check if the field required attribute depends on another filled field
     if(fieldRequired === true) {
-      angular.forEach(formFieldDefaults[fieldName].optionalWithFields, function(field) {
+      angular.forEach(field_default_config[fieldName].optionalWithFields, function(field) {
         if(this.fieldIsEmpty(this.justus[field]) === false) {
           fieldRequired = false;
         }
@@ -50,7 +50,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
     // Otherwise the field can be made mandatory by another filled field
     else {
-      angular.forEach(formFieldDefaults[fieldName].requiredWithFields, function(field) {
+      angular.forEach(field_default_config[fieldName].requiredWithFields, function(field) {
         if (this.fieldIsEmpty(this.justus[field]) === false && this.justus[field] !== '0') {
           fieldRequired = true;
         }
@@ -61,7 +61,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   this.isFieldRequiredByOrganization = function(fieldName) {
-    let organizationConfig = domain_organization[$rootScope.user.domain];
+    let organizationConfig = organization_field_config[$rootScope.user.domain];
     return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
@@ -76,7 +76,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     let reason = '';
     let fieldIsFilled = false;
 
-    if(!formFieldDefaults[fieldName]) {
+    if(!field_default_config[fieldName]) {
       return true;
     }
 
@@ -94,10 +94,10 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
 
     // Validate the field has against a possible validation pattern
-    if (formFieldDefaults[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
+    if (field_default_config[fieldName].pattern !== null && valid === true && fieldIsFilled === true) {
       // If trying to pattern match something else than a string the value is invalid
       if(typeof this.justus[fieldName] === 'string') {
-        valid = this.justus[fieldName].match(formFieldDefaults[fieldName].pattern) !== null ? true : false;
+        valid = this.justus[fieldName].match(field_default_config[fieldName].pattern) !== null ? true : false;
       }
       else {
         valid = false;
@@ -106,15 +106,15 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     }
 
     // Validate a field that contains a list of values
-    if (formFieldDefaults[fieldName].requiredAmount > 0 && valid === true) {
+    if (field_default_config[fieldName].requiredAmount > 0 && valid === true) {
       valid = angular.isArray(this.justus[fieldName]) === true && 
-      this.justus[fieldName].length >= formFieldDefaults[fieldName].requiredAmount ? 
+      this.justus[fieldName].length >= field_default_config[fieldName].requiredAmount ? 
       true : false;
-      reason = valid === false ? 'At least ' +  formFieldDefaults[fieldName].requiredAmount + ' value is required': '';
+      reason = valid === false ? 'At least ' +  field_default_config[fieldName].requiredAmount + ' value is required': '';
     }
 
     // Validate a field which consists of multiple subfields
-    if (formFieldDefaults[fieldName].subfields.length > 0 && valid === true && fieldIsFilled === true) {
+    if (field_default_config[fieldName].subfields.length > 0 && valid === true && fieldIsFilled === true) {
       valid = this.validateNestedField(fieldName);
       reason = valid === false ? 'One or more subfield value is invalid': '';
     }
@@ -124,7 +124,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
 
   this.validateNestedField = function(fieldName) {
     let valid = true;
-    angular.forEach(formFieldDefaults[fieldName].subfields, function(subfieldName) {
+    angular.forEach(field_default_config[fieldName].subfields, function(subfieldName) {
       let subfieldIsRequired = this.isFieldRequired(subfieldName);
       // If the field consists of a list of objects, we need to validate each index
       if ( angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
@@ -146,7 +146,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
       }
       // Otherwise we can just validate the direct child field
       else {
-        if (this.fieldIsEmpty(formFieldDefaults[fieldName][subfieldName]) === true && subfieldIsRequired === true) {
+        if (this.fieldIsEmpty(field_default_config[fieldName][subfieldName]) === true && subfieldIsRequired === true) {
           valid = false;
         }
       }
@@ -157,7 +157,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   
   this.getInvalidFields = function() {
     let invalidFields = [];
-    let organizationConfig = domain_organization[$rootScope.user.domain];
+    let organizationConfig = organization_field_config[$rootScope.user.domain];
     angular.forEach(organizationConfig.visibleFields, function(field) {
       if (this.isValid(field) === false) {
         invalidFields.push(field);
