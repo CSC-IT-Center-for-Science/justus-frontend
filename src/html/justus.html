@@ -1,7 +1,5 @@
   <div data-ng-controller="JustusController">
 
-    <div data-ng-show="vaihe<1" data-ng-include data-src="'html/justus/valitse.html'"></div>
-
     <form id="form_justus" name="fj" data-ng-if="vaihe>=1">
       <div data-ng-if="vaihe>=1" data-ng-include data-src="'html/justus/vaihevuo.html'"></div>
       <div data-ng-if="vaihe==1" data-ng-include data-src="'html/justus/esitayta.html'"></div>

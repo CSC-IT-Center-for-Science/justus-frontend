@@ -25,6 +25,19 @@ justusApp.config(function(
     }
   };
 
+  let valitseState = {
+    name: "valitse",
+    url: "/valitse?lang",
+    views: {
+      "": {
+        templateUrl: "html/valitse.html"
+      }
+    },
+    params: {
+      lang: null
+    }
+  };
+
   let justusState = {
     name: "justus",
     url: "/justus?lang&vaihe&id",
@@ -67,6 +80,7 @@ justusApp.config(function(
   };
 
   $stateProvider.state(indexState);
+  $stateProvider.state(valitseState);
   $stateProvider.state(justusState);
   $stateProvider.state(omatState);
   $stateProvider.state(hyvaksyState);
