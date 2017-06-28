@@ -42,6 +42,7 @@ module.exports = function (grunt) {
           'html/**',
           //usemin+concat: 'js/*',
           'config.js', // TODO this should be made environment specific
+          'field_config.js',
           'css/justus.css',
           'img/*'
         ],
