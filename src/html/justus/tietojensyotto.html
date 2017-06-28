@@ -766,14 +766,15 @@
       class="row"
       data-ng-model="req_tieteenala[$index]">
       <div class="col-xs-10">
-        <input type="hidden" data-ng-model="justus.tieteenala[$index]">
-        <input type="text" class="form-control"
-         data-ng-model="lab_tieteenala$index"
-         data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"
-         data-ng-click="showSelectTieteenala[$index]=true">
-        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-        <div data-ng-show="showSelectTieteenala[$index]">
-          <div class="col-xs-6">
+        <div class="form-group">
+          <input type="hidden" data-ng-model="justus.tieteenala[$index]">
+          <input type="text" class="form-control"
+          data-ng-model="lab_tieteenala$index"
+          data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-12 form-group">
             <ui-select data-ng-model="tieteenala.selected"
              on-select="useTieteenala($select.selected.arvo,$index)"
              theme="bootstrap">
@@ -785,7 +786,7 @@
               </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-xs-6" data-ALWAYS-ng-show="tieteenala_paa">
+          <div class="col-sm-6 col-xs-12 form-group" data-ALWAYS-ng-show="tieteenala_paa">
             <!--dev--><!-- hack here with ng-if and parent.parent.parent.index... --><!--enddev-->
             <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==tieteenala_paa">
               <ui-select data-ng-model="alatieteenalat.selected"
@@ -803,7 +804,7 @@
             <!--dev--><!-- hack... now parent.index... --><!--enddev-->
             <div data-ng-show="!tieteenala_paa">
               <ui-select data-ng-model="alatieteenalat.selected"
-               on-select="useTieteenala($select.selected.arvo,$parent.$index); showSelectTieteenala[$index]=false;"
+               on-select="useTieteenala($select.selected.arvo,$parent.$index)"
                theme="bootstrap">
                 <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
                   {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
