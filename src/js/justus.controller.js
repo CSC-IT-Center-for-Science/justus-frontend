@@ -418,7 +418,7 @@ justusApp.controller('JustusController', [
       // keep this: $scope.justus.julkaisuntila;
 
       // julkaisutyyppi / vaihe
-      $scope.useVaihe($stateParams.vaihe||0);
+      $scope.useVaihe($stateParams.vaihe||1);
     }
 
     // startInit - read in data and figure out parameters and messages

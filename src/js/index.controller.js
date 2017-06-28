@@ -147,7 +147,7 @@ function($scope, $rootScope, $http, $window, $stateParams, $transitions, $locati
   }
 
   $scope.login = function() {
-    let target = encodeURIComponent(justusuri+'/#/justus?lang='+$scope.lang);
+    let target = encodeURIComponent(justusuri+'/#/valitse?lang='+$scope.lang);
     $window.location.href = justusuri+'/Shibboleth.sso/Login?target='+target;
   }
 
