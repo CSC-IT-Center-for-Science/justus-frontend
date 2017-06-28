@@ -2,23 +2,29 @@
   a,
   a:focus,
   a:active {
+    display: inline-block;
     font-size: $font-size-base;
-    margin-right: $padding-large-horizontal;
     text-decoration: none;
     color: $brand-primary;
+    padding: $padding-small-vertical $padding-small-horizontal;
+    border-radius: $border-radius-base;
+    margin-bottom: $padding-small-vertical;
 
     &:hover {
-      color: $brand-primary-dark;
+      background: $brand-secondary;
+      color: $brand-white;
       text-decoration: none;
     }
 
     &.active {
-      color: $brand-primary-dark;
-      text-decoration: underline;
+      background: $brand-primary;
+      color: $brand-white;
+      text-decoration: none;
     }
 
     @media(min-width: $width-lg) {
       font-size: $font-size-large;
+      margin-bottom: 0;
     }
   }
 }
