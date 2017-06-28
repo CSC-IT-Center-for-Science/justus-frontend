@@ -1,6 +1,23 @@
-let organization_field_config = {
+let organization_field_config = [
   // debug/develop/demo (de3)
-  '@csc.fi': {
+  {
+    domain: '@csc.fi',
+    code:'00000',
+    email:'notvalid@csc.fi', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
+    'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
+    'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
+    'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
+    'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  // debug/develop/demo (de3)
+  {
+    domain: '@gofore.com',
     code:'00000',
     email:'notvalid@csc.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -15,7 +32,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Arcada - Nylands svenska yrkeshögskola  #arcada-admins
-  '@arcada.fi': {
+  {
+    domain: '@arcada.fi',
     code:'02535',
     email:'notvalid@arcada.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -30,7 +48,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite'] 
   },
   //Centria-ammattikorkeakoulu  #centria-admins
-  '@centria.fi': {
+  {
+    domain: '@centria.fi',
     code:'02536',
     email:'notvalid@centria', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -45,7 +64,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Diakonia-ammattikorkeakoulu  #diak-admins
-  '@diak.fi': {
+  {
+    domain: '@diak.fi',
     code:'02623',
     email:'notvalid@diak.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -60,7 +80,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Haaga-Helia ammattikorkeakoulu  #haaga-helia-admins
-  '@haaga-helia.fi': {
+  {
+    domain: '@haaga-helia.fi',
     code:'10056',
     email:'notvalid@haaga-helia.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -74,7 +95,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Humanistinen ammattikorkeakoulu  #humak-admins
-  '@humak.fi': {
+  {
+    domain: '@humak.fi',
     code:'02631',
     email:'notvalid@humak.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -89,7 +111,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Jyväskylän ammattikorkeakoulu  #jamk-admins
-  '@jamk.fi': {
+  {
+    domain: '@jamk.fi',
     code:'02504',
     email:'notvalid@jamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -104,7 +127,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Kajaanin ammattikorkeakoulu  #kamk-admins
-  '@kamk.fi': {
+  {
+    domain: '@kamk.fi',
     code:'02473',
     email:'notvalid@kamk.fi', 
     visibleFields: ['julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -119,7 +143,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Karelia-ammattikorkeakoulu  #karelia-admins
-  '@karelia.fi': {
+  {
+    domain: '@karelia.fi',
     code:'02469',
     email:'notvalid@karelia.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -135,7 +160,8 @@ let organization_field_config = {
   },
   // nb! xamk may have 3 domains (mahd. kyamk.fi ja mamk.fi)
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  '@xamk.fi': {
+  {
+    domain: '@xamk.fi',
     code:'10118',
     email:'notvalid@xamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -150,7 +176,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  '@kyamk.fi': {
+  {
+    domain: '@kyamk.fi',
     code:'10118',
     email:'notvalid@xamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -165,7 +192,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
-  '@mamk.fi': {
+  {
+    domain: '@mamk.fi',
     code:'10118',
     email:'notvalid@xamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -180,7 +208,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Lahden ammattikorkeakoulu  #lamk-admins
-  '@lamk.fi': {
+  {
+    domain: '@lamk.fi',
     code:'02470',
     email:'notvalid@lamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -195,7 +224,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Laurea-ammattikorkeakoulu  #laurea-admins
-  '@laurea.fi': {
+  {
+    domain: '@laurea.fi',
     code:'02629',
     email:'notvalid@laurea.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -210,7 +240,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Metropolia ammattikorkeakoulu  #metropolia-admins
-  '@metropolia.fi': {
+  {
+    domain: '@metropolia.fi',
     code:'10065',
     email:'notvalid@metropolia.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -225,7 +256,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Satakunnan ammattikorkeakoulu  #samk-admins
-  '@samk.fi': {
+  {
+    domain: '@samk.fi',
     code:'02507',
     email:'notvalid@samk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -240,7 +272,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   }, 
   //Seinäjoen ammattikorkeakoulu  #seamk-admins
-  '@seamk.fi': {
+  {
+    domain: '@seamk.fi',
     code:'02472',
     email:'notvalid@seamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -255,7 +288,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Tampereen ammattikorkeakoulu  #tamk-admins
-  '@tamk.fi': {
+  {
+    domain: '@tamk.fi',
     code:'02630',
     email:'notvalid@tamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -270,7 +304,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Yrkeshögskolan Novia  #novia-admins
-  '@novia.fi': {
+  {
+    domain: '@novia.fi',
     code:'10066',
     email:'notvalid@novia.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -285,7 +320,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Poliisiammattikorkeakoulu  #polamk-admins
-  '@polamk.fi': {
+  {
+    domain: '@polamk.fi',
     code:'02557',
     email:'notvalid@polamk.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -301,7 +337,8 @@ let organization_field_config = {
   },
   // tutkimusorganisaatio
   //Ilmatieteen laitos  #fmi-admins
-  '@fmi.fi': {
+  {
+    domain: '@fmi.fi',
     code:'4940015',
     email:'notvalid@fmi.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -317,7 +354,8 @@ let organization_field_config = {
   }, 
   // nb! mml has 2 domains
   //Maanmittauslaitos  #mml-admins
-  '@nls.fi': { 
+  {
+    domain: '@nls.fi',
     code:'4020217', 
     email:'notvalid@maanmittauslaitos.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -332,7 +370,8 @@ let organization_field_config = {
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
   //Maanmittauslaitos  #mml-admins
-  '@maanmittauslaitos.fi': {
+  {
+    domain: '@maanmittauslaitos.fi',
     code:'4020217',
     email:'notvalid@maanmittauslaitos.fi',
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
@@ -348,7 +387,7 @@ let organization_field_config = {
   }
 
   //,'@': '' //...
-};
+];
 
 // Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:
 // requiredInPublicationTypes: Publication type codes for which the field is mandatory

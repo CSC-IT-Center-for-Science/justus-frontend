@@ -9,6 +9,14 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   // in justus we keep data to be stored in database
   this.justus = {};
 
+  this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
+    let fieldConfigs = organization_field_config;
+    let organizationConfig = fieldConfigs.filter(function(organization) {
+      return organization.domain == organizationDomain && organization.code == organizationCode;
+    });
+    return organizationConfig ? organizationConfig[0] : null;
+  };
+
   // Returns true if the provided field is configured to be visible, false if not
   this.isFieldVisible = function(field) {
     let visible = false;
@@ -20,7 +28,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
     // If the field is visible for the current publication type, it
     // can still be hidden by the active organization
     if (visible === true || !field_default_config[field]) {
-      let organizationConfig = organization_field_config[$rootScope.user.domain];
+      let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
       visible = organizationConfig.visibleFields.includes(field) ? true : false; 
     }
 
@@ -61,7 +69,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   }
 
   this.isFieldRequiredByOrganization = function(fieldName) {
-    let organizationConfig = organization_field_config[$rootScope.user.domain];
+    let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
     return organizationConfig.requiredFields.includes(fieldName) ? true : false; 
   }
 
@@ -157,7 +165,7 @@ justusApp.service('JustusService',['$http','$rootScope', function ($http, $rootS
   
   this.getInvalidFields = function() {
     let invalidFields = [];
-    let organizationConfig = organization_field_config[$rootScope.user.domain];
+    let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
     angular.forEach(organizationConfig.visibleFields, function(field) {
       if (this.isValid(field) === false) {
         invalidFields.push(field);
