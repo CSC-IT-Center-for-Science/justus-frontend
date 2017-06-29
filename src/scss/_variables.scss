@@ -20,6 +20,22 @@ $brand-primary-dark: #01424B;
 $text-color: $brand-primary;
 $body-bg: #dddddd;
 
+$state-success-text: $brand-primary-dark;
+$state-success-bg: lighten($brand-primary, 50%);
+$state-success-border: transparent;
+
+$state-info-text: $brand-info;
+$state-info-bg: lighten($brand-info, 50%);
+$state-info-border: transparent;
+
+$state-warning-text: $brand-white;
+$state-warning-bg: $brand-warning;
+$state-warning-border: transparent;
+
+$state-danger-text: $brand-danger;
+$state-danger-bg: lighten($state-danger-text, 50%);
+$state-danger-border: transparent;
+
 // Spacing
 $padding-base-vertical: 6px;
 $padding-base-horizontal: 12px;
