@@ -1,0 +1,25 @@
+tags-input,
+.tags-input {
+  .tags {
+    .input {
+      &.invalid-tag {
+        color: $brand-danger;
+      }
+    }
+
+    .tag-item {
+      background: $brand-primary;
+      color: $brand-white;
+      border-radius: $border-radius-small;
+
+      &.selected {
+        background: $brand-danger;
+        color: $brand-white;
+      }
+
+      .remove-button {
+        color: $brand-white;
+      }
+    }
+  }
+}
