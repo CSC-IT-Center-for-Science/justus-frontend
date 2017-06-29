@@ -34,12 +34,11 @@
       <span>| <a href="" data-ng-href="{{justusuri}}/Shibboleth.sso/Logout?return={{justusuri}}">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
-      <span><a href="" data-ng-click="alert('ohje?')">
-        {{i18n.header.help[lang]}}
-        <i class="fa fa-info-circle justus-info"
-        data-popover-trigger="'mouseenter'" data-popover-placement="bottom"
-        data-uib-popover="ohje?"></i>
-      </a></span>
+      <span>
+        <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+          <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
+        </a>
+      </span>
       <span>|</span>
       <a href data-ng-show="lang!='FI'" data-ng-click="$parent.lang='FI'">{{i18n.header.lang.FI}}</a>
       <span data-ng-show="lang!='FI'">|</span>
