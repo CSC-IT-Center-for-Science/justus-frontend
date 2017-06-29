@@ -119,7 +119,7 @@ let i18n = {
           SV: "Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).",
           EN: "Authors of the publication in the format and order in which they were listed in the original publication or source database (max. 20)."
         },
-        picktip: {FI: "Tekijät puolipistein eroteltuna", SV: "Semikolon mellan författarnas namn", EN: "Authors separated by semicolon"}
+        picktip: {FI: "Syötä muodossa Sukunimi, Etunimi ja paina enter", SV: "Skriv i format Efternamn, Förnamn och tryck enter", EN: "Type in format Lastname, Firstname and press enter"}
       },
       julkaisuntekijoidenlukumaara: {
         FI: "Julkaisun tekijöiden lukumäärä", SV: "Antalet upphovsmän", EN: "Number of authors in publication",

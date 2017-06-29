@@ -75,10 +75,15 @@
     data-ng-model="req_tekijat">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control"
-          data-ng-model="justus.tekijat"
+        <tags-input data-ng-model="tekijatTags"
+          data-replace-spaces-with-dashes="false"
+          data-add-on-comma="false"
+          data-add-on-space="false"
           placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
-          data-ng-change="useTekijat(justus.tekijat)">
+          data-on-tag-added="useTekijat()"
+          data-on-tag-removed="useTekijat()"
+          allowed-tags-pattern="^[a-zA-Z]{1,50}, ?[a-zA-Z]{1,50}$">
+        </tags-input>
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">

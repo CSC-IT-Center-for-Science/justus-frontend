@@ -80,6 +80,8 @@ module.exports = function (grunt) {
         src: [
           'src/bower_components/fontawesome/css/font-awesome.css',
           'src/bower_components/angular-ui-select/dist/select.css',
+          'src/bower_components/ng-tags-input/ng-tags-input.css',
+          'src/bower_components/ng-tags-input/ng-tags-input.bootstrap.css',
           'src/css/*.css',
         ],
         dest: 'src/css/justus.css',

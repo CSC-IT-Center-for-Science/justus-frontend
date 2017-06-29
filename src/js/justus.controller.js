@@ -13,6 +13,7 @@ justusApp.controller('JustusController', [
     $scope.pattern = Justus.pattern; // ng-pattern
 
     // other setups
+    $scope.tekijatTags = [];
     $scope.lehtinimet = [];
     $scope.kustantajanimet = [];
     $scope.konferenssinimet = [];
@@ -30,16 +31,12 @@ justusApp.controller('JustusController', [
     //$scope.justus.jufoluokitus = "";
 
 
-    $scope.useTekijat = function(input) { // tekijat string
-      if(!input){
-        $scope.justus.julkaisuntekijoidenlukumaara=0;
-        return;
-      }
-      if(input.length==0){
-        $scope.justus.julkaisuntekijoidenlukumaara=0;
-      }else{
-        $scope.justus.julkaisuntekijoidenlukumaara=(input.match(/[^;]+;?/g) || []).length;
-      }
+    $scope.useTekijat = function() {
+      $scope.justus.tekijat = '';
+      $scope.justus.tekijat = $scope.tekijatTags.map(function(tag, index) {
+        return tag.text;
+      }).join('; ')
+      $scope.justus.julkaisuntekijoidenlukumaara = $scope.tekijatTags.length;
     }
 
     $scope.useKopioiTekijat = function(input) {
