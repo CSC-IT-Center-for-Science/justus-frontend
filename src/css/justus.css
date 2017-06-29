@@ -4285,7 +4285,7 @@ input[type="search"] {
   .input-group-lg > .input-group-btn > input[type="month"].btn,
   .input-group-lg
   input[type="month"] {
-    line-height: 46px; } }
+    line-height: 56px; } }
 
 .form-group {
   margin-bottom: 15px; }
@@ -4415,8 +4415,8 @@ select[multiple].input-sm,
 .input-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
-  height: 46px;
-  padding: 10px 16px;
+  height: 56px;
+  padding: 15px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px; }
@@ -4424,8 +4424,8 @@ select[multiple].input-sm,
 select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn {
-  height: 46px;
-  line-height: 46px; }
+  height: 56px;
+  line-height: 56px; }
 
 textarea.input-lg, .input-group-lg > textarea.form-control,
 .input-group-lg > textarea.input-group-addon,
@@ -4437,24 +4437,24 @@ select[multiple].input-lg,
   height: auto; }
 
 .form-group-lg .form-control {
-  height: 46px;
-  padding: 10px 16px;
+  height: 56px;
+  padding: 15px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px; }
 
 .form-group-lg select.form-control {
-  height: 46px;
-  line-height: 46px; }
+  height: 56px;
+  line-height: 56px; }
 
 .form-group-lg textarea.form-control,
 .form-group-lg select[multiple].form-control {
   height: auto; }
 
 .form-group-lg .form-control-static {
-  height: 46px;
+  height: 56px;
   min-height: 38px;
-  padding: 11px 16px;
+  padding: 16px 16px;
   font-size: 18px;
   line-height: 1.3333333; }
 
@@ -4480,9 +4480,9 @@ select[multiple].input-lg,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
-  width: 46px;
-  height: 46px;
-  line-height: 46px; }
+  width: 56px;
+  height: 56px;
+  line-height: 56px; }
 
 .input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
@@ -4663,7 +4663,7 @@ select[multiple].input-lg,
 
 @media (min-width: 768px) {
   .form-horizontal .form-group-lg .control-label {
-    padding-top: 11px;
+    padding-top: 16px;
     font-size: 18px; } }
 
 @media (min-width: 768px) {
@@ -4957,7 +4957,7 @@ fieldset[disabled] a.btn {
     text-decoration: none; }
 
 .btn-lg, .btn-group-lg > .btn {
-  padding: 10px 16px;
+  padding: 15px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px; }
@@ -5369,7 +5369,7 @@ tbody.collapse.in {
   .input-group-addon.input-lg,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn {
-    padding: 10px 16px;
+    padding: 15px 16px;
     font-size: 18px;
     border-radius: 6px; }
   .input-group-addon input[type="radio"],
@@ -6010,7 +6010,7 @@ tbody.collapse.in {
 
 .pagination-lg > li > a,
 .pagination-lg > li > span {
-  padding: 10px 16px;
+  padding: 15px 16px;
   font-size: 18px;
   line-height: 1.3333333; }
 
@@ -7702,10 +7702,10 @@ button.close {
     display: none !important; } }
 
 .m-t {
-  margin-top: 10px; }
+  margin-top: 15px; }
 
 .m-b {
-  margin-bottom: 10px; }
+  margin-bottom: 15px; }
 
 /* bower install https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:SIZE[i] */
 /* Font PT Sans: Copyright � ParaType, 2013. All rights reserved.*/
@@ -7750,24 +7750,24 @@ body {
   padding: 0; }
 
 .header-wrapper {
-  padding: 10px 0; }
+  padding: 15px 0; }
 
 .content-wrapper {
   background-color: #ffffff;
   padding: 0 16px; }
 
 .view-wrapper {
-  padding-top: 10px;
-  padding-bottom: 100px; }
+  padding-top: 15px;
+  padding-bottom: 150px; }
 
 .footer {
   background-color: #026D7C;
   color: #ffffff;
-  padding: 10px 16px;
+  padding: 15px 16px;
   margin: 0; }
 
 .btn.btn-lg, .btn-group-lg > .btn {
-  padding: 20px 16px; }
+  padding: 30px 16px; }
 
 .justus-btn {
   cursor: pointer;

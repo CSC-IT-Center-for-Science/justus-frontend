@@ -818,16 +818,18 @@
         </div>
       </div>
       <div class="col-xs-2">
-        <span class="btn btn-primary"
-        data-ng-click="justus.tieteenala.splice($index, 1)"
-        data-ng-hide="justus.tieteenala.length<2"
-        title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
-        data-ng-bind="i18n.content.form.tieteenala.poista.tooltip[lang]"></span>
-        <span class="btn btn-primary"
-        data-ng-click="justus.tieteenala.push({});"
-        data-ng-hide="$index < justus.tieteenala.length-1 || justus.tieteenala.length>=6 || !justus.tieteenala[$index].tieteenalakoodi"
-        title="{{i18n.content.form.tieteenala.lisaa.tooltip[lang]}}"
-        data-ng-bind="i18n.content.form.tieteenala.lisaa.tooltip[lang]"></span>
+        <button class="btn btn-primary m-b"
+          data-ng-click="justus.tieteenala.splice($index, 1)"
+          data-ng-hide="justus.tieteenala.length<2"
+          title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.tieteenala.poista.tooltip[lang]">
+        </button>
+        <button class="btn btn-primary"
+          data-ng-click="justus.tieteenala.push({});"
+          data-ng-hide="$index < justus.tieteenala.length-1 || justus.tieteenala.length>=6 || !justus.tieteenala[$index].tieteenalakoodi"
+          title="{{i18n.content.form.tieteenala.lisaa.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.tieteenala.lisaa.tooltip[lang]">
+        </button>
 
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
           data-ng-if="requiredHighlight && (justus.tieteenala.length==0 || (justus.tieteenala.length>=1 && !justus.tieteenala[$index].tieteenalakoodi))">
