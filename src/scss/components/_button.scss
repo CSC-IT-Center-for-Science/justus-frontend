@@ -2,6 +2,18 @@
   &.btn-lg {
     padding: $padding-large-vertical*2 $padding-large-horizontal;
   }
+
+  &.btn-secondary,
+  &:focus,
+  &:active {
+    background: $brand-secondary;
+    color: $brand-white;
+
+    &:hover {
+      background: $brand-primary;
+      color: $brand-white;
+    }
+  }
 }
 
 .justus-btn {
@@ -24,28 +36,6 @@
   background-color: #026D7C;
 }
 
-.justus-btn-default {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  padding: 5px 8px;
-  margin: 0px;
-}
-
-.justus-btn-default.active {
-  background-color: #026D7C;
-}
-
-.justus-btn-tiny {
-  background-color: #99C2C8;
-  color: #FFFFFF;
-  padding: 1px 4px;
-  margin: 0px;
-}
-
-.justus-btn-tiny.active {
-  background-color: #026D7C;
-}
-
 .justus-btn-stage {
   background-color: #99C2C8;
   color: #FFFFFF;
@@ -60,16 +50,6 @@
   margin: 2px;
 }
 
-.justus-btn-primary {
-  background-color: #7dc243;
-  color: #FFFFFF;
-  border: 10px solid #7dc243;
-  padding: 2px;
-  margin: 2px;
-  cursor: pointer;
-  text-align: center;
-}
-
 .justus-btn-primary.disabled {
   background-color: #FFFFFF;
   color: #7dc243;
@@ -80,15 +60,9 @@
   text-align: center;
 }
 
-.justus-btn-plain {
-  background-color: #FFFFFF;
-  color: #000000;
-  border: 1px solid #000000;
-}
-
 .justus-btn-tyyppi {
-  background-color: #99C2C8;
-  color: #FFFFFF;
+  color: $brand-white;
+  background-color: $brand-primary-light;
   display: inline-block;
   padding: 9px;
   margin: 4px 0px;
@@ -98,15 +72,5 @@
 }
 
 .justus-btn-tyyppi.active {
-  background-color: #026D7C;
-}
-
-.justus-btn-emphasized {
-  background-color: #FFFFFF;
-  color: #006574;
-  border: 10px solid #006574;
-  padding: 24px 6px;
-  margin: 6px;
-  cursor: pointer;
-  text-align: center;
+  background-color: $brand-primary;
 }

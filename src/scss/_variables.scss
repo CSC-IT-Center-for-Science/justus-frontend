@@ -6,19 +6,21 @@ $gray: lighten($gray-base, 33.5%);
 $gray-light: lighten($gray-base, 46.7%);
 $gray-lighter: lighten($gray-base, 93.5%);
 
+// http://paletton.com/#uid=43l0u0kzXpqbpHApxvwKAh-Yi5z
 $brand-primary: #026D7C;
-$brand-secondary: #2A919F; 
-$brand-success: #5cb85c;
+$brand-secondary: #218B9A; 
+$brand-success: #009B1B;
 $brand-info: #0D2C89;
-$brand-warning: #CB8B00;
+$brand-warning: #CB6100;
 $brand-danger: #CB0F00;
-$brand-white: #ffffff;
+$brand-white: #FFFFFF;
 $brand-gray: $gray-light;
 
-$brand-primary-dark: #01424B;
+$brand-primary-dark: #014C56;
+$brand-primary-light: #7FBBC3;
 
 $text-color: $brand-primary;
-$body-bg: #dddddd;
+$body-bg: #DDDDDD;
 
 $state-success-text: $brand-primary-dark;
 $state-success-bg: lighten($brand-primary, 50%);

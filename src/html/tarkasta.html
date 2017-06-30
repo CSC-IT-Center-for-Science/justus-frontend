@@ -79,7 +79,7 @@
             <td data-ng-show="state.name=='hyvaksy'">
               <span data-ng-repeat="julkaisuntila in ['-1','0','1','2']"><span
                 title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
-                class="justus-btn justus-btn-default" data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
+                class="btn btn-primary justus-btn" data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
                 data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)"
                 data-ng-bind="julkaisuntila"></span>&nbsp;</span
               ><!-- TODO not pretty: &nbsp;<i class="fa fa-info-circle fa-lg justus-info"
