@@ -30,6 +30,28 @@ justusApp.controller('JustusController', [
     //$scope.justus.jufotunnus = "";
     //$scope.justus.jufoluokitus = "";
 
+    // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
+    var parseNames = function(namesString) {
+      let parsedNames = [];
+      if(namesString && namesString.length > 0) {
+        let namePairs = namesString.split(';');
+
+        namePairs.map(function(namePair) {
+          let splittedNames = namePair.split(',');
+          parsedNames.push({
+            lastName: splittedNames[0] ? splittedNames[0].trim() : '',
+            firstName: splittedNames[1] ? splittedNames[1].trim() : ''
+          })
+        });
+      }
+
+      return parsedNames;
+    }
+
+    // Initialize tekijatTags input
+    parseNames($scope.justus.tekijat).map(function(nameObject) {
+      $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
+    });
 
     $scope.useTekijat = function() {
       $scope.justus.tekijat = '';
