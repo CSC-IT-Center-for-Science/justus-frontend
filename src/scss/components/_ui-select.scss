@@ -1,0 +1,22 @@
+.ui-select-bootstrap {
+  .ui-select-toggle {
+
+    &.form-control {
+      @include input();
+    }
+  }
+
+  .input-group {
+    .ui-select-toggle {
+
+      &.form-control:first-child {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  .ui-select-choices-row {
+    padding: $padding-small-vertical $padding-small-horizontal;
+  }
+}

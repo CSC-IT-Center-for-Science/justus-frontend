@@ -5,3 +5,7 @@
 .m-b {
   margin-bottom: $padding-large-vertical;
 }
+
+@mixin input() {
+  border-radius: $input-border-radius;
+}
