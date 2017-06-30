@@ -74,6 +74,11 @@ let i18n = {
           FI: "ja klikkaa", SV: "*SV*ja klikkaa", EN: "*EN*ja klikkaa",
           tooltip: {FI: "ja klikkaa", SV: "*SV*ja klikkaa", EN: "*EN*ja klikkaa"}
         },
+        info: {
+          FI: 'Voit esitäyttää julkaisutietoja käyttämällä DOI-tunnisteesta muodostettua pysyvää osoitetta. Julkaisutiedot haetaan CrossRef-palvelusta.',
+          SV: '',
+          EN: ''
+        },
         hae: {FI: "Hae", SV: "Sök", EN: "Search"}
       },
       etsijulkaisu: {
@@ -82,6 +87,11 @@ let i18n = {
         tekija: {
           FI: "Kirjoita hakuehto: tekijä", SV: "*SV*Kirjoita hakuehto: tekijä", EN: "Enter the author",
           tooltip: {FI: "Rajaa hakua halutessasi tekijän nimellä", SV: "Avgränsa sökningen med författarens namn", EN: "Filter search using the author's name"}
+        },
+        info: {
+          FI: 'Voit hakea ja esitäyttää julkaisutietoja myös VIRTA- tai CrossRef -palveluista löytyvillä tiedoilla. Hakua voi rajata julkaisun tekijän nimellä ja haku kohdistuu julkaisun nimeen.',
+          SV: '',
+          EN: ''
         },
       },
       uudestaan: {

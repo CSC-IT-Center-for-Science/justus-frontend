@@ -24,6 +24,7 @@
 <div class="row m-b">
   <div class="col-sm-6 col-xs-12">
     <h3 class="form-header">{{i18n.content.esitayta.doihaku.title[lang]}}</h3>
+    <p data-ng-bind="i18n.content.esitayta.doihaku.info[lang]"></p>
     <div class="input-group">
       <input type="text" 
         data-ng-model="julkaisunhakudoi" 
@@ -40,6 +41,7 @@
 
   <div class="col-sm-6 col-xs-12">
     <h3 class="form-header">{{i18n.content.esitayta.etsijulkaisu.title[lang]}}</h3>
+    <p data-ng-bind="i18n.content.esitayta.etsijulkaisu.info[lang]"></p>
     <!-- {{i18n.content.esitayta.etsijulkaisu.tekija[lang]}} -->
     <div class="form-group">
       <input type="text" class="form-control" data-ng-model="julkaisunhakutekija"
