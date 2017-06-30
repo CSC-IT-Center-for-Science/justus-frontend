@@ -51,12 +51,13 @@
     <div class="form-group">
       <ui-select data-ng-model="julkaisu.selected"
         theme="bootstrap">
-        <ui-select-match class="ui-select-match" placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
+        <ui-select-match class="ui-select-match" 
+          placeholder="{{i18n.content.esitayta.etsijulkaisu.picktip[lang]}}">
           {{$select.selected.title}}
         </ui-select-match>
         <ui-select-choices repeat="o in julkaisunnimet | filter: $select.search"
-                          refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
-                          refresh-delay="600">
+          refresh="refreshJulkaisunnimet($select.search,julkaisunhakutekija)"
+          refresh-delay="200">
           <div>
             <span class="justus-dim-sm">{{o.source}} {{o.doi}}</span>
             <br>{{o.title}}

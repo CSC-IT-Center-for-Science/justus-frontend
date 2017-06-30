@@ -11,7 +11,8 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
     let authorquery = "";
     if (tekija != null && tekija != "") authorquery="&query.author="+tekija;
 
-    return $http.get(uri+uriapi+input+authorquery+filter)
+    let requestUrl = uri+uriapi+input+authorquery+filter;
+    return $http.get(requestUrl)
     .then(function (response){
       let ret=[];
       angular.forEach(response.data.message, function(robj,rkey){
@@ -39,7 +40,7 @@ justusApp.service('CrossRefService', ['$http', function ($http) {
     });
   }
   this.works = function(input) {
-    let uri = crossrefuri;
-    return $http.get(uri+input);
+    let requestUrl = crossrefuri + '/http://dx.doi.org' + input;
+    return $http.get(requestUrl);
   }
 }]);
