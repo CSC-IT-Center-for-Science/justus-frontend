@@ -48,11 +48,6 @@ justusApp.controller('JustusController', [
       return parsedNames;
     }
 
-    // Initialize tekijatTags input
-    parseNames($scope.justus.tekijat).map(function(nameObject) {
-      $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
-    });
-
     $scope.useTekijat = function() {
       $scope.justus.tekijat = '';
       $scope.justus.tekijat = $scope.tekijatTags.map(function(tag, index) {
@@ -126,9 +121,9 @@ justusApp.controller('JustusController', [
       JUFO.etsiissn(input)
       .then(function (response){
         var jobj = response.data;
-        var jufotunnus = jobj[0].Jufo_ID; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
+        var jufotunnus = jobj && jobj.length > 0 ? jobj[0].Jufo_ID : null; // voisi asettaa jo scopeen, mutta seuraavassa kutsussa
         $scope.useLehtisarja(jufotunnus); // vain issn?
-        $scope.lehtinimet.selected = jobj[0];
+        $scope.lehtinimet.selected = jobj && jobj.length > 0 ? jobj[0] : null;
       });
     }
 
@@ -189,7 +184,12 @@ justusApp.controller('JustusController', [
               s+=aobj.family+", "+aobj.given;
             });
             $scope.justus.tekijat = s;
-            $scope.useTekijat(s);
+
+            // Initialize tekijatTags input
+            parseNames($scope.justus.tekijat).map(function(nameObject) {
+              $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
+            });
+            $scope.useTekijat();
             if(robj.issued){
               if(robj.issued['date-parts']){
                 var s = ""+robj.issued['date-parts'];
@@ -223,7 +223,11 @@ justusApp.controller('JustusController', [
           });
 
           $scope.fetchLehtisarja($scope.justus.issn);
-          $scope.useTekijat($scope.justus.tekijat);
+          // Initialize tekijatTags input
+          parseNames($scope.justus.tekijat).map(function(nameObject) {
+            $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
+          });
+          $scope.useTekijat();
 
           //$scope.justus.organisaatiotekija = [{}];
           //$scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
