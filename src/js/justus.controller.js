@@ -323,8 +323,7 @@ justusApp.controller('JustusController', [
       // Otherwise selecting alatieteenala, initialize a new empty field
       else {
         if ($scope.justus.tieteenala.indexOf(input) < 0) {
-          $scope.tieteenala_paa = null;
-
+          
           // Append new field if the field was empty
           let appendNewField = $scope.justus.tieteenala[$scope.justus.tieteenala.length - 1].tieteenalakoodi === '' ? true : false;
 
