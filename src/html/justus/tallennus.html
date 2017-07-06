@@ -134,7 +134,7 @@
   <div class="col-xs-4">{{i18n.content.form.julkaisunkieli[lang]}}</div>
   <div class="col-xs-8 justus-data">
     <!-- {{justus.julkaisunkieli}} -->
-    <span data-ng-bind="getCode('kieli',justus.julkaisunkieli).selite[lang]"></span>
+    <span data-ng-bind="getCode('kieli',justus.julkaisunkieli.toUpperCase()).selite[lang]"></span>
   </div>
 </div>
 <!-- Kenttä: Julkaisun kansainvälisyys -->

@@ -677,7 +677,8 @@
           data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
           data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
           placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
-          data-typeahead-on-select="useField('julkaisunkieli',$item.arvo)">
+          data-typeahead-on-select="useField('julkaisunkieli',$item.arvo.toLowerCase())"
+          data-typeahead-editable="false">
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
       <div class="col-xs-2">
