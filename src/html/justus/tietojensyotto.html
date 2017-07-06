@@ -82,7 +82,7 @@
           placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
           data-on-tag-added="useTekijat()"
           data-on-tag-removed="useTekijat()"
-          allowed-tags-pattern="^^[\wäöåÄÖÅ-]{1,50}, ?[\wäöåÄÖÅ\s-]{1,50}$">
+          allowed-tags-pattern="^[^,]+, [^,]+$">
         </tags-input>
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
       </div>
@@ -778,67 +778,59 @@
           data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div class="row">
-          <div class="col-sm-6 col-xs-12 form-group">
-            <ui-select data-ng-model="tieteenala.selected"
-             on-select="useTieteenala($select.selected.arvo,$index)"
-             theme="bootstrap">
-              <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.paa.picktip[lang]}}">
-                {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
-              </ui-select-match>
-              <ui-select-choices repeat="o in codes.tieteenalat | orderBy: 'arvo' | filter: $select.search">
-                {{o.arvo}} {{o.selite[lang]}}
-              </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="col-sm-6 col-xs-12 form-group" data-ALWAYS-ng-show="tieteenala_paa">
-            <!--dev--><!-- hack here with ng-if and parent.parent.parent.index... --><!--enddev-->
-            <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==tieteenala_paa">
-              <ui-select data-ng-model="alatieteenalat.selected"
-               on-select="useTieteenala($select.selected.arvo,$parent.$parent.$parent.$index)"
-               theme="bootstrap">
-                <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
-                  {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
-                </ui-select-match>
-                <ui-select-choices repeat="o in alatieteenalat | orderBy: 'arvo' | filter: $select.search">
-                  {{o.arvo}} {{o.selite[lang]}}
-                </ui-select-choices>
-              </ui-select>
-            </div>
-            <!--dev--><!-- when paatieteenala not selected/used above --><!--enddev-->
-            <!--dev--><!-- hack... now parent.index... --><!--enddev-->
-            <div data-ng-show="!tieteenala_paa">
-              <ui-select data-ng-model="alatieteenalat.selected"
-               on-select="useTieteenala($select.selected.arvo,$parent.$index)"
-               theme="bootstrap">
-                <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
-                  {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
-                </ui-select-match>
-                <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'" ui-disable-choice="o.nogo">
-                  {{o.arvo}} {{o.selite[lang]}}
-                </ui-select-choices>
-              </ui-select>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="col-xs-2">
         <button class="btn btn-primary m-b"
           data-ng-click="justus.tieteenala.splice($index, 1)"
-          data-ng-hide="justus.tieteenala.length<2"
+          data-ng-if="justus.tieteenala.length >= 2 && (justus.tieteenala.length - 1) !== $index"
           title="{{i18n.content.form.tieteenala.poista.tooltip[lang]}}"
           data-ng-bind="i18n.content.form.tieteenala.poista.tooltip[lang]">
         </button>
-        <button class="btn btn-primary"
-          data-ng-click="justus.tieteenala.push({});"
-          data-ng-hide="$index < justus.tieteenala.length-1 || justus.tieteenala.length>=6 || !justus.tieteenala[$index].tieteenalakoodi"
-          title="{{i18n.content.form.tieteenala.lisaa.tooltip[lang]}}"
-          data-ng-bind="i18n.content.form.tieteenala.lisaa.tooltip[lang]">
-        </button>
-
         <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
           data-ng-if="requiredHighlight && (justus.tieteenala.length==0 || (justus.tieteenala.length>=1 && !justus.tieteenala[$index].tieteenalakoodi))">
         </i>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5 col-xs-12 form-group">
+        <ui-select data-ng-model="tieteenala.selected"
+          on-select="useTieteenala($select.selected.arvo)"
+          theme="bootstrap">
+          <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.paa.picktip[lang]}}">
+            {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+          </ui-select-match>
+          <ui-select-choices repeat="o in codes.tieteenalat | orderBy: 'arvo' | filter: $select.search">
+            {{o.arvo}} {{o.selite[lang]}}
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="col-sm-5 col-xs-12 form-group" data-ALWAYS-ng-show="tieteenala_paa">
+        <div data-ng-repeat="p in codes.tieteenalat" data-ng-if="p.arvo==tieteenala_paa">
+          <ui-select data-ng-model="alatieteenalat.selected"
+            on-select="useTieteenala($select.selected.arvo)"
+            theme="bootstrap">
+            <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
+              {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+            </ui-select-match>
+            <ui-select-choices repeat="o in alatieteenalat | orderBy: 'arvo' | filter: $select.search">
+              {{o.arvo}} {{o.selite[lang]}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <!--dev--><!-- when paatieteenala not selected/used above --><!--enddev-->
+        <!--dev--><!-- hack... now parent.index... --><!--enddev-->
+        <div data-ng-if="!tieteenala_paa">
+          <ui-select data-ng-model="alatieteenalat.selected"
+            on-select="useTieteenala($select.selected.arvo)"
+            theme="bootstrap">
+            <ui-select-match class="ui-select-match" placeholder="{{i18n.content.form.tieteenala.ala.picktip[lang]}}">
+              {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+            </ui-select-match>
+            <ui-select-choices repeat="o in getAlltieteenalat() | orderBy: 'arvo'" ui-disable-choice="o.nogo">
+              {{o.arvo}} {{o.selite[lang]}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
       </div>
     </div>
   </div>

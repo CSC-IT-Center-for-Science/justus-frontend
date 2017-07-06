@@ -311,20 +311,37 @@ justusApp.controller('JustusController', [
       );
     }
 
-    $scope.useTieteenala = function(input, index) {
+    $scope.useTieteenala = function(input) {
       if (input === null) return;
+
+      // Selecting päätieteenala, filter alatieteenala input options
       if (input.length === 1) {
         $scope.tieteenala_paa = input;
-        $scope.alatieteenalat = $scope.getCode('tieteenalat',input).alatyypit;
-      } 
+        $scope.alatieteenalat = $scope.getCode('tieteenalat', input).alatyypit;
+      }
+
+      // Otherwise selecting alatieteenala, initialize a new empty field
       else {
         if ($scope.justus.tieteenala.indexOf(input) < 0) {
           $scope.tieteenala_paa = null;
-          $scope.justus.tieteenala[index] = {tieteenalakoodi: input, jnro: ''+(index+1)};
+
+          // Append new field if the field was empty
+          let appendNewField = $scope.justus.tieteenala[$scope.justus.tieteenala.length - 1].tieteenalakoodi === '' ? true : false;
+
+          $scope.justus.tieteenala[$scope.justus.tieteenala.length - 1] = { 
+            tieteenalakoodi: input, 
+            jnro: ''+($scope.justus.tieteenala.length) 
+          };
+
+          if(appendNewField === true) {
+            // Add a new empty field for the next selection
+            $scope.justus.tieteenala.push({ 
+              tieteenalakoodi: '', 
+              jnro: null
+            });
+          }
         }
       }
-      // Add a new empty field for the next selection
-      $scope.justus.tieteenala.push({});
     }
 
     $scope.useVaihe = function(vaihe) {
