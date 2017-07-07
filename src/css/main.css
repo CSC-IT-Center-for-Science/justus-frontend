@@ -6016,7 +6016,7 @@ label {
 .table tbody tr td,
 .table thead tr th,
 .table thead tr td {
-  vertical-align: middle; }
+  vertical-align: top; }
   .table tbody tr th.condensed,
   .table tbody tr td.condensed,
   .table thead tr th.condensed,
@@ -6027,17 +6027,23 @@ label {
   .table thead tr th.nowrap,
   .table thead tr td.nowrap {
     white-space: nowrap; }
-    .table tbody tr th.nowrap .btn,
-    .table tbody tr td.nowrap .btn,
-    .table thead tr th.nowrap .btn,
-    .table thead tr td.nowrap .btn {
+  .table tbody tr th.btn-col,
+  .table tbody tr td.btn-col,
+  .table thead tr th.btn-col,
+  .table thead tr td.btn-col {
+    white-space: nowrap;
+    padding: 4px 8px; }
+    .table tbody tr th.btn-col .btn,
+    .table tbody tr td.btn-col .btn,
+    .table thead tr th.btn-col .btn,
+    .table thead tr td.btn-col .btn {
       float: none;
       display: inline-block; }
   .table tbody tr th .btn,
   .table tbody tr td .btn,
   .table thead tr th .btn,
   .table thead tr td .btn {
-    padding: 4px 10px; }
+    padding: 3px 10px; }
 
 tags-input .tags .input.invalid-tag,
 .tags-input .tags .input.invalid-tag {
