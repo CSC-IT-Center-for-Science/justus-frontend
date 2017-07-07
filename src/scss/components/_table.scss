@@ -2,8 +2,14 @@
   tbody,
   thead {
     tr {
+      th {
+        white-space: nowrap;
+      }
+
       th,
       td {
+        vertical-align: middle;
+
         &.condensed {
           width: 1%;
         }
@@ -15,6 +21,10 @@
             float: none;
             display: inline-block;
           }
+        }
+
+        .btn {
+          padding: 4px 10px;
         }
       }
     }
