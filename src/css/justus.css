@@ -8166,10 +8166,8 @@ body {
 .justus-btn-tyyppi.active {
   background-color: #026D7C; }
 
-.field-info-list .field-info {
+.field-info-list .field-info-partial {
   margin-bottom: 15px; }
-  .field-info-list .field-info .field-info-partial {
-    margin-bottom: 15px; }
 
 .form-header {
   background-color: #218B9A;
