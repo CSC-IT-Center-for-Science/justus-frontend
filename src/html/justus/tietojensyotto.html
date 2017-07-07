@@ -82,6 +82,7 @@
           placeholder="{{i18n.content.form.tekijat.picktip[lang]}}"
           data-on-tag-added="useTekijat()"
           data-on-tag-removed="useTekijat()"
+          enable-editing-last-tag="true"
           allowed-tags-pattern="^[^,\;]+,[^,\;]+$">
         </tags-input>
         <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
@@ -118,7 +119,8 @@
         <span class="btn btn-primary justus-btn"
           data-ng-click="useKopioiTekijat(justus.tekijat)"
           data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
-          data-popover-trigger="'mouseenter'" data-popover-placement="right"
+          data-popover-trigger="'mouseenter'" 
+          tdata-popover-placement="right"
           data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"
           data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]">
         </span>

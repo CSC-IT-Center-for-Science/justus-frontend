@@ -49,6 +49,14 @@ justusApp.controller('JustusController', [
     }
 
     $scope.useTekijat = function() {
+      // Add space after each comma if none entered
+      $scope.tekijatTags = $scope.tekijatTags.map(function(tag, index) {
+        if(tag.text && tag.text.indexOf(', ') === -1) {
+          tag.text = tag.text.replace(',', ', ');
+        }
+        return tag;
+      });
+
       $scope.justus.tekijat = '';
       $scope.justus.tekijat = $scope.tekijatTags.map(function(tag, index) {
         return tag.text;
