@@ -6,6 +6,10 @@
   margin-bottom: $padding-large-vertical;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

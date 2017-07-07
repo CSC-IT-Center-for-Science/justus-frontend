@@ -1,0 +1,22 @@
+.table {
+  tbody,
+  thead {
+    tr {
+      th,
+      td {
+        &.condensed {
+          width: 1%;
+        }
+
+        &.nowrap {
+          white-space: nowrap;
+
+          .btn {
+            float: none;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

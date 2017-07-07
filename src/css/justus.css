@@ -8047,6 +8047,9 @@ button.close {
 .m-b {
   margin-bottom: 15px; }
 
+.nowrap {
+  white-space: nowrap; }
+
 /* bower install https://google-fonts.azurewebsites.net/googleFonts/ptsans?family=PT+Sans:SIZE[i] */
 /* Font PT Sans: Copyright � ParaType, 2013. All rights reserved.*/
 @font-face {
@@ -8231,6 +8234,24 @@ label {
   .row.no-gutter [class*='col-'] {
     padding-left: 0;
     padding-right: 0; }
+
+.table tbody tr th.condensed,
+.table tbody tr td.condensed,
+.table thead tr th.condensed,
+.table thead tr td.condensed {
+  width: 1%; }
+
+.table tbody tr th.nowrap,
+.table tbody tr td.nowrap,
+.table thead tr th.nowrap,
+.table thead tr td.nowrap {
+  white-space: nowrap; }
+  .table tbody tr th.nowrap .btn,
+  .table tbody tr td.nowrap .btn,
+  .table thead tr th.nowrap .btn,
+  .table thead tr td.nowrap .btn {
+    float: none;
+    display: inline-block; }
 
 tags-input .tags .input.invalid-tag,
 .tags-input .tags .input.invalid-tag {

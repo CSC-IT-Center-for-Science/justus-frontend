@@ -52,11 +52,10 @@
             </th>
 
             <th data-ng-show="state.name=='hyvaksy'"
-            data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
-            class="justus-bg-dim" style="vertical-align:top; border:1px white solid;">
-            <!-- nb! alternative default sort order -->
-              <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span
-              ><span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
+              class="justus-bg-dim" style="vertical-align:top; border:1px white solid;">
+              <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span>
+              <span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
             </th>
 
           </tr>
@@ -71,24 +70,29 @@
               </a>
               <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
             </td>
-            <td><span data-ng-bind="d.julkaisunnimi"></span></td>
-            <td><span data-ng-bind="d.tekijat"></span></td>
-            <td class="hidden-xs"><span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span></td>
-            <td class="hidden-xs"><span data-ng-bind="d.username"></span></td>
-
-            <td data-ng-show="state.name=='hyvaksy'">
-              <span data-ng-repeat="julkaisuntila in ['-1','0','1','2']"><span
-                title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
-                class="btn btn-primary justus-btn" data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
-                data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)"
-                data-ng-bind="julkaisuntila"></span>&nbsp;</span
-              ><!-- TODO not pretty: &nbsp;<i class="fa fa-info-circle fa-lg justus-info"
-              data-popover-trigger="'mouseenter'" data-popover-placement="left"
-              data-uib-popover="0 - Julkaisun tietoja ei siirretä Juuliin tai raportoida OKM-tiedonkeruussa.\n  1 -> Julkaisun tiedot voidaan julkaista tietovarannon rajapintojen kautta ja siirtää Juuliin. Tiedoissa on kuitenkin puutteita, eikä niitä voida vielä käyttää osana OKM:n tiedonkeruuta.\n  2 -> Julkaisu voidaan raportoida Juulissa ja se sisältää kaikki OKM-tiedonkeruussa vaadittavat tiedot"></i -->
-              <!-- button data-ng-click="usePaivita(d[table.pkcol],table.pkcol)">Päivitä</button -->
-              <!-- button data-ng-click="usePoista(d[table.pkcol])">Poista</button -->
+            <td>
+              <span data-ng-bind="d.julkaisunnimi"></span>
             </td>
-
+            <td>
+              <span data-ng-bind="d.tekijat"></span>
+            </td>
+            <td class="hidden-xs">
+              <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
+            </td>
+            <td class="hidden-xs">
+              <span data-ng-bind="d.username"></span>
+            </td>
+            <td data-ng-show="state.name=='hyvaksy'" class="nowrap">
+              <div class="btn-group">
+                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']" 
+                  title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
+                  class="btn btn-primary" 
+                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
+                  data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)">
+                  {{ julkaisuntila }}
+                </button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
