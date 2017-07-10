@@ -67,12 +67,8 @@
               </a>
               <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
             </td>
-            <td>
-              <span data-ng-bind="d.julkaisunnimi"></span>
-            </td>
-            <td>
-              <span data-ng-bind="d.tekijat"></span>
-            </td>
+            <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
+            <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
             <td class="hidden-xs nowrap">
               <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
             </td>
