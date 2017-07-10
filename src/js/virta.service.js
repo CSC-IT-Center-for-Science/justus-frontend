@@ -7,37 +7,37 @@ justusApp.service('VIRTAService', ['$http', function ($http) {
   this.uri = virtauri;
 
   this.fields = {
-    'organisaatiotunnus':{fetch:'organisaatioTunnus',get:'OrganisaatioTunnus'},
-    'julkaisutyyppi':{fetch:'julkaisuTyyppi',get:'JulkaisutyyppiKoodi'},
-    'julkaisuvuosi':{fetch:'julkaisuVuosi',get:'JulkaisuVuosi'},
-    'julkaisunnimi':{fetch:'julkaisunNimi',get:'JulkaisunNimi'},
-    'tekijat':{fetch:'tekijat',get:'TekijatiedotTeksti'},
-    'julkaisuntekijoidenlukumaara':{fetch:null,get:'TekijoidenLkm'},
-    'konferenssinvakiintunutnimi':{fetch:'konferenssinNimi',get:'KonferenssinNimi'},
-    'emojulkaisunnimi':{fetch:'emojulkaisunNimi',get:'EmojulkaisunNimi'},
-    'isbn':{fetch:'isbn',get:'ISBN'},
-    'emojulkaisuntoimittajat':{fetch:null,get:null}, //?
-    'lehdenjulkaisusarjannimi':{fetch:'lehdenNimi',get:'LehdenNimi'},
-    'issn':{fetch:'issn',get:'ISSN'},
-    'volyymi':{fetch:null,get:'VolyymiTeksti'},
-    'numero':{fetch:null,get:'LehdenNumeroTeksti'},
-    'sivut':{fetch:null,get:'SivunumeroTeksti'},
-    'artikkelinumero':{fetch:null,get:'Artikkelinumero'}, //?
-    'kustantaja':{fetch:'kustantajanNimi',get:'KustantajanNimi'},
-    'julkaisunkustannuspaikka':{fetch:null,get:'KustannuspaikkaTeksti'},
-    'julkaisunkieli':{fetch:null,get:'JulkaisunKieliKoodi'},
-    'julkaisunkansainvalisyys':{fetch:null,get:'JulkaisunKansainvalisyysKytkin'},
-    'julkaisumaa':{fetch:null,get:'JulkaisumaaKoodi'},
-    'kansainvalinenyhteisjulkaisu':{fetch:null,get:'YhteisjulkaisuKVKytkin'},
-    'yhteisjulkaisuyrityksenkanssa':{fetch:null,get:null}, //? YhteisjulkaisunTunnus?
-    'doitunniste':{fetch:'doi',get:'DOI'},
-    'pysyvaverkkoosoite':{fetch:'pysyvaOsoiteTeksti',get:'PysyvaOsoiteTeksti'},
-    'avoinsaatavuus':{fetch:null,get:'AvoinSaatavuusKoodi'},
-    'julkaisurinnakkaistallennettu':{fetch:null,get:null}, //?
-    'rinnakkaistallennetunversionverkkoosoite':{fetch:null,get:null}, //?
-    'jufotunnus':{fetch:'jufoTunnus',get:'JufoTunnus'},
-    'jufoluokitus':{fetch:null,get:'JufoLuokkaKoodi'},
-    'julkaisuntila':{fetch:'julkaisunTila',get:'JulkaisunTilaKoodi'}
+    'organisaatiotunnus': { fetch: 'organisaatioTunnus', get: 'OrganisaatioTunnus' },
+    'julkaisutyyppi': { fetch: 'julkaisuTyyppi', get: 'JulkaisutyyppiKoodi' }, 
+    'julkaisuvuosi': { fetch: 'julkaisuVuosi', get: 'JulkaisuVuosi' }, 
+    'julkaisunnimi': { fetch: 'julkaisunNimi', get: 'JulkaisunNimi' }, 
+    'tekijat': { fetch: 'tekijat', get: 'TekijatiedotTeksti' }, 
+    'julkaisuntekijoidenlukumaara': { fetch: null, get: 'TekijoidenLkm' }, 
+    'konferenssinvakiintunutnimi': { fetch: 'konferenssinNimi', get: 'KonferenssinNimi' }, 
+    'emojulkaisunnimi': { fetch: 'emojulkaisunNimi', get: 'EmojulkaisunNimi' }, 
+    'isbn': { fetch: 'isbn', get: 'ISBN' }, 
+    'emojulkaisuntoimittajat': { fetch: null, get: null},
+    'lehdenjulkaisusarjannimi': { fetch: 'lehdenNimi', get: 'LehdenNimi' }, 
+    'issn': { fetch: 'issn', get: 'ISSN' }, 
+    'volyymi': { fetch: null, get: 'VolyymiTeksti' }, 
+    'numero': { fetch: null, get: 'LehdenNumeroTeksti' }, 
+    'sivut': { fetch: null, get: 'SivunumeroTeksti' }, 
+    'artikkelinumero': { fetch: null, get: 'Artikkelinumero' },
+    'kustantaja': { fetch: 'kustantajanNimi', get: 'KustantajanNimi' }, 
+    'julkaisunkustannuspaikka': { fetch: null, get: 'KustannuspaikkaTeksti' }, 
+    'julkaisunkieli': { fetch: null, get: 'JulkaisunKieliKoodi' }, 
+    'julkaisunkansainvalisyys': { fetch: null, get: 'JulkaisunKansainvalisyysKytkin' }, 
+    'julkaisumaa': { fetch: null, get: 'JulkaisumaaKoodi' }, 
+    'kansainvalinenyhteisjulkaisu': { fetch: null, get: 'YhteisjulkaisuKVKytkin' }, 
+    'yhteisjulkaisuyrityksenkanssa': { fetch: null, get: 'YhteisjulkaisuYritysKytkin' },
+    'doitunniste': { fetch: 'doi', get: 'DOI' }, 
+    'pysyvaverkkoosoite': { fetch: 'pysyvaOsoiteTeksti', get: 'PysyvaOsoiteTeksti' }, 
+    'avoinsaatavuus': { fetch: null, get: 'AvoinSaatavuusKoodi' }, 
+    'julkaisurinnakkaistallennettu': { fetch: null, get: 'RinnakkaistallennettuKytkin' },
+    'rinnakkaistallennetunversionverkkoosoite': { fetch: null, get: null },
+    'jufotunnus': { fetch: 'jufoTunnus', get: 'JufoTunnus' }, 
+    'jufoluokitus': { fetch: null, get: 'JufoLuokkaKoodi' }, 
+    'julkaisuntila': { fetch: 'julkaisunTila', get: 'JulkaisunTilaKoodi' }
     //TODO avainsana, tieteenala, organisaatiotekija +alayksikko
   };
 

@@ -216,17 +216,16 @@ justusApp.controller('JustusController', [
           return false;
         });
       }
+      // Prefill publication from VIRTA
       if (source=="VIRTA") {
         $scope.virtaLataa = true;
         VIRTA.get(input)
-        .then(function successCb(response){
+        .then(function successCb(response) {
           let robj = response.data;
           //  loop VIRTA services fields mapped to justus
-          angular.forEach(VIRTA.fields,function(virta,field){
-            if ((robj[virta.get]!==null || robj[virta.get]!==undefined)
-            && field!='julkaisuntila' // exception
-            ) {
-              $scope.useField(field,robj[virta.get]);
+          angular.forEach(VIRTA.fields, function(virta, justusFieldKey) {
+            if ((robj[virta.get] !== null || robj[virta.get] !== undefined) && justusFieldKey !== 'julkaisuntila') {
+              $scope.useField(justusFieldKey, robj[virta.get]);
             }
           });
 
@@ -237,8 +236,6 @@ justusApp.controller('JustusController', [
           });
           $scope.useTekijat();
 
-          //$scope.justus.organisaatiotekija = [{}];
-          //$scope.justus.organisaatiotekija[0].alayksikko = [{alayksikko:''}];
           let o = [];
           if (robj['Tekijat']) {
             if (robj.Tekijat['Tekija']) {
@@ -381,9 +378,10 @@ justusApp.controller('JustusController', [
       $scope.requiredHighlight=!$scope.requiredHighlight;
     }
 
-    $scope.useField = function(field,input) {
-      if (input===null || input===undefined) return;
-      $scope.justus[field] = ''+input; // convert to text
+    $scope.useField = function(field, input) {
+      if (input !== null && input !== undefined) {
+        $scope.justus[field] = String(input);
+      }
     }
 
     // map from service (generic) to scope
