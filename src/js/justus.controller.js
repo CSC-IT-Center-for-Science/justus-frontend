@@ -195,7 +195,7 @@ justusApp.controller('JustusController', [
 
             // Initialize tekijatTags input
             parseNames($scope.justus.tekijat).map(function(nameObject) {
-              $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
+              $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
             });
             $scope.useTekijat();
             if(robj.issued){
@@ -232,7 +232,7 @@ justusApp.controller('JustusController', [
           $scope.fetchLehtisarja($scope.justus.issn);
           // Initialize tekijatTags input
           parseNames($scope.justus.tekijat).map(function(nameObject) {
-            $scope.tekijatTags.push(`${nameObject.lastName}, ${nameObject.firstName}`);
+            $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
           });
           $scope.useTekijat();
 
