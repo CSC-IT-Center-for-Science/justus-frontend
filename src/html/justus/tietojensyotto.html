@@ -628,33 +628,20 @@
     <span data-ng-if="isFieldRequired('avainsanat')" class="required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data">
-    <div data-ng-repeat="i in justus.avainsana track by $index" class="row">
-      <div class="col-xs-10">
-        <input type="text" 
-          class="form-control" 
-          data-ng-model="justus.avainsana[$index].avainsana"
-          data-uib-typeahead="sanat.prefLabel for sanat in refreshAvainsanat($viewValue)"
-          data-typeahead-loading="avainsanatLataa" data-typeahead-no-results="avainsanatNoResults"
-          data-typeahead-wait-ms="300"
-          placeholder="{{i18n.content.form.avainsana.picktip[lang]}}">
-        <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-      </div>
-      <div class="col-xs-2">
-        <i class='fa fa-spinner fa-spin fa-lg' data-ng-show='avainsanatLataa'></i>
-        <span class="btn btn-primary"
-          data-ng-click="justus.avainsana.splice($index, 1)"
-          data-ng-hide="justus.avainsana.length<2"
-          title="{{i18n.content.form.avainsanat.poista.tooltip[lang]}}"
-          data-ng-bind="i18n.content.form.avainsanat.poista.tooltip[lang]">
-        </span>
-        <span class="btn btn-primary"
-          data-ng-click="justus.avainsana.push({avainsana:''});"
-          data-ng-hide="$index < justus.avainsana.length-1"
-          title="{{i18n.content.form.avainsanat.lisaa.tooltip[lang]}}"
-          data-ng-bind="i18n.content.form.avainsanat.lisaa.tooltip[lang]">
-        </span>
-      </div>
-    </div>
+    <tags-input data-ng-model="avainsanatTags"
+      data-replace-spaces-with-dashes="false"
+      data-add-on-comma="false"
+      data-add-on-space="false"
+      placeholder="{{i18n.content.form.avainsanat.picktip[lang]}}"
+      data-on-tag-added="useAvainsanat()"
+      data-on-tag-removed="useAvainsanat()"
+      data-enable-editing-last-tag="true"
+      display-property="prefLabel"
+      key-property="localname">
+      <auto-complete
+        data-source="refreshAvainsanat($query)">
+      </auto-complete>
+    </tags-input>
   </div>
 </div>
 

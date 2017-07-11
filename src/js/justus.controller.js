@@ -14,6 +14,7 @@ justusApp.controller('JustusController', [
 
     // other setups
     $scope.tekijatTags = [];
+    $scope.avainsanatTags = [];
     $scope.lehtinimet = [];
     $scope.kustantajanimet = [];
     $scope.konferenssinimet = [];
@@ -298,6 +299,8 @@ justusApp.controller('JustusController', [
           return false;
         });
       }
+
+      $scope.initializeAvainsanatTags();
     }
 
     $scope.refreshAvainsanat = function(input) {
@@ -314,6 +317,23 @@ justusApp.controller('JustusController', [
           return false;
         }
       );
+    }
+
+    $scope.useAvainsanat = function() {
+      $scope.justus.avainsana = '';
+      $scope.justus.avainsana = $scope.avainsanatTags.map(function(tag, index) {
+        return { avainsana: tag.prefLabel };
+      });
+    }
+
+    $scope.initializeAvainsanatTags = function() {
+      if($scope.justus.avainsana) {
+        $scope.justus.avainsana.map(function(keywordObject) {
+          if(keywordObject.avainsana.length > 0) {
+            $scope.avainsanatTags.push({ prefLabel: keywordObject.avainsana });
+          }
+        });
+      }
     }
 
     $scope.useTieteenala = function(input) {

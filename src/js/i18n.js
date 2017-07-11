@@ -267,7 +267,8 @@ let i18n = {
           EN: "Keywords that describe the content of the publication as accurately as possible."
         },
         lisaa: {FI: "+", SV: "+", EN: "+", tooltip: {FI: "Lisää", SV: "Lägg till ny", EN: "Add"}},
-        poista: {FI: "-", SV: "-", EN: "-", tooltip: {FI: "Poista", SV: "Ta bort", EN: "Remove"}}
+        poista: {FI: "-", SV: "-", EN: "-", tooltip: {FI: "Poista", SV: "Ta bort", EN: "Remove"}},
+        picktip: {FI: "Kirjoita avainsana ja paina enter", SV: "Skriv nyckelordet och tryck enter", EN: "Type in the keyword and press enter"}
       },
       julkaisunkieli: {
         FI: "Julkaisun kieli", SV: "Publikationens språk", EN: "Publication language",
