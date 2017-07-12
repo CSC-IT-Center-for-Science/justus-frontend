@@ -214,10 +214,11 @@
     </tbody>
   </table>
 
-  <button class="btn btn-lg btn-block btn-primary" 
+  <button 
+    data-ng-controller="TallennusController"
+    class="btn btn-lg btn-block btn-primary" 
     type="button" 
-    data-ng-click="useTallenna()" 
-    data-ng-disabled="!isJustusValid()">
+    data-ng-click="useTallenna()">
     {{i18n.content.tallennus.tallenna[lang]}}
   </button>
 </div>
