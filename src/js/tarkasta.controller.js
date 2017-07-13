@@ -1,15 +1,19 @@
 'use strict';
 
 justusApp.controller('TarkastaController',
-['$rootScope','$scope','$http','$state','APIService','KoodistoService',
-function($rootScope,$scope,$http,$state,API,Koodisto)
+['$rootScope', '$scope', '$http', '$state', '$location', 'APIService', 'KoodistoService',
+function($rootScope, $scope, $http, $state, $location, API, Koodisto)
 {
-  //index provides: lang, i18n, codes, user, ...
-
   $scope.meta = API.meta;
   $scope.data = [];
   $scope.colOrder='id';
   $scope.colOrderReverse=false;
+  $scope.totalItems = 0;
+  $scope.query = API.restoreQuery();
+
+  $scope.setPageSize = function(pageSize) {
+    $scope.query.pageSize = pageSize;
+  };
 
   // map from service (generic) to scope
   $scope.getCode = function(codeset,code) {
@@ -41,12 +45,18 @@ function($rootScope,$scope,$http,$state,API,Koodisto)
   }
 
   $scope.useHae = function(table) {
+    // Update current query to url and restore any missing parameters
+    $location.search($scope.query);
+
     $scope.data[table] = [];
     // limit fetched rows by organisaatiotunnus
-    let val = $scope.user.organization.code!='00000'?$scope.user.organization.code:null;
-    let col = $scope.user.organization.code!='00000'?'organisaatiotunnus':null;
-    API.get(table,val,col)
+    let val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
+    let col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
+
+    API.get(table, val, col, $scope.query)
     .then(function (obj){
+      $scope.totalItems = obj.totalItems || 0;
+
       // we get a list, loop
       angular.forEach(obj, function(o,k) {
         if (table=="julkaisu") {

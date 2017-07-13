@@ -90,6 +90,20 @@
   </div>
 </div>
 
+<div class="text-center">
+  <ul uib-pagination 
+    data-ng-if="totalItems > query.pageSize"
+    data-ng-change="useHae()"
+    data-total-items="totalItems"
+    data-ng-model="query.currentPageNumber" 
+    max-size="3"
+    class="pagination"
+    items-per-page="query.pageSize"
+    boundary-links="true" 
+    force-ellipses="true">
+  </ul>
+</div>
+
 <div class="row">
   <div class="col-xs-12">
     <button class="btn btn-lg btn-block btn-primary"

@@ -2,7 +2,7 @@
 
 // from config uses: apiuri
 
-justusApp.service('APIService', ['$http', function ($http) {
+justusApp.service('APIService', ['$http', '$location', function ($http, $location) {
 
   this.meta = {
     tables: {
@@ -94,6 +94,17 @@ justusApp.service('APIService', ['$http', function ($http) {
     }
   };
 
+  this.restoreQuery = function() {
+    let restoredQuery = $location.search();
+
+    return {
+      pageSize: restoredQuery.pageSize || 50,
+      currentPage: restoredQuery.currentPage || 1,
+      sort: restoredQuery.sort || 'id',
+      direction: restoredQuery.direction || 'desc',
+    };
+  }
+
   /* CREATE :: POST */
   this.post = function(api,str) {
     return $http({
@@ -111,11 +122,12 @@ justusApp.service('APIService', ['$http', function ($http) {
   }
 
   /* READ :: GET */
-  this.get = function (api,id,col) {
+  this.get = function (api, id, col, query) {
     //id voi puuttua, jolloin palautetaan kaikki
     return $http({
       method: 'GET',
-      url: apiuri+api+(col?"/"+col:"")+"/"+id
+      url: apiuri + api + ( col ? "/" + col : "") + "/" + id,
+      params: query
     })
     .then(function (response){
       let ret = response.data; // list always
