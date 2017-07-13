@@ -68,7 +68,8 @@ justusApp.config(function(
     url: "/omat?lang",
     views: {
       "": {
-        templateUrl: "html/tarkasta.html"
+        templateUrl: "html/tarkasta.html",
+        controller: "TarkastaController",
       }
     },
     params: {
@@ -81,7 +82,8 @@ justusApp.config(function(
     url: "/hyvaksy?lang",
     views: {
       "": {
-        templateUrl: "html/tarkasta.html"
+        templateUrl: "html/tarkasta.html",
+        controller: "TarkastaController"
       }
     },
     params: {
