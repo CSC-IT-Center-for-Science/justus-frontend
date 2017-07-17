@@ -41,3 +41,4 @@ bower_components
 .vscode/
 dist/
 build/
+src/app/templates.js
