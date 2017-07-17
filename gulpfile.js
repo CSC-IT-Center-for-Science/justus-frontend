@@ -18,6 +18,10 @@ const SOURCE_PATH = 'src';
 const BUILD_PATH = 'build';
 const DIST_PATH = 'dist';
 
+// Use command line flag to trigger this, eg. 'gulp build --production'
+const isProduction = gutil.env.production ? true : false;
+const buildDestinationPath = isProduction ? DIST_PATH : BUILD_PATH;
+
 const config = {
 
   assets: {
@@ -73,10 +77,10 @@ const config = {
     ],
 
     // Bundle files
-    appScriptsBundleFileSrc: BUILD_PATH + '/js/app-bundle.min.js',
-    libScriptsBundleFileSrc: BUILD_PATH + '/js/lib-bundle.min.js',
-    appStylesBundleFileSrc: BUILD_PATH + '/css/style-bundle.min.css',
-    libStylesBundleFileSrc: BUILD_PATH + '/css/libstyle-bundle.min.css',
+    appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle.js',
+    libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle.js',
+    appStylesBundleFileSrc: buildDestinationPath + '/css/style-bundle.css',
+    libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css',
   }
 };
 
@@ -88,21 +92,22 @@ var revFiles = [
   config.assets.appStylesBundleFileSrc
 ];
 
-// Use command line flag to trigger this, eg. 'gulp build --production'
-var isProduction = gutil.env.production ? true : false;
-
 // Renames files after build
-gulp.task('rev-all', function () {
+gulp.task('rev-all', function (callback) {
+  if(isProduction === false) {
+    return;
+  }
+
   var revAll = new RevAll({ dontRenameFile: ['index.html'] });
   return gulp.src(
     revFiles
-    .concat(BUILD_PATH + '/index.html')
+    .concat(buildDestinationPath + '/index.html')
   )
   .pipe(revAll.revision())
   .pipe(size({
     title: 'rev'
   }))
-  .pipe(gulp.dest(BUILD_PATH));
+  .pipe(gulp.dest(buildDestinationPath));
 });
 
 gulp.task('templatecache', function () {
@@ -120,17 +125,17 @@ gulp.task('templatecache', function () {
 // Copy additional html files
 gulp.task('html', function () {
   return gulp.src([SOURCE_PATH + '/index.html', SOURCE_PATH + '/robots.txt'])
-  .pipe(gulp.dest(BUILD_PATH));
+  .pipe(gulp.dest(buildDestinationPath));
 });
 
 // Deletes all build files
 gulp.task('clean', [], function () {
   return del([
-    BUILD_PATH + '/index.html',
-    BUILD_PATH + '/css',
-    BUILD_PATH + '/js',
-    BUILD_PATH + '/fonts',
-    BUILD_PATH + '/img'
+    buildDestinationPath + '/index.html',
+    buildDestinationPath + '/css',
+    buildDestinationPath + '/js',
+    buildDestinationPath + '/fonts',
+    buildDestinationPath + '/img'
   ]);
 });
 
@@ -153,7 +158,7 @@ gulp.task('del-lib-css', function () {
 gulp.task('del-temp', function () {
   return del(
     revFiles
-  .concat(BUILD_PATH + '/js/templates.js')
+  .concat(buildDestinationPath + '/js/templates.js')
   );
 });
 
@@ -162,70 +167,66 @@ gulp.task('app-js', function () {
     .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
     .pipe(babel({ presets: ['es2015'], comments: false })) 
     .pipe(concat('app-bundle.js'))
-    .pipe(gulp.dest(BUILD_PATH + '/js'))
+    .pipe(gulp.dest(buildDestinationPath + '/js'))
     .pipe(uglify().on('error', function(e){ console.log(e); }))
-    .pipe(rename({ suffix: '.min' }))
     .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('/'))
-    .pipe(gulp.dest(BUILD_PATH + '/js'));
+    .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('app-css', function () {
   return gulp.src(config.assets.appStyleSrc)
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('style-bundle.css'))
-  .pipe(gulp.dest(BUILD_PATH + '/css'))
+  .pipe(gulp.dest(buildDestinationPath + '/css'))
   .pipe(minifyCss({
     keepSpecialComments: 0
   }))
-  .pipe(rename({ suffix: '.min' }))
-  .pipe(gulp.dest(BUILD_PATH + '/css'));
+  .pipe(gulp.dest(buildDestinationPath + '/css'));
 });
 
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
   .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
   .pipe(concat('lib-bundle.js'))
-  .pipe(gulp.dest(BUILD_PATH + '/js'))
+  .pipe(gulp.dest(buildDestinationPath + '/js'))
   .pipe(uglify())
-  .pipe(rename({ suffix: '.min' }))
   .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('/'))
-  .pipe(gulp.dest(BUILD_PATH + '/js'));
+  .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('lib-css', [], function () {
   return gulp.src(config.assets.libStyleSrc)
  .pipe(concat('libstyle-bundle.css'))
- .pipe(gulp.dest(BUILD_PATH + '/css'))
+ .pipe(gulp.dest(buildDestinationPath + '/css'))
  .pipe(minifyCss())
- .pipe(concat('libstyle-bundle.min.css'))
- .pipe(gulp.dest(BUILD_PATH + '/css'));
+ .pipe(gulp.dest(buildDestinationPath + '/css'));
 });
 
 gulp.task('fonts', function () {
   gulp.src(config.assets.fontSrc)
-    .pipe(gulp.dest(BUILD_PATH + '/fonts'));
+    .pipe(gulp.dest(buildDestinationPath + '/fonts'));
 });
 
 gulp.task('images', function () {
   gulp.src(config.assets.imageSrc)
-    .pipe(gulp.dest(BUILD_PATH + '/img'));
+    .pipe(gulp.dest(buildDestinationPath + '/img'));
 });
 
 gulp.task('rootAssets', function () {
   gulp.src(config.assets.rootAssetSrc)
-    .pipe(gulp.dest(BUILD_PATH + '/'));
+    .pipe(gulp.dest(buildDestinationPath + '/'));
 });
 
 gulp.task('set-production-env', function () {
   gulp.src('config.json')
     .pipe(gulpNgConfig('appConfig', { environment: 'production' }))
-    .pipe(gulp.dest(SOURCE_PATH + '/config'));
+    .pipe(gulp.dest(buildDestinationPath + '/config'));
 });
 
 gulp.task('set-dev-env', function () {
   gulp.src('config.json')
     .pipe(gulpNgConfig('appConfig', { environment: 'development' }))
-    .pipe(gulp.dest(SOURCE_PATH + '/config'));
+    .pipe(gulp.dest(buildDestinationPath + '/config'));
 });
 
 gulp.task('build', function (callback) {
@@ -247,15 +248,21 @@ gulp.task('watch', function () {
 });
 
 //Set a default task
-gulp.task('default', function (callback) {
+gulp.task('dev', function (callback) {
   runSequence(
     'clean',
     'templatecache',
     isProduction ? 'set-production-env' : 'set-dev-env',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
-    'rev-all',
     'del-temp',
     'watch',
+    callback
+  );
+});
+
+gulp.task('default', function (callback) {
+  runSequence(
+    'dev',
     callback
   );
 });

@@ -16,7 +16,7 @@ angular.module('JustusApp', [
   'ServicesModule',
 ])
 
-.config(function($stateProvider ,$urlRouterProvider ,$locationProvider) {
+.config(['$stateProvider' ,'$urlRouterProvider' ,'$locationProvider', function($stateProvider ,$urlRouterProvider ,$locationProvider) {
   $urlRouterProvider.otherwise("/");
 
   let indexState = {
@@ -93,4 +93,4 @@ angular.module('JustusApp', [
   $stateProvider.state(justusState);
   $stateProvider.state(omatState);
   $stateProvider.state(hyvaksyState);
-});
+}]);

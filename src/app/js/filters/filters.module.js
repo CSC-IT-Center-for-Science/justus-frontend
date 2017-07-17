@@ -1,6 +1,6 @@
 angular.module('FiltersModule', [])
 
-.filter('truncate', function () {
+.filter('truncate', [function () {
   return function (value, wordwise, max, tail) {
     if (!value) return '';
 
@@ -22,4 +22,4 @@ angular.module('FiltersModule', [])
 
     return value + (tail || ' ...');
   };
-})
+}]);

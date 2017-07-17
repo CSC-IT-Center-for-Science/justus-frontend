@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp build",
-    "dev": "gulp"
+    "dev": "gulp dev"
   },
   "author": "CSC",
   "repository": "https://github.com/CSCfi/justus-frontend",
