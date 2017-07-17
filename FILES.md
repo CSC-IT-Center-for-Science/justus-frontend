@@ -20,7 +20,7 @@ Packaged
 
       All visible strings with language choices.
 
-    * js/justus.app.js
+    * js/app.js
 
       AngularJS module definition.
 
