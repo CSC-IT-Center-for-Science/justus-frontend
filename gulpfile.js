@@ -46,18 +46,20 @@ const config = {
       'node_modules/jquery/dist/jquery.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
+      'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
       'node_modules/angular-bootstrap/ui-bootstrap.js',
       'node_modules/angular-sanitize/angular-sanitize.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/ng-tags-input/build/ng-tags-input.js',
-      'node_modules/ui-select/dist/select.js'
+      'node_modules/ui-select/dist/select.js',
+      'node_modules/angular-touch/angular-touch.js'
     ],
 
     // Define lib styles here
     libStyleSrc: [
       'node_modules/ui-select/dist/select.css',
-      'node_modules/ng-tags-input/ng-tags-input.css',
-      'node_modules/ng-tags-input/ng-tags-input.bootstrap.css',
+      'node_modules/ng-tags-input/build/ng-tags-input.css',
+      'node_modules/ng-tags-input/build/ng-tags-input.bootstrap.css',
     ],
 
     // Define path for fonts
@@ -247,22 +249,7 @@ gulp.task('watch', function () {
   gulp.watch('./src/**/*.scss', ['app-css']);
 });
 
-//Set a default task
-gulp.task('dev', function (callback) {
-  runSequence(
-    'clean',
-    'templatecache',
-    isProduction ? 'set-production-env' : 'set-dev-env',
-    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
-    'del-temp',
-    'watch',
-    callback
-  );
-});
+gulp.task('dev', ['build', 'watch']);
 
-gulp.task('default', function (callback) {
-  runSequence(
-    'dev',
-    callback
-  );
-});
+//Set a default task
+gulp.task('default', ['dev']);

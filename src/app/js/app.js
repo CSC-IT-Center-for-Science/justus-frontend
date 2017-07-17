@@ -4,6 +4,7 @@ angular.module('JustusApp', [
   'ui.router', 
   'ui.select', 
   'ngAnimate', 
+  'ngTouch',
   'ngSanitize', 
   'ui.bootstrap', 
   'ngTagsInput',
