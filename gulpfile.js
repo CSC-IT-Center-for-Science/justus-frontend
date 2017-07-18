@@ -242,7 +242,19 @@ gulp.task('watch', function () {
   gulp.watch('./src/**/*.scss', ['app-css']);
 });
 
-gulp.task('dev', ['build', 'watch']);
+gulp.task('dev', function () {
+  runSequence(
+    'clean',
+    'templatecache',
+    'set-dev-env',
+    ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
+    'del-temp',
+    'watch',
+    function() {
+      gutil.log(gutil.colors.green('Build successful, waiting for changes...'));
+    }
+  );
+});
 
 //Set a default task
 gulp.task('default', ['dev']);
