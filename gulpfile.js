@@ -11,7 +11,6 @@ const RevAll = require('gulp-rev-all');
 const runSequence = require('run-sequence');
 const del = require('del');
 const gutil = require('gulp-util');
-const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 
 const SOURCE_PATH = 'src';
@@ -97,7 +96,7 @@ var revFiles = [
 // Renames files after build
 gulp.task('rev-all', function (callback) {
   if(isProduction === false) {
-    return;
+    return gutil.noop();
   }
 
   var revAll = new RevAll({ 
@@ -124,7 +123,6 @@ gulp.task('templatecache', function () {
   .pipe(templateCache({
     standalone: true,
   }))
-  .pipe(isProduction ? uglify() : gutil.noop())
   .pipe(gulp.dest(SOURCE_PATH + '/app'));
 });
 
@@ -171,13 +169,10 @@ gulp.task('del-temp', function () {
 
 gulp.task('app-js', function () {
   return gulp.src(config.assets.appSrc)
-    .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
     .pipe(babel({ presets: ['es2015'], comments: false })) 
     .pipe(concat('app-bundle.js'))
+    .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
     .pipe(gulp.dest(buildDestinationPath + '/js'))
-    .pipe(uglify().on('error', function(e){ console.log(e); }))
-    .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('/'))
-    .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('app-css', function () {
@@ -185,20 +180,16 @@ gulp.task('app-css', function () {
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('style-bundle.css'))
   .pipe(gulp.dest(buildDestinationPath + '/css'))
-  .pipe(minifyCss({
+  .pipe(isProduction ? minifyCss({
     keepSpecialComments: 0
-  }))
-  .pipe(gulp.dest(buildDestinationPath + '/css'));
+  }).on('error', function(e){ console.log(e); }) : gutil.noop())
 });
 
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
-  .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
   .pipe(concat('lib-bundle.js'))
+  .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
   .pipe(gulp.dest(buildDestinationPath + '/js'))
-  .pipe(uglify())
-  .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('/'))
-  .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('lib-css', [], function () {
