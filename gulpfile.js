@@ -100,10 +100,14 @@ gulp.task('rev-all', function (callback) {
     return;
   }
 
-  var revAll = new RevAll({ dontRenameFile: ['index.html'] });
+  var revAll = new RevAll({ 
+    dontRenameFile: ['index.html', 'config.js'],
+    dontUpdateReference: ['index.html', 'config.js']
+  });
   return gulp.src(
     revFiles
     .concat(buildDestinationPath + '/index.html')
+    .concat(buildDestinationPath + '/config.js')
   )
   .pipe(revAll.revision())
   .pipe(size({
@@ -126,7 +130,7 @@ gulp.task('templatecache', function () {
 
 // Copy additional html files
 gulp.task('html', function () {
-  return gulp.src([SOURCE_PATH + '/index.html', SOURCE_PATH + '/robots.txt'])
+  return gulp.src([SOURCE_PATH + '/index.html', SOURCE_PATH + '/config.js'])
   .pipe(gulp.dest(buildDestinationPath));
 });
 
@@ -134,6 +138,7 @@ gulp.task('html', function () {
 gulp.task('clean', [], function () {
   return del([
     buildDestinationPath + '/index.html',
+    buildDestinationPath + '/config.js',
     buildDestinationPath + '/css',
     buildDestinationPath + '/js',
     buildDestinationPath + '/fonts',
