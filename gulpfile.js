@@ -3,7 +3,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
-const minifyCss = require('gulp-minify-css');
+const cleanCSS = require('gulp-clean-css');
 const gulpNgConfig = require('gulp-ng-config');
 const size = require('gulp-size');
 const templateCache = require('gulp-angular-templatecache');
@@ -177,27 +177,24 @@ gulp.task('app-js', function () {
 
 gulp.task('app-css', function () {
   return gulp.src(config.assets.appStyleSrc)
-  .pipe(sass().on('error', sass.logError))
-  .pipe(concat('style-bundle.css'))
-  .pipe(gulp.dest(buildDestinationPath + '/css'))
-  .pipe(isProduction ? minifyCss({
-    keepSpecialComments: 0
-  }).on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('style-bundle.css'))
+    .pipe(isProduction ? cleanCSS().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(gulp.dest(buildDestinationPath + '/css'))
 });
 
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
-  .pipe(concat('lib-bundle.js'))
-  .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
-  .pipe(gulp.dest(buildDestinationPath + '/js'))
+    .pipe(concat('lib-bundle.js'))
+    .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(gulp.dest(buildDestinationPath + '/js'))
 });
 
 gulp.task('lib-css', [], function () {
   return gulp.src(config.assets.libStyleSrc)
- .pipe(concat('libstyle-bundle.css'))
- .pipe(gulp.dest(buildDestinationPath + '/css'))
- .pipe(minifyCss())
- .pipe(gulp.dest(buildDestinationPath + '/css'));
+    .pipe(concat('libstyle-bundle.css'))
+    .pipe(isProduction ? cleanCSS().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(gulp.dest(buildDestinationPath + '/css'))
 });
 
 gulp.task('fonts', function () {
