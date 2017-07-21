@@ -30,10 +30,10 @@
     "run-sequence": "^1.1.5"
   },
   "dependencies": {
-    "angular": "^1.6.1",
-    "angular-animate": "^1.6.1",
-    "angular-sanitize": "^1.6.1",
-    "angular-touch": "^1.6.1",
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "angular-touch": "^1.5.8",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.3",
     "bootstrap-sass": "^3.3.7",
