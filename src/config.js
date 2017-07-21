@@ -51,6 +51,10 @@ let domain_organization = {
     code:'00000',
     email:'notvalid@csc.fi'
   },
+  '@gofore.com': {
+    code:'00000',
+    email:'notvalid@csc.fi'
+  },
   //Arcada - Nylands svenska yrkeshögskola  #arcada-admins
   '@arcada.fi': {
     code:'02535',
