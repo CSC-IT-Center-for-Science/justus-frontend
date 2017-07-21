@@ -12,6 +12,7 @@ const runSequence = require('run-sequence');
 const del = require('del');
 const gutil = require('gulp-util');
 const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
 
 const SOURCE_PATH = 'src';
 const BUILD_PATH = 'build';
@@ -153,18 +154,13 @@ gulp.task('del-lib-css', function () {
   return del([config.assets.libStylesBundleFileSrc]);
 });
 
-gulp.task('del-temp', function () {
-  return del(
-    []
-    .concat(isProduction ? revSourceFiles : [])
-  );
-});
-
 gulp.task('app-js', function () {
   return gulp.src(config.assets.appSrc)
+    .pipe(isProduction ? sourcemaps.init() : gutil.noop())
     .pipe(babel({ presets: ['es2015'], comments: false })) 
     .pipe(concat('app-bundle.js'))
     .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
     .pipe(gulp.dest(buildDestinationPath + '/js'))
 });
 
@@ -178,8 +174,10 @@ gulp.task('app-css', function () {
 
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
+    .pipe(isProduction ? sourcemaps.init() : gutil.noop())
     .pipe(concat('lib-bundle.js'))
     .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
     .pipe(gulp.dest(buildDestinationPath + '/js'))
 });
 
@@ -211,7 +209,6 @@ gulp.task('build', function (callback) {
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'rev-all',
-    'del-temp',
     callback
   );
 });
@@ -227,7 +224,6 @@ gulp.task('dev', function () {
     'clean',
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
-    'del-temp',
     'watch',
     function() {
       gutil.log(gutil.colors.green('Build successful, waiting for changes...'));
