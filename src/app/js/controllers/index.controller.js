@@ -15,14 +15,14 @@ function($scope, $rootScope, $http, $window, $stateParams, $transitions, $locati
 
   if (typeof(authuri) !== 'undefined') {
     $http.get(authuri)
-    .then(function(au){
-      $rootScope.user = au;
-      $scope.user = au;
+    .then(function(response) {
+      $rootScope.user = response.data;
+      $scope.user = response.data;
       //backend/auth provides but config has more info (code+mail):
       $scope.user.organization = domain_organization[$scope.user.domain];
       $scope.initrole=$scope.user.role;
     })
-    .catch(function(){
+    .catch(function() {
       if (demomode) {
         $rootScope.user = user;
         $scope.user = user;
