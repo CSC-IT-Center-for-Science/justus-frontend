@@ -85,8 +85,8 @@ const config = {
   }
 };
 
-// Revisioned files
-var revFiles = [
+// Files to revision
+var revSourceFiles = [
   config.assets.appScriptsBundleFileSrc,
   config.assets.libScriptsBundleFileSrc,
   config.assets.libStylesBundleFileSrc,
@@ -104,7 +104,7 @@ gulp.task('rev-all', function (callback) {
     dontUpdateReference: ['index.html', 'config.js']
   });
   return gulp.src(
-    revFiles
+    revSourceFiles
     .concat(buildDestinationPath + '/index.html')
     .concat(buildDestinationPath + '/config.js')
   )
@@ -132,16 +132,9 @@ gulp.task('html', function () {
   .pipe(gulp.dest(buildDestinationPath));
 });
 
-// Deletes all build files
+// Deletes all files generated in the build
 gulp.task('clean', [], function () {
-  return del([
-    buildDestinationPath + '/index.html',
-    buildDestinationPath + '/config.js',
-    buildDestinationPath + '/css',
-    buildDestinationPath + '/js',
-    buildDestinationPath + '/fonts',
-    buildDestinationPath + '/img'
-  ]);
+  return del([buildDestinationPath]);
 });
 
 gulp.task('del-lib-js', function () {
@@ -162,8 +155,8 @@ gulp.task('del-lib-css', function () {
 
 gulp.task('del-temp', function () {
   return del(
-    revFiles
-  .concat(buildDestinationPath + '/js/templates.js')
+    []
+    .concat(isProduction ? revSourceFiles : [])
   );
 });
 
@@ -212,23 +205,10 @@ gulp.task('rootAssets', function () {
     .pipe(gulp.dest(buildDestinationPath + '/'));
 });
 
-gulp.task('set-production-env', function () {
-  gulp.src('config.json')
-    .pipe(gulpNgConfig('appConfig', { environment: 'production' }))
-    .pipe(gulp.dest(buildDestinationPath + '/config'));
-});
-
-gulp.task('set-dev-env', function () {
-  gulp.src('config.json')
-    .pipe(gulpNgConfig('appConfig', { environment: 'development' }))
-    .pipe(gulp.dest(buildDestinationPath + '/config'));
-});
-
 gulp.task('build', function (callback) {
   runSequence(
     'clean',
     'templatecache',
-    isProduction ? 'set-production-env' : 'set-dev-env',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'rev-all',
     'del-temp',
@@ -246,7 +226,6 @@ gulp.task('dev', function () {
   runSequence(
     'clean',
     'templatecache',
-    'set-dev-env',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'del-temp',
     'watch',
