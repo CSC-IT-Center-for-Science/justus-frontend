@@ -114,11 +114,11 @@ angular.module('APIService', [])
       data: str,
       headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
-    .then(function (data, status, headers, config) {
-      return status+" "+data;
+    .then(function (response) {
+      return response.data;
     })
-    .catch(function (data, status, header, config) {
-      console.log("post ERROR "+status+" "+data);
+    .catch(function (response) {
+      console.log('post ERROR ' + response.status + ' ' + response.data);
     });
   }
 
@@ -127,7 +127,7 @@ angular.module('APIService', [])
     //id voi puuttua, jolloin palautetaan kaikki
     return $http({
       method: 'GET',
-      url: apiuri + api + ( col ? "/" + col : "") + "/" + id,
+      url: apiuri + api + ( col ? '/' + col : '') + '/' + id,
       params: query
     })
     .then(function (response){
@@ -140,15 +140,15 @@ angular.module('APIService', [])
   this.put = function (api,id,str) {
     return $http({
       method: 'PUT',
-      url: apiuri+api+"/"+id,
+      url: apiuri+api+'/'+id,
       data: str,
       headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
-    .then(function (data, status, headers, config) {
-      return status+" "+data;
+    .then(function (response) {
+      return response.status + ' ' + response.data;
     })
-    .catch(function (data, status, header, config) {
-      console.log("put ERROR "+status+" "+data);
+    .catch(function (response) {
+      console.log('put ERROR ' + response.status + ' ' + response.data);
     });
   }
 
@@ -156,13 +156,13 @@ angular.module('APIService', [])
   this.delete = function (api,id) {
     return $http({
       method: 'DELETE',
-      url: apiuri+api+"/"+id
+      url: apiuri+api+'/'+id
     })
-    .then(function (data, status, headers, config) {
-      return status+" "+data;
+    .then(function (response) {
+      return response.status + ' ' + response.data;
     })
-    .catch(function (data, status, header, config) {
-      console.log("delete ERROR "+status+" "+data);
+    .catch(function (response) {
+      console.log('delete ERROR ' + response.status + ' ' + response.data);
     });
   }
 
