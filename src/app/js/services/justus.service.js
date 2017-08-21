@@ -1,7 +1,5 @@
 'use strict';
 
-// from config uses: ?
-
 angular.module('JustusService', [])
 .service('JustusService',['$http','$rootScope', function ($http, $rootScope) {
 
@@ -9,6 +7,10 @@ angular.module('JustusService', [])
 
   // in justus we keep data to be stored in database
   this.justus = {};
+
+  this.clearPublicationForm = function() {
+    this.justus = {};
+  };
 
   this.getOrganizationFieldConfig = function(organizationDomain, organizationCode) {
     let fieldConfigs = organization_field_config;

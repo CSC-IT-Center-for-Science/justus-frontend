@@ -2,8 +2,8 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController',
-['$scope','$http','$state','APIService',
-function($scope,$http,$state,API)
+['$scope','$http','$state','APIService','JustusService',
+function($scope,$http,$state,API,Justus)
 {
   //index provides: lang, ...
   //justus provides: justus
@@ -87,7 +87,9 @@ function($scope,$http,$state,API)
       });
       // move on to own publications
       $state.go('omat', {lang:$scope.lang});
-    } else {
+      Justus.clearPublicationForm();
+    } 
+    else {
       API.post("julkaisu",dnew).then(function(jid){
         if (jid) {
           angular.forEach($scope.justus.avainsana,function(adata,ak){
@@ -100,6 +102,7 @@ function($scope,$http,$state,API)
         }
         // move on to own publications
         $state.go('omat', {lang: $scope.lang});
+        Justus.clearPublicationForm();
       });
     }//-post
   }
