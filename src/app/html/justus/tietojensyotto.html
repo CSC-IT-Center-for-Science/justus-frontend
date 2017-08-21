@@ -1,3 +1,8 @@
+<div class="alert alert-transparent text-center" data-ng-if="justus.id">
+  <h4>Muokkaat julkaisua {{ justus.id }}, {{ justus.julkaisunnimi }}</h4>
+  <button class="btn btn-primary" data-ng-click="clearFormAndReturnToStart()">Hylkää muutokset ja siirry alkuun</button>
+</div>
+
 <!-- alun yhteiset -->
 
 <h3 class="form-header">{{i18n.content.tietojensyotto.yleiset[lang]}}</h3>

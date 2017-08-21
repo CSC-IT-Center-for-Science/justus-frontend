@@ -50,6 +50,14 @@ angular.module('JustusController', [])
       return parsedNames;
     }
 
+    $scope.clearFormAndReturnToStart = function() {
+      Justus.clearPublicationForm();
+      $scope.justus = Justus.justus;
+      $scope.julkaisutyyppi = null;
+      $scope.julkaisutyyppi_paa = null;
+      $scope.useVaihe(1);
+    }
+
     $scope.useTekijat = function() {
       // Add space after each comma if none entered
       $scope.tekijatTags = $scope.tekijatTags.map(function(tag, index) {
@@ -370,6 +378,11 @@ angular.module('JustusController', [])
     }
 
     $scope.useVaihe = function(vaihe) {
+      // Prevent user from navigating to vaihe 1 when editing a publication
+      if($scope.justus.id && vaihe === 1) {
+        return;
+      }
+
       $scope.vaihe=vaihe;
       if ($scope.justus.julkaisutyyppi && $scope.justus.julkaisutyyppi.length>1) {
         // make sure both values are set (paa,ala):
