@@ -13,13 +13,15 @@ Tested with npm version 4.0.3 (and on CentOS 7 with straight yum npm version 1.3
 Run:
 * `npm install`
 * `bower install`
-* `grunt build`
+* `npm run build`
 
 Copy directory `dist` wherever...
 
 ## Development
 
-To build SASS files and keep watching for changes run:
-* `grunt dev`
+To build and keep listening for changes in dev run:
+* `npm run dev`
+
+The app will be built into ./build
 
 See FILES.md for some more specifics.
