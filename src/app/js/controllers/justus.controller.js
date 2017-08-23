@@ -306,19 +306,18 @@ angular.module('JustusController', [])
     }
 
     $scope.refreshAvainsanat = function(input) {
-      if(input == null) return;
-      if(input.length < 3) return [];
+      if (input === null) return;
+      if (input.length < 3) return [];
       return Finto.search($scope.lang,input)
-      .then(
-        function successCb(response){
-          $scope.avainsanatLataa = false;
-          return response.data.results;
-        },function errorCb(response){
-          console.log('refreshAvainsanat '+input+' ei löytynyt!');
-          $scope.avainsanatLataa = false;
-          return false;
-        }
-      );
+      .then(function(tags) {
+        $scope.avainsanatLataa = false;
+        return tags;
+      })
+      .catch(function() {
+        console.log('refreshAvainsanat ' + input + ' ei löytynyt!');
+        $scope.avainsanatLataa = false;
+        return false;
+      });
     }
 
     $scope.useAvainsanat = function() {
