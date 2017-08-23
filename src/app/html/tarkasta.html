@@ -60,7 +60,8 @@
             data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
           <td class="condensed nowrap">
             <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
-            href="" data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
+              href="" 
+              data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
               <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
             </a>
             <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
