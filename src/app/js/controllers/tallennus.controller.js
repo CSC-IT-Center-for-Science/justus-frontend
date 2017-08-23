@@ -49,15 +49,15 @@ function($scope,$http,$state,API,Justus)
         API.put('organisaatiotekija',putid,odata);
         // alayarr copied above
         angular.forEach(alayarr,function(adata,ak){
-          saveTable("alayksikko",adata,adata.id,adata.organisaatiotekijaid);
+          saveTable('alayksikko',adata,adata.id,adata.organisaatiotekijaid);
         });
         // restore id
         odata.id=putid;
       } else {
-        API.post('organisaatiotekija'+"/",odata).then(function(otid){
+        API.post('organisaatiotekija'+'/',odata).then(function(otid){
           // alayarr copied above
           angular.forEach(alayarr,function(adata,ak){
-            saveTable("alayksikko",adata,adata.id,otid);
+            saveTable('alayksikko',adata,adata.id,otid);
           });
         });
       }//-post (of not put)
@@ -70,33 +70,34 @@ function($scope,$http,$state,API,Justus)
     let dnew = {};
     // from main table julkaisu drop not significant columns, and id
     angular.forEach($scope.meta.tables.julkaisu.columns,function(v,k){
-      if (v.name!="id" && v.name!="modified" && v.name && $scope.justus[v.name]) {
+      if (v.name!='id' && v.name!='modified' && v.name && $scope.justus[v.name]) {
         dnew[v.name] = $scope.justus[v.name];
       }
     });
     dnew.modified = new Date();
     if ($scope.justus.id) { // we have id so we're updating
-      API.put("julkaisu",$scope.justus.id,dnew);
-      angular.forEach($scope.justus.avainsana,function(adata,ak){
+      API.put('julkaisu',$scope.justus.id,dnew);
+      angular.forEach($scope.justus.avainsana, function(adata, ak) {
         // refid should be given here as we might be inserting new, in which case adata.id is undefined
-        saveTable("avainsana",adata,adata.id,$scope.justus.id);
+        saveTable('avainsana',adata,adata.id,$scope.justus.id);
       })
-      angular.forEach($scope.justus.tieteenala,function(tdata,tk){
+      angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
         // refid should be given here as we might be inserting new, in which case tdata.id is undefined
-        saveTable("tieteenala",tdata,tdata.id,$scope.justus.id);
+        saveTable('tieteenala', tdata,tdata.id, $scope.justus.id);
       });
+      saveOrganisaatiotekija($scope.justus.id);
       // move on to own publications
-      $state.go('omat', {lang:$scope.lang});
+      $state.go('omat', { lang:$scope.lang });
       Justus.clearPublicationForm();
     } 
     else {
-      API.post("julkaisu",dnew).then(function(jid){
+      API.post('julkaisu',dnew).then(function(jid){
         if (jid) {
           angular.forEach($scope.justus.avainsana,function(adata,ak){
-            saveTable("avainsana",adata,adata.id,jid);
+            saveTable('avainsana',adata,adata.id,jid);
           })
           angular.forEach($scope.justus.tieteenala,function(tdata,tk){
-            saveTable("tieteenala",tdata,tdata.id,jid);
+            saveTable('tieteenala',tdata,tdata.id,jid);
           });
           saveOrganisaatiotekija(jid);
         }
