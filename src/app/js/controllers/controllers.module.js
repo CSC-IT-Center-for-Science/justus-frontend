@@ -3,4 +3,4 @@ angular.module('ControllersModule', [
   'JustusController',
   'TallennusController',
   'TarkastaController'
-])
+]);

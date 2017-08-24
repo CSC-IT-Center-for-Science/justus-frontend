@@ -7,6 +7,7 @@ env:
   browser: 1
 globals:
   angular: true
+  domain_organization: true
 rules:
   angular/avoid-scope-typos: 2
   angular/module-getter: 2
@@ -22,6 +23,10 @@ rules:
     - 2
     - stroustrup
   no-console: 2
+  no-useless-return: 1
+  object-curly-spacing:
+    - 2
+    - always
   semi: 
     - 2
     - always
