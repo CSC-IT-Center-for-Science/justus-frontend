@@ -1,12 +1,12 @@
 angular.module('JustusApp', [
 
   // Vendor modules
-  'ui.router', 
-  'ui.select', 
-  'ngAnimate', 
+  'ui.router',
+  'ui.select',
+  'ngAnimate',
   'ngTouch',
-  'ngSanitize', 
-  'ui.bootstrap', 
+  'ngSanitize',
+  'ui.bootstrap',
   'ngTagsInput',
 
   // App modules
@@ -14,84 +14,87 @@ angular.module('JustusApp', [
   'FiltersModule',
   'DirectivesModule',
   'ControllersModule',
-  'ServicesModule',
+  'ServicesModule'
 ])
 
-.config(['$stateProvider' ,'$urlRouterProvider' ,'$locationProvider', function($stateProvider ,$urlRouterProvider ,$locationProvider) {
-  $urlRouterProvider.otherwise("/");
+.config([
+  '$stateProvider', '$urlRouterProvider', '$locationProvider',
+  function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $urlRouterProvider.otherwise('/');
 
-  let indexState = {
-    name: "index",
-    url: "/?lang",
-    views: {
-      "": {
-        templateUrl: "html/index_part.html"
+    const indexState = {
+      name: 'index',
+      url: '/?lang',
+      views: {
+        '': {
+          templateUrl: 'html/index_part.html'
+        }
+      },
+      params: {
+        lang: null
       }
-    },
-    params: {
-      lang: null
-    }
-  };
+    };
 
-  let valitseState = {
-    name: "valitse",
-    url: "/valitse?lang",
-    views: {
-      "": {
-        templateUrl: "html/valitse.html"
+    const valitseState = {
+      name: 'valitse',
+      url: '/valitse?lang',
+      views: {
+        '': {
+          templateUrl: 'html/valitse.html'
+        }
+      },
+      params: {
+        lang: null
       }
-    },
-    params: {
-      lang: null
-    }
-  };
+    };
 
-  let justusState = {
-    name: "justus",
-    url: "/justus?lang&vaihe&id",
-    views: {
-      "": {
-        templateUrl: "html/justus.html"
+    const justusState = {
+      name: 'justus',
+      url: '/justus?lang&vaihe&id',
+      views: {
+        '': {
+          templateUrl: 'html/justus.html'
+        }
+      },
+      params: {
+        lang: null,
+        vaihe: null,
+        id: null
       }
-    },
-    params: {
-      lang: null,
-      vaihe: null,
-      id: null
-    }
-  };
+    };
 
-  let omatState = {
-    name: "omat",
-    url: "/omat?lang",
-    views: {
-      "": {
-        templateUrl: "html/tarkasta.html",
-        controller: "TarkastaController",
+    const omatState = {
+      name: 'omat',
+      url: '/omat?lang',
+      views: {
+        '': {
+          templateUrl: 'html/tarkasta.html',
+          controller: 'TarkastaController'
+        }
+      },
+      params: {
+        lang: null
       }
-    },
-    params: {
-      lang: null
-    }
-  };
+    };
 
-  let hyvaksyState = {
-    name: "hyvaksy",
-    url: "/hyvaksy?lang",
-    views: {
-      "": {
-        templateUrl: "html/tarkasta.html",
-        controller: "TarkastaController"
+    const hyvaksyState = {
+      name: 'hyvaksy',
+      url: '/hyvaksy?lang',
+      views: {
+        '': {
+          templateUrl: 'html/tarkasta.html',
+          controller: 'TarkastaController'
+        }
+      },
+      params: {
+        lang: null
       }
-    },
-    params: {
-      lang: null
-    }
-  };
+    };
 
-  $stateProvider.state(indexState);
-  $stateProvider.state(valitseState);
-  $stateProvider.state(justusState);
-  $stateProvider.state(omatState);
-  $stateProvider.state(hyvaksyState);
-}]);
+    $stateProvider.state(indexState);
+    $stateProvider.state(valitseState);
+    $stateProvider.state(justusState);
+    $stateProvider.state(omatState);
+    $stateProvider.state(hyvaksyState);
+  }
+]);

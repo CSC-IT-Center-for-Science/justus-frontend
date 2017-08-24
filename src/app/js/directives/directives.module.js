@@ -1,12 +1,12 @@
 angular.module('DirectivesModule', [])
-.directive('isbnDirective', ['JustusService', function(Justus) {
+.directive('isbnDirective', ['JustusService', function(JustusService) {
   return {
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
       function myValidation(isbn) {
         if (!isbn) return false; // undefined?
-        if (!isbn.match(Justus.pattern.isbn)) return false;
-        let ret = Justus.checkISBN(isbn);
+        if (!isbn.match(JustusService.pattern.isbn)) return false;
+        let ret = JustusService.checkISBN(isbn);
         mCtrl.$setValidity('isbnValid', ret);
         return isbn;
       }
@@ -15,14 +15,14 @@ angular.module('DirectivesModule', [])
   };
 }])
 
-.directive('issnDirective', ['JustusService', function(Justus) {
+.directive('issnDirective', ['JustusService', function(JustusService) {
   return {
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
       function myValidation(issn) {
         if (!issn) return false; // undefined?
-        if (!issn.match(Justus.pattern.issn)) return false;
-        let ret = Justus.checkISSN(issn);
+        if (!issn.match(JustusService.pattern.issn)) return false;
+        let ret = JustusService.checkISSN(issn);
         mCtrl.$setValidity('issnValid', ret);
         return issn;
       }
@@ -31,19 +31,19 @@ angular.module('DirectivesModule', [])
   };
 }])
 
-.directive('orcidDirective', ['JustusService', function(Justus) {
+.directive('orcidDirective', ['JustusService', function(JustusService) {
   return {
     require: 'ngModel',
     link: function(scope, element, attr, mCtrl) {
       function myValidation(orcid) {
         // NB! tyhjä käy, eli ei pakollinen (vielä)
-        if (orcid===null || orcid=="") {
+        if (orcid === null || orcid === '') {
           mCtrl.$setValidity('orcidValid', true);
           return orcid;
         }
         if (!orcid) return false; // undefined?
-        if (!orcid.match(Justus.pattern.orcid)) return false;
-        let ret = Justus.checkORCID(orcid);
+        if (!orcid.match(JustusService.pattern.orcid)) return false;
+        let ret = JustusService.checkORCID(orcid);
         mCtrl.$setValidity('orcidValid', ret);
         return orcid;
       }

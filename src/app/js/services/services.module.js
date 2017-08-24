@@ -7,4 +7,4 @@ angular.module('ServicesModule', [
   'KoodistoService',
   'ValidationService',
   'VIRTAService'
-])
+]);

@@ -1,4 +1,4 @@
-const organization_field_config = [
+const organizationFieldConfig = [
   // debug/develop/demo (de3)
   {
     domain: '@csc.fi',

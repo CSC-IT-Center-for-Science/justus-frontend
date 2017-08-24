@@ -1,15 +1,32 @@
 extends: standard
+
 plugins:
-  - angular
   - standard
   - promise
+  - angular
+
 env: 
   browser: 1
+
 globals:
   angular: true
+  
+  # Remove global config rules when ngConfig or similar implemented instead of global js-variables
   domain_organization: true
+  apiuri: true
+  authuri: true
+  crossrefuri: true
+  justusuri: true
+  virtauri: true
+  demomode: true
+  user: true
+  i18n: true
+  codes: true
+  justushost: true
+  field_default_config: true
+  organizationFieldConfig: true
+
 rules:
-  angular/avoid-scope-typos: 2
   angular/module-getter: 2
   angular/module-setter: 2
   angular/no-private-call: 2
@@ -23,13 +40,21 @@ rules:
     - 2
     - stroustrup
   no-console: 2
+  no-unneeded-ternary: 1
+  no-unused-vars: 1
   no-useless-return: 1
+  no-var: 1
   object-curly-spacing:
     - 2
     - always
+  prefer-const: 
+    - 1
+    - destructuring: all
+      ignoreReadBeforeAssign: false
   semi: 
     - 2
     - always
   space-before-function-paren: 0
+
 settings:
     angular: 1

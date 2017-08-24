@@ -2,9 +2,9 @@
 
 angular.module('JustusController', [])
 .controller('JustusController', [
-  '$rootScope', '$scope', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService',
+  '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService',
   'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService',
-  function($rootScope, $scope, $http, $state, $stateParams, CrossRefService, VIRTAService,
+  function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService,
   JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService) {
     $scope.meta = APIService.meta;
     $scope.justus = JustusService.justus;
@@ -300,7 +300,7 @@ angular.module('JustusController', [])
           $scope.virtaLataa = false;
           $scope.useVaihe(3); // ->tietojen syöttöön
         }, function errorCb(response) {
-          console.log('useJulkaisunnimi ' + source + ' ' + input + ' ei löytynyt!');
+          $log.debug('useJulkaisunnimi ' + source + ' ' + input + ' ei löytynyt!');
           $scope.julkaisuhaettu = false;
           return false;
         });
@@ -318,7 +318,7 @@ angular.module('JustusController', [])
         return tags;
       })
       .catch(function() {
-        console.log('refreshAvainsanat ' + input + ' ei löytynyt!');
+        $log.debug('refreshAvainsanat ' + input + ' ei löytynyt!');
         $scope.avainsanatLataa = false;
         return false;
       });
