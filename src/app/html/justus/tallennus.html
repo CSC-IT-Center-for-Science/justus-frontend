@@ -135,7 +135,7 @@
         <td class="condensed">{{ i18n.content.form.avainsanat[lang] }}</td>
         <td>
           <span data-ng-repeat="i in justus.avainsana">
-            {{i.avainsana}}<span data-ng-if="!$last">, </span>
+            <span class="label label-primary">{{i.avainsana}}</span>
           </span>
         </td>
       </tr>

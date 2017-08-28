@@ -638,13 +638,18 @@
       data-add-on-comma="false"
       data-add-on-space="false"
       placeholder="{{i18n.content.form.avainsanat.picktip[lang]}}"
-      data-on-tag-added="useAvainsanat()"
-      data-on-tag-removed="useAvainsanat()"
+      data-on-tag-added="addAvainsana($tag)"
+      data-on-tag-removed="removeAvainsana()"
       data-enable-editing-last-tag="true"
       display-property="prefLabel"
-      key-property="localname">
+      key-property="localname"
+      data-min-length="1">
       <auto-complete
-        data-source="refreshAvainsanat($query)">
+        data-source="refreshAvainsanat($query)"
+        data-load-on-down-arrow="true"
+        data-min-length="1"
+        data-debounce-delay="200"
+        data-select-first-match="true">
       </auto-complete>
     </tags-input>
   </div>

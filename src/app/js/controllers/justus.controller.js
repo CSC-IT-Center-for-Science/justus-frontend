@@ -322,22 +322,31 @@ angular.module('JustusController', [])
 
     $scope.refreshAvainsanat = function(input) {
       if (input === null) return;
-      if (input.length < 3) return [];
+      if (input.length < 3) return [{ prefLabel: input, localname: input }];
       return FintoService.search($scope.lang, input)
       .then(function(tags) {
         $scope.avainsanatLataa = false;
+        if (!tags || tags.length === 0) {
+          return [{ prefLabel: input, localname: input }];
+        }
         return tags;
       })
       .catch(function() {
         $log.debug('refreshAvainsanat ' + input + ' ei löytynyt!');
         $scope.avainsanatLataa = false;
-        return false;
+        return [{ prefLabel: input, localname: input }];
       });
     };
 
-    $scope.useAvainsanat = function() {
-      $scope.justus.avainsana = '';
-      $scope.justus.avainsana = $scope.avainsanatTags.map(function(tag, index) {
+    $scope.addAvainsana = (tag) => {
+      $scope.justus.avainsana.push({
+        avainsana: tag.prefLabel ? tag.prefLabel : tag
+      });
+    };
+
+    $scope.removeAvainsana = function() {
+      $scope.justus.avainsana = [];
+      $scope.justus.avainsana = $scope.avainsanatTags.map(function(tag) {
         return { avainsana: tag.prefLabel };
       });
     };
