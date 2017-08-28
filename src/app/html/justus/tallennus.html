@@ -45,7 +45,9 @@
             </div>
             <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
               <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index">
-                {{ a.alayksikko }} ({{ getCode('organization',a.alayksikko).selite[lang] }})<span data-ng-if="!$last">, </span>
+                {{ a.alayksikko }}
+                <span data-ng-if="a.alayksikko"> ({{ getCode('organization',a.alayksikko).selite[lang] }})</span>
+                <span data-ng-if="!$last">, </span>
               </span>
             </div>
           </div>
