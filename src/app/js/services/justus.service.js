@@ -134,10 +134,16 @@ angular.module('JustusService', [])
   this.validateNestedField = function(fieldName) {
     let valid = true;
     angular.forEach(field_default_config[fieldName].subfields, function(subfieldName) {
-      let subfieldIsRequired = this.isFieldRequired(subfieldName);
+      const subfieldIsRequired = this.isFieldRequired(subfieldName);
       // If the field consists of a list of objects, we need to validate each index
       if (angular.isArray(this.justus[fieldName]) && subfieldIsRequired === true) {
-        angular.forEach(this.justus[fieldName], function(fieldIndex) {
+        angular.forEach(this.justus[fieldName], function(fieldIndex, index) {
+          // If the required amount of values is already entered, no need to validate
+          // emptiness of remaining fields
+          if (field_default_config[fieldName].requiredAmount <= index) {
+            return;
+          }
+
           if (this.fieldIsEmpty(fieldIndex[subfieldName]) === true) {
             valid = false;
           }
