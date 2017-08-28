@@ -165,8 +165,8 @@ angular.module('JustusService', [])
   };
 
   this.getInvalidFields = function() {
-    let invalidFields = [];
-    let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
+    const invalidFields = [];
+    const organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
     angular.forEach(organizationConfig.visibleFields, function(field) {
       if (this.isValid(field) === false) {
         invalidFields.push(field);

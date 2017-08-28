@@ -1030,17 +1030,16 @@
     <span data-ng-if="isFieldRequired('julkaisurinnakkaistallennettu')" class="required-star">*</span>
   </div>
   <div class="col-sm-8 col-xs-12 justus-data" 
-    data-ng-model="req_julkaisurinnakkaistallennettu" 
     data-ng-required="requiredHighlight && !isValid('julkaisurinnakkaistallennettu')">
     <div class="row">
       <div class="col-xs-10">
-        <label data-ng-model="lab1_julkaisurinnakkaistallennettu" class="control-label">
+        <label class="control-label">
           <input type="radio" 
             data-ng-model="justus.julkaisurinnakkaistallennettu"
             value="1">
             {{i18n.content.form.julkaisurinnakkaistallennettu['1'][lang]}}
         </label>
-        <label data-ng-model="lab2_julkaisurinnakkaistallennettu" class="control-label">
+        <label class="control-label">
           <input type="radio" 
             data-ng-model="justus.julkaisurinnakkaistallennettu"
             value="0">
@@ -1058,7 +1057,7 @@
 
 <!-- Kenttä: Rinnakkaistallennetun version verkko-osoite -->
 <div class="row form-group" 
-  data-ng-if="isFieldVisible('rinnakkaistallennetunversionverkkoosoite')" 
+  data-ng-if="isFieldVisible('rinnakkaistallennetunversionverkkoosoite') && justus.julkaisurinnakkaistallennettu === '1'" 
   id="rinnakkaistallennetunversionverkkoosoiteGroup">
   <div class="col-sm-4 col-xs-12">
     <label class="control-label" data-ng-bind="i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang]"></label>
