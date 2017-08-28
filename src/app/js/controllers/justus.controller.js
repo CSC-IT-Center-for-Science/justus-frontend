@@ -24,13 +24,13 @@ angular.module('JustusController', [])
     $scope.invalidFields = [];
 
     // Parses first- and lastnames from a string of names and returns them in a list of objects [{ firstName: '', lastName: '' }, ...]
-    var parseNames = function(namesString) {
-      let parsedNames = [];
+    const parseNames = function(namesString) {
+      const parsedNames = [];
       if (namesString && namesString.length > 0) {
-        let namePairs = namesString.split(';');
+        const namePairs = namesString.split(';');
 
         namePairs.map(function(namePair) {
-          let splittedNames = namePair.split(',');
+          const splittedNames = namePair.split(',');
           parsedNames.push({
             lastName: splittedNames[0] ? splittedNames[0].trim() : '',
             firstName: splittedNames[1] ? splittedNames[1].trim() : ''
@@ -46,6 +46,17 @@ angular.module('JustusController', [])
       $scope.justus = JustusService.justus;
       $scope.julkaisutyyppi = null;
       $scope.julkaisutyyppi_paa = null;
+      $scope.tekijatTags = [];
+      $scope.avainsanatTags = [];
+      $scope.lehtinimet = [];
+      $scope.kustantajanimet = [];
+      $scope.konferenssinimet = [];
+      $scope.julkaisunnimet = [];
+      $scope.julkaisu = {};
+      $scope.crossrefLataa = false;
+      $scope.virtaLataa = false;
+      $scope.requiredHighlight = false;
+      $scope.invalidFields = [];
       $scope.useVaihe(1);
     };
 
