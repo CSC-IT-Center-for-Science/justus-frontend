@@ -21,7 +21,7 @@ angular.module('JustusService', [])
   this.isFieldVisible = function(field) {
     let visible = false;
 
-    if (field_default_config[field] && field_default_config[field].visibleInPublicationTypes.includes(this.justus['julkaisutyyppi'])) {
+    if (field_default_config[field] && field_default_config[field].visibleInPublicationTypes.indexOf(this.justus['julkaisutyyppi']) !== -1) {
       visible = true;
     }
 
@@ -29,7 +29,7 @@ angular.module('JustusService', [])
     // can still be hidden by the active organization
     if (visible === true || !field_default_config[field]) {
       let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
-      visible = organizationConfig.visibleFields.includes(field);
+      visible = organizationConfig.visibleFields.indexOf(field) !== -1;
     }
 
     return visible;
@@ -44,7 +44,7 @@ angular.module('JustusService', [])
       return false;
     }
 
-    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.includes(this.justus['julkaisutyyppi']) &&
+    let fieldRequired = field_default_config[fieldName].requiredInPublicationTypes.indexOf(this.justus['julkaisutyyppi']) !== -1 &&
     this.isFieldRequiredByOrganization(fieldName);
 
     // If the field was required we need to check if the field required attribute depends on another filled field
@@ -69,7 +69,7 @@ angular.module('JustusService', [])
 
   this.isFieldRequiredByOrganization = function(fieldName) {
     let organizationConfig = this.getOrganizationFieldConfig($rootScope.user.domain, $rootScope.user.organization.code);
-    return organizationConfig.requiredFields.includes(fieldName);
+    return organizationConfig.requiredFields.indexOf(fieldName) !== -1;
   };
 
   this.fieldIsEmpty = function(fieldValue) {
