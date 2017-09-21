@@ -396,11 +396,11 @@ const i18n = {
       doitunniste: {
         FI: 'DOI tunniste',
         SV: 'DOI-identifieringsnummer',
-        EN: 'DOI',
+        EN: 'DOI identifier',
         tooltip: {
-          FI: 'Julkaisun DOI-tunniste, esim. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x',
-          SV: 'Publikationens DOI-identifieringsnummer, t.ex. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x',
-          EN: 'The DOI of the publication e.g. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x'
+          FI: 'Julkaisun DOI-tunniste, esim. 10.1111/j.1398-9995.2011.02728.x',
+          SV: 'Publikationens DOI-identifieringsnummer, t.ex. 10.1111/j.1398-9995.2011.02728.x',
+          EN: 'The DOI identifier of the publication e.g. 10.1111/j.1398-9995.2011.02728.x'
         }
       },
       pysyvaverkkoosoite: {
