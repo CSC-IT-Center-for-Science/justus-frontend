@@ -84,7 +84,9 @@ angular.module('TallennusController', [])
         });
         angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
           // refid should be given here as we might be inserting new, in which case tdata.id is undefined
-          saveTable('tieteenala', tdata, tdata.id, $scope.justus.id);
+          if (tdata && tdata.jnro && tdata.tieteenalakoodi) {
+            saveTable('tieteenala', tdata, tdata.id, $scope.justus.id);
+          }  
         });
         saveOrganisaatiotekija($scope.justus.id);
         // move on to own publications
@@ -98,7 +100,9 @@ angular.module('TallennusController', [])
               saveTable('avainsana', adata, adata.id, jid);
             });
             angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
-              saveTable('tieteenala', tdata, tdata.id, jid);
+              if (tdata && tdata.jnro && tdata.tieteenalakoodi) {
+                saveTable('tieteenala', tdata, tdata.id, jid);
+              }
             });
             saveOrganisaatiotekija(jid);
           }
