@@ -10,9 +10,9 @@ const i18n = {
   },
   footer: {
     help: {
-      title: { FI: 'Käyttötuki', SV: '*SV*Käyttötuki', EN: '*EN*Käyttötuki' },
+      title: { FI: 'Käyttötuki', SV: 'Helpdesk', EN: 'Helpdesk' },
       email: { FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi' },
-      time: { FI: 'ma-pe klo 8.30-16', SV: '*SV*ma-pe klo 8.30-16', EN: 'Mon-Tue 8.30am-4pm' }
+      time: { FI: 'ma-pe klo 8.30-16', SV: 'mån-fre 8.30-16', EN: 'Mon-Fri 8.30am-4pm' }
     },
     csc: {
       name: { FI: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', SV: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', EN: 'CSC - IT CENTER FOR SCIENCE LTD' },
@@ -22,12 +22,12 @@ const i18n = {
   },
   etusivu: {
     kirjaudu: { FI: 'Kirjaudu JUSTUS-palveluun', SV: 'Logga in', EN: 'Log in to JUSTUS-service' },
-    title: { FI: 'Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?', SV: 'Vad är JUSTUS?', EN: 'What is JUSTUS–service?' },
+    title: { FI: 'Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?', SV: 'Vad är JUSTUS-service?', EN: 'What is JUSTUS - Publication Information Reporting Service?' },
     paragraphs: [
       {
         FI: 'JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.',
         SV: 'I JUSTUS kan du mata in uppgifter om dina vetenskapliga publikationer, som sedan pubilceras i Juuli-portalen. Uppgifterna överförs också automatiskt till Kultur- och undervisningsministeriets årliga insamling av publikationsuppgifter. Uppgifterna beaktas också vid finaniseringen av högskolorna.',
-        EN: 'When publication data is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions.'
+        EN: 'When publication information is entered into JUSTUS-service it can be accessed through JUULI-portal. Data is also automatically transferred to the publication data collection by the Ministry of Education and Culture and taken into consideration in the funding formula of higher education institutions.'
       }
     ],
     help: {
@@ -35,14 +35,14 @@ const i18n = {
       organization: {
         FI: 'JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:',
         SV: 'Du kan använda Justus om du hör till någon av följande organisationer:',
-        EN: 'JUSTUS-service can be used to enter publication data if you belong to one of the following organisations:'
+        EN: 'JUSTUS-service can be used to enter publication information if you belong to one of the following organisations:'
       }
     }
   },
   content: {
     valitse: {
       title: { FI: 'VALITSE TOIMINTO', SV: 'VÄLJ FUNKTION', EN: 'CHOOSE FUNCTION' },
-      etusivu: { FI: 'Etusivu', SV: '*SV*Etusivu', EN: '*EN*Etusivu' },
+      etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
       omat: { FI: 'Omat tallennukset', SV: 'Egna publikationer', EN: 'Saved publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' }
@@ -86,7 +86,7 @@ const i18n = {
         info: {
           FI: 'Voit esitäyttää julkaisutietoja käyttämällä DOI-tunnisteesta muodostettua pysyvää osoitetta. Julkaisutiedot haetaan CrossRef-palvelusta.',
           SV: '',
-          EN: ''
+          EN: 'You can prefill publication information by using a DOI-link. The information is retrieved from the CrossRef-service'
         },
         hae: { FI: 'Hae', SV: 'Sök', EN: 'Search' }
       },
@@ -102,14 +102,14 @@ const i18n = {
         info: {
           FI: 'Voit hakea ja esitäyttää julkaisutietoja myös VIRTA- tai CrossRef -palveluista löytyvillä tiedoilla. Hakua voi rajata julkaisun tekijän nimellä ja haku kohdistuu julkaisun nimeen.',
           SV: '',
-          EN: ''
+          EN: 'You can also prefill the publication information by searching for it from the VIRTA- and CrossRef-service. The search can be filtered by using the author\'s name and the search is performed using the publication\'s name'
         }
       },
       uudestaan: {
         FI: 'Hae julkaisua uudestaan', SV: '*SV*Hae julkaisua uudestaan', EN: '*EN*Hae julkaisua uudestaan'
       },
       hae: { FI: 'Hae', SV: 'Sök', EN: 'Search' },
-      ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication data' }
+      ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication information' }
     },
     form: {
       julkaisutyyppi: {
@@ -366,8 +366,8 @@ const i18n = {
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välja primära vetenskapsområdet', EN: 'Choose primary field of science' } },
-        ala: { picktip: { FI: 'Valitse alatieteenala', SV: 'Välja sekundära vetenskapsområdet', EN: 'Choose secondary field of science' } }
+        paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välj primära vetenskapsområdet', EN: 'Choose primary field of science' } },
+        ala: { picktip: { FI: 'Valitse alatieteenala', SV: 'Välj sekundära vetenskapsområdet', EN: 'Choose secondary field of science' } }
       },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
@@ -446,7 +446,7 @@ const i18n = {
       },
       julkaisurinnakkaistallennettu: {
         FI: 'Julkaisu rinnakkaistallennettu',
-        SV: 'Publikationens har lagrats parallellt',
+        SV: 'Publikationen har lagrats parallellt',
         EN: 'Self-archived publication',
         tooltip: {
           FI: 'Julkaisu on rinnakkaistallennettu organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon joko välittömästi tai kustantajan määrittämän kohtuullisen mittaisen embargoajan jälkeen. Julkaisu voi olla joko ns. kustantajan versio tai tutkijan oma viimeinen (vertaisarvioitu) versio.',
@@ -454,7 +454,7 @@ const i18n = {
           EN: 'The publication is self-archived in the publication archive of the organisation or the field of science, whether immediately or after a reasonable embargo specified by the publisher. The publication may be a so-called publisher’s version or the author’s final (refereed) version.'
         },
         '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
-        '0': { FI: 'Ei', SV: 'No', EN: 'No' }
+        '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
       rinnakkaistallennetunversionverkkoosoite: {
         FI: 'Rinnakkaistallennetun version verkko-osoite',
@@ -488,12 +488,12 @@ const i18n = {
     vaihevuo: {
       julkaisutyyppi: { FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type' },
       esitayta: { FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form' },
-      tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication data' },
+      tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information' },
       tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
-      odottavat: { FI: 'Hyväksymistä odottavat julkaisut', SV: '*SV*Hyväksymistä odottavat julkaisut', EN: '*EN*Hyväksymistä odottavat julkaisut' },
-      hyvaksytyt: { FI: 'Hyväksytyt julkaisut', SV: '*SV*Hyväksytyt julkaisut', EN: '*EN*Hyväksytyt julkaisut' },
+      odottavat: { FI: 'Hyväksymistä odottavat julkaisut', SV: 'I väntan på godkännande', EN: 'Publications waiting for approval' },
+      hyvaksytyt: { FI: 'Hyväksytyt julkaisut', SV: 'Godkända publikationer', EN: 'Approved publications' },
       table: {
         julkaisuid: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
         julkaisunnimi: { FI: 'Julkaisun nimi', SV: 'Publikationens namn/titel', EN: 'Publication name' },
@@ -502,9 +502,9 @@ const i18n = {
         muokattu: { FI: 'Muokattu', SV: 'Ändrad', EN: 'Edited' },
         viimeisinmuokkaaja: { FI: 'Viimeisin muokkaaja', SV: 'Senast ändrad av', EN: 'Last edit by' },
         toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
-        hyvaksy: { FI: 'Hyväksy', SV: '*SV*Hyväksy', EN: '*EN*Hyväksy' }
+        hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
       },
-      uusi: { FI: 'Tallenna uusi julkaisu', SV: '*SV*Tallenna uusi julkaisu', EN: '*EN*Tallenna uusi julkaisu' }
+      uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' }
     },
 
     yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
