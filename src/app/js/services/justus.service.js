@@ -5,6 +5,14 @@ angular.module('JustusService', [])
   // in justus we keep data to be stored in database
   this.justus = {};
 
+  this.updatePublicationFormData = function(data) {
+    this.justus = data;
+  }
+
+  this.getPublicationFormData = function() {
+    return this.justus;
+  }
+
   this.clearPublicationForm = function() {
     this.justus = {};
   };
@@ -105,11 +113,8 @@ angular.module('JustusService', [])
       // If trying to pattern match something else than a string the value is invalid
       if (typeof this.justus[fieldName] === 'string') {
         valid = this.justus[fieldName].match(field_default_config[fieldName].pattern) !== null;
+        reason = valid === false ? 'Field value is invalid' : '';
       }
-      else {
-        valid = false;
-      }
-      reason = valid === false ? 'Field value is invalid' : '';
     }
 
     // Validate a field that contains a list of values

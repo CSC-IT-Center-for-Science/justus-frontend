@@ -6,8 +6,9 @@ angular.module('JustusController', [])
   'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService',
   function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService,
   JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService) {
+    $scope.loading = {};
     $scope.meta = APIService.meta;
-    $scope.justus = JustusService.justus;
+    $scope.justus = JustusService.getPublicationFormData();
     $scope.pattern = JustusService.pattern;
 
     $scope.tekijatTags = [];
@@ -43,7 +44,7 @@ angular.module('JustusController', [])
 
     $scope.clearFormAndReturnToStart = function() {
       JustusService.clearPublicationForm();
-      $scope.justus = JustusService.justus;
+      $scope.justus = JustusService.getPublicationFormData();
       $scope.julkaisutyyppi = null;
       $scope.julkaisutyyppi_paa = null;
       $scope.tekijatTags = [];
@@ -460,147 +461,75 @@ angular.module('JustusController', [])
       return JustusService.isFieldRequired(fieldName);
     };
 
-    // INITIALIZE
-    //  * fill in the form
-    //  * read possible parameters
-    //  * sanitize variables
-
-    // resetJustus - clear $scope.justus variable
-    // - internal unscoped function
-    let resetJustus = function() {
-      // do not remove or alter service related variable as it apparently
-      // messes up things, instead remove its contents like so:
-      angular.forEach($scope.justus, function(v, k) {
-        delete $scope.justus[k];
-      });
-    };
-
     // fillMissingJustusLists - for UI setup list fields if otherwise missing
     // - internal unscoped function
     // - parameter input is optional
-    let fillMissingJustusLists = function(input) {
-      if ((!input || input === 'avainsana') && !$scope.justus.avainsana) {
+    let fillMissingJustusLists = function() {
+      if(!$scope.justus.avainsana) {
         $scope.justus.avainsana = [{ avainsana: '' }];
       }
-      if ((!input || input === 'tieteenala') && !$scope.justus.tieteenala) {
+      if (!$scope.justus.tieteenala) {
         $scope.justus.tieteenala = [{ tieteenalakoodi: '', jnro: null }];
       }
-      if ((!input || input === 'organisaatiotekija')) {
-        if (!$scope.justus.organisaatiotekija || $scope.justus.organisaatiotekija.length === 0) {
-          $scope.justus.organisaatiotekija = [{}];
-        }
-      }
-      if ((!input || input === 'alayksikko')) {
-        angular.forEach($scope.justus.organisaatiotekija, function(ot, oi) {
-          if (!ot.alayksikko || ot.alayksikko.length === 0) {
-            ot.alayksikko = [{ alayksikko: '' }];
-          }
-        });
+      if (!$scope.justus.organisaatiotekija) {
+        $scope.justus.organisaatiotekija = [{
+          alayksikko: [{ alayksikko: '' }]
+        }];
       }
     };
-    // finalizeInit - all values should be in place but if there's some critical missing
-    // - internal unscoped function
-    let finalizeInit = function() {
-      // pattern and directive fields
-      $scope.justus.isbn = $scope.justus.isbn || '';
-      $scope.justus.issn = $scope.justus.issn || '';
-      // orcid? $scope.justus.orcid = $scope.justus.orcid||'';
 
-      // populate lists for UI
-      fillMissingJustusLists();
-
-      $scope.justus.username = $scope.user.name; // or mail or uid?
-      // remove entirely as it is not needed here and messes up things later on!
-      delete $scope.justus.modified;
-      // keep this: $scope.justus.julkaisuntila;
-
-      // julkaisutyyppi / vaihe
-      $scope.useVaihe($stateParams.vaihe || 1);
-    };
-
-    // startInit - read in data and figure out parameters and messages
-    // - internal unscoped function
-    let startInit = function() {
-      // at very first test that user object is accessible
-      if (!$scope.hasAccess('justus')) {
-        $state.go('index', { lang: $scope.lang });
-        // stop initializing
+    let populatePublicationData = () => {
+      if (!$stateParams.id) {
+        finalizeInit();
         return;
       }
-      if ($rootScope.resetJustus) {
-        resetJustus();
-        // remove the reset message (so we won't keep resetting)
-        delete $rootScope.resetJustus;
-      }
-      if ($stateParams.id) {
-        // id change? clean up
-        if ($scope.justus.id !== $stateParams.id) {
-          resetJustus();
-        }
-        // begin populating
-        $scope.justus.id = $stateParams.id;
-        // we need all info from database, especially id's
-        APIService.get('julkaisu', $scope.justus.id).then(function(julkresp) {
-          angular.forEach(julkresp, function(jud, juk) {
-            // copy all values
-            angular.forEach(jud, function(v, k) {
-              $scope.justus[k] = v;
-            });
 
-            // Initialize tekijatTags input
-            parseNames($scope.justus.tekijat).map(function(nameObject) {
-              $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
-            });
-            $scope.useTekijat();
+      $scope.loading.publication = true;
+      let organisaatiotekijaPopulated = [];
 
-            // get by foreign key!
-            // replace only if not set already
-            if (!$scope.justus.avainsana) {
-              APIService.get('avainsana', jud.id, 'julkaisuid').then(function(avairesp) {
-                if (avairesp.length > 0) {
-                  $scope.justus.avainsana = avairesp;
-                }
-                else {
-                  fillMissingJustusLists('avainsana');
-                }
-              });
-            }
-            APIService.get('tieteenala', jud.id, 'julkaisuid').then(function(tietresp) {
-              if (tietresp.length > 0) {
-                $scope.justus.tieteenala = tietresp;
-              }
-              else {
-                fillMissingJustusLists('tieteenala');
-              }
-            });
-            $scope.justus.organisaatiotekija = [];
-            APIService.get('organisaatiotekija', jud.id, 'julkaisuid').then(function(orgaresp) {
-              angular.forEach(orgaresp, function(ord, ork) {
-                let orgaid = ord.id;
-                $scope.justus.organisaatiotekija.push(ord);
-                let orlen = $scope.justus.organisaatiotekija.length;
-                $scope.justus.organisaatiotekija[orlen - 1].alayksikko = [];
-                APIService.get('alayksikko', orgaid, 'organisaatiotekijaid').then(function(alayresp) {
-                  $scope.justus.organisaatiotekija[orlen - 1].alayksikko = alayresp;
-                  if (!$scope.justus.organisaatiotekija[orlen - 1].alayksikko) {
-                    $scope.justus.organisaatiotekija[orlen - 1].alayksikko = [{ alayksikko: '' }];
-                  }
-                });
-              });
-              if ($scope.justus.organisaatiotekija.length === 0) {
-                fillMissingJustusLists('organisaatiotekija');
-                fillMissingJustusLists('alayksikko');
-              }
-              finalizeInit();
-            });
-          });
+      Promise.all([
+        APIService.get('julkaisu', $stateParams.id, null, null, true),
+        APIService.get('avainsana', $stateParams.id, 'julkaisuid'),
+        APIService.get('tieteenala', $stateParams.id, 'julkaisuid'),
+        APIService.get('organisaatiotekija', $stateParams.id, 'julkaisuid')
+      ])
+      .spread((julkaisu, avainsana, tieteenala, organisaatiotekijat) => {
+        $scope.justus = julkaisu;
+        
+        parseNames($scope.justus.tekijat).map(function(nameObject) {
+          $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
         });
-      }
-      else {
+        $scope.useTekijat();
+        
+        $scope.justus.avainsana = avainsana;
+        $scope.justus.tieteenala = tieteenala;
+      
+        return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
+          return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
+          .then((alayksikko) => {
+            organisaatiotekija.alayksikko = alayksikko || [{ alayksikko: '' }];
+            return organisaatiotekijaPopulated.push(organisaatiotekija);
+          });
+        })
+      })
+      .then(() => {
+        $scope.justus.organisaatiotekija = organisaatiotekijaPopulated || [{}];
+        $scope.loading.publication = false;
         finalizeInit();
-      }
+      })
+      .catch((err) => {
+        $log.error(err);
+        $scope.loading.publication = false;
+      });
     };
 
-    startInit();
+    let finalizeInit = () => {
+        $scope.justus.username = $rootScope.user.name;
+        fillMissingJustusLists();
+        JustusService.updatePublicationFormData($scope.justus);
+        $scope.useVaihe($stateParams.vaihe || 1);
+    };
+
+    populatePublicationData();
   }
 ]);

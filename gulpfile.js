@@ -44,6 +44,7 @@ const config = {
     // Dependencies
     libSrc: [
       'node_modules/jquery/dist/jquery.js',
+      'node_modules/bluebird/js/browser/bluebird.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
       'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',

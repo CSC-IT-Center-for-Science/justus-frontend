@@ -83,13 +83,6 @@ angular.module('TarkastaController', [])
       $scope.useHae('julkaisu');
     };
 
-    // additional
-    // pass information to another controller yet to be loaded
-    // nb! we use $rootScope to pass that information
-    $scope.resetJustus = function() {
-      $rootScope.resetJustus = true;
-    };
-
     let init = function() {
       // at very first test that user object is accessible
       if (!$scope.hasAccess($scope.state.name)) {

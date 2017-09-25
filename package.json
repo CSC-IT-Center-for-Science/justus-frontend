@@ -48,6 +48,7 @@
     "angular-touch": "^1.5.8",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.3",
+    "bluebird": "^3.5.0",
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",

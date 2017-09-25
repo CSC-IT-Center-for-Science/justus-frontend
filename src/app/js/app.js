@@ -97,4 +97,17 @@ angular.module('JustusApp', [
     $stateProvider.state(omatState);
     $stateProvider.state(hyvaksyState);
   }
-]);
+])
+
+.run(['$rootScope', '$window', '$log', function ($rootScope, $window, $log) {
+  var Promise = $window.Promise;
+  
+  Promise.setScheduler(function (cb) {
+    $rootScope.$evalAsync(cb);
+  });
+
+  window.addEventListener("unhandledrejection", function(e) {
+    e.preventDefault();
+    $log.error(e.detail.reason)
+  });
+}]);

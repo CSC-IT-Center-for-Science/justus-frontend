@@ -122,7 +122,7 @@ angular.module('APIService', [])
     };
 
     /* READ :: GET */
-    this.get = function (api, id, col, query) {
+    this.get = function (api, id, col, query, singleResult = false) {
       // id voi puuttua, jolloin palautetaan kaikki
       return $http({
         method: 'GET',
@@ -131,7 +131,10 @@ angular.module('APIService', [])
       })
       .then(function (response) {
         let ret = response.data; // list always
-        return ret;
+        if (singleResult === true) {
+          return ret && ret.length > 0 ? ret[0] : {};
+        }
+        return ret || [];
       });
     };
 
