@@ -127,7 +127,8 @@ const i18n = {
           FI: 'Vuosi, jolloin julkaisu on julkaistu ensimmäistä kertaa versiona, jossa on täydelliset viitetiedot.',
           SV: 'Det år anges då publikationen för första gången har utgetts som en version med fullständiga referensuppgifter.',
           EN: 'The year in which the publication was published for the first time as a version with full reference data.'
-        }
+        },
+        picktip: { FI: 'esim. 2017', SV: 't.ex. 2017', EN: 'e.g. 2017' }
       },
       julkaisunnimi: {
         FI: 'Julkaisun nimi',
@@ -137,7 +138,8 @@ const i18n = {
           FI: 'Julkaisun nimi siten kuin se on artikkelissa tai teoksessa mainittu. Vieraskielisen julkaisun nimi voidaan kirjoittaa translitteroituna versiona.',
           SV: 'Publikationens namn/titel såsom den nämns i artikeln eller verket. Namnet på en publikation på ett främmande språk kan vid behov sparas som en translittererad version.',
           EN: 'Publication name as given in the article or the book. If necessary, the name of a foreign-language publication may be reported on as a transliterated version.'
-        }
+        },
+        picktip: { FI: 'Kirjoita julkaisun nimi kokonaisuudessaan', SV: 'SV*Kirjoita julkaisun nimi kokonaisuudessaan', EN: 'Publication name in its entirety' }
       },
       tekijat: {
         FI: 'Tekijät',
@@ -204,7 +206,8 @@ const i18n = {
           FI: 'Emojulkaisun nimi, jossa artikkeli on julkaistu.',
           SV: 'Namnet på den moderpublikationen där artikeln har publicerats.',
           EN: 'Name of the parent publication in which the article was published.'
-        }
+        },
+        picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: '*SV* Kirjoita emojulkaisun nimi kokonaisuudessaan', EN: 'Parent publication name in its entirety' }
       },
       isbn: {
         FI: 'ISBN',
@@ -214,7 +217,8 @@ const i18n = {
           FI: 'Monografian tai emojulkaisun ISBN-numero, esim. 978-952-245-683-0',
           SV: 'Monografins eller moderpublikationens ISBN-nummer, t.ex. 978-952-245-683-0',
           EN: 'Monograph or parent publication ISBN number e.g. 978-952-245-683-0.'
-        }
+        },
+        picktip: { FI: 'esim. 978-952-245-683-0', SV: 't.ex. 978-952-245-683-0', EN: 'e.g. 978-952-245-683-0' }
       },
       emojulkaisuntoimittajat: {
         FI: 'Emojulkaisun toimittajat',
@@ -255,7 +259,8 @@ const i18n = {
           FI: 'Lehden tai sarjan volyymi, jossa artikkeli/teos on ilmestynyt.',
           SV: 'Tidskriftens eller seriens volym där artikeln har getts ut.',
           EN: 'Volume of the journal or series in which the article/scientific book appeared.'
-        }
+        },
+        picktip: { FI: 'esim. 45', SV: 't.ex. 45', EN: 'e.g. 45' }
       },
       numero: {
         FI: 'Numero',
@@ -265,7 +270,8 @@ const i18n = {
           FI: 'Lehden tai sarjan numero, jossa artikkeli/teos on ilmestynyt.',
           SV: 'Tidskriftens eller seriens nummer där artikeln har getts ut.',
           EN: 'Issue of the journal or series in which the article/scientific book appeared.'
-        }
+        },
+        picktip: { FI: 'esim. 3', SV: 't.ex. 3', EN: 'e.g. 3' }
       },
       sivut: {
         FI: 'Sivut',
@@ -275,7 +281,8 @@ const i18n = {
           FI: 'Lehden tai sarjan sivunumerot, joilla artikkeli on ilmestynyt. Ilmoitetaan siinä muodossa kuin ne on esitetty alkuperäisessä artikkelissa tai lähdetietokannassa.',
           SV: 'De sidnummer som artikeln har haft i samband med sin publicering i den ursprungliga artikeln eller i källdatabasen.',
           EN: 'Publication page numbers on which the article was published in the same format as in the original article or source database.'
-        }
+        },
+        picktip: { FI: 'esim. 98 - 113', SV: 't.ex. 98 - 113', EN: 'e.g. 98 - 113' }
       },
       artikkelinumero: {
         FI: 'Artikkelinumero',
@@ -285,7 +292,8 @@ const i18n = {
           FI: 'Lehden tai sarjan artikkelinumero, jolla artikkeli on ilmestynyt. Ilmoitetaan siinä muodossa kuin se on esitetty alkuperäisessä artikkelissa tai lähdetietokannassa.',
           SV: 'Det artikelnummer som artikeln har haft vid sin publicering i den form som numren har presenterats i den ursprungliga artikeln eller i källdatabasen.',
           EN: 'Journal/series article number used for the publication of the article in the same format as in the original article or source database.'
-        }
+        },
+        picktip: { FI: 'esim. 15', SV: 't.ex. 15', EN: 'e.g. 15' }
       },
       kustantaja: {
         FI: 'Kustantaja',
@@ -296,7 +304,7 @@ const i18n = {
           SV: 'Namnet på publikationens förläggare så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Publisher’s name, as complete as possible, and spelled out (no abbreviations).'
         },
-        picktip: { FI: 'Kirjoita ja valitse kustantajan nimi', SV: 'Skriva och väljä publikationens förläggare', EN: 'Write and choose the publisher\'s name' }
+        picktip: { FI: 'Kirjoita kustantajan nimi', SV: 'Skriva publikationens förläggare', EN: 'Write the publisher\'s name' }
       },
       julkaisunkustannuspaikka: {
         FI: 'Julkaisun kustannuspaikka',
@@ -306,7 +314,8 @@ const i18n = {
           FI: 'Julkaisun kustantajan nimen yhteydessä ilmoitettu paikkakunta tai paikkakunnat.',
           SV: 'Ort eller orter som angetts i anslutning till namnet på publikationens förläggare.',
           EN: 'The place or places given in connection with the publication’s publisher.'
-        }
+        },
+        picktip: { FI: 'esim. Helsinki', SV: 't.ex. Helsinki', EN: 'e.g. Helsinki' }
       },
       avainsanat: {
         FI: 'Avainsanat',
@@ -330,7 +339,7 @@ const i18n = {
           SV: 'Det språk på vilket publikationen är skriven i enlighet med klassificeringen Statistikcentralens språk 2003.',
           EN: 'The language used to write the publication according to the Lan-guages 2003 classification of Statistics Finland.'
         },
-        picktip: { FI: 'Valitse kieli', SV: 'Välj språk', EN: 'Choose language' }
+        picktip: { FI: 'Valitse kieli, esim. suomi', SV: 'Välj språk, t.ex. finska', EN: 'Choose language, e.g. Finnish' }
       },
       julkaisunkansainvalisyys: {
         FI: 'Julkaisun kansainvälisyys',
@@ -353,7 +362,7 @@ const i18n = {
           SV: 'Tidskriftens, seriens, monografins eller moderpublikationens utgivningsland enligt klassificeringen Statistikcentralens stater och länder 2007.',
           EN: 'Country of publication according to the countries 2007 classification of Statistics Finland.'
         },
-        picktip: { FI: 'Valitse maa', SV: 'Välj land', EN: 'Choose country' }
+        picktip: { FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland' }
       },
       tieteenala: {
         FI: 'Julkaisun tieteenalat',
@@ -396,12 +405,13 @@ const i18n = {
       doitunniste: {
         FI: 'DOI tunniste',
         SV: 'DOI-identifieringsnummer',
-        EN: 'DOI',
+        EN: 'DOI identifier',
         tooltip: {
-          FI: 'Julkaisun DOI-tunniste, esim. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x',
-          SV: 'Publikationens DOI-identifieringsnummer, t.ex. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x',
-          EN: 'The DOI of the publication e.g. http://dx.doi.org/10.1111/j.1398-9995.2011.02728.x'
-        }
+          FI: 'Julkaisun DOI-tunniste, esim. 10.1111/j.1398-9995.2011.02728.x',
+          SV: 'Publikationens DOI-identifieringsnummer, t.ex. 10.1111/j.1398-9995.2011.02728.x',
+          EN: 'The DOI identifier of the publication e.g. 10.1111/j.1398-9995.2011.02728.x'
+        },
+        picktip: { FI: 'esim. 10.1111/j.1398-9995.2011.02728.x', SV: 't.ex. 10.1111/j.1398-9995.2011.02728.x', EN: 'e.g. 10.1111/j.1398-9995.2011.02728.x' }
       },
       pysyvaverkkoosoite: {
         FI: 'Pysyvä verkko-osoite',
@@ -411,7 +421,8 @@ const i18n = {
           FI: 'Julkaisun pysyviin tunnisteisiin (esim. DOI, URN tai handle) perustuva verkko-osoite, joka vie suoraan julkaisun kokotekstiversioon (vapaasti saatavilla olevaan tai kustantajan palvelimella sijaitsevaan käyttöoikeudeltaan rajoitettuun versioon).',
           SV: 'Webbadress som grundar sig på publikationens permanenta identifiering (t.ex. DOI, URN eller handle) och som leder direkt till publikationens kompletta textversion (fritt tillgängliga version eller en version med begränsad användarrätt på förläggarens server).',
           EN: 'Website address based on permanent identifiers (e.g. DOI, URN or handle) of the publication that takes the user directly to the full text version of the publication (a publicly available version or a limited access version on the publisher\'s server).'
-        }
+        },
+        picktip: { FI: 'esim. http://dx.doi.org/10.1002/hyp.10221', SV: 't.ex. http://dx.doi.org/10.1002/hyp.10221', EN: 'e.g. http://dx.doi.org/10.1002/hyp.10221' }
       },
       avoinsaatavuus: {
         FI: 'Avoin saatavuus',
@@ -464,7 +475,8 @@ const i18n = {
           FI: 'Julkaisun organisaatio- tai tieteenalakohtaiseen julkaisuarkistoon rinnakkaistallennetun version verkko-osoite (esim. URN).',
           SV: 'Webbadressen (t.ex. URN) på den version av publikationen som har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv.',
           EN: 'The website address of the self-archived version of the publication stored in the organisation- or field-specific archive (e.g. URN).'
-        }
+        },
+        picktip: { FI: 'esim. http://www.theseus.fi/handle/10024/10922', SV: 't.ex. http://www.theseus.fi/handle/10024/10922', EN: 'e.g. http://www.theseus.fi/handle/10024/10922' }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
       jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
