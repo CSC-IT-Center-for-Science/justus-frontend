@@ -204,9 +204,21 @@ gulp.task('rootAssets', function () {
     .pipe(gulp.dest(buildDestinationPath + '/'));
 });
 
+gulp.task('generate-config', () => {
+  let environment = isProduction ? 'production' : 'development';
+  if(gutil.env.qa) {
+    environment = 'qa';
+  }
+  gutil.log(gutil.colors.yellow(`Generating app config for ${environment} environment`));
+  gulp.src(SOURCE_PATH + '/environment_config.json')
+    .pipe(gulpNgConfig('appConfig', { environment: environment }))
+    .pipe(gulp.dest(SOURCE_PATH + '/app/js'));
+});
+
 gulp.task('build', function (callback) {
   runSequence(
     'clean',
+    'generate-config',
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'rev-all',
@@ -223,6 +235,7 @@ gulp.task('watch', function () {
 gulp.task('dev', function () {
   runSequence(
     'clean',
+    'generate-config',
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'watch',

@@ -13,16 +13,11 @@ globals:
   
   # Remove global config rules when ngConfig or similar implemented instead of global js-variables
   domain_organization: true
-  apiuri: true
-  authuri: true
   crossrefuri: true
-  justusuri: true
   virtauri: true
-  demomode: true
-  user: true
+  demoUser: true
   i18n: true
   codes: true
-  justushost: true
   field_default_config: true
   organizationFieldConfig: true
 

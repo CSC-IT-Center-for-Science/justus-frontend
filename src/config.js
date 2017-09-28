@@ -1,35 +1,9 @@
 'use strict';
 
-let developmentmode = false;
-if (location.hostname=='127.0.0.1' || location.hostname=='localhost') {
-  console.debug("Development mode ("+location.hostname+")")
-  developmentmode = true;
-}
-let demomode = false;
-if (location.hostname=='demo.justus.csc.fi'||developmentmode) {
-  console.debug("Demo mode ("+location.hostname+")")
-  demomode = true;
-}
-
-let justushost = location.hostname;
-if (developmentmode) {
-  justushost = 'demo.justus.csc.fi';
-}
-let justusuri = 'https://'+justushost;
-let apiuri = justusuri+'/api/justus_save.php/';
-let authuri = justusuri+'/sec/api/auth.php';
-
 let virtauri = 'https://virta-jtp.csc.fi/api/julkaisut/';
-  //'https://dwitjutife1.csc.fi/api/julkaisut/';
-  //'https://raja-dev.csc.fi/api/julkaisut/';
-  //'http://localhost:8080/api/julkaisut/';
-  //'http://localhost/api/julkaisut/';
 let crossrefuri = '//api.crossref.org/works';
 
-// authorization / demo (shib-* mapping handled by backend)
-let user = {};
-if (demomode) {
-  user = {
+let demoUser = {
     //'shib-uid': 'jdem',
     //'shib-mail': 'notvalid@csc.fi',
     //'shib-givenName': 'Justus',
@@ -42,7 +16,7 @@ if (demomode) {
     'organization': {code:'00000',email:'notvalid@csc.fi'}, // should map from shib-group where split(;) array item is '@...'
     'role': 'admin' // should map from shib-group where split(;) array item is '.../groups/justus#...'
   };
-};
+
 
 // mapping of organization domain to organization codes (type or codeset vary!)
 let domain_organization = {

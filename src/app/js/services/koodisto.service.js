@@ -2,7 +2,7 @@
 
 angular.module('KoodistoService', [])
 .service('KoodistoService', [
-  '$log', '$http', function($log, $http) {
+  '$log', '$http', 'DEMO_ENABLED', function($log, $http, DEMO_ENABLED) {
     // Opintopolku / Koodisto Service:
     function getLanguageSpecificValue(fieldArray, fieldName, language) {
       if (fieldArray) {
@@ -35,7 +35,7 @@ angular.module('KoodistoService', [])
     //
 
     let baseuri = 'https://virkailija.opintopolku.fi/koodisto-service/rest/json/';
-    if (demomode) {
+    if (DEMO_ENABLED) {
       baseuri = 'https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/';
     }
 

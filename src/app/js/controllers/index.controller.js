@@ -2,18 +2,13 @@
 
 angular.module('IndexController', [])
 .controller('IndexController', [
-  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService',
-  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService) {
-    // config provides: demomode, justusuri, authuri, domain_organization
-    // i18n provides: i18n
-    // config provides also for demo/dev: user, codes
+  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
+  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
+    $scope.demoEnabled = DEMO_ENABLED;
+    $scope.siteUrl = SITE_URL
 
-    $scope.demomode = (typeof (demomode) !== 'undefined') ? demomode : false;
-
-    $scope.justusuri = (typeof (justusuri) !== 'undefined') ? justusuri : 'https://' + location.hostname;
-
-    if (typeof (authuri) !== 'undefined') {
-      $http.get(authuri)
+    if (typeof (AUTH_URL) !== 'undefined') {
+      $http.get(AUTH_URL)
       .then(function(response) {
         $rootScope.user = response.data;
         $scope.user = response.data;
@@ -22,9 +17,9 @@ angular.module('IndexController', [])
         $scope.initrole = $scope.user.role;
       })
       .catch(function() {
-        if (demomode) {
-          $rootScope.user = user;
-          $scope.user = user;
+        if (DEMO_ENABLED) {
+          $rootScope.user = demoUser;
+          $scope.user = demoUser;
           $scope.initrole = $scope.user.role;
         }
       });
@@ -156,8 +151,8 @@ angular.module('IndexController', [])
     };
 
     $scope.login = function() {
-      let target = encodeURIComponent(justusuri + '/#!/valitse?lang=' + $scope.lang);
-      $window.location.href = justusuri + '/Shibboleth.sso/Login?target=' + target;
+      let target = encodeURIComponent(SITE_URL + '/#!/valitse?lang=' + $scope.lang);
+      $window.location.href = SITE_URL + '/Shibboleth.sso/Login?target=' + target;
     };
 
     // map from service (generic) to scope
