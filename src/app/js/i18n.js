@@ -44,11 +44,11 @@ const i18n = {
       title: { FI: 'VALITSE TOIMINTO', SV: 'VÄLJ FUNKTION', EN: 'CHOOSE FUNCTION' },
       etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
       tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
-      omat: { FI: 'Omat tallennukset', SV: 'Egna publikationer', EN: 'Saved publications' },
+      omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
       hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' }
     },
     esitayta: {
-      title: { FI: 'Tietojen haku', SV: 'Sök', EN: 'Search information' },
+      title: { FI: 'Tietojen haku', SV: 'Hämta uppgifter', EN: 'Search information' },
       text: {
         FI: 'Tällä näytöllä voit hakea jo tallennettuja tietoja muista järjestelmistä pohjaksi.',
         SV: '*SV*',
@@ -70,7 +70,7 @@ const i18n = {
         }
       },
       doihaku: {
-        title: { FI: 'Hae tietoja DOI-tunnisteella', SV: 'Sök uppgifter med DOI', EN: 'Search using DOI-identifier' },
+        title: { FI: 'Hae tietoja DOI-tunnisteella', SV: 'Hämta uppgifter med DOI', EN: 'Search using DOI-identifier' },
         tunniste: {
           FI: 'Kirjoita DOI-tunniste',
           SV: 'Agne DOI',
@@ -85,14 +85,14 @@ const i18n = {
         },
         info: {
           FI: 'Voit esitäyttää julkaisutietoja käyttämällä DOI-tunnisteesta muodostettua pysyvää osoitetta. Julkaisutiedot haetaan CrossRef-palvelusta.',
-          SV: '',
+          SV: 'Hämta publikationsdata från den internationella CrossRef-publikationsdatabasen med hjälp av DOI.',
           EN: 'You can prefill publication information by using a DOI-link. The information is retrieved from the CrossRef-service'
         },
-        hae: { FI: 'Hae', SV: 'Sök', EN: 'Search' }
+        hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' }
       },
       etsijulkaisu: {
-        title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Sök uppgifter på titel', EN: 'Search using publication\'s name' },
-        picktip: { FI: 'Hae julkaisun nimellä', SV: 'Sök på titel', EN: 'Search publication\'s name' },
+        title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
+        picktip: { FI: 'Hae julkaisun nimellä', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
         tekija: {
           FI: 'Kirjoita hakuehto: tekijä',
           SV: '*SV*Kirjoita hakuehto: tekijä',
@@ -101,14 +101,14 @@ const i18n = {
         },
         info: {
           FI: 'Voit hakea ja esitäyttää julkaisutietoja myös VIRTA- tai CrossRef -palveluista löytyvillä tiedoilla. Hakua voi rajata julkaisun tekijän nimellä ja haku kohdistuu julkaisun nimeen.',
-          SV: '',
+          SV: 'Hämta uppgifter från den internationella CrossRef-publikationsdatabasen eller den nationella VIRTA-databasen genom att börja skriva in publikationens titel och välj från listan som visas.',
           EN: 'You can also prefill the publication information by searching for it from the VIRTA- and CrossRef-service. The search can be filtered by using the author\'s name and the search is performed using the publication\'s name'
         }
       },
       uudestaan: {
         FI: 'Hae julkaisua uudestaan', SV: '*SV*Hae julkaisua uudestaan', EN: '*EN*Hae julkaisua uudestaan'
       },
-      hae: { FI: 'Hae', SV: 'Sök', EN: 'Search' },
+      hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' },
       ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication information' }
     },
     form: {
