@@ -336,6 +336,22 @@ const organizationFieldConfig = [
     'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   },
+  //Poliisiammattikorkeakoulu
+  {
+    domain: '@poliisi.fi',
+    code:'02557',
+    email:'notvalid@poliisi.fi', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
+    'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
+    'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
+    'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
+    'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
   // tutkimusorganisaatio
   //Ilmatieteen laitos  #fmi-admins
   {

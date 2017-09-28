@@ -151,6 +151,11 @@ let domain_organization = {
     code:'02557',
     email:'notvalid@polamk.fi'
   },
+  //Poliisiammattikorkeakoulu
+  '@poliisi.fi': {
+    code:'02557',
+    email:'notvalid@poliisi.fi'
+  },
   // tutkimusorganisaatio
   //Ilmatieteen laitos  #fmi-admins
   '@fmi.fi': {
