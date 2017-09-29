@@ -153,8 +153,8 @@ let domain_organization = {
 
 let codes = {};
 // DEVELOPMENT THINGS
-if (developmentmode) {
-  user.role='owner';
+if (location.hostname === 'localhost') {
+  demoUser.role='owner';
   codes = {
     '~last-fetched~': '2017-04-25'
 
