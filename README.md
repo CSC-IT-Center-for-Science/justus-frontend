@@ -2,25 +2,27 @@
 
 ## Requirements
 
-First install npm (for ex. `yum install npm`) then install bower and grunt, as root:
-* `npm -g install bower`
-* `npm -g install grunt-cli`
-
-## Install
+First install npm (for ex. `yum install npm`)
 
 Tested with npm version 4.0.3 (and on CentOS 7 with straight yum npm version 1.3.6).
 
 Run:
-* `npm install`
-* `bower install`
-* `npm run build`
+```
+npm install
 
-Copy directory `dist` wherever...
+# Available build environments: production, qa, dev
+# E.g. build for production:
+npm run build -- --production 
+```
+
+The finished build will be in `/dist`
 
 ## Development
 
 To build and keep listening for changes in dev run:
-* `npm run dev`
+```
+npm run dev
+```
 
 The app will be built into ./build
 
