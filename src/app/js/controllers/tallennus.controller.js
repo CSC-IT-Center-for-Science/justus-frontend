@@ -2,8 +2,8 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController', [
-  '$scope', '$http', '$state', 'APIService', 'JustusService',
-  function($scope, $http, $state, APIService, JustusService) {
+  '$scope', '$log', '$http', '$state', 'APIService', 'JustusService',
+  function($scope, $log, $http, $state, APIService, JustusService) {
     // index provides: lang, ...
     // justus provides: justus
 
@@ -86,7 +86,7 @@ angular.module('TallennusController', [])
           // refid should be given here as we might be inserting new, in which case tdata.id is undefined
           if (tdata && tdata.jnro && tdata.tieteenalakoodi) {
             saveTable('tieteenala', tdata, tdata.id, $scope.justus.id);
-          }  
+          }
         });
         saveOrganisaatiotekija($scope.justus.id);
         // move on to own publications
@@ -94,7 +94,8 @@ angular.module('TallennusController', [])
         JustusService.clearPublicationForm();
       }
       else {
-        APIService.post('julkaisu', dnew).then(function(jid) {
+        APIService.post('julkaisu', dnew)
+        .then((jid) => {
           if (jid) {
             angular.forEach($scope.justus.avainsana, function(adata, ak) {
               saveTable('avainsana', adata, adata.id, jid);
@@ -109,6 +110,9 @@ angular.module('TallennusController', [])
           // move on to own publications
           $state.go('omat', { lang: $scope.lang });
           JustusService.clearPublicationForm();
+        })
+        .catch((response) => {
+          $log.error(response);
         });
       }
     };

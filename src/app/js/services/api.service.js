@@ -1,11 +1,9 @@
 'use strict';
 
-// from config uses: apiuri
-
 angular.module('APIService', [])
 .service('APIService', [
-  '$http', '$location', '$log',
-  function ($http, $location, $log) {
+  '$http', '$location', '$log', 'API_BASE_URL',
+  function ($http, $location, $log, API_BASE_URL) {
     this.meta = {
       tables: {
         'julkaisu': {
@@ -109,7 +107,7 @@ angular.module('APIService', [])
     this.post = function(api, str) {
       return $http({
         method: 'POST',
-        url: apiuri + api,
+        url: API_BASE_URL + 'justus_save.php/' + api,
         data: str,
         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
       })
@@ -126,7 +124,7 @@ angular.module('APIService', [])
       // id voi puuttua, jolloin palautetaan kaikki
       return $http({
         method: 'GET',
-        url: apiuri + api + (col ? '/' + col : '') + '/' + id,
+        url: API_BASE_URL + 'justus_save.php/' + api + (col ? '/' + col : '') + '/' + id,
         params: query
       })
       .then(function (response) {
@@ -142,7 +140,7 @@ angular.module('APIService', [])
     this.put = function (api, id, str) {
       return $http({
         method: 'PUT',
-        url: apiuri + api + '/' + id,
+        url: API_BASE_URL + 'justus_save.php/' + api + '/' + id,
         data: str,
         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
       })
@@ -158,7 +156,7 @@ angular.module('APIService', [])
     this.delete = function (api, id) {
       return $http({
         method: 'DELETE',
-        url: apiuri + api + '/' + id
+        url: API_BASE_URL + 'justus_save.php/' + api + '/' + id
       })
       .then(function (response) {
         return response.status + ' ' + response.data;

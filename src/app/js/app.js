@@ -10,6 +10,7 @@ angular.module('JustusApp', [
   'ngTagsInput',
 
   // App modules
+  'appConfig',
   'templates',
   'FiltersModule',
   'DirectivesModule',

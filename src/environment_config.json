@@ -1,0 +1,20 @@
+{
+  "development": {
+    "SITE_URL": "http://10.10.10.10:8080",
+    "API_BASE_URL": "http://10.10.10.10:8080/api/",
+    "AUTH_URL": "http://10.10.10.10:8080/sec/api/auth.php",
+    "DEMO_ENABLED": true
+  },
+  "qa": {
+    "SITE_URL": "https://demo.justus.csc.fi",
+    "API_BASE_URL": "https://demo.justus.csc.fi/api/",
+    "AUTH_URL": "https://demo.justus.csc.fi/sec/api/auth.php",
+    "DEMO_ENABLED": true
+  },
+  "production": {
+    "SITE_URL": "https://justus.csc.fi",
+    "API_BASE_URL": "https://justus.csc.fi/api/",
+    "AUTH_URL": "https://justus.csc.fi/sec/api/auth.php",
+    "DEMO_ENABLED": false
+  }
+}

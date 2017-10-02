@@ -4,8 +4,8 @@
   "description": "JUSTUS - JULKAISUTIETOJEN TALLENNUS",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp build --production",
-    "serve": "concurrently \"http-server ./build -a localhost -p 8080\" \"sleepms 2000 && open http://localhost:8080\"",
+    "build": "gulp build",
+    "serve": "concurrently \"http-server ./build -a localhost -p 3000\" \"sleepms 5000 && open http://localhost:3000\"",
     "dev": "concurrently \"gulp dev\" \"npm run serve\"",
     "start": "npm run serve"
   },
@@ -28,8 +28,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.0",
-    "gulp-ng-config": "^1.2.1",
-    "gulp-rename": "^1.2.2",
+    "gulp-ng-config": "^1.4.0",
     "gulp-rev-all": "^0.8.22",
     "gulp-sass": "^2.0.4",
     "gulp-size": "^2.0.0",

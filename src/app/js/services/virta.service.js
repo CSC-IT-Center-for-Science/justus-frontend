@@ -1,9 +1,7 @@
 'use strict';
 
-// from config uses: virtauri, justushost (dev!)
-
 angular.module('VIRTAService', [])
-.service('VIRTAService', ['$http', function ($http) {
+.service('VIRTAService', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL) {
   this.uri = virtauri;
 
   this.fields = {
@@ -41,7 +39,7 @@ angular.module('VIRTAService', [])
   };
 
   this.fetch = function(input, tekija) {
-    this.uri = 'https://' + justushost + '/api/virtahaku.php'; // TODO dev
+    this.uri = API_BASE_URL + 'virtahaku.php'; // TODO dev
     const uriapi = '?julkaisunNimi='; // TODO dev
     // let uriapi = 'haku?julkaisunNimi=';
 
@@ -78,7 +76,7 @@ angular.module('VIRTAService', [])
     });
   };
   this.get = function(input) {
-    this.uri = 'https://' + justushost + '/api/virtahaku.php?julkaisunTunnus='; // TODO dev
+    this.uri = API_BASE_URL + 'virtahaku.php?julkaisunTunnus='; // TODO dev
     // this.uri = 'virtahaku.php?julkaisunTunnus=';
     return $http.get(this.uri + input);
   };

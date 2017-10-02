@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const gulpNgConfig = require('gulp-ng-config');
@@ -20,7 +19,7 @@ const DIST_PATH = 'dist';
 
 // Use command line flag to trigger this, eg. 'gulp build --production'
 const isProduction = gutil.env.production ? true : false;
-const buildDestinationPath = isProduction ? DIST_PATH : BUILD_PATH;
+const buildDestinationPath = gutil.env.production || gutil.env.qa ? DIST_PATH : BUILD_PATH;
 
 const config = {
 
@@ -60,7 +59,7 @@ const config = {
     libStyleSrc: [
       'node_modules/ui-select/dist/select.css',
       'node_modules/ng-tags-input/build/ng-tags-input.css',
-      'node_modules/ng-tags-input/build/ng-tags-input.bootstrap.css',
+      'node_modules/ng-tags-input/build/ng-tags-input.bootstrap.css'
     ],
 
     // Define path for fonts
@@ -83,7 +82,7 @@ const config = {
     appScriptsBundleFileSrc: buildDestinationPath + '/js/app-bundle.js',
     libScriptsBundleFileSrc: buildDestinationPath + '/js/lib-bundle.js',
     appStylesBundleFileSrc: buildDestinationPath + '/css/style-bundle.css',
-    libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css',
+    libStylesBundleFileSrc: buildDestinationPath + '/css/libstyle-bundle.css'
   }
 };
 
@@ -97,11 +96,11 @@ var revSourceFiles = [
 
 // Renames files after build
 gulp.task('rev-all', function (callback) {
-  if(isProduction === false) {
+  if (isProduction === false) {
     return gutil.noop();
   }
 
-  var revAll = new RevAll({ 
+  var revAll = new RevAll({
     dontRenameFile: ['index.html', 'config.js'],
     dontUpdateReference: ['index.html', 'config.js']
   });
@@ -123,7 +122,7 @@ gulp.task('templatecache', function () {
     title: 'html'
   }))
   .pipe(templateCache({
-    standalone: true,
+    standalone: true
   }))
   .pipe(gulp.dest(SOURCE_PATH + '/app'));
 });
@@ -158,35 +157,43 @@ gulp.task('del-lib-css', function () {
 gulp.task('app-js', function () {
   return gulp.src(config.assets.appSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(babel({ presets: ['es2015'], comments: false })) 
+    .pipe(babel({ presets: ['es2015'], comments: false }))
     .pipe(concat('app-bundle.js'))
-    .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(isProduction ? uglify().on('error', function(e) {
+      gutil.log(e);
+    }) : gutil.noop())
     .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
-    .pipe(gulp.dest(buildDestinationPath + '/js'))
+    .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('app-css', function () {
   return gulp.src(config.assets.appStyleSrc)
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('style-bundle.css'))
-    .pipe(isProduction ? cleanCSS().on('error', function(e){ console.log(e); }) : gutil.noop())
-    .pipe(gulp.dest(buildDestinationPath + '/css'))
+    .pipe(isProduction ? cleanCSS().on('error', function(e) {
+      gutil.log(e);
+    }) : gutil.noop())
+    .pipe(gulp.dest(buildDestinationPath + '/css'));
 });
 
 gulp.task('lib-js', function () {
   return gulp.src(config.assets.libSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
     .pipe(concat('lib-bundle.js'))
-    .pipe(isProduction ? uglify().on('error', function(e){ console.log(e); }) : gutil.noop())
+    .pipe(isProduction ? uglify().on('error', function(e) {
+      gutil.log(e);
+    }) : gutil.noop())
     .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
-    .pipe(gulp.dest(buildDestinationPath + '/js'))
+    .pipe(gulp.dest(buildDestinationPath + '/js'));
 });
 
 gulp.task('lib-css', [], function () {
   return gulp.src(config.assets.libStyleSrc)
     .pipe(concat('libstyle-bundle.css'))
-    .pipe(isProduction ? cleanCSS().on('error', function(e){ console.log(e); }) : gutil.noop())
-    .pipe(gulp.dest(buildDestinationPath + '/css'))
+    .pipe(isProduction ? cleanCSS().on('error', function(e) {
+      gutil.log(e);
+    }) : gutil.noop())
+    .pipe(gulp.dest(buildDestinationPath + '/css'));
 });
 
 gulp.task('fonts', function () {
@@ -204,9 +211,21 @@ gulp.task('rootAssets', function () {
     .pipe(gulp.dest(buildDestinationPath + '/'));
 });
 
+gulp.task('generate-config', () => {
+  let environment = isProduction ? 'production' : 'development';
+  if (gutil.env.qa) {
+    environment = 'qa';
+  }
+  gutil.log(gutil.colors.yellow(`Generating app config for ${environment} environment`));
+  gulp.src(SOURCE_PATH + '/environment_config.json')
+    .pipe(gulpNgConfig('appConfig', { environment: environment }))
+    .pipe(gulp.dest(SOURCE_PATH + '/app/js'));
+});
+
 gulp.task('build', function (callback) {
   runSequence(
     'clean',
+    'generate-config',
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'rev-all',
@@ -223,6 +242,7 @@ gulp.task('watch', function () {
 gulp.task('dev', function () {
   runSequence(
     'clean',
+    'generate-config',
     'templatecache',
     ['app-js', 'lib-js', 'app-css', 'lib-css', 'fonts', 'images', 'rootAssets', 'html'],
     'watch',
@@ -232,5 +252,5 @@ gulp.task('dev', function () {
   );
 });
 
-//Set a default task
+// Set a default task
 gulp.task('default', ['dev']);
