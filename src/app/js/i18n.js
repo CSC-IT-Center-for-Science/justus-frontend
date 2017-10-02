@@ -150,7 +150,7 @@ const i18n = {
           SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).',
           EN: 'Authors of the publication in the format and order in which they were listed in the original publication or source database (max. 20).'
         },
-        picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i format Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
+        picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
       },
       julkaisuntekijoidenlukumaara: {
         FI: 'Julkaisun tekijöiden lukumäärä',
@@ -178,7 +178,7 @@ const i18n = {
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         kopioi: { FI: 'Kopioi tekijät',
-          SV: 'Kopierings författarna',
+          SV: 'Kopiera författarna',
           EN: 'Copy authors',
           tooltip: {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
@@ -204,7 +204,7 @@ const i18n = {
         EN: 'Parent publication name',
         tooltip: {
           FI: 'Emojulkaisun nimi, jossa artikkeli on julkaistu.',
-          SV: 'Namnet på den moderpublikationen där artikeln har publicerats.',
+          SV: 'Namn på den moderpublikationen där artikeln har publicerats.',
           EN: 'Name of the parent publication in which the article was published.'
         },
         picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: '*SV* Kirjoita emojulkaisun nimi kokonaisuudessaan', EN: 'Parent publication name in its entirety' }
@@ -232,11 +232,11 @@ const i18n = {
       },
       lehdenjulkaisusarjannimi: {
         FI: 'Lehden / julkaisusarjan nimi',
-        SV: 'Namnet på tidskrift/serien',
+        SV: 'Namn på tidskriften/serien',
         EN: 'Journal/series name',
         tooltip: {
           FI: 'Lehden/sarjan nimi mahdollisimman täydellisenä ja kokonaan auki kirjoitettuna (ei lyhenteitä).',
-          SV: 'Namnet på tidskrift/serien så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
+          SV: 'Namn på tidskriften/serien så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Journal/series name, as complete as possible, and spelled out (no abbreviations).'
         },
         picktip: { FI: 'Kirjoita ja valitse lehden/sarjan nimi', SV: 'Skriv och välj namn på tidskrift/serie', EN: 'Write and choose the journal/series name' }
@@ -304,7 +304,7 @@ const i18n = {
           SV: 'Namnet på publikationens förläggare så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Publisher’s name, as complete as possible, and spelled out (no abbreviations).'
         },
-        picktip: { FI: 'Kirjoita kustantajan nimi', SV: 'Skriva publikationens förläggare', EN: 'Write the publisher\'s name' }
+        picktip: { FI: 'Kirjoita kustantajan nimi', SV: 'Skriv publikationens förläggare', EN: 'Write the publisher\'s name' }
       },
       julkaisunkustannuspaikka: {
         FI: 'Julkaisun kustannuspaikka',
