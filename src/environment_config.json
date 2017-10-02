@@ -14,7 +14,7 @@
   "production": {
     "SITE_URL": "https://justus.csc.fi",
     "API_BASE_URL": "https://justus.csc.fi/api/",
-    "AUTH_URL": "https://justus.csc.fi/sec/api/auth.php",
+    "AUTH_URL": "https://justus.csc.fi/api/auth.php",
     "DEMO_ENABLED": false
   }
 }
