@@ -146,9 +146,9 @@ const i18n = {
         SV: 'Publikationens upphovsmän',
         EN: 'Publication authors',
         tooltip: {
-          FI: 'Julkaisun täydelliset tekijätiedot siinä muodossa ja järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa. 20 ensimmäistä tekijää riittää.',
+          FI: 'Julkaisun täydelliset tekijätiedot (ml. ulkomaiset tekijät) muodossa Sukunimi, Etunimi. Paina enter vahvistaaksesi nimi. 20 ensimmäistä tekijää riittää.',
           SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).',
-          EN: 'Authors of the publication in the format and order in which they were listed in the original publication or source database (max. 20).'
+          EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Max. 20 authors is sufficient.'
         },
         picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
       },
