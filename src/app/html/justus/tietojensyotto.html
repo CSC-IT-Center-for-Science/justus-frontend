@@ -726,11 +726,9 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-10">
-          <input type="hidden" data-ng-model="justus.julkaisunkieli">
           <input type="text" 
             class="form-control" 
             data-ng-model="sel_julkaisunkieli"
-            data-ng-value="getCode('kieli',justus.julkaisunkieli).selite[lang]"
             data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
             placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
             data-typeahead-on-select="useField('julkaisunkieli',$item.arvo.toLowerCase())"
@@ -800,12 +798,9 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-10">
-          <input type="hidden" 
-            data-ng-model="justus.julkaisumaa">
           <input type="text" 
             class="form-control" 
             data-ng-model="sel_julkaisumaa"
-            data-ng-value="justus.julkaisumaa+' '+getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
             data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
             data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
             placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
@@ -835,11 +830,9 @@
     </div>
     <div class="col-sm-8 col-xs-12 justus-data">
       <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'"
-        class="row"
-        data-ng-model="req_tieteenala[$index]">
+        class="row">
         <div class="col-xs-10">
           <div class="form-group">
-            <input type="hidden" data-ng-model="justus.tieteenala[$index]">
             <input type="text" 
               class="form-control"
               data-ng-model="lab_tieteenala$index"
