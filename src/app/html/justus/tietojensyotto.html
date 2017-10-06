@@ -355,7 +355,6 @@
       <div class="row">
         <div class="col-xs-10">
           <input type="text" class="form-control"
-            data-ng-pattern="pattern.isbn"
             data-ng-model="justus.isbn"
             placeholder="{{ i18n.content.form.isbn.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
@@ -459,7 +458,8 @@
         data-ng-bind="i18n.content.form.issn[lang]">
       </label>
       <i class="fa fa-info-circle justus-info"
-        data-popover-trigger="'mouseenter'" data-popover-placement="right"
+        data-popover-trigger="'mouseenter'" 
+        data-popover-placement="right"
         data-uib-popover="{{i18n.content.form.issn.tooltip[lang]}}"
         data-ng-show="i18n.content.form.issn.tooltip[lang]">
       </i>
@@ -470,7 +470,6 @@
         <div class="col-xs-4">
           <input type="text" 
             class="form-control"
-            data-ng-pattern="pattern.issn"
             data-ng-model="justus.issn"
             placeholder="1234-567X">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
