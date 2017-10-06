@@ -81,7 +81,11 @@ angular.module('JustusService', [])
   };
 
   this.fieldIsEmpty = function(fieldValue) {
-    var fieldIsEmpty = (fieldValue === '' || fieldValue === {} || fieldValue === [] || fieldValue === undefined);
+    const fieldIsEmpty = (fieldValue === '' ||
+      fieldValue === {} ||
+      fieldValue === [] ||
+      fieldValue === undefined ||
+      fieldValue === null);
     return fieldIsEmpty;
   };
 
