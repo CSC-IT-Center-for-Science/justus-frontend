@@ -53,7 +53,8 @@ const config = {
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/ng-tags-input/build/ng-tags-input.js',
       'node_modules/ui-select/dist/select.js',
-      'node_modules/angular-touch/angular-touch.js'
+      'node_modules/angular-touch/angular-touch.js',
+      'node_modules/ng-csv/build/ng-csv.js'
     ],
 
     // Define lib styles here

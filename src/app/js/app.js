@@ -8,6 +8,7 @@ angular.module('JustusApp', [
   'ngSanitize',
   'ui.bootstrap',
   'ngTagsInput',
+  'ngCsv',
 
   // App modules
   'appConfig',

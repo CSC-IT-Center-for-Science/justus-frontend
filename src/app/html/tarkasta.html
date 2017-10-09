@@ -14,6 +14,26 @@
 </div>
 
 <div class="row">
+  <div class="col-xs-12">
+    <button type="button" 
+      class="btn btn-default" 
+      ng-csv="getCsvExportFile()"
+      lazy-load="true"
+      csv-header="csvExportHeader" 
+      filename="julkaisut.csv"
+      field-separator=";"
+      quote-strings="true"
+      data-ng-disabled="loading.csv === true">
+      Lataa CSV-tiedostona
+      <span data-ng-if="loading.csv">
+        &nbsp;<span class="fa fa-spinner fa-spin"></span>
+      </span>
+    </button>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-12 table-responsive">
     <table class="table table-striped table-hover">
       <thead>

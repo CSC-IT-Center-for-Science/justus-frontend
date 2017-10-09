@@ -51,6 +51,7 @@
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
+    "ng-csv": "^0.3.6",
     "ng-tags-input": "^3.2.0",
     "ui-select": "^0.19.8"
   }

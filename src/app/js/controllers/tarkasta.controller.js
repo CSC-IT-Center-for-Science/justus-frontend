@@ -10,9 +10,80 @@ angular.module('TarkastaController', [])
     $scope.colOrderReverse = false;
     $scope.totalItems = 0;
     $scope.query = APIService.restoreQuery();
+    $scope.loading = {};
 
     $scope.setPageSize = function(pageSize) {
       $scope.query.pageSize = pageSize;
+    };
+
+    $scope.csvExportHeader = [
+      'Julkaisun ID',
+      'Organisaatiotunnus',
+      'Vuosi',
+      'Julkaisutyyppi',
+      'Julkaisun tekijöiden lukumäärä',
+      'Kansainvälinen yhteisjulkaisu',
+      'Julkaisun nimi',
+      'Julkaisuvuosi',
+      'Volyymi',
+      'Numero',
+      'Sivut',
+      'Artikkelinumero',
+      'Julkaisun kieli',
+      'Lehden/sarjan nimi',
+      'ISSN',
+      'ISBN',
+      'Emojulkaisun nimi',
+      'Kustantaja',
+      'Julkaisun kustannuspaikka',
+      'Julkaisumaa',
+      'Julkaisun kansainvälisyys',
+      'DOI-tunniste',
+      'Pysyvä verkko-osoite',
+      'Rinnakkaistallennetun version verkko-osoite',
+      'Avoin saatavuus',
+      'Avainsanat'
+    ];
+
+    $scope.getCsvExportFile = function() {
+      $scope.loading.csv = true;
+      return Promise.map($scope.data.julkaisu, function(publication) {
+        return {
+          'Julkaisun ID': publication.id,
+          'Organisaatiotunnus': publication.organisaatiotunnus,
+          'Vuosi': publication.julkaisuvuosi,
+          'Julkaisutyyppi': publication.julkaisutyyppi,
+          // Todo add tieteenalat
+          // Todo add alayksikko
+          'Julkaisun tekijöiden lukumäärä': publication.julkaisuntekijoidenlukumaara,
+          'Kansainvälinen yhteisjulkaisu': publication.kansainvalinenyhteisjulkaisu,
+          'Julkaisun nimi': publication.julkaisunnimi,
+          'Julkaisuvuosi': publication.julkaisuvuosi,
+          'Volyymi': publication.volyymi,
+          'Numero': publication.numero,
+          'Sivut': publication.sivut,
+          'Artikkelinumero': publication.artikkelinumero,
+          'Julkaisun kieli': publication.julkaisunkieli,
+          'Lehden/sarjan nimi': publication.lehdenjulkaisusarjannimi,
+          'ISSN': publication.issn,
+          'ISBN': publication.isbn,
+          'Emojulkaisun nimi': publication.emojulkaisunnimi,
+          'Emojulkaisun toimittajat': publication.emojulkaisuntoimittajat,
+          'Kustantaja': publication.kustantaja,
+          'Julkaisun kustannuspaikka': publication.julkaisunkustannuspaikka,
+          'Julkaisumaa': publication.julkaisumaa,
+          'Julkaisun kansainvälisyys': publication.julkaisunkansainvalisyys,
+          'DOI-tunniste': publication.doitunniste,
+          'Pysyvä verkko-osoite': publication.pysyvaverkkoosoite,
+          'Rinnakkaistallennetun version verkko-osoite': publication.rinnakkaistallennetunversionverkkoosoite,
+          'Avoin saatavuus': publication.avoinsaatavuus,
+          'Avainsanat': publication.avainsanat
+        };
+      })
+      .then(function(data) {
+        $scope.loading.csv = false;
+        return data;
+      });
     };
 
     // map from service (generic) to scope
