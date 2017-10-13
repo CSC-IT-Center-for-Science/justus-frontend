@@ -2,25 +2,27 @@
 
 angular.module('IndexController', [])
 .controller('IndexController', [
-  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
-  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
+  '$scope', '$rootScope', '$http', '$window', '$stateParams', '$transitions', '$location', 'KoodistoService', 'AuthService', 'AUTH_URL', 'SITE_URL', 'DEMO_ENABLED',
+  function($scope, $rootScope, $http, $window, $stateParams, $transitions, $location, KoodistoService, AuthService, AUTH_URL, SITE_URL, DEMO_ENABLED) {
     $scope.demoEnabled = DEMO_ENABLED;
-    $scope.siteUrl = SITE_URL
+    $scope.siteUrl = SITE_URL;
 
     if (typeof (AUTH_URL) !== 'undefined') {
       $http.get(AUTH_URL)
       .then(function(response) {
-        $rootScope.user = response.data;
         $scope.user = response.data;
         // backend/auth provides but config has more info (code+mail):
         $scope.user.organization = domain_organization[$scope.user.domain];
+        $rootScope.user = $scope.user;
         $scope.initrole = $scope.user.role;
+        AuthService.storeUserInfo($scope.user);
       })
       .catch(function() {
         if (DEMO_ENABLED) {
           $rootScope.user = demoUser;
           $scope.user = demoUser;
           $scope.initrole = $scope.user.role;
+          AuthService.storeUserInfo($scope.user);
         }
       });
     }

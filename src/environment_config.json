@@ -9,7 +9,7 @@
     "SITE_URL": "https://demo.justus.csc.fi",
     "API_BASE_URL": "https://demo.justus.csc.fi/api/",
     "AUTH_URL": "https://demo.justus.csc.fi/sec/api/auth.php",
-    "DEMO_ENABLED": true
+    "DEMO_ENABLED": false
   },
   "production": {
     "SITE_URL": "https://justus.csc.fi",

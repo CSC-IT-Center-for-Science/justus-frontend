@@ -101,15 +101,20 @@ angular.module('JustusApp', [
   }
 ])
 
+// Configure bluebird
 .run(['$rootScope', '$window', '$log', function ($rootScope, $window, $log) {
-  var Promise = $window.Promise;
-  
+  const Promise = $window.Promise;
+
   Promise.setScheduler(function (cb) {
     $rootScope.$evalAsync(cb);
   });
 
-  window.addEventListener("unhandledrejection", function(e) {
+  window.addEventListener('unhandledrejection', function(e) {
     e.preventDefault();
-    $log.error(e.detail.reason)
+    $log.error(e.detail.reason);
   });
+}])
+
+.run(['$rootScope', 'AuthService', function($rootScope, AuthService) {
+  $rootScope.user = AuthService.getUserInfo();
 }]);
