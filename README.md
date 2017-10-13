@@ -24,6 +24,6 @@ To build and keep listening for changes in dev run:
 npm run dev
 ```
 
-The app will be built into ./build
+The app will be built into ./build and dev-http-server listening at http://localhost:3000
 
 See FILES.md for some more specifics.
