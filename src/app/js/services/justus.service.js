@@ -7,11 +7,11 @@ angular.module('JustusService', [])
 
   this.updatePublicationFormData = function(data) {
     this.justus = data;
-  }
+  };
 
   this.getPublicationFormData = function() {
     return this.justus;
-  }
+  };
 
   this.clearPublicationForm = function() {
     this.justus = {};

@@ -364,32 +364,23 @@ angular.module('JustusController', [])
 
     $scope.useTieteenala = function(input) {
       if (input === null) return;
+      if (!$scope.justus.tieteenala) {
+        $scope.justus.tieteenala = [];
+      }
 
       // Selecting päätieteenala, filter alatieteenala input options
       if (input.length === 1) {
         $scope.tieteenala_paa = input;
         $scope.alatieteenalat = $scope.getCode('tieteenalat', input).alatyypit;
       }
-
-      // Otherwise selecting alatieteenala, initialize a new empty field
-      else {
-        if ($scope.justus.tieteenala.indexOf(input) < 0) {
-          // Append new field if the field was empty
-          let appendNewField = $scope.justus.tieteenala[$scope.justus.tieteenala.length - 1].tieteenalakoodi === '';
-
-          $scope.justus.tieteenala[$scope.justus.tieteenala.length - 1] = {
-            tieteenalakoodi: input,
-            jnro: '' + ($scope.justus.tieteenala.length)
-          };
-
-          if (appendNewField === true) {
-            // Add a new empty field for the next selection
-            $scope.justus.tieteenala.push({
-              tieteenalakoodi: '',
-              jnro: null
-            });
-          }
-        }
+      // Otherwise selecting alatieteenala, add if not already found
+      else if (!$scope.justus.tieteenala.find(function(item) {
+        return item.tieteenalakoodi === input;
+      })) {
+        $scope.justus.tieteenala.push({
+          tieteenalakoodi: input,
+          jnro: $scope.justus.tieteenala.length
+        });
       }
     };
 
@@ -465,11 +456,11 @@ angular.module('JustusController', [])
     // - internal unscoped function
     // - parameter input is optional
     let fillMissingJustusLists = function() {
-      if(!$scope.justus.avainsana) {
+      if (!$scope.justus.avainsana) {
         $scope.justus.avainsana = [{ avainsana: '' }];
       }
       if (!$scope.justus.tieteenala) {
-        $scope.justus.tieteenala = [{ tieteenalakoodi: '', jnro: null }];
+        $scope.justus.tieteenala = [];
       }
       if (!$scope.justus.organisaatiotekija) {
         $scope.justus.organisaatiotekija = [{

@@ -101,15 +101,15 @@ angular.module('TallennusController', [])
               saveTable('avainsana', adata, adata.id, jid);
             });
             angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
-              if (tdata && tdata.jnro && tdata.tieteenalakoodi) {
+              if (tdata && Number.isInteger(tdata.jnro) && tdata.tieteenalakoodi) {
                 saveTable('tieteenala', tdata, tdata.id, jid);
               }
             });
             saveOrganisaatiotekija(jid);
+            // move on to own publications
+            $state.go('omat', { lang: $scope.lang });
+            JustusService.clearPublicationForm();
           }
-          // move on to own publications
-          $state.go('omat', { lang: $scope.lang });
-          JustusService.clearPublicationForm();
         })
         .catch((response) => {
           $log.error(response);
