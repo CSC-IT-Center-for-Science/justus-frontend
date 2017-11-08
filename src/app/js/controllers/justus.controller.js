@@ -354,9 +354,14 @@ angular.module('JustusController', [])
 
     $scope.initializeAvainsanatTags = function() {
       if ($scope.justus.avainsana) {
+        $scope.avainsanatTags = [];
         $scope.justus.avainsana.map(function(keywordObject) {
           if (keywordObject.avainsana.length > 0) {
-            $scope.avainsanatTags.push({ prefLabel: keywordObject.avainsana });
+            $scope.avainsanatTags.push({
+              prefLabel: keywordObject.avainsana,
+              // Generate a mockup localname to be used as an unique key, since actual localname is not saved
+              localname: `${keywordObject.avainsana}_${(Math.random() * 1000).toString()}`
+            });
           }
         });
       }
@@ -469,14 +474,14 @@ angular.module('JustusController', [])
       }
     };
 
-    let populatePublicationData = () => {
+    const populatePublicationData = () => {
       if (!$stateParams.id) {
         finalizeInit();
         return;
       }
 
       $scope.loading.publication = true;
-      let organisaatiotekijaPopulated = [];
+      const organisaatiotekijaPopulated = [];
 
       Promise.all([
         APIService.get('julkaisu', $stateParams.id, null, null, true),
@@ -486,22 +491,25 @@ angular.module('JustusController', [])
       ])
       .spread((julkaisu, avainsana, tieteenala, organisaatiotekijat) => {
         $scope.justus = julkaisu;
-        
-        parseNames($scope.justus.tekijat).map(function(nameObject) {
+
+        parseNames($scope.justus.tekijat).map((nameObject) => {
           $scope.tekijatTags.push({ text: `${nameObject.lastName}, ${nameObject.firstName}` });
         });
         $scope.useTekijat();
-        
-        $scope.justus.avainsana = avainsana;
+
+        $scope.justus.avainsana = [];
+        avainsana.map((item) => $scope.addAvainsana(item.avainsana));
+        $scope.initializeAvainsanatTags();
+
         $scope.justus.tieteenala = tieteenala;
-      
+
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
           return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
           .then((alayksikko) => {
             organisaatiotekija.alayksikko = alayksikko || [{ alayksikko: '' }];
             return organisaatiotekijaPopulated.push(organisaatiotekija);
           });
-        })
+        });
       })
       .then(() => {
         $scope.justus.organisaatiotekija = organisaatiotekijaPopulated || [{}];
@@ -514,11 +522,11 @@ angular.module('JustusController', [])
       });
     };
 
-    let finalizeInit = () => {
-        $scope.justus.username = $rootScope.user.name;
-        fillMissingJustusLists();
-        JustusService.updatePublicationFormData($scope.justus);
-        $scope.useVaihe($stateParams.vaihe || 1);
+    const finalizeInit = () => {
+      $scope.justus.username = $rootScope.user.name;
+      fillMissingJustusLists();
+      JustusService.updatePublicationFormData($scope.justus);
+      $scope.useVaihe($stateParams.vaihe || 1);
     };
 
     populatePublicationData();
