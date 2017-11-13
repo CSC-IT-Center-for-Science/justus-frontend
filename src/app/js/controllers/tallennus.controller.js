@@ -2,8 +2,8 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController', [
-  '$scope', '$log', '$http', '$state', 'APIService', 'JustusService',
-  function($scope, $log, $http, $state, APIService, JustusService) {
+  '$scope', '$log', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService',
+  function($scope, $log, $http, $state, APIService, API_BASE_URL, JustusService) {
     // index provides: lang, ...
     // justus provides: justus
 
@@ -24,50 +24,107 @@ angular.module('TallennusController', [])
       }
       // update (put) or insert (post)
       if (putid) {
-        APIService.put(table, putid, data);
         // restore id
         data[$scope.meta.tables[table].pkcol] = saveid;
+        return APIService.put(table, putid, data);
       }
       else {
-        APIService.post(table, data);
+        return APIService.post(table, data);
       }
     };
 
-    let saveOrganisaatiotekija = function(julkaisuid) {
-      // nb! alayksikko needs new id of organisaatiotekija!
-      angular.forEach($scope.justus.organisaatiotekija, function(odata, ok) {
-        odata.julkaisuid = julkaisuid;
+    const saveAvainsana = (julkaisuId) => {
+      let promise = Promise.resolve();
 
-        // take alayksikko out and save it in its own loop
-        let alayarr = odata.alayksikko;
-        delete odata.alayksikko;
-        // remove id (primary key) from data
-        let putid = odata.id || null;
-        delete odata.id;
-        // put or post
-        if (putid) {
-          APIService.put('organisaatiotekija', putid, odata);
-          // alayarr copied above
-          angular.forEach(alayarr, function(adata, ak) {
-            saveTable('alayksikko', adata, adata.id, adata.organisaatiotekijaid);
+      // Delete old keywords when updating an existing publication to replace with newly entered keywords
+      if ($scope.justus.id) {
+        promise = $http({
+          method: 'DELETE',
+          url: `${API_BASE_URL}justus_save.php/avainsana/julkaisuid/${julkaisuId}`
+        });
+      }
+
+      promise.then(() => {
+        $scope.justus.avainsana.forEach(function(item) {
+          item.julkaisuid = julkaisuId;
+        });
+        return $http({
+          method: 'POST',
+          url: `${API_BASE_URL}justus_save.php/avainsana/julkaisuid/${julkaisuId}`,
+          data: $scope.justus.avainsana,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+        });
+      });
+
+      return promise;
+    };
+
+    // Data: [{ "tieteenalakoodi": "100", "jnro": 0, "julkaisuid": "1" }]
+    const saveTieteenala = (julkaisuId) => {
+      let promise = Promise.resolve();
+
+      if ($scope.justus.id) {
+        promise = $http({
+          method: 'DELETE',
+          url: `${API_BASE_URL}justus_save.php/tieteenala/julkaisuid/${julkaisuId}`
+        });
+      }
+
+      promise.then(() => {
+        const data = [];
+        $scope.justus.tieteenala.forEach(function(item) {
+          data.push({
+            tieteenalakoodi: item.tieteenalakoodi,
+            jnro: item.jnro,
+            julkaisuid: julkaisuId
           });
-          // restore id
-          odata.id = putid;
-        }
-        else {
-          APIService.post('organisaatiotekija' + '/', odata).then(function(otid) {
+        });
+
+        return $http({
+          method: 'POST',
+          url: `${API_BASE_URL}justus_save.php/tieteenala/julkaisuid/${julkaisuId}`,
+          data: data,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+        });
+      });
+
+      return promise;
+    };
+
+    const saveOrganisaatiotekija = function(julkaisuId) {
+      let promise = Promise.resolve();
+
+      if ($scope.justus.id) {
+        promise = $http({
+          method: 'DELETE',
+          url: `${API_BASE_URL}justus_save.php/organisaatiotekija/julkaisuid/${julkaisuId}`
+        });
+      }
+
+      promise.then(() => {
+        // nb! alayksikko needs new id of organisaatiotekija!
+        angular.forEach($scope.justus.organisaatiotekija, function(odata, ok) {
+          odata.julkaisuid = julkaisuId;
+
+          // take alayksikko out and save it in its own loop
+          let alayarr = odata.alayksikko;
+          delete odata.alayksikko;
+          // remove id (primary key) from data
+          let putid = odata.id || null;
+          delete odata.id;
+
+          APIService.post('organisaatiotekija' + '/', odata)
+          .then(function(otid) {
             // alayarr copied above
             angular.forEach(alayarr, function(adata, ak) {
               saveTable('alayksikko', adata, adata.id, otid);
             });
           });
-        }
+        });
       });
     };
 
-    // ACCESSORS (scope)
-
-    $scope.useTallenna = function() {
+    $scope.savePublicationForm = function() {
       let dnew = {};
       // from main table julkaisu drop not significant columns, and id
       angular.forEach($scope.meta.tables.julkaisu.columns, function(v, k) {
@@ -76,45 +133,31 @@ angular.module('TallennusController', [])
         }
       });
       dnew.modified = new Date();
-      if ($scope.justus.id) { // we have id so we're updating
-        APIService.put('julkaisu', $scope.justus.id, dnew);
-        angular.forEach($scope.justus.avainsana, function(adata, ak) {
-          // refid should be given here as we might be inserting new, in which case adata.id is undefined
-          saveTable('avainsana', adata, adata.id, $scope.justus.id);
-        });
-        angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
-          // refid should be given here as we might be inserting new, in which case tdata.id is undefined
-          if (tdata && tdata.jnro && tdata.tieteenalakoodi) {
-            saveTable('tieteenala', tdata, tdata.id, $scope.justus.id);
-          }
-        });
-        saveOrganisaatiotekija($scope.justus.id);
-        // move on to own publications
+
+      // Update existing publication or create new depending on possible existing id
+      const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, dnew) : APIService.post('julkaisu', dnew);
+      let julkaisuId = null;
+
+      return julkaisuPromise.then((newJulkaisuId) => {
+        julkaisuId = $scope.justus.id ? $scope.justus.id : newJulkaisuId;
+
+        if (!julkaisuId) {
+          throw new Error('JulkaisuId missing from response');
+        }
+
+        return Promise.all([
+          saveAvainsana(julkaisuId),
+          saveTieteenala(julkaisuId)
+        ]);
+      })
+      .then(() => {
+        saveOrganisaatiotekija(julkaisuId);
         $state.go('omat', { lang: $scope.lang });
         JustusService.clearPublicationForm();
-      }
-      else {
-        APIService.post('julkaisu', dnew)
-        .then((jid) => {
-          if (jid) {
-            angular.forEach($scope.justus.avainsana, function(adata, ak) {
-              saveTable('avainsana', adata, adata.id, jid);
-            });
-            angular.forEach($scope.justus.tieteenala, function(tdata, tk) {
-              if (tdata && Number.isInteger(tdata.jnro) && tdata.tieteenalakoodi) {
-                saveTable('tieteenala', tdata, tdata.id, jid);
-              }
-            });
-            saveOrganisaatiotekija(jid);
-            // move on to own publications
-            $state.go('omat', { lang: $scope.lang });
-            JustusService.clearPublicationForm();
-          }
-        })
-        .catch((response) => {
-          $log.error(response);
-        });
-      }
+      })
+      .catch((response) => {
+        $log.error(response);
+      });
     };
   }
 ]);

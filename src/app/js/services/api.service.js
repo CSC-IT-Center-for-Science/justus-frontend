@@ -145,7 +145,7 @@ angular.module('APIService', [])
         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
       })
       .then(function (response) {
-        return response.status + ' ' + response.data;
+        return response.data;
       })
       .catch(function (response) {
         $log.error('put ERROR ' + response.status + ' ' + response.data);
