@@ -3,9 +3,9 @@
 angular.module('JustusController', [])
 .controller('JustusController', [
   '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService',
-  'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService',
+  'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DEMO_ENABLED',
   function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService,
-  JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService) {
+  JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DEMO_ENABLED) {
     $scope.loading = {};
     $scope.meta = APIService.meta;
     $scope.justus = JustusService.getPublicationFormData();
@@ -406,7 +406,8 @@ angular.module('JustusController', [])
             return;
           }
           // Add user's organisaatiotunnus to the form
-          this.justus.organisaatiotunnus = domain_organization[$rootScope.user.domain].code;
+          // Overwrite active organization code with demo user code to allow saving in demo
+          this.justus.organisaatiotunnus = DEMO_ENABLED === true ? '00000' : domain_organization[$rootScope.user.domain].code;
         }
       }
       else {
@@ -417,7 +418,6 @@ angular.module('JustusController', [])
           return;
         }
       }
-      // messes up initialization even though brings history to use...: $state.go('justus', {lang:$scope.lang,id:$scope.justus.id,vaihe:vaihe});
     };
 
     $scope.useRequiredHighlight = function() {

@@ -205,8 +205,7 @@
                     class="form-control"
                     data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
                     data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
-                    data-ng-show="ota.alayksikko"
-                    data-ng-click="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko=''">
+                    data-ng-show="ota.alayksikko">
                   <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
                   <!--
                   {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-

@@ -131,11 +131,11 @@ angular.module('JustusService', [])
     // Validate a field which consists of multiple subfields
     if (field_default_config[fieldName].subfields.length > 0 && valid === true && fieldIsFilled === true) {
       valid = this.validateNestedField(fieldName);
-      reason = valid === false ? 'One or more subfield value is invalid' : '';
+      reason = valid === false ? `One or more subfield value is invalid for field: ${fieldName}` : '';
     }
 
     if (valid === false && reason) {
-      $log.debug(reason);
+      $log.error(reason);
     }
     return valid;
   };
