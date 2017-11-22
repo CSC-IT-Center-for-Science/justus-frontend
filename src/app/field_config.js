@@ -401,9 +401,23 @@ const organizationFieldConfig = [
     'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
     'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
     'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  // Maanpuolustuskorkeakoulu
+  {
+    domain: '@mil.fi',
+    code:'02358',
+    email:'notvalid@mil.fi', 
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero', 
+    'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'kansainvalinenyhteisjulkaisu', 
+    'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite', 
+    'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat', 
+    'julkaisumaa', 'julkaisunkieli', 'doitunniste', 'pysyvaverkkoosoite'],
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
+    'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja', 
+    'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+    'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   }
-
-  //,'@': '' //...
 ];
 
 // Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:

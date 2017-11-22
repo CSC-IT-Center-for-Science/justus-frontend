@@ -146,6 +146,11 @@ let domain_organization = {
   '@maanmittauslaitos.fi': {
     code:'4020217',
     email:'notvalid@maanmittauslaitos.fi'
+  },
+  // Maanpuolustuskorkeakoulu
+  '@mil.fi': {
+    code:'02358',
+    email:'notvalid@mil.fi'
   }
 
   //,'@': '' //...
