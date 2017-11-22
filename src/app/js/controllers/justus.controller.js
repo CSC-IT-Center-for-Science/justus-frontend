@@ -510,7 +510,7 @@ angular.module('JustusController', [])
         });
       })
       .then(() => {
-        $scope.justus.organisaatiotekija = organisaatiotekijaPopulated.length > 0 || [{
+        $scope.justus.organisaatiotekija = organisaatiotekijaPopulated.length > 0 ? organisaatiotekijaPopulated : [{
           sukunimi: '',
           etunimet: '',
           alayksikko: [{ alayksikko: '' }]

@@ -13,116 +13,123 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <button type="button" 
-      class="btn btn-default" 
-      ng-csv="getCsvExportFile()"
-      lazy-load="true"
-      csv-header="csvExportHeader" 
-      filename="julkaisut.csv"
-      field-separator=";"
-      quote-strings="true"
-      data-ng-disabled="loading.csv === true">
-      Lataa CSV-tiedostona
-      <span data-ng-if="loading.csv">
-        &nbsp;<span class="fa fa-spinner fa-spin"></span>
-      </span>
-    </button>
-    <hr>
-  </div>
+<div data-ng-if="loading.publications === true" class="loading-icon-wrapper">
+  <span class="fa fa-spinner fa-spin fa-2x"></span>
 </div>
 
-<div class="row">
-  <div class="col-xs-12 table-responsive">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th data-ng-click="colOrderReverse=!(colOrder=='id'?colOrderReverse:true); colOrder='id'">
-            <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='id' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='id' && (colOrderReverse)"></span>
-          </th>
-          <th data-ng-click="colOrderReverse=!(colOrder=='julkaisunnimi'?colOrderReverse:true); colOrder='julkaisunnimi'">
-            <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisunnimi' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisunnimi' && (colOrderReverse)"></span>
-          </th>
-          <th data-ng-click="colOrderReverse=!(colOrder=='tekijat'?colOrderReverse:true); colOrder='tekijat'">
-            <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
-          </th>
-          <th class="hidden-xs"
-          data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
-            <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
-          </th>
-          <th class="hidden-xs"
-          data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
-            <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span>
-            <span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span>
-            <span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
-          </th>
-
-          <th data-ng-show="state.name=='hyvaksy'"
-            data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
-            class="condensed">
-            <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span>
-            <span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
-          </th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-            data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
-          <td class="condensed nowrap">
-            <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
-              href="" 
-              data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
-              <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
-            </a>
-            <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
-          </td>
-          <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
-          <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
-          <td class="hidden-xs nowrap">
-            <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
-          </td>
-          <td class="hidden-xs">
-            <span data-ng-bind="d.username"></span>
-          </td>
-          <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
-            <div class="btn-group">
-              <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']" 
-                title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
-                class="btn btn-primary" 
-                data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
-                data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)">
-                {{ julkaisuntila }}
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div data-ng-if="loading.publications === false">
+  <div class="row">
+    <div class="col-xs-12">
+      <button type="button" 
+        class="btn btn-default" 
+        ng-csv="getCsvExportFile()"
+        lazy-load="true"
+        csv-header="csvExportHeader" 
+        filename="julkaisut.csv"
+        field-separator=";"
+        quote-strings="true"
+        data-ng-disabled="loading.csv === true">
+        Lataa CSV-tiedostona
+        <span data-ng-if="loading.csv">
+          &nbsp;<span class="fa fa-spinner fa-spin"></span>
+        </span>
+      </button>
+      <hr>
+    </div>
   </div>
-</div>
 
-<div class="text-center">
-  <ul uib-pagination 
-    data-ng-if="totalItems > query.pageSize"
-    data-ng-change="useHae()"
-    data-total-items="totalItems"
-    data-ng-model="query.currentPageNumber" 
-    max-size="3"
-    class="pagination"
-    items-per-page="query.pageSize"
-    boundary-links="true" 
-    force-ellipses="true">
-  </ul>
+  <div class="row">
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th data-ng-click="colOrderReverse=!(colOrder=='id'?colOrderReverse:true); colOrder='id'">
+              <span data-ng-bind="i18n.content.tarkasta.table.julkaisuid[lang]"></span>
+              <span class="fa fa-sort-desc" data-ng-if="colOrder=='id' && !(colOrderReverse)"></span>
+              <span class="fa fa-sort-asc" data-ng-if="colOrder=='id' && (colOrderReverse)"></span>
+            </th>
+            <th data-ng-click="colOrderReverse=!(colOrder=='julkaisunnimi'?colOrderReverse:true); colOrder='julkaisunnimi'">
+              <span data-ng-bind="i18n.content.tarkasta.table.julkaisunnimi[lang]"></span>
+              <span class="fa fa-sort-desc" data-ng-if="colOrder=='julkaisunnimi' && !(colOrderReverse)"></span>
+              <span class="fa fa-sort-asc" data-ng-if="colOrder=='julkaisunnimi' && (colOrderReverse)"></span>
+            </th>
+            <th data-ng-click="colOrderReverse=!(colOrder=='tekijat'?colOrderReverse:true); colOrder='tekijat'">
+              <span data-ng-bind="i18n.content.tarkasta.table.julkaisuntekijat[lang]"></span>
+              <span class="fa fa-sort-desc" data-ng-if="colOrder=='tekijat' && !(colOrderReverse)"></span>
+              <span class="fa fa-sort-asc" data-ng-if="colOrder=='tekijat' && (colOrderReverse)"></span>
+            </th>
+            <th class="hidden-xs"
+            data-ng-click="colOrderReverse=!(colOrder=='modified'?colOrderReverse:true); colOrder='modified'">
+              <span data-ng-bind="i18n.content.tarkasta.table.muokattu[lang]"></span>
+              <span class="fa fa-sort-desc" data-ng-if="colOrder=='modified' && !(colOrderReverse)"></span>
+              <span class="fa fa-sort-asc" data-ng-if="colOrder=='modified' && (colOrderReverse)"></span>
+            </th>
+            <th class="hidden-xs"
+            data-ng-click="colOrderReverse=!(colOrder=='username'?colOrderReverse:true); colOrder='username'">
+              <span data-ng-bind="i18n.content.tarkasta.table.viimeisinmuokkaaja[lang]"></span>
+              <span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span>
+              <span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
+            </th>
+
+            <th data-ng-show="state.name=='hyvaksy'"
+              data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
+              class="condensed">
+              <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span>
+              <span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
+              data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
+            <td class="condensed nowrap">
+              <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
+                href="" 
+                data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
+                <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+              </a>
+              <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+            </td>
+            <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
+            <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
+            <td class="hidden-xs nowrap">
+              <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
+            </td>
+            <td class="hidden-xs">
+              <span data-ng-bind="d.username"></span>
+            </td>
+            <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
+              <div class="btn-group">
+                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']" 
+                  title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
+                  class="btn btn-primary" 
+                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
+                  data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)">
+                  {{ julkaisuntila }}
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <ul uib-pagination 
+      data-ng-if="totalItems > query.pageSize"
+      data-ng-change="loadPublications()"
+      data-total-items="totalItems"
+      data-ng-model="query.currentPageNumber" 
+      max-size="3"
+      class="pagination"
+      items-per-page="query.pageSize"
+      boundary-links="true" 
+      force-ellipses="true">
+    </ul>
+  </div>
+  
 </div>
 
 <div class="row">
