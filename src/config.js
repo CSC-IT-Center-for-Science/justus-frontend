@@ -276,17 +276,20 @@ if (location.hostname === 'localhost') {
       }
       let o = codes[codeset+"_"+dobj.code.toLowerCase()];
       let a = codes.alayksikkokoodi;
-      o.forEach(function(oobj){
-        oobj.alatyypit = [];
-        a.forEach(function(aobj){
-          if (aobj.arvo.match('^'+oobj.arvo+'-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
-            oobj.alatyypit.push(aobj);
-          }
+
+      if (o) {
+        o.forEach(function(oobj){
+          oobj.alatyypit = [];
+          a.forEach(function(aobj){
+            if (aobj.arvo.match('^'+oobj.arvo+'-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+              oobj.alatyypit.push(aobj);
+            }
+          });
+          // store in variable by pushing one at a time now
+          codes.organization.push(oobj);
+          org_pushed.push(oobj.arvo);
         });
-        // store in variable by pushing one at a time now
-        codes.organization.push(oobj);
-        org_pushed.push(oobj.arvo);
-      });
+      }
     }
   }
 }//-developmentmode

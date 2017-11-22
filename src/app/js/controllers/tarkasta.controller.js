@@ -91,23 +91,15 @@ angular.module('TarkastaController', [])
       return KoodistoService.getCode($scope.codes, codeset, code);
     };
 
-    $scope.usePaivita = function(table, jobj, julkaisuid, idcol, col, val) {
-      // new params cols & vals could be used to send only changed values. now all goes.
-      if (julkaisuid && jobj) {
-        if (table === 'julkaisu') {
-          jobj.username = $scope.user.name;
-          jobj.modified = new Date();
-        }
-        let copyof = {};
-        angular.forEach(jobj, function(v, k) {
-          copyof[k] = v;
-        });
-        delete copyof[idcol]; // api doesn't like primary key in data
-        delete copyof.ui_julkaisuntila; // our own addition
-        if (col) {
-          copyof[col] = val;
-        }
-        APIService.put(table, julkaisuid, JSON.stringify(copyof));
+    $scope.updatePublication = function(julkaisu, julkaisuntila) {
+      if (julkaisu && julkaisu.id) {
+        julkaisu.username = $scope.user.name;
+        julkaisu.modified = new Date();
+        const julkaisuCopy = angular.copy(julkaisu);
+        delete julkaisuCopy.id; // api doesn't like primary key in data
+        delete julkaisuCopy.ui_julkaisuntila;
+        julkaisuCopy.julkaisuntila = julkaisuntila;
+        APIService.put('julkaisu', julkaisu.id, JSON.stringify(julkaisuCopy));
       }
     };
 

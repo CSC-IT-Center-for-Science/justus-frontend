@@ -105,7 +105,7 @@
                   title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
                   class="btn btn-primary" 
                   data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
-                  data-ng-click="d.ui_julkaisuntila=julkaisuntila; usePaivita('julkaisu',d,d.id,'id','julkaisuntila',julkaisuntila)">
+                  data-ng-click="d.ui_julkaisuntila = julkaisuntila; updatePublication(d, julkaisuntila)">
                   {{ julkaisuntila }}
                 </button>
               </div>
@@ -129,7 +129,7 @@
       force-ellipses="true">
     </ul>
   </div>
-  
+
 </div>
 
 <div class="row">
