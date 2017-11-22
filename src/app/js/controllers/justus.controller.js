@@ -411,9 +411,7 @@ angular.module('JustusController', [])
         }
       }
       else {
-        // ei julkaisutyyppiä ja vaihe jotain liikaa, siirrytään valitsemaan:
         if ($scope.vaihe > 2) {
-          // TO-DO? näytä jokin message!? (sivun ulkoasu kyllä muuttuu jo, mutta miksi...)
           $scope.useVaihe(2);
           return;
         }
@@ -512,7 +510,11 @@ angular.module('JustusController', [])
         });
       })
       .then(() => {
-        $scope.justus.organisaatiotekija = organisaatiotekijaPopulated || [{}];
+        $scope.justus.organisaatiotekija = organisaatiotekijaPopulated.length > 0 || [{
+          sukunimi: '',
+          etunimet: '',
+          alayksikko: [{ alayksikko: '' }]
+        }];
         $scope.loading.publication = false;
         finalizeInit();
       })
