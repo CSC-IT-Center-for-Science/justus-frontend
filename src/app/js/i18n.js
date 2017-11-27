@@ -214,9 +214,9 @@ const i18n = {
         SV: 'ISBN',
         EN: 'ISBN',
         tooltip: {
-          FI: 'Monografian tai emojulkaisun ISBN-numero, esim. 978-952-245-683-0',
-          SV: 'Monografins eller moderpublikationens ISBN-nummer, t.ex. 978-952-245-683-0',
-          EN: 'Monograph or parent publication ISBN number e.g. 978-952-245-683-0.'
+          FI: 'Monografian tai emojulkaisun ISBN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISBN-numero.',
+          SV: 'ISBN-numret för den serie i vilken monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISBN-nummer.',
+          EN: 'Monograph or parent publication ISBN number according to the primary printed version. If there is no printed version, the ISBN number of the electronic version will be indicated.'
         },
         picktip: { FI: 'esim. 978-952-245-683-0', SV: 't.ex. 978-952-245-683-0', EN: 'e.g. 978-952-245-683-0' }
       },
@@ -249,7 +249,8 @@ const i18n = {
           FI: 'Lehden tai sarjan ISSN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero.',
           SV: 'ISSN-numret för den serie i vilken tidskriften, monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISSN-nummer.',
           EN: 'The ISSN number of the series or of the journal according to the primary printed version. If there is no printed version, the ISSN number of the electronic version will be indicated.'
-        }
+        },
+        picktip: { FI: 'esim. 1234-567X', SV: 't.ex. 1234-567X', EN: 'e.g. 1234-567X' }
       },
       volyymi: {
         FI: 'Volyymi',
