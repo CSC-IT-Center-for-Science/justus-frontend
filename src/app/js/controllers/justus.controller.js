@@ -385,7 +385,7 @@ angular.module('JustusController', [])
       })) {
         $scope.justus.tieteenala.push({
           tieteenalakoodi: input,
-          jnro: $scope.justus.tieteenala.length
+          jnro: $scope.justus.tieteenala.length + 1
         });
       }
     };

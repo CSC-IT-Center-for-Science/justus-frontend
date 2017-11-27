@@ -165,6 +165,7 @@
         <td class="condensed">{{ i18n.content.form.tieteenala[lang] }}</td>
         <td>
           <div data-ng-repeat="i in justus.tieteenala">
+            {{i.jnro}}.&nbsp;
             <span data-ng-bind="i.tieteenalakoodi"></span>
             <span data-ng-bind="getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"></span>
           </div>
