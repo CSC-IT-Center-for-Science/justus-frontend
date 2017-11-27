@@ -17,6 +17,10 @@ angular.module('IndexController', [])
         $rootScope.initialUser = $scope.user;
         $scope.initialRole = $scope.user.role;
         AuthService.storeUserInfo($scope.user);
+
+        // Initialize role/organization selectors for demo user
+        $scope.selectedDemoUserRole = $scope.user.role;
+        $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
       })
       .catch(function() {
         if (DEMO_ENABLED) {
@@ -24,12 +28,11 @@ angular.module('IndexController', [])
           $scope.user = demoUser;
           $scope.initialRole = $scope.user.role;
           $rootScope.initialUser = $scope.user;
+          AuthService.storeUserInfo($scope.user);
 
-          // Initializa role/organization selectors for demo user
+          // Initialize role/organization selectors for demo user
           $scope.selectedDemoUserRole = $scope.user.role;
           $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
-
-          AuthService.storeUserInfo($scope.user);
         }
       });
     }

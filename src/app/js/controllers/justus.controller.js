@@ -58,6 +58,7 @@ angular.module('JustusController', [])
       $scope.virtaLataa = false;
       $scope.requiredHighlight = false;
       $scope.invalidFields = [];
+      fillMissingJustusLists();
       $scope.useVaihe(1);
     };
 
@@ -472,7 +473,7 @@ angular.module('JustusController', [])
       }
     };
 
-    const populatePublicationData = () => {
+    const populatePublicationForm = () => {
       if (!$stateParams.id) {
         finalizeInit();
         return;
@@ -531,6 +532,6 @@ angular.module('JustusController', [])
       $scope.useVaihe($stateParams.vaihe || 1);
     };
 
-    populatePublicationData();
+    populatePublicationForm();
   }
 ]);
