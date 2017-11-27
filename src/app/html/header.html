@@ -30,7 +30,7 @@
   </div>
   <div class="col-xs-12 col-md-5 pull-right text-right">
     <div  data-ng-if="state.name!='index' && user">
-      <span><i>{{user.name}}</i>, {{getCode('organization',user.organization.code).selite[lang]}}</span>
+      <span><i>{{user.name}}</i>, {{ user.organization.code }}: {{ getCode('organization', user.organization.code).selite[lang] }}</span>
       <span>| <a href="" data-ng-href="{{ siteUrl }}/Shibboleth.sso/Logout?return={{ siteUrl }}">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
@@ -47,15 +47,14 @@
       <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
     </div>
 
-    <span data-ng-if="demoEnabled || initrole=='owner'" style="background: lightgray;">
-      {{initrole}}/demo:
-      user: <select data-ng-model="user.role" style="font-size:smaller; background: lightgray;">
-        <option value="owner" data-ng-if="initrole=='owner'">Owner</option>
+    <span data-ng-if="demoEnabled">
+      <select data-ng-model="selectedDemoUserRole" data-ng-change="setDemoUserRole(selectedDemoUserRole)">
+        <option value="owner">Owner</option>
         <option value="admin">Admin</option>
         <option value="member">Member</option>
       </select>
-      org: <select data-ng-model="user.organization.code" style="font-size:smaller; background: lightgray;">
-        <option data-ng-repeat="g in codes.organization" value="{{g.arvo}}">{{g.selite[lang]}}</option>
+      <select data-ng-model="selectedDemoUserOrganizationCode" data-ng-change="setDemoUserOrganization(selectedDemoUserOrganizationCode)">
+        <option data-ng-repeat="organization in codes.organization" value="{{organization.arvo}}">{{organization.arvo}}: {{organization.selite[lang]}}</option>
       </select>
       <br>
       <a href data-ng-click="resetKoodisto()">reset koodisto</a>

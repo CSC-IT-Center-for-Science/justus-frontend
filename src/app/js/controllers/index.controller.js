@@ -14,14 +14,19 @@ angular.module('IndexController', [])
         // backend/auth provides but config has more info (code+mail):
         $scope.user.organization = domain_organization[$scope.user.domain];
         $rootScope.user = $scope.user;
-        $scope.initrole = $scope.user.role;
+        $rootScope.initialUser = $scope.user;
         AuthService.storeUserInfo($scope.user);
       })
       .catch(function() {
         if (DEMO_ENABLED) {
           $rootScope.user = demoUser;
           $scope.user = demoUser;
-          $scope.initrole = $scope.user.role;
+          $rootScope.initialUser = $scope.user;
+
+          // Initializa role/organization selectors for demo user
+          $scope.selectedDemoUserRole = $scope.user.role;
+          $scope.selectedDemoUserOrganizationCode = $scope.user.organization.code;
+
           AuthService.storeUserInfo($scope.user);
         }
       });
@@ -169,6 +174,25 @@ angular.module('IndexController', [])
 
     $scope.getMenuClass = function(menuPath) {
       return ($location.path().indexOf(menuPath) !== -1) ? 'active' : '';
+    };
+
+    $scope.setDemoUserRole = function(userRole) {
+      $scope.user.role = userRole;
+      $rootScope.user = $scope.user;
+      AuthService.storeUserInfo($scope.user);
+    };
+
+    $scope.setDemoUserOrganization = function(organizationCode) {
+      for (let key in domain_organization) {
+        if (domain_organization.hasOwnProperty(key)) {
+          if (domain_organization[key].code === organizationCode) {
+            $scope.user.organization = domain_organization[key];
+            $scope.user.domain = key;
+            $rootScope.user = $scope.user;
+            AuthService.storeUserInfo($scope.user);
+          }
+        }
+      }
     };
   }
 ]);
