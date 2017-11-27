@@ -15,12 +15,14 @@ angular.module('IndexController', [])
         $scope.user.organization = domain_organization[$scope.user.domain];
         $rootScope.user = $scope.user;
         $rootScope.initialUser = $scope.user;
+        $scope.initialRole = $scope.user.role;
         AuthService.storeUserInfo($scope.user);
       })
       .catch(function() {
         if (DEMO_ENABLED) {
           $rootScope.user = demoUser;
           $scope.user = demoUser;
+          $scope.initialRole = $scope.user.role;
           $rootScope.initialUser = $scope.user;
 
           // Initializa role/organization selectors for demo user

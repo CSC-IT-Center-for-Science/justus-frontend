@@ -30,7 +30,8 @@
   </div>
   <div class="col-xs-12 col-md-5 pull-right text-right">
     <div  data-ng-if="state.name!='index' && user">
-      <span><i>{{user.name}}</i>, {{ user.organization.code }}: {{ getCode('organization', user.organization.code).selite[lang] }}</span>
+      <span><i>{{user.name}}</i>,&nbsp;
+        <span data-ng-if="initialRole === 'owner'">{{ user.organization.code }}:&nbsp;</span>{{ getCode('organization', user.organization.code).selite[lang] }}</span>
       <span>| <a href="" data-ng-href="{{ siteUrl }}/Shibboleth.sso/Logout?return={{ siteUrl }}">{{i18n.header.logout[lang]}}</a></span>
     </div>
     <div>
@@ -47,7 +48,7 @@
       <a href data-ng-show="lang!='EN'" data-ng-click="$parent.lang='EN'">{{i18n.header.lang.EN}}</a>
     </div>
 
-    <span data-ng-if="demoEnabled">
+    <span data-ng-if="demoEnabled || initialRole === 'owner'">
       <select data-ng-model="selectedDemoUserRole" data-ng-change="setDemoUserRole(selectedDemoUserRole)">
         <option value="owner">Owner</option>
         <option value="admin">Admin</option>
