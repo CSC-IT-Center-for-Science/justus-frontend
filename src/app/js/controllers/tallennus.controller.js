@@ -34,18 +34,18 @@ angular.module('TallennusController', [])
     };
 
     const saveAvainsana = (julkaisuId) => {
-      let promise = Promise.resolve();
-
-      // Delete old keywords when updating an existing publication to replace with newly entered keywords
-      if ($scope.justus.id) {
-        promise = $http({
-          method: 'DELETE',
-          url: `${API_BASE_URL}justus_save.php/avainsana/julkaisuid/${julkaisuId}`
-        });
-      }
-
-      promise.then(() => {
-        $scope.justus.avainsana.forEach(function(item) {
+      return Promise.resolve()
+      .then(() => {
+        // Delete old keywords when updating an existing publication to replace with newly entered keywords
+        if ($scope.justus.id) {
+          return $http({
+            method: 'DELETE',
+            url: `${API_BASE_URL}justus_save.php/avainsana/julkaisuid/${julkaisuId}`
+          });
+        }
+      })
+      .then(() => {
+        $scope.justus.avainsana.forEach((item) => {
           item.julkaisuid = julkaisuId;
         });
         return $http({
@@ -55,24 +55,22 @@ angular.module('TallennusController', [])
           headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
         });
       });
-
-      return promise;
     };
 
     // Data: [{ "tieteenalakoodi": "100", "jnro": 0, "julkaisuid": "1" }]
     const saveTieteenala = (julkaisuId) => {
-      let promise = Promise.resolve();
-
-      if ($scope.justus.id) {
-        promise = $http({
-          method: 'DELETE',
-          url: `${API_BASE_URL}justus_save.php/tieteenala/julkaisuid/${julkaisuId}`
-        });
-      }
-
-      promise.then(() => {
+      return Promise.resolve()
+      .then(() => {
+        if ($scope.justus.id) {
+          return $http({
+            method: 'DELETE',
+            url: `${API_BASE_URL}justus_save.php/tieteenala/julkaisuid/${julkaisuId}`
+          });
+        }
+      })
+      .then(() => {
         const data = [];
-        $scope.justus.tieteenala.forEach(function(item) {
+        $scope.justus.tieteenala.forEach((item) => {
           data.push({
             tieteenalakoodi: item.tieteenalakoodi,
             jnro: item.jnro,
@@ -87,47 +85,47 @@ angular.module('TallennusController', [])
           headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
         });
       });
-
-      return promise;
     };
 
     const saveOrganisaatiotekija = function(julkaisuId) {
-      let promise = Promise.resolve();
-
-      if ($scope.justus.id) {
-        promise = $http({
-          method: 'DELETE',
-          url: `${API_BASE_URL}justus_save.php/organisaatiotekija/julkaisuid/${julkaisuId}`
-        });
-      }
-
-      promise.then(() => {
-        // nb! alayksikko needs new id of organisaatiotekija!
-        angular.forEach($scope.justus.organisaatiotekija, function(odata, ok) {
-          odata.julkaisuid = julkaisuId;
-
-          // take alayksikko out and save it in its own loop
-          let alayarr = odata.alayksikko;
-          delete odata.alayksikko;
-          // remove id (primary key) from data
-          let putid = odata.id || null;
-          delete odata.id;
-
-          APIService.post('organisaatiotekija' + '/', odata)
-          .then(function(otid) {
-            // alayarr copied above
-            angular.forEach(alayarr, function(adata, ak) {
-              saveTable('alayksikko', adata, adata.id, otid);
-            });
+      return Promise.resolve()
+      .then(() => {
+        if ($scope.justus.id) {
+          return $http({
+            method: 'DELETE',
+            url: `${API_BASE_URL}justus_save.php/organisaatiotekija/julkaisuid/${julkaisuId}`
           });
+        }
+      })
+      .then(() => {
+        return Promise.map($scope.justus.organisaatiotekija, (organisaatiotekija) => {
+          if (organisaatiotekija.etunimet && organisaatiotekija.sukunimi) {
+            organisaatiotekija.julkaisuid = julkaisuId;
+
+            // Remove alayksikko, since it will be saved separately
+            const alayksikot = organisaatiotekija.alayksikko;
+            delete organisaatiotekija.alayksikko;
+
+            // Remove old organisaatiotekijaIds
+            delete organisaatiotekija.id;
+
+            return APIService.post('organisaatiotekija' + '/', organisaatiotekija)
+            .then((otid) => {
+              return Promise.map(alayksikot, (alayksikko) => {
+                if (alayksikko) {
+                  return saveTable('alayksikko', alayksikko, alayksikko.id, otid);
+                }
+              });
+            });
+          }
         });
       });
     };
 
     $scope.savePublicationForm = function() {
-      let dnew = {};
+      const dnew = {};
       // from main table julkaisu drop not significant columns, and id
-      angular.forEach($scope.meta.tables.julkaisu.columns, function(v, k) {
+      angular.forEach($scope.meta.tables.julkaisu.columns, (v, k) => {
         if (v.name !== 'id' && v.name !== 'modified' && v.name && $scope.justus[v.name]) {
           dnew[v.name] = $scope.justus[v.name];
         }
@@ -147,11 +145,11 @@ angular.module('TallennusController', [])
 
         return Promise.all([
           saveAvainsana(julkaisuId),
-          saveTieteenala(julkaisuId)
+          saveTieteenala(julkaisuId),
+          saveOrganisaatiotekija(julkaisuId)
         ]);
       })
       .then(() => {
-        saveOrganisaatiotekija(julkaisuId);
         $state.go('omat', { lang: $scope.lang });
         JustusService.clearPublicationForm();
       })

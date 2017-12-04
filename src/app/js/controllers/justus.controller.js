@@ -505,7 +505,7 @@ angular.module('JustusController', [])
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
           return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
           .then((alayksikko) => {
-            organisaatiotekija.alayksikko = alayksikko || [{ alayksikko: '' }];
+            organisaatiotekija.alayksikko = alayksikko && alayksikko.length > 0 ? alayksikko : [{ alayksikko: '' }];
             return organisaatiotekijaPopulated.push(organisaatiotekija);
           });
         });
