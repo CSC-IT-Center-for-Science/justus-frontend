@@ -132,7 +132,10 @@ gulp.task('templatecache', function () {
 // Copy additional html files
 gulp.task('html', function () {
   return gulp.src([SOURCE_PATH + '/index.html', SOURCE_PATH + '/config.js'])
-  .pipe(gulp.dest(buildDestinationPath));
+  .pipe(gulp.dest(buildDestinationPath))
+  .on('error', function(e) {
+    gutil.log(e);
+  });
 });
 
 // Deletes all files generated in the build
@@ -159,13 +162,21 @@ gulp.task('del-lib-css', function () {
 gulp.task('app-js', function () {
   return gulp.src(config.assets.appSrc)
     .pipe(isProduction ? sourcemaps.init() : gutil.noop())
-    .pipe(babel({ presets: ['es2015'], comments: false }))
+    .pipe(
+      babel({ presets: ['es2015'], comments: false })
+      .on('error', function(e) {
+        gutil.log(e);
+      })
+    )
     .pipe(concat('app-bundle.js'))
     .pipe(isProduction ? uglify().on('error', function(e) {
       gutil.log(e);
     }) : gutil.noop())
     .pipe(isProduction ? sourcemaps.write('/') : gutil.noop())
-    .pipe(gulp.dest(buildDestinationPath + '/js'));
+    .pipe(gulp.dest(buildDestinationPath + '/js'))
+    .on('error', function(e) {
+      gutil.log(e);
+    });
 });
 
 gulp.task('app-css', function () {
@@ -221,7 +232,10 @@ gulp.task('generate-config', () => {
   gutil.log(gutil.colors.yellow(`Generating app config for ${environment} environment`));
   gulp.src(SOURCE_PATH + '/environment_config.json')
     .pipe(gulpNgConfig('appConfig', { environment: environment }))
-    .pipe(gulp.dest(SOURCE_PATH + '/app/js'));
+    .pipe(gulp.dest(SOURCE_PATH + '/app/js'))
+    .on('error', function(e) {
+      gutil.log(e);
+    });
 });
 
 gulp.task('build', function (callback) {
