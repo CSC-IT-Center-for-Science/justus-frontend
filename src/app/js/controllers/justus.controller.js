@@ -380,14 +380,22 @@ angular.module('JustusController', [])
         $scope.alatieteenalat = $scope.getCode('tieteenalat', input).alatyypit;
       }
       // Otherwise selecting alatieteenala, add if not already found
-      else if (!$scope.justus.tieteenala.find(function(item) {
-        return item.tieteenalakoodi === input;
-      })) {
+      else if (!containsObject($scope.justus.tieteenala, input, 'tieteenalakoodi')) {
         $scope.justus.tieteenala.push({
           tieteenalakoodi: input,
           jnro: $scope.justus.tieteenala.length + 1
         });
       }
+    };
+
+    const containsObject = function(array, value, identifier) {
+      let elementExists = false;
+      array.forEach((item) => {
+        if (item[identifier] === value) {
+          elementExists = true;
+        }
+      });
+      return elementExists;
     };
 
     $scope.useVaihe = function(vaihe) {
