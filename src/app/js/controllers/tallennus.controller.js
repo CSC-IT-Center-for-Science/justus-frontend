@@ -123,17 +123,18 @@ angular.module('TallennusController', [])
     };
 
     $scope.savePublicationForm = function() {
-      const dnew = {};
-      // from main table julkaisu drop not significant columns, and id
-      angular.forEach($scope.meta.tables.julkaisu.columns, (v, k) => {
-        if (v.name !== 'id' && v.name !== 'modified' && v.name && $scope.justus[v.name]) {
-          dnew[v.name] = $scope.justus[v.name];
-        }
+      const publication = {};
+
+      // Replace user entered values in schema and set default values for
+      // not entered fields
+      angular.forEach($scope.meta.tables.julkaisu.columns, (field) => {
+        publication[field.name] = $scope.justus[field.name] || field.default;
       });
-      dnew.modified = new Date();
+      delete publication.id;
+      publication.modified = new Date();
 
       // Update existing publication or create new depending on possible existing id
-      const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, dnew) : APIService.post('julkaisu', dnew);
+      const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
       let julkaisuId = null;
 
       return julkaisuPromise.then((newJulkaisuId) => {
