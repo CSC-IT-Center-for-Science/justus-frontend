@@ -154,8 +154,15 @@ angular.module('TallennusController', [])
         $state.go('omat', { lang: $scope.lang });
         JustusService.clearPublicationForm();
       })
-      .catch((response) => {
-        $log.error(response);
+      .catch((error) => {
+        $log.error(error);
+
+        // Todo: Backend provides invalid JSON as a response which results in a baddata-error even though the save is a success
+        // Can be removed after the responses are fixed
+        if (error && error.message && error.message.indexOf('$http:baddata') !== -1) {
+          $state.go('omat', { lang: $scope.lang });
+          JustusService.clearPublicationForm();
+        }
       });
     };
   }
