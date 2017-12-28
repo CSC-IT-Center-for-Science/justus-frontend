@@ -103,7 +103,7 @@ let domain_organization = {
   //Satakunnan ammattikorkeakoulu  #samk-admins
   '@samk.fi': {
     code:'02507',
-    email:'notvalid@samk.fi'
+    email:'julkaisurekisteri@samk.fi'
   }, 
   //Seinäjoen ammattikorkeakoulu  #seamk-admins
   '@seamk.fi': {
