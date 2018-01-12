@@ -25,7 +25,7 @@ let domain_organization = {
     code:'00000',
     email:'notvalid@csc.fi'
   },
-  '@gofore.com': {
+  '@digia.com': {
     code:'00000',
     email:'notvalid@csc.fi'
   },

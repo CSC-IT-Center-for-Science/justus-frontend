@@ -17,7 +17,7 @@ const organizationFieldConfig = [
   },
   // debug/develop/demo (de3)
   {
-    domain: '@gofore.com',
+    domain: '@digia.com',
     code:'00000',
     email:'notvalid@csc.fi', 
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara', 
