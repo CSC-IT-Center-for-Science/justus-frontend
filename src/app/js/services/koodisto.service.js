@@ -183,8 +183,7 @@ angular.module('KoodistoService', [])
               (arvo === 'C' && ['C1', 'C2'].indexOf(aobj.arvo) >= 0) ||
               (arvo === 'D' && ['D1', 'D2', 'D3', 'D4', 'D5', 'D6'].indexOf(aobj.arvo) >= 0) ||
               (arvo === 'E' && ['E1', 'E2', 'E3'].indexOf(aobj.arvo) >= 0) ||
-              (arvo === 'G' && ['G4', 'G5'].indexOf(aobj.arvo) >= 0) ||
-              (arvo === 'F' && ['F1', 'F2', 'F3'].indexOf(aobj.arvo) >= 0)
+              (arvo === 'G' && ['G4', 'G5'].indexOf(aobj.arvo) >= 0)
             ) {
               ret.push(aobj);
             }
