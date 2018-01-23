@@ -430,8 +430,8 @@ const organizationFieldConfig = [
 // subfields: A list of fields which are nested in the field object
 const field_default_config = {
   'organisaatiotunnus': {
-    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -439,8 +439,8 @@ const field_default_config = {
     'subfields': []
   },
   'julkaisutyyppi': {
-    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -448,8 +448,8 @@ const field_default_config = {
     'subfields': []
   },
   'julkaisuvuosi': {
-    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5',],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -458,7 +458,7 @@ const field_default_config = {
   },
   'julkaisunnimi': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -467,7 +467,7 @@ const field_default_config = {
   },
   'tekijat': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -476,7 +476,7 @@ const field_default_config = {
   },
   'julkaisuntekijoidenlukumaara': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -485,7 +485,7 @@ const field_default_config = {
   },
   'organisaatiotekija': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 1,
@@ -494,7 +494,7 @@ const field_default_config = {
   },
   'konferenssinvakiintunutnimi': {
     'requiredInPublicationTypes': ['A4', 'B3', 'D3'],
-    'visibleInPublicationTypes': ['A4', 'B3', 'D3'],
+    'visibleInPublicationTypes': ['A4', 'B3', 'D3', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -503,7 +503,7 @@ const field_default_config = {
   },
   'isbn': {
     'requiredInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'C1', 'C2'],
-    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'C1', 'C2', 'D2', 'D3', 'D4', 'D5', 'D6', 'E2', 'E3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'C1', 'C2', 'D2', 'D3', 'D4', 'D5', 'D6', 'E2', 'E3', 'G4', 'G5', 'F1'],
     'optionalWithFields': ['issn'],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -512,7 +512,7 @@ const field_default_config = {
   },
   'issn': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': ['isbn'],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -521,7 +521,7 @@ const field_default_config = {
   },
   'volyymi': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -530,7 +530,7 @@ const field_default_config = {
   },
   'numero': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -539,7 +539,7 @@ const field_default_config = {
   },
   'lehdenjulkaisusarjannimi': {
     'requiredInPublicationTypes': ['E1', 'D1'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -548,7 +548,7 @@ const field_default_config = {
   },
   'kustantaja': {
     'requiredInPublicationTypes': ['A3', 'B2', 'C1', 'C2', 'D2', 'D4', 'D5', 'D6', 'E2', 'E3'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -557,7 +557,7 @@ const field_default_config = {
   },
   'julkaisunkansainvalisyys': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -566,7 +566,7 @@ const field_default_config = {
   },
   'tieteenala': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 1,
@@ -575,7 +575,7 @@ const field_default_config = {
   },
   'kansainvalinenyhteisjulkaisu': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -584,7 +584,7 @@ const field_default_config = {
   },
   'yhteisjulkaisuyrityksenkanssa': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -593,7 +593,7 @@ const field_default_config = {
   },
   'avoinsaatavuus': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -602,7 +602,7 @@ const field_default_config = {
   },
   'julkaisurinnakkaistallennettu': {
     'requiredInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -611,7 +611,7 @@ const field_default_config = {
   },
   'rinnakkaistallennetunversionverkkoosoite': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': ['julkaisurinnakkaistallennettu'],
     'requiredAmount': 0,
@@ -620,7 +620,7 @@ const field_default_config = {
   },
   'emojulkaisunnimi': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3'],
+    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -629,7 +629,7 @@ const field_default_config = {
   },
   'emojulkaisuntoimittajat': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3'],
+    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'D2', 'D3', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -638,7 +638,7 @@ const field_default_config = {
   },
   'sivut': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -647,7 +647,7 @@ const field_default_config = {
   },
   'artikkelinumero': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A4', 'B1', 'B3', 'D1', 'D3', 'E1'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A4', 'B1', 'B3', 'D1', 'D3', 'E1', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -656,7 +656,7 @@ const field_default_config = {
   },
   'julkaisunkustannuspaikka': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'C1', 'C2', 'D2', 'D3', 'D4', 'D5', 'D6', 'E2', 'E3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A3', 'A4', 'B2', 'B3', 'C1', 'C2', 'D2', 'D3', 'D4', 'D5', 'D6', 'E2', 'E3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -665,7 +665,7 @@ const field_default_config = {
   },
   'avainsanat': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -674,7 +674,7 @@ const field_default_config = {
   },
   'julkaisumaa': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -683,7 +683,7 @@ const field_default_config = {
   },
   'julkaisunkieli': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredAmount': 0,
     'pattern': null,
@@ -691,7 +691,7 @@ const field_default_config = {
   },
   'doitunniste': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
@@ -700,7 +700,7 @@ const field_default_config = {
   },
   'pysyvaverkkoosoite': {
     'requiredInPublicationTypes': [],
-    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5'],
+    'visibleInPublicationTypes': ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'C1', 'C2', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'E1', 'E2', 'E3', 'G1', 'G2', 'G3', 'G4', 'G5', 'F1'],
     'optionalWithFields': [],
     'requiredWithFields': [],
     'requiredAmount': 0,
