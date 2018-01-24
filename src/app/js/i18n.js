@@ -139,7 +139,7 @@ const i18n = {
           SV: 'Publikationens namn/titel såsom den nämns i artikeln eller verket. Namnet på en publikation på ett främmande språk kan vid behov sparas som en translittererad version.',
           EN: 'Publication name as given in the article or the book. If necessary, the name of a foreign-language publication may be reported on as a transliterated version.'
         },
-        picktip: { FI: 'Kirjoita julkaisun nimi kokonaisuudessaan', SV: 'SV*Kirjoita julkaisun nimi kokonaisuudessaan', EN: 'Publication name in its entirety' }
+        picktip: { FI: 'Kirjoita julkaisun nimi kokonaisuudessaan', SV: 'Skriv publikationens namn/titel i helhet', EN: 'Publication name in its entirety' }
       },
       tekijat: {
         FI: 'Tekijät',
@@ -182,7 +182,7 @@ const i18n = {
           EN: 'Copy authors',
           tooltip: {
             FI: 'Kopioi julkaisun tekijät organisaation tekijöiksi',
-            SV: '*SV*Kopioi julkaisun tekijät organisaation tekijöiksi',
+            SV: 'Kopiera författarna till organisationens upphovsmän',
             EN: 'Copy authors as organisations authors'
           }
         }
@@ -207,7 +207,7 @@ const i18n = {
           SV: 'Namn på den moderpublikationen där artikeln har publicerats.',
           EN: 'Name of the parent publication in which the article was published.'
         },
-        picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: '*SV* Kirjoita emojulkaisun nimi kokonaisuudessaan', EN: 'Parent publication name in its entirety' }
+        picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: 'Skriv moderpublikationens namn i helhet', EN: 'Parent publication name in its entirety' }
       },
       isbn: {
         FI: 'ISBN',
