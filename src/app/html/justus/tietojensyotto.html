@@ -195,6 +195,32 @@
                 placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
+
+            <!-- Kenttä: Tekijän rooli taidejulkaisuille -->
+            <div data-ng-if="isFieldVisible('tekijanrooli')" class="col-xs-12 col-sm-6 form-group" id="rooliGroup">
+              <div  class="row form-group">
+              <!--<input type="text" class="form-control"-->
+                     <!--data-ng-model="justus.organisaatiotekija[$index].rooli"-->
+                     <!--data-ng-value="justus.organisaatiotekija[$index].rooli"-->
+                     <!--placeholder="">-->
+              <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                 <ui-select data-ng-model="rooli.selected"
+
+                            on-select="useOrganisaatiotekijaRooli($index,$select.selected)"
+                            theme="bootstrap"
+                           >
+                    <ui-select-match class="ui-select-match"
+                                     data-ng-value="justus.organisaatiotekija[$index].rooli"
+                                     placeholder="Valitse rooli">
+                      {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | filter: $select.search">
+                      {{role.arvo}} {{role.selite[lang]}}
+                    </ui-select-choices>
+                  </ui-select>
+              </div>
+            </div>
+
             <div class="col-xs-12">
               <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
               data-ng-init="pIx=$parent.$index" class="row form-group">
@@ -224,6 +250,9 @@
                     </ui-select-choices>
                   </ui-select>
                 </div>
+
+
+
                 <div class="col-xs-3 col-sm-3">
                   <!--
                   {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
@@ -1192,6 +1221,42 @@
       </div>
     </div>
   </div>
+
+    <!--<div class="row form-group"-->
+         <!--data-ng-if="isFieldVisible('lisatieto')"><input ng-model="justus.lisatieto">jfklsdfjsdlkfskld </div>-->
+
+     <div class="row form-group" id="lisatieto" data-ng-if="isFieldVisible('lisatieto')">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.lisatieto[lang]"></label>
+      <i class="fa fa-info-circle justus-info justus-color"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.lisatieto.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.lisatieto.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('lisatieto')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_lisatieto">
+      <div class="row">
+        <div class="col-xs-10">
+          <input type="text" class="form-control"
+                 data-ng-model="justus.lisatieto"
+                 maxlength="100"
+                 placeholder="{{ i18n.content.form.lisatieto.picktip[lang] }}"
+                 title="{{i18n.content.form.lisatieto.tooltip[lang]}}">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('lisatieto')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <div class="row" data-ng-if="invalidFields.length > 0">
     <div class="col-xs-12">

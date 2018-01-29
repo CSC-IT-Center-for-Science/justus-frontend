@@ -98,6 +98,10 @@ angular.module('JustusController', [])
       $scope.justus.organisaatiotekija[parIndex].alayksikko[index].alayksikko = input;
     };
 
+    $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
+      $scope.justus.organisaatiotekija[parIndex].rooli = input.arvo;
+    };
+
     $scope.useJulkaisutyyppiPaa = function(input) {
       if (!input) return;
       $scope.julkaisutyyppi_paa = input;
