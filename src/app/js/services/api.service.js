@@ -65,7 +65,8 @@ angular.module('APIService', [])
             { name: 'julkaisuid' },
             { name: 'etunimet' },
             { name: 'sukunimi' },
-            { name: 'orcid' }
+            { name: 'orcid' },
+            { name: 'rooli' }
           ]
         },
         'alayksikko': {
