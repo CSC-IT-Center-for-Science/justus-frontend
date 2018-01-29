@@ -99,7 +99,9 @@ angular.module('JustusController', [])
     };
 
     $scope.useOrganisaatiotekijaRooli = function(parIndex, input) {
-      $scope.justus.organisaatiotekija[parIndex].rooli = input.arvo;
+      if (!$scope.justus.organisaatiotekija[parIndex].rooli) {
+        $scope.justus.organisaatiotekija[parIndex].rooli = input.arvo;
+      }
     };
 
     $scope.useJulkaisutyyppiPaa = function(input) {
