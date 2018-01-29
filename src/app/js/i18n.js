@@ -175,6 +175,7 @@ const i18n = {
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
+        tekijanrooli: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli', picktip: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         kopioi: { FI: 'Kopioi tekijät',

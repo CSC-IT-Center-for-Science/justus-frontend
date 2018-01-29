@@ -211,7 +211,7 @@
                            >
                     <ui-select-match class="ui-select-match"
                                      data-ng-value="justus.organisaatiotekija[$index].rooli"
-                                     placeholder="Valitse rooli">
+                                     placeholder="{{i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
                       {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                     </ui-select-match>
                     <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | filter: $select.search">
