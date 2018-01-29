@@ -43,6 +43,10 @@
             <div data-ng-if="justus.organisaatiotekija[$index].orcid && justus.organisaatiotekija[$index].orcid.length > 0">
               {{ justus.organisaatiotekija[$index].orcid }}
             </div>
+            <div data-ng-if="justus.organisaatiotekija[$index].rooli && justus.organisaatiotekija[$index].rooli.length > 0">
+              <span data-ng-bind="justus.organisaatiotekija[$index].rooli"></span>
+              <span data-ng-bind="getCode('julkaisuntekijanrooli',justus.organisaatiotekija[$index].rooli).selite[lang]"></span>
+            </div>
             <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
               <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index">
                 {{ a.alayksikko }}
