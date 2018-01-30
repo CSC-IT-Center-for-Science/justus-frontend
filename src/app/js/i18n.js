@@ -380,6 +380,19 @@ const i18n = {
         paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välj primära vetenskapsområdet', EN: 'Choose primary field of science' } },
         ala: { picktip: { FI: 'Valitse alatieteenala', SV: 'Välj sekundära vetenskapsområdet', EN: 'Choose secondary field of science' } }
       },
+      taiteenala: {
+        FI: 'Julkaisun taiteenalat',
+        SV: '*SV julkaisun taiteenalat',
+        EN: '*EN julkaisun taiteenalat',
+        tooltip: {
+          FI: '1-7 taiteenala Tilastokeskuksen taiteenalaluokituksen mukaan...',
+          SV: '*SV 1–7 ...',
+          EN: '*EN 1-7 .....'
+        },
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
+      },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
         SV: 'Internationell sampublikation',
