@@ -69,6 +69,9 @@ angular.module('IndexController', [])
     !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodisto('julkaisuntekijanrooli').then(function(o) {
       $scope.codes.julkaisuntekijanrooli = o;
     });
+    !$scope.codes.taiteenalat && KoodistoService.getKoodisto('taiteenala').then(function(o) {
+      $scope.codes.taiteenalat = o;
+    });
 
     // ugly hack to get ALL alatieteenalas in one list
     $scope.getAlltieteenalat = function() {
