@@ -141,13 +141,7 @@ angular.module('KoodistoService', [])
     // hae koko koodiston koodien tiedot yhdellä kutsulla
     this.getKoodisto = function(koodisto) {
       if (!koodisto) return;
-
-      if(koodisto === 'julkaisuntekijanrooli') {
-        return callURI('https://virkailija.opintopolku.fi/koodisto-service/rest/json/' + koodisto + '/koodi' + '?onlyValidKoodis=false');
-      } else {
         return callURI(baseuri + koodisto + '/koodi' + '?onlyValidKoodis=false');
-      }
-
     };
 
     // hae koko koodisto ja sen koodeihin sisältyvät koodit
