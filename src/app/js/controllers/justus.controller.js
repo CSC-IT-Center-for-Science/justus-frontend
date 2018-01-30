@@ -394,6 +394,18 @@ angular.module('JustusController', [])
       }
     };
 
+    $scope.useTaiteenala = function(input) {
+      if (!$scope.justus.taiteenala) {
+        $scope.justus.taiteenala = [];
+      }
+      if (!containsObject($scope.justus.taiteenala, input, 'taiteenalakoodi')) {
+        $scope.justus.taiteenala.push({
+          taiteenalakoodi: input,
+          jnro: $scope.justus.taiteenala.length + 1
+        });
+      }
+    };
+
     const containsObject = function(array, value, identifier) {
       let elementExists = false;
       array.forEach((item) => {
