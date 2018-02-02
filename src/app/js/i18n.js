@@ -522,5 +522,9 @@ const i18n = {
 
     yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
     no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
-  }
+  },
+  vikailmoitus:
+    { FI: 'Johtuen Opintopolun huoltokatkosta ja tuohon palveluun tehdyistä integraatioista JUSTUS-palvelussa saattaa esiintyä huomattaviaongelmia ajanjaksolla 1.2. kello 16:00 - 6.2. kello 8:00.Emme suosittele tallentamaan tällä ajanjaksolla uusia julkaisutietoja eivätkä julkaisutiedot välity esimerkiksi Juuliin.',
+      SV: 'Johtuen Opintopolun huoltokatkosta ja tuohon palveluun tehdyistä integraatioista JUSTUS-palvelussa saattaa esiintyä huomattaviaongelmia ajanjaksolla 1.2. kello 16:00 - 6.2. kello 8:00.Emme suosittele tallentamaan tällä ajanjaksolla uusia julkaisutietoja eivätkä julkaisutiedot välity esimerkiksi Juuliin.',
+      EN: 'Due to Studyinfo service\'s maintenance break, JUSTUS-service is not working properly between 1st February 4.00 p.m. to 6th February 8.00 a.m. We do not recommend saving any publication information during this time and transferring information to e.g. Juuli service is not possible.' }
 };
