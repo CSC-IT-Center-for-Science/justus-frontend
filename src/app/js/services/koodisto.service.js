@@ -34,7 +34,7 @@ angular.module('KoodistoService', [])
     // VARIABLES
     //
 
-    let baseuri = 'https://virkailija.opintopolku.fi/koodisto-service/rest/json/';
+    let baseuri = 'https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/';
     if (DEMO_ENABLED) {
       baseuri = 'https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/';
     }
