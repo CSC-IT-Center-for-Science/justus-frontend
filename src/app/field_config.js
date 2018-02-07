@@ -724,5 +724,23 @@ const field_default_config = {
     'requiredAmount': 0,
     'pattern': null,
     'subfields': []
+  },
+  'lisatieto': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['E3'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null,
+    'subfields': []
+  },
+  'taidejulkaisulisatieto': {
+    'requiredInPublicationTypes': [],
+    'visibleInPublicationTypes': ['F1', 'F2', 'F3'],
+    'optionalWithFields': [],
+    'requiredWithFields': [],
+    'requiredAmount': 0,
+    'pattern': null,
+    'subfields': []
   }
 };
