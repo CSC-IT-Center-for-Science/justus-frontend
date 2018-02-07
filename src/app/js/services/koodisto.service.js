@@ -36,7 +36,7 @@ angular.module('KoodistoService', [])
 
     let baseuri = 'https://virkailija.opintopolku.fi/koodisto-service/rest/json/';
     if (DEMO_ENABLED) {
-      baseuri = 'https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/';
+      baseuri = 'https://virkailija.testiopintopolku.fi/koodisto-service/rest/json/';
     }
 
     const maxage = 3600000; // 3600000 ms, 1 hour
