@@ -491,7 +491,22 @@ const i18n = {
           SV: 'Webbadressen (t.ex. URN) på den version av publikationen som har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv.',
           EN: 'The website address of the self-archived version of the publication stored in the organisation- or field-specific archive (e.g. URN).'
         },
-        picktip: { FI: 'esim. http://www.theseus.fi/handle/10024/10922', SV: 't.ex. http://www.theseus.fi/handle/10024/10922', EN: 'e.g. http://www.theseus.fi/handle/10024/10922' }
+        picktip: {
+          FI: 'esim. http://www.theseus.fi/handle/10024/10922',
+          SV: 't.ex. http://www.theseus.fi/handle/10024/10922',
+          EN: 'e.g. http://www.theseus.fi/handle/10024/10922'
+        }
+      },
+      lisatieto: {
+        FI: 'Lisätieto',
+        SV: '*SV Lisätieto',
+        EN: '*EN Lisätieto',
+        tooltip: {
+          FI: 'Lorem ipsun lisätieto',
+          SV: '*SV Lorem ipsum lisätieto',
+          EN: '*EN Lorem ipsun lisätieto'
+        },
+        picktip: { FI: 'Kirjoita lisätietoteksti', SV: '*SV Lisätietoteksti', EN: '*EN Lisätietoteksti' }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
       jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
