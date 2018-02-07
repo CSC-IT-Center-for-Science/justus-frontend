@@ -512,9 +512,10 @@ angular.module('JustusController', [])
         APIService.get('julkaisu', $stateParams.id, null, null, true),
         APIService.get('avainsana', $stateParams.id, 'julkaisuid'),
         APIService.get('tieteenala', $stateParams.id, 'julkaisuid'),
+        APIService.get('taiteenala', $stateParams.id, 'julkaisuid'),
         APIService.get('organisaatiotekija', $stateParams.id, 'julkaisuid')
       ])
-      .spread((julkaisu, avainsana, tieteenala, organisaatiotekijat) => {
+      .spread((julkaisu, avainsana, tieteenala, taiteenala, organisaatiotekijat) => {
         $scope.justus = julkaisu;
 
         parseNames($scope.justus.tekijat).map((nameObject) => {
@@ -527,6 +528,7 @@ angular.module('JustusController', [])
         $scope.initializeAvainsanatTags();
 
         $scope.justus.tieteenala = tieteenala;
+        $scope.justus.taiteenala = taiteenala;
 
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
           return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
