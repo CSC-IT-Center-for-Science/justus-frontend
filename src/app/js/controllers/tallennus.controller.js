@@ -119,6 +119,38 @@ angular.module('TallennusController', [])
           });
     };
 
+    const saveLisatieto = (julkaisuId) => {
+      // if no art publication; return
+      if ($scope.justus.lisatieto.length === 0) {
+        return Promise.resolve(true);
+      }
+      return Promise.resolve()
+        .then(() => {
+          if ($scope.justus.id) {
+            return $http({
+              method: 'DELETE',
+              url: `${API_BASE_URL}justus_save.php/lisatieto/julkaisuid/${julkaisuId}`
+            });
+          }
+        })
+        .then(() => {
+          const data = [];
+          $scope.justus.lisatieto.forEach((item) => {
+            data.push({
+              lisatietoteksti: item.lisatietoteksti,
+              lisatietotyyppi: item.lisatietotyyppi,
+              julkaisuid: julkaisuId
+            });
+          });
+          return $http({
+            method: 'POST',
+            url: `${API_BASE_URL}justus_save.php/lisatieto/julkaisuid/${julkaisuId}`,
+            data: data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          });
+        });
+    };
+
     const saveOrganisaatiotekija = function(julkaisuId) {
       return Promise.resolve()
       .then(() => {
@@ -180,7 +212,8 @@ angular.module('TallennusController', [])
           saveAvainsana(julkaisuId),
           saveTieteenala(julkaisuId),
           saveOrganisaatiotekija(julkaisuId),
-          saveTaiteenala(julkaisuId)
+          saveTaiteenala(julkaisuId),
+          saveLisatieto(julkaisuId)
 
         ]);
       })
