@@ -492,11 +492,21 @@ angular.module('JustusController', [])
       if (!$scope.justus.tieteenala) {
         $scope.justus.tieteenala = [];
       }
+
+      if (!$scope.justus.taiteenala) {
+        $scope.justus.taiteenala = [];
+      }
+
+      if (!$scope.justus.lisatieto) {
+        $scope.justus.lisatieto = [];
+      }
+
       if (!$scope.justus.organisaatiotekija) {
         $scope.justus.organisaatiotekija = [{
           alayksikko: [{ alayksikko: '' }]
         }];
       }
+
     };
 
     const populatePublicationForm = () => {
