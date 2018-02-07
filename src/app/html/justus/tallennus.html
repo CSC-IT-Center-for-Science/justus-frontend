@@ -176,6 +176,19 @@
         </td>
       </tr>
 
+      <!-- Julkaisun taiteenala -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.taiteenala[lang] }}</td>
+        <td>
+          <div data-ng-repeat="i in justus.taiteenala">
+            {{i.jnro}}.&nbsp;
+            <span data-ng-bind="i.taiteenalakoodi"></span>
+            <span data-ng-bind="getCode('taiteenalat',i.taiteenalakoodi).selite[lang]"></span>
+          </div>
+        </td>
+      </tr>
+
       <!-- Kansainvälinen yhteisjulkaisu -->
       <tr>
         <td class="condensed">{{ i18n.content.form.kansainvalinenyhteisjulkaisu[lang] }}</td>
