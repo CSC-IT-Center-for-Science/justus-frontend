@@ -189,6 +189,16 @@
         </td>
       </tr>
 
+      <!-- Taidealan tyyppikategoria -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.taidealantyyppikategoria[lang] }}</td>
+        <td>
+          <div data-ng-repeat="i in justus.lisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}">
+            <span data-ng-bind="i.lisatietoteksti+' '+getCode('taidealantyypit',i.lisatietoteksti).selite[lang]"></span>
+          </div>
+        </td>
+      </tr>
+
       <!-- Kansainvälinen yhteisjulkaisu -->
       <tr>
         <td class="condensed">{{ i18n.content.form.kansainvalinenyhteisjulkaisu[lang] }}</td>
