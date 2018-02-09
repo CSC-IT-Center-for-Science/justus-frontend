@@ -547,6 +547,9 @@ angular.module('JustusController', [])
       if (!$scope.justus.tempLisatieto.tapahtuma) {
         $scope.justus.tempLisatieto.tapahtuma = { 'lisatietoteksti': '', 'lisatietotyyppi': 'tapahtuma' };
       }
+      if (!$scope.justus.tempLisatieto.julkaisuvuosi) {
+        $scope.justus.tempLisatieto.julkaisuvuosi = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkaisuvuodenlisatieto' };
+      }
     };
 
     const populatePublicationForm = () => {

@@ -41,6 +41,38 @@
     </div>
   </div>
 
+  <!-- Kenttä: Julkaisuvuodenlisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('julkaisuvuodenlisatieto')" id="julkaisuvuodenlisatieto">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuodenlisatieto[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.julkaisuvuodenlisatieto.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.julkaisuvuodenlisatieto.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('julkaisuvuodenlisatieto')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_julkaisuvuodenlisatieto" data-ng-required="requiredHighlight && !isValid('julkaisuvuodenlisatieto')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.julkaisuvuosi.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('julkaisuvuodenlisatieto')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Kenttä: Julkaisun nimi -->
   <div class="row form-group" 
     id="julkaisunnimiGroup" 
