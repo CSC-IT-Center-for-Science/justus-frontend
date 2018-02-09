@@ -406,6 +406,22 @@ angular.module('JustusController', [])
       }
     };
 
+    $scope.useTaidelanTyyppi = function(input) {
+      if (!$scope.justus.lisatieto) {
+        $scope.justus.lisatieto = [];
+      }
+
+      //TODO: Ensure that maximun amount is five
+
+      if (!containsObject($scope.justus.lisatieto, input, 'lisatietoteksti')) {
+        $scope.justus.lisatieto.push({
+          lisatietoteksti: input,
+          lisatietotyyppi: 'taidealantyyppikategoria'
+        });
+      }
+
+    };
+
     const containsObject = function(array, value, identifier) {
       let elementExists = false;
       array.forEach((item) => {

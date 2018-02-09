@@ -983,6 +983,66 @@
         </div>
   </div>
 
+  <!-- Taiteenalan tyyppikategoria-->
+  <!--maksimimäärä viisi tyyppiä-->
+  <div class="row form-group"
+       id="taidealaTyyppiGroup"
+       data-ng-if="isFieldVisible('taidealantyyppikategoria')">
+    <div class="col-sm-4 col-xs-12">
+       <label class="control-label"
+              data-ng-bind="i18n.content.form.taidealantyyppikategoria[lang]"
+       ></label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'"
+         data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.taidealantyyppikategoria.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.taidealantyyppikategoria.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('taidealantyyppikategoria')" class="required-star">*</span>
+    </div>
+    <div class="col-xs-10 col-sm-8 justus-data">
+    <div data-ng-repeat="i in justus.lisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}" class="row">
+      <div class="col-xs-10">
+        <div class="form-group">
+          <input type="text" ng-disabled="true"
+          class="form-control"
+          data-ng-model="lab_taidealantyyppikategoria$index"
+          data-ng-value="i.lisatietoteksti+' '+getCode('taidealantyypit',i.lisatietoteksti).selite[lang]">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
+        <div class="col-xs-2">
+          <button class="btn btn-primary m-b"
+          data-ng-click="justus.lisatieto.splice($index, 1)"
+          title="{{i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]">
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-10">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+          <ui-select data-ng-model="taidealantyyppi.selected"
+                     on-select="useTaidelanTyyppi($select.selected.arvo)"
+                     theme="bootstrap"
+          >
+          <ui-select-match class="ui-select-match"
+                           data-ng-value="justus.taidealantyyppi"
+                           placeholder="Valistse taidealan tyyppikategoria">
+          {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+          </ui-select-match>
+          <ui-select-choices repeat="code in codes.taidealantyypit | orderBy: 'arvo' | filter: $select.search">
+          {{code.arvo}} {{code.selite[lang]}}
+          </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <!-- Kenttä: Kansainvälinen yhteisjulkaisu -->
   <div class="row form-group" 
     id="kansainvalinenyhteisjulkaisuGroup" 
