@@ -366,6 +366,16 @@ const i18n = {
         },
         picktip: { FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland' }
       },
+      tapahtumanlisatieto: {
+        FI: 'Tapahtuman lisätieto',
+        SV: '*SV Tapahtuman lisätieto',
+        EN: '*EN TApahtuman lisätieto',
+        tooltip: {
+          FI: 'Vapaaehtoinen tapahtuman lisätietoteksti',
+          SV: '*SV Vapaaehtoinen tapahtuman lisätietoteksti',
+          EN: '*EN Vapaaehtoinen tapahtuman lisätietoteksti'
+        }
+      },
       tieteenala: {
         FI: 'Julkaisun tieteenalat',
         SV: 'Publikationens vetenskapsområde',
