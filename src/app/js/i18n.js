@@ -393,6 +393,19 @@ const i18n = {
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
       },
+      taidealantyyppikategoria: {
+        FI: 'Taidealan tyyppikategoriat',
+        SV: '*SV Taidealan tyyppikategoriat',
+        EN: '*EN Taidealan tyyppikategoriat',
+        tooltip: {
+          FI: 'Lorem ipsum',
+          SV: '*SV Lorem ipsum',
+          EN: '*EN Lorem ipsum'
+        },
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
+      },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
         SV: 'Internationell sampublikation',
