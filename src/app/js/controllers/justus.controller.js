@@ -374,6 +374,23 @@ angular.module('JustusController', [])
       }
     };
 
+    $scope.intializeLisatiedot = function(lisatieto) {
+      angular.forEach(lisatieto, function(value, key) {
+        if (value.lisatietotyyppi === 'tapahtuma') {
+          $scope.justus.tempLisatieto.tapahtuma = value;
+        }
+        if (value.lisatietotyyppi === 'taidealantyyppikategoria') {
+          $scope.justus.lisatieto.push(value);
+        }
+        // if (value.lisatietotyyppi === 'julkistamispaikkakunta') {
+        //   $scope.justus.tempLisatieto.julkistamispaikkakunta = value;
+        // }
+        // if (value.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
+        //   $scope.justus.tempLisatieto.julkaisuvuodenlisatieto = value;
+        // }
+      });
+    };
+
     $scope.useTieteenala = function(input) {
       if (input === null) return;
       if (!$scope.justus.tieteenala) {
@@ -563,7 +580,10 @@ angular.module('JustusController', [])
 
         $scope.justus.tieteenala = tieteenala;
         $scope.justus.taiteenala = taiteenala;
-        $scope.justus.lisatieto = lisatieto;
+
+        $scope.justus.tempLisatieto = {};
+        $scope.justus.lisatieto = [];
+        $scope.intializeLisatiedot(lisatieto);
 
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {
           return APIService.get('alayksikko', organisaatiotekija.id, 'organisaatiotekijaid')
