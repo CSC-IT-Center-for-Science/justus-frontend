@@ -503,7 +503,7 @@ angular.module('JustusController', [])
     // - parameter input is optional
     let fillMissingJustusLists = function() {
       if (!$scope.justus.avainsana) {
-        $scope.justus.avainsana = [{ avainsana: '' }];
+        $scope.justus.avainsana = [{avainsana: ''}];
       }
       if (!$scope.justus.tieteenala) {
         $scope.justus.tieteenala = [];
@@ -519,10 +519,17 @@ angular.module('JustusController', [])
 
       if (!$scope.justus.organisaatiotekija) {
         $scope.justus.organisaatiotekija = [{
-          alayksikko: [{ alayksikko: '' }]
+          alayksikko: [ { alayksikko: '' } ]
         }];
       }
 
+      // Initialize lisatieto fields
+      if (!$scope.justus.tempLisatieto) {
+        $scope.justus.tempLisatieto = {};
+      }
+      if (!$scope.justus.tempLisatieto.tapahtuma) {
+        $scope.justus.tempLisatieto.tapahtuma = { 'lisatietoteksti': '', 'lisatietotyyppi': 'tapahtuma' };
+      }
     };
 
     const populatePublicationForm = () => {
