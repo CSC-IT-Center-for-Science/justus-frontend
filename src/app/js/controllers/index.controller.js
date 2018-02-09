@@ -72,6 +72,9 @@ angular.module('IndexController', [])
     !$scope.codes.taiteenalat && KoodistoService.getKoodisto('taiteenala').then(function(o) {
       $scope.codes.taiteenalat = o;
     });
+    !$scope.codes.taidealantyypit && KoodistoService.getKoodisto('taidealantyyppikategoria').then(function(o) {
+      $scope.codes.taidealantyypit = o;
+    });
 
     // ugly hack to get ALL alatieteenalas in one list
     $scope.getAlltieteenalat = function() {
