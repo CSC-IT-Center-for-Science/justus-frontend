@@ -130,6 +130,16 @@ const i18n = {
         },
         picktip: { FI: 'esim. 2017', SV: 't.ex. 2017', EN: 'e.g. 2017' }
       },
+      julkaisuvuodenlisatieto: {
+        FI: 'Julkaisuvuoden lisätieto',
+        SV: '*SV Julkaisuvuoden lisätieto',
+        EN: '*EN Julkaisuvuoden lisätieto',
+        tooltip: {
+          FI: 'Valinnainen julkaisuvuoden lisätieto',
+          SV: '*SV Valinnainen julkaisuvuoden lisätieto',
+          EN: '*EN Valinnainen julkaisuvuoden lisätieto'
+        }
+      },
       julkaisunnimi: {
         FI: 'Julkaisun nimi',
         SV: 'Publikationens namn/titel',
