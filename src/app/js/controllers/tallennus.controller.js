@@ -197,6 +197,14 @@ angular.module('TallennusController', [])
       delete publication.id;
       publication.modified = new Date();
 
+      // Combine lisatiedot to one array
+      angular.forEach($scope.justus.tempLisatieto, function(value, key){
+        $scope.justus.lisatieto.push({
+          lisatietoteksti: value.lisatietoteksti,
+          lisatietotyyppi: value.lisatietotyyppi
+        });
+      });
+
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
       let julkaisuId = null;
