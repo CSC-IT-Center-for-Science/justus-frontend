@@ -385,9 +385,9 @@ angular.module('JustusController', [])
         // if (value.lisatietotyyppi === 'julkistamispaikkakunta') {
         //   $scope.justus.tempLisatieto.julkistamispaikkakunta = value;
         // }
-        // if (value.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
-        //   $scope.justus.tempLisatieto.julkaisuvuodenlisatieto = value;
-        // }
+        if (value.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
+          $scope.justus.tempLisatieto.julkaisuvuosi = value;
+        }
       });
     };
 
