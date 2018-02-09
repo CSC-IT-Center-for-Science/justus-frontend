@@ -15,6 +15,13 @@
         <td>{{ justus.julkaisuvuosi }}</td>
       </tr>
 
+      <!-- Julkaisuvuoden lisätieto -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.julkaisuvuodenlisatieto[lang] }}</td>
+        <td>{{ justus.tempLisatieto.julkaisuvuosi.lisatietoteksti }}</td>
+      </tr>
+
       <!-- Julkaisun nimi -->
       <tr>
         <td class="condensed">{{ i18n.content.form.julkaisunnimi[lang] }}</td>
