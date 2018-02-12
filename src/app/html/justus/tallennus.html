@@ -171,6 +171,13 @@
         <td>{{ justus.julkaisumaa }} {{ getCode('maatjavaltiot2', justus.julkaisumaa).selite[lang] }}</td>
       </tr>
 
+      <!-- Julkistamispaikkakunta -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.julkistamispaikkakunta[lang] }}</td>
+        <td>{{ justus.tempLisatieto.julkistamispaikkakunta.lisatietoteksti }}</td>
+      </tr>
+
       <!-- Tapahtuman lisätieto -->
       <!-- Show this field only when art publication is selected -->
       <tr ng-if="justus.taiteenala.length > 0">
