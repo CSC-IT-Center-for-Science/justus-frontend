@@ -544,11 +544,15 @@ angular.module('JustusController', [])
       if (!$scope.justus.tempLisatieto) {
         $scope.justus.tempLisatieto = {};
       }
+
       if (!$scope.justus.tempLisatieto.tapahtuma) {
         $scope.justus.tempLisatieto.tapahtuma = { 'lisatietoteksti': '', 'lisatietotyyppi': 'tapahtuma' };
       }
       if (!$scope.justus.tempLisatieto.julkaisuvuosi) {
         $scope.justus.tempLisatieto.julkaisuvuosi = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkaisuvuodenlisatieto' };
+      }
+      if (!$scope.justus.tempLisatieto.julkistamispaikkakunta) {
+        $scope.justus.tempLisatieto.julkistamispaikkakunta = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkistamispaikkakunta' };
       }
     };
 
