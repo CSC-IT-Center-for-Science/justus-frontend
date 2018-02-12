@@ -866,8 +866,40 @@
     </div>
   </div>
 
+  <!-- Kenttä: Julkistamispaikkakunta -->
+  <div class="row form-group" data-ng-if="isFieldVisible('julkistamispaikkakunta')" id="julkistamispaikkakunta">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.julkistamispaikkakunta[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.julkistamispaikkakunta.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.julkistamispaikkakunta.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('julkistamispaikkakunta')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="julkistamispaikkakunta" data-ng-required="requiredHighlight && !isValid('julkistamispaikkakunta')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.julkistamispaikkakunta.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('julkistamispaikkakunta')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Kenttä: Tapahtuman lisätieto -->
-  <div class="row form-group" data-ng-if="isFieldVisible('tapahtumalisatieto')" id="tapahtumalisatieto">
+  <div class="row form-group" data-ng-if="isFieldVisible('tapahtumanlisatieto')" id="tapahtumalisatieto">
     <div class="col-sm-4 col-xs-12">
       <label class="control-label" data-ng-bind="i18n.content.form.tapahtumanlisatieto[lang]">
       </label>
