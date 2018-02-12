@@ -376,10 +376,20 @@ const i18n = {
         },
         picktip: { FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland' }
       },
+      julkistamispaikkakunta: {
+        FI: 'Julkistamispaikkakunta',
+        SV: '*SV Julkistamispaikkakunta',
+        EN: '*EN Julkistamispaikkakunta',
+        tooltip: {
+          FI: 'Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
+          SV: '*SV Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
+          EN: '*EN Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti'
+        }
+      },
       tapahtumanlisatieto: {
-        FI: 'Tapahtuman lisätieto',
-        SV: '*SV Tapahtuman lisätieto',
-        EN: '*EN TApahtuman lisätieto',
+        FI: 'Tapahtuma',
+        SV: '*SV Tapahtuma',
+        EN: '*EN Tapahtuma',
         tooltip: {
           FI: 'Vapaaehtoinen tapahtuman lisätietoteksti',
           SV: '*SV Vapaaehtoinen tapahtuman lisätietoteksti',
