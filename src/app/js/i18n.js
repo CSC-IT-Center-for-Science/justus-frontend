@@ -471,6 +471,16 @@ const i18n = {
         },
         picktip: { FI: 'esim. 10.1111/j.1398-9995.2011.02728.x', SV: 't.ex. 10.1111/j.1398-9995.2011.02728.x', EN: 'e.g. 10.1111/j.1398-9995.2011.02728.x' }
       },
+      muutunniste: {
+        FI: 'Muu tunniste',
+        SV: '*SV Muu tunniste',
+        EN: '*EN Muu tunniste',
+        tooltip: {
+          FI: 'Muu tunniste lorem impsum',
+          SV: '*SV Muu tunniste loerm ipsum',
+          EN: '*EN Muu tunniste lorem ipsum'
+        }
+      },
       pysyvaverkkoosoite: {
         FI: 'Pysyvä verkko-osoite',
         SV: 'Bestående webbadress',

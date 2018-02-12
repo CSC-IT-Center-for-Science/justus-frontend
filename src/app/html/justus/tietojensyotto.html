@@ -1258,6 +1258,38 @@
     </div>
   </div>
 
+  <!-- Kenttä: Muu tunniste lisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('muutunniste')" id="muutunniste">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.muutunniste[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.muutunniste.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.muutunniste.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('muutunniste')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_lisatieto" data-ng-required="requiredHighlight && !isValid('muutunniste')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.muutunniste.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('muutunniste')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Kenttä: Pysyvä verkko-osoite -->
   <div class="row form-group" 
     id="pysyvaverkkoosoiteGroup" 

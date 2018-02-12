@@ -388,6 +388,9 @@ angular.module('JustusController', [])
         if (value.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
           $scope.justus.tempLisatieto.julkaisuvuosi = value;
         }
+        if (value.lisatietotyyppi === 'muutunniste') {
+          $scope.justus.tempLisatieto.muutunniste = value;
+        }
       });
     };
 
@@ -553,6 +556,9 @@ angular.module('JustusController', [])
       }
       if (!$scope.justus.tempLisatieto.julkistamispaikkakunta) {
         $scope.justus.tempLisatieto.julkistamispaikkakunta = { 'lisatietoteksti': '', 'lisatietotyyppi': 'julkistamispaikkakunta' };
+      }
+      if (!$scope.justus.tempLisatieto.muutunniste) {
+        $scope.justus.tempLisatieto.muutunniste = { 'lisatietoteksti': '', 'lisatietotyyppi': 'muutunniste' };
       }
     };
 
