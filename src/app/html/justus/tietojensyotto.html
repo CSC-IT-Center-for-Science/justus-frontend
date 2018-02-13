@@ -1098,7 +1098,7 @@
       <span data-ng-if="isFieldRequired('taidealantyyppikategoria')" class="required-star">*</span>
     </div>
     <div class="col-xs-10 col-sm-8 justus-data">
-    <div data-ng-repeat="i in justus.lisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}" class="row">
+    <div data-ng-repeat="i in justus.taidelisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}" class="row">
       <div class="col-xs-10">
         <div class="form-group">
           <input type="text" ng-disabled="true"
@@ -1110,7 +1110,7 @@
       </div>
         <div class="col-xs-2">
           <button class="btn btn-primary m-b"
-          data-ng-click="justus.lisatieto.splice($index, 1)"
+          data-ng-click="justus.taidelisatieto.splice($index, 1)"
           title="{{i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]}}"
           data-ng-bind="i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]">
           </button>
@@ -1119,13 +1119,13 @@
       <div class="row">
         <div class="col-xs-10">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
-          <ui-select data-ng-model="taidealantyyppi.selected"
+          <ui-select data-ng-model="taidelisatieto.selected"
                      on-select="useTaidelanTyyppi($select.selected.arvo)"
                      theme="bootstrap"
           >
           <ui-select-match class="ui-select-match"
-                           data-ng-value="justus.taidealantyyppi"
-                           placeholder="Valistse taidealan tyyppikategoria">
+                           data-ng-value="justus.taidelisatieto"
+                           placeholder="{{i18n.content.form.taidealantyyppikategoria.picktip[lang]}}">
           {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
           </ui-select-match>
           <ui-select-choices repeat="code in codes.taidealantyypit | orderBy: 'arvo' | filter: $select.search">
@@ -1480,8 +1480,9 @@
          data-ng-model="req_lisatieto" data-ng-required="requiredHighlight && !isValid('lisatieto')">
       <div class="row">
         <div class="col-xs-10">
-          <textarea type="text" class="form-control"
-                 data-ng-model="justus.lisatieto[0].lisatietoteksti"
+          <textarea type="text" class="form-control vertical-resize"
+                 maxlength="1000"
+                 data-ng-model="justus.lisatieto"
                  placeholder="{{i18n.content.form.lisatieto.picktip[lang]}}">
           </textarea>
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>

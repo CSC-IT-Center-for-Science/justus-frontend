@@ -380,7 +380,7 @@ angular.module('JustusController', [])
           $scope.justus.tempLisatieto.tapahtuma = value;
         }
         if (value.lisatietotyyppi === 'taidealantyyppikategoria') {
-          $scope.justus.lisatieto.push(value);
+          $scope.justus.taidelisatieto.push(value);
         }
         if (value.lisatietotyyppi === 'julkistamispaikkakunta') {
           $scope.justus.tempLisatieto.julkistamispaikkakunta = value;
@@ -427,19 +427,18 @@ angular.module('JustusController', [])
     };
 
     $scope.useTaidelanTyyppi = function(input) {
-      if (!$scope.justus.lisatieto) {
-        $scope.justus.lisatieto = [];
+      if (!$scope.justus.taidelisatieto) {
+        $scope.justus.taidelisatieto = [];
       }
 
-      //TODO: Ensure that maximun amount is five
+      // TODO: Ensure that maximum amount is five
 
-      if (!containsObject($scope.justus.lisatieto, input, 'lisatietoteksti')) {
-        $scope.justus.lisatieto.push({
+      if (!containsObject($scope.justus.taidelisatieto, input, 'lisatietoteksti') && $scope.justus.taidelisatieto.length < 5) {
+        $scope.justus.taidelisatieto.push({
           lisatietoteksti: input,
           lisatietotyyppi: 'taidealantyyppikategoria'
         });
       }
-
     };
 
     const containsObject = function(array, value, identifier) {
@@ -523,7 +522,7 @@ angular.module('JustusController', [])
     // - parameter input is optional
     let fillMissingJustusLists = function() {
       if (!$scope.justus.avainsana) {
-        $scope.justus.avainsana = [{avainsana: ''}];
+        $scope.justus.avainsana = [{ avainsana: '' }];
       }
       if (!$scope.justus.tieteenala) {
         $scope.justus.tieteenala = [];
@@ -533,8 +532,8 @@ angular.module('JustusController', [])
         $scope.justus.taiteenala = [];
       }
 
-      if (!$scope.justus.lisatieto) {
-        $scope.justus.lisatieto = [];
+      if (!$scope.justus.taidelisatieto) {
+        $scope.justus.taidelisatieto = [];
       }
 
       if (!$scope.justus.organisaatiotekija) {
@@ -595,7 +594,7 @@ angular.module('JustusController', [])
         $scope.justus.taiteenala = taiteenala;
 
         $scope.justus.tempLisatieto = {};
-        $scope.justus.lisatieto = [];
+        $scope.justus.taidelisatieto = [];
         $scope.intializeLisatiedot(lisatieto);
 
         return Promise.map(organisaatiotekijat, (organisaatiotekija) => {

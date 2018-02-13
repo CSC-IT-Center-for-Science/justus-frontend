@@ -121,7 +121,7 @@ angular.module('TallennusController', [])
 
     const saveLisatieto = (julkaisuId) => {
       // if no art publication; return
-      if ($scope.justus.lisatieto.length === 0) {
+      if ($scope.justus.taidelisatieto.length === 0) {
         return Promise.resolve(true);
       }
       return Promise.resolve()
@@ -135,7 +135,7 @@ angular.module('TallennusController', [])
         })
         .then(() => {
           const data = [];
-          $scope.justus.lisatieto.forEach((item) => {
+          $scope.justus.taidelisatieto.forEach((item) => {
             data.push({
               lisatietoteksti: item.lisatietoteksti,
               lisatietotyyppi: item.lisatietotyyppi,
@@ -146,7 +146,7 @@ angular.module('TallennusController', [])
             method: 'POST',
             url: `${API_BASE_URL}justus_save.php/lisatieto/julkaisuid/${julkaisuId}`,
             data: data,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
           });
         });
     };
@@ -199,13 +199,13 @@ angular.module('TallennusController', [])
 
       // Combine lisatiedot to one array
       angular.forEach($scope.justus.tempLisatieto, function(value, key){
-        if(value.lisatietoteksti !== '') {
-          $scope.justus.lisatieto.push({
+        if (value.lisatietoteksti !== '') {
+          $scope.justus.taidelisatieto.push({
             lisatietoteksti: value.lisatietoteksti,
             lisatietotyyppi: value.lisatietotyyppi
           });
-          }
-        });
+        }
+      });
 
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
@@ -241,6 +241,6 @@ angular.module('TallennusController', [])
           JustusService.clearPublicationForm();
         }
       });
-    };
+     };
   }
 ]);
