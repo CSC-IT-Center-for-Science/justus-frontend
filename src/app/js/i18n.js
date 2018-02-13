@@ -434,7 +434,7 @@ const i18n = {
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
+        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: '*SV valitse taiteenalan tyyppikategoria', EN: '*EN valitse taiteenalan tyyppikategoria' }
       },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
