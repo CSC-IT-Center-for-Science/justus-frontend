@@ -39,6 +39,7 @@ angular.module('APIService', [])
             { name: 'avoinsaatavuus', default: '' },
             { name: 'julkaisurinnakkaistallennettu', default: '' },
             { name: 'rinnakkaistallennetunversionverkkoosoite', default: '' },
+            { name: 'lisatieto', default: '' },
             { name: 'jufotunnus', default: '' },
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },

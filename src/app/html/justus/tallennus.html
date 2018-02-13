@@ -269,16 +269,12 @@
         <td>{{ justus.rinnakkaistallennetunversionverkkoosoite }}</td>
       </tr>
 
-      <!-- Lisätieto kentät -->
+      <!-- Lisätieto kenttä -->
       <tr>
         <td class="condensed">{{ i18n.content.form.lisatieto[lang] }}</td>
-        <td>
-          <div data-ng-repeat="i in justus.lisatieto">
-            <span ng-if="i.lisatietotyyppi && i.lisatietotyyppi.length > 0">{{i.lisatietotyyppi}} |</span>
-            <span>{{i.lisatietoteksti}}</span>
-          </div>
-        </td>
+        <td>{{ justus.lisatieto }}</td>
       </tr>
+
     </tbody>
   </table>
 
