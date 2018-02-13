@@ -207,6 +207,16 @@ angular.module('TallennusController', [])
         }
       });
 
+      // Loop through tieteenala array and add order number
+      angular.forEach($scope.justus.tieteenala, function(value, key) {
+        $scope.justus.tieteenala[key].jnro = key + 1;
+      });
+
+      // Loop through taiteenala array and add order number
+      angular.forEach($scope.justus.taiteenala, function(value, key) {
+        $scope.justus.taiteenala[key].jnro = key + 1;
+      });
+
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
       let julkaisuId = null;

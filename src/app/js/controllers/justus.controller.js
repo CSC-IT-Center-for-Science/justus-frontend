@@ -409,7 +409,7 @@ angular.module('JustusController', [])
       else if (!containsObject($scope.justus.tieteenala, input, 'tieteenalakoodi')) {
         $scope.justus.tieteenala.push({
           tieteenalakoodi: input,
-          jnro: $scope.justus.tieteenala.length + 1
+          jnro: ''
         });
       }
     };
@@ -418,13 +418,14 @@ angular.module('JustusController', [])
       if (!$scope.justus.taiteenala) {
         $scope.justus.taiteenala = [];
       }
+
       if (!containsObject($scope.justus.taiteenala, input, 'taiteenalakoodi')) {
         $scope.justus.taiteenala.push({
           taiteenalakoodi: input,
-          jnro: $scope.justus.taiteenala.length + 1
+          jnro: ''
         });
       }
-    };
+  };
 
     $scope.useTaidelanTyyppi = function(input) {
       if (!$scope.justus.taidelisatieto) {

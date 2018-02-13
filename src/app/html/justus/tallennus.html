@@ -190,7 +190,7 @@
         <td class="condensed">{{ i18n.content.form.tieteenala[lang] }}</td>
         <td>
           <div data-ng-repeat="i in justus.tieteenala">
-            {{i.jnro}}.&nbsp;
+            {{$index + 1}}.&nbsp;
             <span data-ng-bind="i.tieteenalakoodi"></span>
             <span data-ng-bind="getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"></span>
           </div>
@@ -203,7 +203,7 @@
         <td class="condensed">{{ i18n.content.form.taiteenala[lang] }}</td>
         <td>
           <div data-ng-repeat="i in justus.taiteenala">
-            {{i.jnro}}.&nbsp;
+            <span>{{$index + 1}}.&nbsp;</span>
             <span data-ng-bind="i.taiteenalakoodi"></span>
             <span data-ng-bind="getCode('taiteenalat',i.taiteenalakoodi).selite[lang]"></span>
           </div>
