@@ -19,12 +19,11 @@ angular.module('TarkastaController', [])
     $scope.csvExportHeader = [
       'Julkaisun ID',
       'Organisaatiotunnus',
-      'Vuosi',
+      'Julkaisuvuosi',
       'Julkaisutyyppi',
       'Julkaisun tekijöiden lukumäärä',
       'Kansainvälinen yhteisjulkaisu',
       'Julkaisun nimi',
-      'Julkaisuvuosi',
       'Volyymi',
       'Numero',
       'Sivut',
@@ -34,6 +33,7 @@ angular.module('TarkastaController', [])
       'ISSN',
       'ISBN',
       'Emojulkaisun nimi',
+      'Emojulkaisun toimittajat',
       'Kustantaja',
       'Julkaisun kustannuspaikka',
       'Julkaisumaa',
@@ -42,6 +42,7 @@ angular.module('TarkastaController', [])
       'Pysyvä verkko-osoite',
       'Rinnakkaistallennetun version verkko-osoite',
       'Avoin saatavuus',
+      'Lisätieto',
       'Avainsanat'
     ];
 
@@ -51,14 +52,13 @@ angular.module('TarkastaController', [])
         return {
           'Julkaisun ID': publication.id,
           'Organisaatiotunnus': publication.organisaatiotunnus,
-          'Vuosi': publication.julkaisuvuosi,
+          'Julkaisuvuosi': publication.julkaisuvuosi,
           'Julkaisutyyppi': publication.julkaisutyyppi,
           // Todo add tieteenalat
           // Todo add alayksikko
           'Julkaisun tekijöiden lukumäärä': publication.julkaisuntekijoidenlukumaara,
           'Kansainvälinen yhteisjulkaisu': publication.kansainvalinenyhteisjulkaisu,
           'Julkaisun nimi': publication.julkaisunnimi,
-          'Julkaisuvuosi': publication.julkaisuvuosi,
           'Volyymi': publication.volyymi,
           'Numero': publication.numero,
           'Sivut': publication.sivut,
@@ -77,6 +77,7 @@ angular.module('TarkastaController', [])
           'Pysyvä verkko-osoite': publication.pysyvaverkkoosoite,
           'Rinnakkaistallennetun version verkko-osoite': publication.rinnakkaistallennetunversionverkkoosoite,
           'Avoin saatavuus': publication.avoinsaatavuus,
+          'Lisätieto': publication.lisatieto,
           'Avainsanat': publication.avainsanat
         };
       })
