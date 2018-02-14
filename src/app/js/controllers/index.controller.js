@@ -59,11 +59,21 @@ angular.module('IndexController', [])
     });
     !$scope.codes.julkaisutyypit && KoodistoService.getLuokitus('julkaisunpaaluokka').then(function(o) {
       $scope.codes.julkaisutyypit = o;
+
       angular.forEach($scope.codes.julkaisutyypit, function(aobj, akey) {
         KoodistoService.getAlatyypit('julkaisunpaaluokka', aobj.arvo).then(function (o) {
           aobj.alatyypit = o;
         });
       });
+    });
+    !$scope.codes.julkaisuntekijanrooli && KoodistoService.getKoodisto('julkaisuntekijanrooli').then(function(o) {
+      $scope.codes.julkaisuntekijanrooli = o;
+    });
+    !$scope.codes.taiteenalat && KoodistoService.getKoodisto('taiteenala').then(function(o) {
+      $scope.codes.taiteenalat = o;
+    });
+    !$scope.codes.taidealantyypit && KoodistoService.getKoodisto('taidealantyyppikategoria').then(function(o) {
+      $scope.codes.taidealantyypit = o;
     });
 
     // ugly hack to get ALL alatieteenalas in one list

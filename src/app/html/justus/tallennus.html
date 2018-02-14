@@ -15,6 +15,13 @@
         <td>{{ justus.julkaisuvuosi }}</td>
       </tr>
 
+      <!-- Julkaisuvuoden lisätieto -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.julkaisuvuodenlisatieto[lang] }}</td>
+        <td>{{ justus.tempLisatieto.julkaisuvuosi.lisatietoteksti }}</td>
+      </tr>
+
       <!-- Julkaisun nimi -->
       <tr>
         <td class="condensed">{{ i18n.content.form.julkaisunnimi[lang] }}</td>
@@ -42,6 +49,10 @@
             {{ justus.organisaatiotekija[$index].etunimet }}
             <div data-ng-if="justus.organisaatiotekija[$index].orcid && justus.organisaatiotekija[$index].orcid.length > 0">
               {{ justus.organisaatiotekija[$index].orcid }}
+            </div>
+            <div data-ng-if="justus.organisaatiotekija[$index].rooli && justus.organisaatiotekija[$index].rooli.length > 0">
+              <span data-ng-bind="justus.organisaatiotekija[$index].rooli"></span>
+              <span data-ng-bind="getCode('julkaisuntekijanrooli',justus.organisaatiotekija[$index].rooli).selite[lang]"></span>
             </div>
             <div data-ng-if="justus.organisaatiotekija.length > 0 && justus.organisaatiotekija[0].alayksikko.length > 0">
               <span data-ng-repeat="a in justus.organisaatiotekija[$index].alayksikko track by $index">
@@ -160,14 +171,51 @@
         <td>{{ justus.julkaisumaa }} {{ getCode('maatjavaltiot2', justus.julkaisumaa).selite[lang] }}</td>
       </tr>
 
+      <!-- Julkistamispaikkakunta -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.julkistamispaikkakunta[lang] }}</td>
+        <td>{{ justus.tempLisatieto.julkistamispaikkakunta.lisatietoteksti }}</td>
+      </tr>
+
+      <!-- Tapahtuman lisätieto -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+          <td class="condensed">{{ i18n.content.form.tapahtumanlisatieto[lang] }}</td>
+          <td>{{ justus.tempLisatieto.tapahtuma.lisatietoteksti }}</td>
+      </tr>
+
       <!-- Julkaisun tieteenala -->
       <tr>
         <td class="condensed">{{ i18n.content.form.tieteenala[lang] }}</td>
         <td>
           <div data-ng-repeat="i in justus.tieteenala">
-            {{i.jnro}}.&nbsp;
+            {{$index + 1}}.&nbsp;
             <span data-ng-bind="i.tieteenalakoodi"></span>
             <span data-ng-bind="getCode('tieteenalat',i.tieteenalakoodi).selite[lang]"></span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Julkaisun taiteenala -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.taiteenala[lang] }}</td>
+        <td>
+          <div data-ng-repeat="i in justus.taiteenala">
+            <span>{{$index + 1}}.&nbsp;</span>
+            <span data-ng-bind="i.taiteenalakoodi"></span>
+            <span data-ng-bind="getCode('taiteenalat',i.taiteenalakoodi).selite[lang]"></span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Taidealan tyyppikategoria -->
+      <tr ng-if="justus.taiteenala.length > 0">
+        <td class="condensed">{{ i18n.content.form.taidealantyyppikategoria[lang] }}</td>
+        <td>
+          <div data-ng-repeat="i in justus.lisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}">
+            <span data-ng-bind="i.lisatietoteksti+' '+getCode('taidealantyypit',i.lisatietoteksti).selite[lang]"></span>
           </div>
         </td>
       </tr>
@@ -188,6 +236,13 @@
       <tr>
         <td class="condensed">{{ i18n.content.form.doitunniste[lang] }}</td>
         <td>{{ justus.doitunniste }}</td>
+      </tr>
+
+      <!-- Muu tunniste lisätieto -->
+      <!-- Show this field only when art publication is selected -->
+      <tr ng-if="justus.taiteenala.length > 0">
+          <td class="condensed">{{ i18n.content.form.muutunniste[lang] }}</td>
+          <td>{{ justus.tempLisatieto.muutunniste.lisatietoteksti }}</td>
       </tr>
 
       <!-- Pysyvä verkko-osoite -->
@@ -212,6 +267,12 @@
       <tr>
         <td class="condensed">{{ i18n.content.form.rinnakkaistallennetunversionverkkoosoite[lang] }}</td>
         <td>{{ justus.rinnakkaistallennetunversionverkkoosoite }}</td>
+      </tr>
+
+      <!-- Lisätieto kenttä -->
+      <tr>
+        <td class="condensed">{{ i18n.content.form.lisatieto[lang] }}</td>
+        <td>{{ justus.lisatieto }}</td>
       </tr>
 
     </tbody>

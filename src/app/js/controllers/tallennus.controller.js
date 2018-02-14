@@ -77,7 +77,6 @@ angular.module('TallennusController', [])
             julkaisuid: julkaisuId
           });
         });
-
         return $http({
           method: 'POST',
           url: `${API_BASE_URL}justus_save.php/tieteenala/julkaisuid/${julkaisuId}`,
@@ -85,6 +84,71 @@ angular.module('TallennusController', [])
           headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
         });
       });
+    };
+
+    // Data: [{ "taiteenalakoodi": "100", "jnro": 0, "julkaisuid": "1" }]
+    const saveTaiteenala = (julkaisuId) => {
+      // if no art publication; return
+      if ($scope.justus.taiteenala.length === 0) {
+        return Promise.resolve(true);
+      }
+        return Promise.resolve()
+          .then(() => {
+            if ($scope.justus.id) {
+              return $http({
+                method: 'DELETE',
+                url: `${API_BASE_URL}justus_save.php/taiteenala/julkaisuid/${julkaisuId}`
+              });
+            }
+          })
+          .then(() => {
+            const data = [];
+            $scope.justus.taiteenala.forEach((item) => {
+              data.push({
+                taiteenalakoodi: item.taiteenalakoodi,
+                jnro: item.jnro,
+                julkaisuid: julkaisuId
+              });
+            });
+            return $http({
+              method: 'POST',
+              url: `${API_BASE_URL}justus_save.php/taiteenala/julkaisuid/${julkaisuId}`,
+              data: data,
+              headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            });
+          });
+    };
+
+    const saveLisatieto = (julkaisuId) => {
+      // if no art publication; return
+      if ($scope.justus.taidelisatieto.length === 0) {
+        return Promise.resolve(true);
+      }
+      return Promise.resolve()
+        .then(() => {
+          if ($scope.justus.id) {
+            return $http({
+              method: 'DELETE',
+              url: `${API_BASE_URL}justus_save.php/lisatieto/julkaisuid/${julkaisuId}`
+            });
+          }
+        })
+        .then(() => {
+          const data = [];
+          $scope.justus.taidelisatieto.forEach((item) => {
+            data.push({
+              lisatietoteksti: item.lisatietoteksti,
+              lisatietotyyppi: item.lisatietotyyppi,
+              julkaisuid: julkaisuId
+            });
+          });
+          return $http({
+            method: 'POST',
+            url: `${API_BASE_URL}justus_save.php/lisatieto/julkaisuid/${julkaisuId}`,
+            data: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+          });
+        });
     };
 
     const saveOrganisaatiotekija = function(julkaisuId) {
@@ -133,6 +197,26 @@ angular.module('TallennusController', [])
       delete publication.id;
       publication.modified = new Date();
 
+      // Combine lisatiedot to one array
+      angular.forEach($scope.justus.tempLisatieto, function(value, key){
+        if (value.lisatietoteksti !== '') {
+          $scope.justus.taidelisatieto.push({
+            lisatietoteksti: value.lisatietoteksti,
+            lisatietotyyppi: value.lisatietotyyppi
+          });
+        }
+      });
+
+      // Loop through tieteenala array and add order number
+      angular.forEach($scope.justus.tieteenala, function(value, key) {
+        $scope.justus.tieteenala[key].jnro = key + 1;
+      });
+
+      // Loop through taiteenala array and add order number
+      angular.forEach($scope.justus.taiteenala, function(value, key) {
+        $scope.justus.taiteenala[key].jnro = key + 1;
+      });
+
       // Update existing publication or create new depending on possible existing id
       const julkaisuPromise = $scope.justus.id ? APIService.put('julkaisu', $scope.justus.id, publication) : APIService.post('julkaisu', publication);
       let julkaisuId = null;
@@ -147,7 +231,10 @@ angular.module('TallennusController', [])
         return Promise.all([
           saveAvainsana(julkaisuId),
           saveTieteenala(julkaisuId),
-          saveOrganisaatiotekija(julkaisuId)
+          saveOrganisaatiotekija(julkaisuId),
+          saveTaiteenala(julkaisuId),
+          saveLisatieto(julkaisuId)
+
         ]);
       })
       .then(() => {
@@ -164,6 +251,6 @@ angular.module('TallennusController', [])
           JustusService.clearPublicationForm();
         }
       });
-    };
+     };
   }
 ]);

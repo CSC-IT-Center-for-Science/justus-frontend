@@ -1,4 +1,7 @@
 .ui-select-bootstrap {
+  span {
+    overflow: hidden;
+  }
   .ui-select-toggle {
 
     &.form-control {

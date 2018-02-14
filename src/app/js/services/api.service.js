@@ -39,6 +39,7 @@ angular.module('APIService', [])
             { name: 'avoinsaatavuus', default: '' },
             { name: 'julkaisurinnakkaistallennettu', default: '' },
             { name: 'rinnakkaistallennetunversionverkkoosoite', default: '' },
+            { name: 'lisatieto', default: '' },
             { name: 'jufotunnus', default: '' },
             { name: 'jufoluokitus', default: '' },
             { name: 'julkaisuntila', default: '' },
@@ -65,7 +66,8 @@ angular.module('APIService', [])
             { name: 'julkaisuid' },
             { name: 'etunimet' },
             { name: 'sukunimi' },
-            { name: 'orcid' }
+            { name: 'orcid' },
+            { name: 'rooli' }
           ]
         },
         'alayksikko': {
@@ -83,10 +85,32 @@ angular.module('APIService', [])
           ui: 'tieteenala', // lista
           pkcol: 'id',
           columns: [
-            { ame: 'id' },
+            { name: 'id' },
             { name: 'julkaisuid' },
             { name: 'tieteenalakoodi' },
             { name: 'jnro' }
+          ]
+        },
+        'taiteenala': {
+          name: 'taiteenala',
+          ui: 'taiteenala', // lista
+          pkcol: 'id',
+          columns: [
+            { name: 'id' },
+            { name: 'julkaisuid' },
+            { name: 'taiteenalakoodi' },
+            { name: 'jnro' }
+          ]
+        },
+        'lisatieto': {
+          name: 'lisatieto',
+          ui: 'lisatieto',
+          pkcol: 'id',
+          columns: [
+            { name: 'id' },
+            { name: 'julkaisuid' },
+            { name: 'lisatietotyyppi' },
+            { name: 'lisatietoteksti' }
           ]
         }
       }

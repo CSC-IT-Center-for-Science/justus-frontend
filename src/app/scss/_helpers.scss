@@ -10,6 +10,14 @@
   white-space: nowrap;
 }
 
+.float-right {
+  float:right;
+}
+
+.vertical-resize {
+  resize: vertical;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

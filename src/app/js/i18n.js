@@ -2,39 +2,27 @@
 
 const i18n = {
   header: {
-    title: {FI: 'JUSTUS', SV: 'JUSTUS', EN: 'JUSTUS'},
-    logotext: {
-      FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS',
-      SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS',
-      EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS'
-    },
-    lang: {FI: 'Suomeksi', SV: 'På svenska', EN: 'In English'},
-    logout: {FI: 'Kirjaudu ulos', SV: 'Logga ut', EN: 'Logout'},
-    help: {FI: 'Ohje', SV: 'Instruktioner', EN: 'Instructions'}
+    title: { FI: 'JUSTUS', SV: 'JUSTUS', EN: 'JUSTUS' },
+    logotext: { FI: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', SV: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS', EN: 'JUSTUS - JULKAISUTIETOJEN TALLENNUS' },
+    lang: { FI: 'Suomeksi', SV: 'På svenska', EN: 'In English' },
+    logout: { FI: 'Kirjaudu ulos', SV: 'Logga ut', EN: 'Logout' },
+    help: { FI: 'Ohje', SV: 'Instruktioner', EN: 'Instructions' }
   },
   footer: {
     help: {
-      title: {FI: 'Käyttötuki', SV: 'Helpdesk', EN: 'Helpdesk'},
-      email: {FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi'},
-      time: {FI: 'ma-pe klo 8.30-16', SV: 'mån-fre 8.30-16', EN: 'Mon-Fri 8.30am-4pm'}
+      title: { FI: 'Käyttötuki', SV: 'Helpdesk', EN: 'Helpdesk' },
+      email: { FI: 'justus@csc.fi', SV: 'justus@csc.fi', EN: 'justus@csc.fi' },
+      time: { FI: 'ma-pe klo 8.30-16', SV: 'mån-fre 8.30-16', EN: 'Mon-Fri 8.30am-4pm' }
     },
     csc: {
-      name: {
-        FI: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY',
-        SV: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY',
-        EN: 'CSC - IT CENTER FOR SCIENCE LTD'
-      },
-      address: {FI: 'PL 405, 02101 Espoo', SV: 'PL 405, 02101 Espoo', EN: 'P.O. Box 405, FI-02101 Espoo'},
-      phone: {FI: 'puh. (09) 457 2001', SV: 'tel. +358 (0)9 457 2001', EN: 'tel. +358 (0)9 457 2001'}
+      name: { FI: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', SV: 'CSC - TIETEEN TIETOTEKNIIKAN KESKUS OY', EN: 'CSC - IT CENTER FOR SCIENCE LTD' },
+      address: { FI: 'PL 405, 02101 Espoo', SV: 'PL 405, 02101 Espoo', EN: 'P.O. Box 405, FI-02101 Espoo' },
+      phone: { FI: 'puh. (09) 457 2001', SV: 'tel. +358 (0)9 457 2001', EN: 'tel. +358 (0)9 457 2001' }
     }
   },
   etusivu: {
-    kirjaudu: {FI: 'Kirjaudu JUSTUS-palveluun', SV: 'Logga in', EN: 'Log in to JUSTUS-service'},
-    title: {
-      FI: 'Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?',
-      SV: 'Vad är JUSTUS-service?',
-      EN: 'What is JUSTUS - Publication Information Reporting Service?'
-    },
+    kirjaudu: { FI: 'Kirjaudu JUSTUS-palveluun', SV: 'Logga in', EN: 'Log in to JUSTUS-service' },
+    title: { FI: 'Mikä on JUSTUS – julkaisutietojen tallennuspalvelu?', SV: 'Vad är JUSTUS-service?', EN: 'What is JUSTUS - Publication Information Reporting Service?' },
     paragraphs: [
       {
         FI: 'JUSTUS – julkaisutietojen tallennuspalveluun syötetään tutkimusjulkaisujen tietoja. Palveluun tallennetut julkaisutiedot ovat selailtavissa JUULI-julkaisutietoportaalissa. Tiedot siirtyvät automaattisesti opetus- ja kulttuuriministeriön (OKM) vuosittaiseen julkaisutiedonkeruuseen ja ne huomioidaan myös korkeakoulujen rahoitusmallissa.',
@@ -43,7 +31,7 @@ const i18n = {
       }
     ],
     help: {
-      title: {FI: 'JUSTUS-palvelun käyttöohjeet:', SV: 'JUSTUS instruktioner:', EN: 'Instructions for JUSTUS-service:'},
+      title: { FI: 'JUSTUS-palvelun käyttöohjeet:', SV: 'JUSTUS instruktioner:', EN: 'Instructions for JUSTUS-service:' },
       organization: {
         FI: 'JUSTUS-palvelua voit käyttää julkaisutietojesi tallentamiseen, jos kuulut johonkin seuraavista organisaatioista:',
         SV: 'Du kan använda Justus om du hör till någon av följande organisationer:',
@@ -53,14 +41,14 @@ const i18n = {
   },
   content: {
     valitse: {
-      title: {FI: 'VALITSE TOIMINTO', SV: 'VÄLJ FUNKTION', EN: 'CHOOSE FUNCTION'},
-      etusivu: {FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage'},
-      tallenna: {FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication'},
-      omat: {FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications'},
-      hyvaksy: {FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications'}
+      title: { FI: 'VALITSE TOIMINTO', SV: 'VÄLJ FUNKTION', EN: 'CHOOSE FUNCTION' },
+      etusivu: { FI: 'Etusivu', SV: 'Framsida', EN: 'Frontpage' },
+      tallenna: { FI: 'Tallenna julkaisu', SV: 'Spara uppgifter', EN: 'Save publication' },
+      omat: { FI: 'Omat tallennukset', SV: 'Mina publikationer', EN: 'My publications' },
+      hyvaksy: { FI: 'Hyväksy tallennuksia', SV: 'Godkänn uppgifter', EN: 'Approve publications' }
     },
     esitayta: {
-      title: {FI: 'Tietojen haku', SV: 'Hämta uppgifter', EN: 'Search information'},
+      title: { FI: 'Tietojen haku', SV: 'Hämta uppgifter', EN: 'Search information' },
       text: {
         FI: 'Tällä näytöllä voit hakea jo tallennettuja tietoja muista järjestelmistä pohjaksi.',
         SV: '*SV*',
@@ -82,46 +70,34 @@ const i18n = {
         }
       },
       doihaku: {
-        title: {FI: 'Hae tietoja DOI-tunnisteella', SV: 'Hämta uppgifter med DOI', EN: 'Search using DOI-identifier'},
+        title: { FI: 'Hae tietoja DOI-tunnisteella', SV: 'Hämta uppgifter med DOI', EN: 'Search using DOI-identifier' },
         tunniste: {
           FI: 'Kirjoita DOI-tunniste',
           SV: 'Agne DOI',
           EN: 'Enter DOI-identifier',
-          tooltip: {
-            FI: 'Esim. https://doi.org/10.4324/9780203841693',
-            SV: 't.ex. https://doi.org/10.4324/9780203841693',
-            EN: 'e.g. https://doi.org/10.4324/9780203841693'
-          }
+          tooltip: { FI: 'Esim. https://doi.org/10.4324/9780203841693', SV: 't.ex. https://doi.org/10.4324/9780203841693', EN: 'e.g. https://doi.org/10.4324/9780203841693' }
         },
         klikkaa: {
           FI: 'ja klikkaa',
           SV: '*SV*ja klikkaa',
           EN: '*EN*ja klikkaa',
-          tooltip: {FI: 'ja klikkaa', SV: '*SV*ja klikkaa', EN: '*EN*ja klikkaa'}
+          tooltip: { FI: 'ja klikkaa', SV: '*SV*ja klikkaa', EN: '*EN*ja klikkaa' }
         },
         info: {
           FI: 'Voit esitäyttää julkaisutietoja käyttämällä DOI-tunnisteesta muodostettua pysyvää osoitetta. Julkaisutiedot haetaan CrossRef-palvelusta.',
           SV: 'Hämta publikationsdata från den internationella CrossRef-publikationsdatabasen med hjälp av DOI.',
           EN: 'You can prefill publication information by using a DOI-link. The information is retrieved from the CrossRef-service'
         },
-        hae: {FI: 'Hae', SV: 'Hämta', EN: 'Search'}
+        hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' }
       },
       etsijulkaisu: {
-        title: {
-          FI: 'Hae tietoja julkaisun nimellä',
-          SV: 'Hämta uppgifter på titel',
-          EN: 'Search using publication\'s name'
-        },
-        picktip: {FI: 'Hae julkaisun nimellä', SV: 'Hämta på titel', EN: 'Search publication\'s name'},
+        title: { FI: 'Hae tietoja julkaisun nimellä', SV: 'Hämta uppgifter på titel', EN: 'Search using publication\'s name' },
+        picktip: { FI: 'Hae julkaisun nimellä', SV: 'Hämta på titel', EN: 'Search publication\'s name' },
         tekija: {
           FI: 'Kirjoita hakuehto: tekijä',
           SV: '*SV*Kirjoita hakuehto: tekijä',
           EN: 'Enter the author',
-          tooltip: {
-            FI: 'Rajaa hakua halutessasi tekijän nimellä',
-            SV: 'Avgränsa sökningen med författarens namn',
-            EN: 'Filter search using the author\'s name'
-          }
+          tooltip: { FI: 'Rajaa hakua halutessasi tekijän nimellä', SV: 'Avgränsa sökningen med författarens namn', EN: 'Filter search using the author\'s name' }
         },
         info: {
           FI: 'Voit hakea ja esitäyttää julkaisutietoja myös VIRTA- tai CrossRef -palveluista löytyvillä tiedoilla. Hakua voi rajata julkaisun tekijän nimellä ja haku kohdistuu julkaisun nimeen.',
@@ -132,28 +108,16 @@ const i18n = {
       uudestaan: {
         FI: 'Hae julkaisua uudestaan', SV: '*SV*Hae julkaisua uudestaan', EN: '*EN*Hae julkaisua uudestaan'
       },
-      hae: {FI: 'Hae', SV: 'Hämta', EN: 'Search'},
-      ohita: {
-        FI: 'Ohita vaihe ja syötä julkaisutiedot käsin',
-        SV: 'Manuell inmatning',
-        EN: 'Skip this phase and manually enter publication information'
-      }
+      hae: { FI: 'Hae', SV: 'Hämta', EN: 'Search' },
+      ohita: { FI: 'Ohita vaihe ja syötä julkaisutiedot käsin', SV: 'Manuell inmatning', EN: 'Skip this phase and manually enter publication information' }
     },
     form: {
       julkaisutyyppi: {
         FI: 'Julkaisutyyppi',
         SV: 'Publikationstyp',
         EN: 'Publication type',
-        paa: {
-          FI: 'VALITSE JULKAISUTYYPPI PÄÄLUOKKA',
-          SV: '*SV*VALITSE JULKAISUTYYPPI PÄÄLUOKKA',
-          EN: '*EN*VALITSE JULKAISUTYYPPI PÄÄLUOKKA'
-        },
-        ala: {
-          FI: 'VALITSE JULKAISUTYYPPI ALALUOKKA',
-          SV: '*SV*VALITSE JULKAISUTYYPPI ALALUOKKA',
-          EN: '*EN*VALITSE JULKAISUTYYPPI ALALUOKKA'
-        }
+        paa: { FI: 'VALITSE JULKAISUTYYPPI PÄÄLUOKKA', SV: '*SV*VALITSE JULKAISUTYYPPI PÄÄLUOKKA', EN: '*EN*VALITSE JULKAISUTYYPPI PÄÄLUOKKA' },
+        ala: { FI: 'VALITSE JULKAISUTYYPPI ALALUOKKA', SV: '*SV*VALITSE JULKAISUTYYPPI ALALUOKKA', EN: '*EN*VALITSE JULKAISUTYYPPI ALALUOKKA' }
       },
       julkaisuvuosi: {
         FI: 'Julkaisuvuosi',
@@ -164,7 +128,17 @@ const i18n = {
           SV: 'Det år anges då publikationen för första gången har utgetts som en version med fullständiga referensuppgifter.',
           EN: 'The year in which the publication was published for the first time as a version with full reference data.'
         },
-        picktip: {FI: 'esim. 2017', SV: 't.ex. 2017', EN: 'e.g. 2017'}
+        picktip: { FI: 'esim. 2017', SV: 't.ex. 2017', EN: 'e.g. 2017' }
+      },
+      julkaisuvuodenlisatieto: {
+        FI: 'Julkaisuvuoden lisätieto',
+        SV: '*SV Julkaisuvuoden lisätieto',
+        EN: '*EN Julkaisuvuoden lisätieto',
+        tooltip: {
+          FI: 'Valinnainen julkaisuvuoden lisätieto',
+          SV: '*SV Valinnainen julkaisuvuoden lisätieto',
+          EN: '*EN Valinnainen julkaisuvuoden lisätieto'
+        }
       },
       julkaisunnimi: {
         FI: 'Julkaisun nimi',
@@ -175,11 +149,7 @@ const i18n = {
           SV: 'Publikationens namn/titel såsom den nämns i artikeln eller verket. Namnet på en publikation på ett främmande språk kan vid behov sparas som en translittererad version.',
           EN: 'Publication name as given in the article or the book. If necessary, the name of a foreign-language publication may be reported on as a transliterated version.'
         },
-        picktip: {
-          FI: 'Kirjoita julkaisun nimi kokonaisuudessaan',
-          SV: 'Skriv publikationens namn/titel i helhet',
-          EN: 'Publication name in its entirety'
-        }
+        picktip: { FI: 'Kirjoita julkaisun nimi kokonaisuudessaan', SV: 'Skriv publikationens namn/titel i helhet', EN: 'Publication name in its entirety' }
       },
       tekijat: {
         FI: 'Tekijät',
@@ -190,11 +160,7 @@ const i18n = {
           SV: 'Fullständig information om publikationens upphovsmän anges i den form och i den ordning som de nämns i den ursprungliga publikationen eller källdatabasen (högst 20 st.).',
           EN: 'Authors of the original publication in the following format: Surname, Firstname. Press enter to confirm. Max. 20 authors is sufficient.'
         },
-        picktip: {
-          FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter',
-          SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter',
-          EN: 'Type in format Lastname, Firstname and press enter'
-        }
+        picktip: { FI: 'Syötä muodossa Sukunimi, Etunimi ja paina enter', SV: 'Skriv i formatet Efternamn, Förnamn och tryck enter', EN: 'Type in format Lastname, Firstname and press enter' }
       },
       julkaisuntekijoidenlukumaara: {
         FI: 'Julkaisun tekijöiden lukumäärä',
@@ -215,29 +181,14 @@ const i18n = {
           SV: 'Forskare, som har varit med om att göra publikationen och som hör till organisationen. Organisationens fakulteter, avdelningar, institutioner eller enheter inom vilka publikationens upphovsmän är anställda. ORCID-identifieringsnumren, t.ex. 0000-0000-0000-0000, på den rapporterande organisationens egna upphovsmän, se http://www.orcid.org',
           EN: 'Researchers at the organisation involved in producing the publication. Faculties, departments or units of the organisation whose staff includes the authors of the publication. The ORCID identifiers of authors from the reporting organisation, e.g. 0000-0000-0000-0000, refer to http://www.orcid.org'
         },
-        sukunimi: {
-          FI: 'Sukunimi',
-          SV: 'Efternamn',
-          EN: 'Surname',
-          picktip: {FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname'}
-        },
-        etunimet: {
-          FI: 'Etunimet',
-          SV: 'Förnamn',
-          EN: 'First names',
-          picktip: {FI: 'Etunimet', SV: 'Förnamn', EN: 'First names'}
-        },
-        alayksikko: {
-          FI: 'Alayksikkö',
-          SV: 'Enhet',
-          EN: 'Organisational unit',
-          picktip: {FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit'}
-        },
-        orcid: {FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: {FI: 'ORCID', SV: 'ORCID', EN: 'ORCID'}},
-        lisaa: {FI: '+', SV: '+', EN: '+', tooltip: {FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add'}},
-        poista: {FI: '-', SV: '-', EN: '-', tooltip: {FI: 'Poista', SV: 'Ta bort', EN: 'Remove'}},
-        kopioi: {
-          FI: 'Kopioi tekijät',
+        sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
+        etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
+        alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
+        orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
+        tekijanrooli: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli', picktip: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli' } },
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        kopioi: { FI: 'Kopioi tekijät',
           SV: 'Kopiera författarna',
           EN: 'Copy authors',
           tooltip: {
@@ -256,11 +207,7 @@ const i18n = {
           SV: 'Konferensens etablerade namn utan ordningsnummer, årtal och bokstavsförkortning.',
           EN: 'The established conference name without the ordinal and year and with no abbreviations.'
         },
-        picktip: {
-          FI: 'Kirjoita ja valitse konferenssin nimi',
-          SV: 'Ange och välj konferensens namn',
-          EN: 'Write and choose the conference name'
-        }
+        picktip: { FI: 'Kirjoita ja valitse konferenssin nimi', SV: 'Ange och välj konferensens namn', EN: 'Write and choose the conference name' }
       },
       emojulkaisunnimi: {
         FI: 'Emojulkaisun nimi',
@@ -271,11 +218,7 @@ const i18n = {
           SV: 'Namn på den moderpublikationen där artikeln har publicerats.',
           EN: 'Name of the parent publication in which the article was published.'
         },
-        picktip: {
-          FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan',
-          SV: 'Skriv moderpublikationens namn i helhet',
-          EN: 'Parent publication name in its entirety'
-        }
+        picktip: { FI: 'Kirjoita emojulkaisun nimi kokonaisuudessaan', SV: 'Skriv moderpublikationens namn i helhet', EN: 'Parent publication name in its entirety' }
       },
       isbn: {
         FI: 'ISBN',
@@ -286,7 +229,7 @@ const i18n = {
           SV: 'ISBN-numret för den serie i vilken monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISBN-nummer.',
           EN: 'Monograph or parent publication ISBN number according to the primary printed version. If there is no printed version, the ISBN number of the electronic version will be indicated.'
         },
-        picktip: {FI: 'esim. 978-952-245-683-0', SV: 't.ex. 978-952-245-683-0', EN: 'e.g. 978-952-245-683-0'}
+        picktip: { FI: 'esim. 978-952-245-683-0', SV: 't.ex. 978-952-245-683-0', EN: 'e.g. 978-952-245-683-0' }
       },
       emojulkaisuntoimittajat: {
         FI: 'Emojulkaisun toimittajat',
@@ -307,11 +250,7 @@ const i18n = {
           SV: 'Namn på tidskriften/serien så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Journal/series name, as complete as possible, and spelled out (no abbreviations).'
         },
-        picktip: {
-          FI: 'Kirjoita ja valitse lehden/sarjan nimi',
-          SV: 'Skriv och välj namn på tidskrift/serie',
-          EN: 'Write and choose the journal/series name'
-        }
+        picktip: { FI: 'Kirjoita ja valitse lehden/sarjan nimi', SV: 'Skriv och välj namn på tidskrift/serie', EN: 'Write and choose the journal/series name' }
       },
       issn: {
         FI: 'ISSN',
@@ -322,7 +261,7 @@ const i18n = {
           SV: 'ISSN-numret för den serie i vilken tidskriften, monografin eller moderpublikationen har publicerats i första hand i enlighet med den tryckta versionen. Om en tryckt version saknas, meddelas den elektroniska versionens ISSN-nummer.',
           EN: 'The ISSN number of the series or of the journal according to the primary printed version. If there is no printed version, the ISSN number of the electronic version will be indicated.'
         },
-        picktip: {FI: 'esim. 1234-567X', SV: 't.ex. 1234-567X', EN: 'e.g. 1234-567X'}
+        picktip: { FI: 'esim. 1234-567X', SV: 't.ex. 1234-567X', EN: 'e.g. 1234-567X' }
       },
       volyymi: {
         FI: 'Volyymi',
@@ -333,7 +272,7 @@ const i18n = {
           SV: 'Tidskriftens eller seriens volym där artikeln har getts ut.',
           EN: 'Volume of the journal or series in which the article/scientific book appeared.'
         },
-        picktip: {FI: 'esim. 45', SV: 't.ex. 45', EN: 'e.g. 45'}
+        picktip: { FI: 'esim. 45', SV: 't.ex. 45', EN: 'e.g. 45' }
       },
       numero: {
         FI: 'Numero',
@@ -344,7 +283,7 @@ const i18n = {
           SV: 'Tidskriftens eller seriens nummer där artikeln har getts ut.',
           EN: 'Issue of the journal or series in which the article/scientific book appeared.'
         },
-        picktip: {FI: 'esim. 3', SV: 't.ex. 3', EN: 'e.g. 3'}
+        picktip: { FI: 'esim. 3', SV: 't.ex. 3', EN: 'e.g. 3' }
       },
       sivut: {
         FI: 'Sivut',
@@ -355,7 +294,7 @@ const i18n = {
           SV: 'De sidnummer som artikeln har haft i samband med sin publicering i den ursprungliga artikeln eller i källdatabasen.',
           EN: 'Publication page numbers on which the article was published in the same format as in the original article or source database.'
         },
-        picktip: {FI: 'esim. 98 - 113', SV: 't.ex. 98 - 113', EN: 'e.g. 98 - 113'}
+        picktip: { FI: 'esim. 98 - 113', SV: 't.ex. 98 - 113', EN: 'e.g. 98 - 113' }
       },
       artikkelinumero: {
         FI: 'Artikkelinumero',
@@ -366,7 +305,7 @@ const i18n = {
           SV: 'Det artikelnummer som artikeln har haft vid sin publicering i den form som numren har presenterats i den ursprungliga artikeln eller i källdatabasen.',
           EN: 'Journal/series article number used for the publication of the article in the same format as in the original article or source database.'
         },
-        picktip: {FI: 'esim. 15', SV: 't.ex. 15', EN: 'e.g. 15'}
+        picktip: { FI: 'esim. 15', SV: 't.ex. 15', EN: 'e.g. 15' }
       },
       kustantaja: {
         FI: 'Kustantaja',
@@ -377,11 +316,7 @@ const i18n = {
           SV: 'Namnet på publikationens förläggare så fullständigt som möjligt och helt utskrivet (inga förkortningar).',
           EN: 'Publisher’s name, as complete as possible, and spelled out (no abbreviations).'
         },
-        picktip: {
-          FI: 'Kirjoita kustantajan nimi',
-          SV: 'Skriv publikationens förläggare',
-          EN: 'Write the publisher\'s name'
-        }
+        picktip: { FI: 'Kirjoita kustantajan nimi', SV: 'Skriv publikationens förläggare', EN: 'Write the publisher\'s name' }
       },
       julkaisunkustannuspaikka: {
         FI: 'Julkaisun kustannuspaikka',
@@ -392,7 +327,7 @@ const i18n = {
           SV: 'Ort eller orter som angetts i anslutning till namnet på publikationens förläggare.',
           EN: 'The place or places given in connection with the publication’s publisher.'
         },
-        picktip: {FI: 'esim. Helsinki', SV: 't.ex. Helsinki', EN: 'e.g. Helsinki'}
+        picktip: { FI: 'esim. Helsinki', SV: 't.ex. Helsinki', EN: 'e.g. Helsinki' }
       },
       avainsanat: {
         FI: 'Avainsanat',
@@ -403,13 +338,9 @@ const i18n = {
           SV: 'Nyckelord som så bra som möjligt beskriver publikationens innehåll.',
           EN: 'Keywords that describe the content of the publication as accurately as possible.'
         },
-        lisaa: {FI: '+', SV: '+', EN: '+', tooltip: {FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add'}},
-        poista: {FI: '-', SV: '-', EN: '-', tooltip: {FI: 'Poista', SV: 'Ta bort', EN: 'Remove'}},
-        picktip: {
-          FI: 'Kirjoita avainsana ja paina enter',
-          SV: 'Skriv nyckelordet och tryck enter',
-          EN: 'Type in the keyword and press enter'
-        }
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        picktip: { FI: 'Kirjoita avainsana ja paina enter', SV: 'Skriv nyckelordet och tryck enter', EN: 'Type in the keyword and press enter' }
       },
       julkaisunkieli: {
         FI: 'Julkaisun kieli',
@@ -420,7 +351,7 @@ const i18n = {
           SV: 'Det språk på vilket publikationen är skriven i enlighet med klassificeringen Statistikcentralens språk 2003.',
           EN: 'The language used to write the publication according to the Lan-guages 2003 classification of Statistics Finland.'
         },
-        picktip: {FI: 'Valitse kieli, esim. suomi', SV: 'Välj språk, t.ex. finska', EN: 'Choose language, e.g. Finnish'}
+        picktip: { FI: 'Valitse kieli, esim. suomi', SV: 'Välj språk, t.ex. finska', EN: 'Choose language, e.g. Finnish' }
       },
       julkaisunkansainvalisyys: {
         FI: 'Julkaisun kansainvälisyys',
@@ -431,8 +362,8 @@ const i18n = {
           SV: 'Utgivaren av en inhemsk publikation är finländsk eller publikationen har i första hand publicerats i Finland. Utgivaren av en utländsk publikation är inte finländsk eller publikationen har i första hand publicerats någon annanstans än i Finland. Utgivaren av en konferenspublikation avser förläggaren.',
           EN: 'The publisher of a Finnish publication is Finnish, or it was mainly pub-lished in Finland. The publisher of an international publication is not Finnish, or it was mainly published outside Finland. The publisher of a conference publication refers to the publishing house.'
         },
-        '0': {FI: 'Kotimainen', SV: 'Inhemsk', EN: 'Domestic'},
-        '1': {FI: 'Kansainvälinen', SV: 'Utländsk', EN: 'International'}
+        '0': { FI: 'Kotimainen', SV: 'Inhemsk', EN: 'Domestic' },
+        '1': { FI: 'Kansainvälinen', SV: 'Utländsk', EN: 'International' }
       },
       julkaisumaa: {
         FI: 'Julkaisumaa',
@@ -443,7 +374,27 @@ const i18n = {
           SV: 'Tidskriftens, seriens, monografins eller moderpublikationens utgivningsland enligt klassificeringen Statistikcentralens stater och länder 2007.',
           EN: 'Country of publication according to the countries 2007 classification of Statistics Finland.'
         },
-        picktip: {FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland'}
+        picktip: { FI: 'Valitse maa, esim. Suomi', SV: 'Välj land, t.ex. Finland', EN: 'Choose country, e.g. Finland' }
+      },
+      julkistamispaikkakunta: {
+        FI: 'Julkistamispaikkakunta',
+        SV: '*SV Julkistamispaikkakunta',
+        EN: '*EN Julkistamispaikkakunta',
+        tooltip: {
+          FI: 'Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
+          SV: '*SV Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
+          EN: '*EN Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti'
+        }
+      },
+      tapahtumanlisatieto: {
+        FI: 'Tapahtuma',
+        SV: '*SV Tapahtuma',
+        EN: '*EN Tapahtuma',
+        tooltip: {
+          FI: 'Vapaaehtoinen tapahtuman lisätietoteksti',
+          SV: '*SV Vapaaehtoinen tapahtuman lisätietoteksti',
+          EN: '*EN Vapaaehtoinen tapahtuman lisätietoteksti'
+        }
       },
       tieteenala: {
         FI: 'Julkaisun tieteenalat',
@@ -454,22 +405,36 @@ const i18n = {
           SV: '1–6 vetenskapsområden enligt Statistikcentralens klassificering av vetenskapsområden med det vetenskapsområde först som publikationen i första hand berör. Det första, s.k. primära, vetenskapsområdet måste anges.',
           EN: 'One to six fields of science according to the field of science classification of Statistics Finland in the order of relevance of each field to the publication. The first, so-called primary field of science is mandatory.'
         },
-        lisaa: {FI: '+', SV: '+', EN: '+', tooltip: {FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add'}},
-        poista: {FI: '-', SV: '-', EN: '-', tooltip: {FI: 'Poista', SV: 'Ta bort', EN: 'Remove'}},
-        paa: {
-          picktip: {
-            FI: 'Valitse päätieteenala',
-            SV: 'Välj primära vetenskapsområdet',
-            EN: 'Choose primary field of science'
-          }
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        paa: { picktip: { FI: 'Valitse päätieteenala', SV: 'Välj primära vetenskapsområdet', EN: 'Choose primary field of science' } },
+        ala: { picktip: { FI: 'Valitse alatieteenala', SV: 'Välj sekundära vetenskapsområdet', EN: 'Choose secondary field of science' } }
+      },
+      taiteenala: {
+        FI: 'Julkaisun taiteenalat',
+        SV: '*SV julkaisun taiteenalat',
+        EN: '*EN julkaisun taiteenalat',
+        tooltip: {
+          FI: '1-7 taiteenala Tilastokeskuksen taiteenalaluokituksen mukaan...',
+          SV: '*SV 1–7 ...',
+          EN: '*EN 1-7 .....'
         },
-        ala: {
-          picktip: {
-            FI: 'Valitse alatieteenala',
-            SV: 'Välj sekundära vetenskapsområdet',
-            EN: 'Choose secondary field of science'
-          }
-        }
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
+      },
+      taidealantyyppikategoria: {
+        FI: 'Taidealan tyyppikategoriat',
+        SV: '*SV Taidealan tyyppikategoriat',
+        EN: '*EN Taidealan tyyppikategoriat',
+        tooltip: {
+          FI: 'Lorem ipsum',
+          SV: '*SV Lorem ipsum',
+          EN: '*EN Lorem ipsum'
+        },
+        lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
+        poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
+        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: '*SV valitse taiteenalan tyyppikategoria', EN: '*EN valitse taiteenalan tyyppikategoria' }
       },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
@@ -480,8 +445,8 @@ const i18n = {
           SV: 'Minst en av den internationella sampublikationens upphovsmän har anknytning till en annan organisation än en finländsk (också om upphovsmannen har anknytning till både en finländsk och en utländsk organisation).',
           EN: 'At least one author of the international co-publication is affiliated to a non-Finnish organisation (the author may also be affiliated to both a Finnish and foreign organisation).'
         },
-        '1': {FI: 'Kyllä', SV: 'Ja', EN: 'Yes'},
-        '0': {FI: 'Ei', SV: 'Nej', EN: 'No'}
+        '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+        '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
       yhteisjulkaisuyrityksenkanssa: {
         FI: 'Yhteisjulkaisu yrityksen kanssa',
@@ -492,8 +457,8 @@ const i18n = {
           SV: 'Minst en av publikationens upphovsmän har anknytning till ett nationellt eller internationellt företag (också om upphovsmannen har anknytning till både en forskningsorganisation och ett företag.) Med ett företag avses andra företag än bolag som sköter statens specialuppgifter (t.ex. VTT).',
           EN: 'At least one author of the publication is affiliated to a national or international company (the author may also be affiliated both to a research organisation and a company). Company refers to an enterprise other than a state-owned group carrying out specific government tasks (such as VTT Technical Research Centre of Finland Ltd).'
         },
-        '1': {FI: 'Kyllä', SV: 'Ja', EN: 'Yes'},
-        '0': {FI: 'Ei', SV: 'Nej', EN: 'No'}
+        '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+        '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
       doitunniste: {
         FI: 'DOI tunniste',
@@ -504,10 +469,16 @@ const i18n = {
           SV: 'Publikationens DOI-identifieringsnummer, t.ex. 10.1111/j.1398-9995.2011.02728.x',
           EN: 'The DOI identifier of the publication e.g. 10.1111/j.1398-9995.2011.02728.x'
         },
-        picktip: {
-          FI: 'esim. 10.1111/j.1398-9995.2011.02728.x',
-          SV: 't.ex. 10.1111/j.1398-9995.2011.02728.x',
-          EN: 'e.g. 10.1111/j.1398-9995.2011.02728.x'
+        picktip: { FI: 'esim. 10.1111/j.1398-9995.2011.02728.x', SV: 't.ex. 10.1111/j.1398-9995.2011.02728.x', EN: 'e.g. 10.1111/j.1398-9995.2011.02728.x' }
+      },
+      muutunniste: {
+        FI: 'Muu tunniste',
+        SV: '*SV Muu tunniste',
+        EN: '*EN Muu tunniste',
+        tooltip: {
+          FI: 'Muu tunniste lorem impsum',
+          SV: '*SV Muu tunniste loerm ipsum',
+          EN: '*EN Muu tunniste lorem ipsum'
         }
       },
       pysyvaverkkoosoite: {
@@ -519,11 +490,7 @@ const i18n = {
           SV: 'Webbadress som grundar sig på publikationens permanenta identifiering (t.ex. DOI, URN eller handle) och som leder direkt till publikationens kompletta textversion (fritt tillgängliga version eller en version med begränsad användarrätt på förläggarens server).',
           EN: 'Website address based on permanent identifiers (e.g. DOI, URN or handle) of the publication that takes the user directly to the full text version of the publication (a publicly available version or a limited access version on the publisher\'s server).'
         },
-        picktip: {
-          FI: 'esim. http://dx.doi.org/10.1002/hyp.10221',
-          SV: 't.ex. http://dx.doi.org/10.1002/hyp.10221',
-          EN: 'e.g. http://dx.doi.org/10.1002/hyp.10221'
-        }
+        picktip: { FI: 'esim. http://dx.doi.org/10.1002/hyp.10221', SV: 't.ex. http://dx.doi.org/10.1002/hyp.10221', EN: 'e.g. http://dx.doi.org/10.1002/hyp.10221' }
       },
       avoinsaatavuus: {
         FI: 'Avoin saatavuus',
@@ -534,7 +501,7 @@ const i18n = {
           SV: '',
           EN: ''
         },
-        '0': {FI: 'Ei vastausta', SV: 'Inget svar', EN: 'No answer'},
+        '0': { FI: 'Ei vastausta', SV: 'Inget svar', EN: 'No answer' },
         '1': {
           FI: 'Open access -julkaisukanavassa ilmestynyt julkaisu',
           SV: 'Publicerad i Open Access -tidskrift',
@@ -565,8 +532,8 @@ const i18n = {
           SV: 'Publikationen har lagrats parallellt i ett organisations- eller vetenskapsområdesspecifikt publikationsarkiv antingen omedelbart eller efter en rimlig embargotid som förläggaren har fastställt. Publikationen kan vara en s.k. förläggarversion eller forskarens egen, sista (referentgranskade) version.',
           EN: 'The publication is self-archived in the publication archive of the organisation or the field of science, whether immediately or after a reasonable embargo specified by the publisher. The publication may be a so-called publisher’s version or the author’s final (refereed) version.'
         },
-        '1': {FI: 'Kyllä', SV: 'Ja', EN: 'Yes'},
-        '0': {FI: 'Ei', SV: 'Nej', EN: 'No'}
+        '1': { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+        '0': { FI: 'Ei', SV: 'Nej', EN: 'No' }
       },
       rinnakkaistallennetunversionverkkoosoite: {
         FI: 'Rinnakkaistallennetun version verkko-osoite',
@@ -583,60 +550,59 @@ const i18n = {
           EN: 'e.g. http://www.theseus.fi/handle/10024/10922'
         }
       },
-      jufotunnus: {FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID'},
-      jufoluokitus: {FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification'}
+      lisatieto: {
+        FI: 'Lisätieto',
+        SV: '*SV Lisätieto',
+        EN: '*EN Lisätieto',
+        tooltip: {
+          FI: 'Lorem ipsun lisätieto',
+          SV: '*SV Lorem ipsum lisätieto',
+          EN: '*EN Lorem ipsun lisätieto'
+        },
+        picktip: { FI: 'Kirjoita lisätietoteksti', SV: '*SV Lisätietoteksti', EN: '*EN Lisätietoteksti' }
+      },
+      jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
+      jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
     },
     tietojensyotto: {
-      yleiset: {FI: 'Yleiset julkaisutiedot', SV: 'Allmänna uppgifter', EN: 'General publication information'},
-      bibliografiset: {FI: 'Bibliografiset tiedot', SV: 'Bibliografiska uppgifter', EN: 'Bibliographic information'},
-      muut: {FI: 'Muut julkaisutiedot', SV: 'Övriga uppgifter', EN: 'Other information'},
+      yleiset: { FI: 'Yleiset julkaisutiedot', SV: 'Allmänna uppgifter', EN: 'General publication information' },
+      bibliografiset: { FI: 'Bibliografiset tiedot', SV: 'Bibliografiska uppgifter', EN: 'Bibliographic information' },
+      muut: { FI: 'Muut julkaisutiedot', SV: 'Övriga uppgifter', EN: 'Other information' },
       taytaviela: {
         FI: 'Täytä vielä',
         SV: 'Fyll ännu i',
         EN: 'Required information',
-        korosta: {FI: 'korosta', SV: 'markera', EN: 'highlight'},
-        poistakorostus: {FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight'}
+        korosta: { FI: 'korosta', SV: 'markera', EN: 'highlight' },
+        poistakorostus: { FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight' }
       },
-      jatka: {
-        FI: 'Tallenna muutokset ja siirry esikatseluun',
-        SV: 'Spara och förhandsgranska',
-        EN: 'Save changes and preview'
-      }
+      jatka: { FI: 'Tallenna muutokset ja siirry esikatseluun', SV: 'Spara och förhandsgranska', EN: 'Save changes and preview' }
     },
     tallennus: {
-      tallenna: {
-        FI: 'Tallenna tiedot ja palaa omiin tallennuksiin',
-        SV: 'Spara och gå till egna publikationer',
-        EN: 'Save changes and return to saved publications'
-      }
+      tallenna: { FI: 'Tallenna tiedot ja palaa omiin tallennuksiin', SV: 'Spara och gå till egna publikationer', EN: 'Save changes and return to saved publications' }
     },
     vaihevuo: {
-      julkaisutyyppi: {FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type'},
-      esitayta: {FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form'},
-      tietojensyotto: {FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information'},
-      tallennus: {FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save'}
+      julkaisutyyppi: { FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type' },
+      esitayta: { FI: 'Esitäytä tiedot', SV: 'Sök bland publikationer', EN: 'Prefill the form' },
+      tietojensyotto: { FI: 'Syötä julkaisutiedot', SV: 'Mata in uppgifter', EN: 'Enter publication information' },
+      tallennus: { FI: 'Tarkista ja tallenna', SV: 'Granska och spara', EN: 'Verify and save' }
     },
     tarkasta: {
-      odottavat: {
-        FI: 'Hyväksymistä odottavat julkaisut',
-        SV: 'I väntan på godkännande',
-        EN: 'Publications waiting for approval'
-      },
-      hyvaksytyt: {FI: 'Hyväksytyt julkaisut', SV: 'Godkända publikationer', EN: 'Approved publications'},
+      odottavat: { FI: 'Hyväksymistä odottavat julkaisut', SV: 'I väntan på godkännande', EN: 'Publications waiting for approval' },
+      hyvaksytyt: { FI: 'Hyväksytyt julkaisut', SV: 'Godkända publikationer', EN: 'Approved publications' },
       table: {
-        julkaisuid: {FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID'},
-        julkaisunnimi: {FI: 'Julkaisun nimi', SV: 'Publikationens namn/titel', EN: 'Publication name'},
-        julkaisuntekijat: {FI: 'Julkaisun tekijät', SV: 'Publikationens upphovsmän', EN: 'Publication authors'},
-        tila: {FI: 'Tila', SV: 'Status', EN: 'Status'},
-        muokattu: {FI: 'Muokattu', SV: 'Ändrad', EN: 'Edited'},
-        viimeisinmuokkaaja: {FI: 'Viimeisin muokkaaja', SV: 'Senast ändrad av', EN: 'Last edit by'},
-        toiminnot: {FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions'},
-        hyvaksy: {FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve'}
+        julkaisuid: { FI: 'JulkaisuID', SV: 'PublikationID', EN: 'PublicationID' },
+        julkaisunnimi: { FI: 'Julkaisun nimi', SV: 'Publikationens namn/titel', EN: 'Publication name' },
+        julkaisuntekijat: { FI: 'Julkaisun tekijät', SV: 'Publikationens upphovsmän', EN: 'Publication authors' },
+        tila: { FI: 'Tila', SV: 'Status', EN: 'Status' },
+        muokattu: { FI: 'Muokattu', SV: 'Ändrad', EN: 'Edited' },
+        viimeisinmuokkaaja: { FI: 'Viimeisin muokkaaja', SV: 'Senast ändrad av', EN: 'Last edit by' },
+        toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
+        hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
       },
-      uusi: {FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication'}
+      uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' }
     },
 
-    yes: {FI: 'Kyllä', SV: 'Ja', EN: 'Yes'},
-    no: {FI: 'Ei', SV: 'Nej', EN: 'No'}
-  },
+    yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
+    no: { FI: 'Ei', SV: 'Nej', EN: 'No' }
+  }
 };

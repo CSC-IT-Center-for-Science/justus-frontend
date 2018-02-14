@@ -41,6 +41,38 @@
     </div>
   </div>
 
+  <!-- Kenttä: Julkaisuvuodenlisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('julkaisuvuodenlisatieto')" id="julkaisuvuodenlisatieto">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.julkaisuvuodenlisatieto[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.julkaisuvuodenlisatieto.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.julkaisuvuodenlisatieto.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('julkaisuvuodenlisatieto')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_julkaisuvuodenlisatieto" data-ng-required="requiredHighlight && !isValid('julkaisuvuodenlisatieto')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.julkaisuvuosi.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('julkaisuvuodenlisatieto')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Kenttä: Julkaisun nimi -->
   <div class="row form-group" 
     id="julkaisunnimiGroup" 
@@ -195,6 +227,25 @@
                 placeholder="{{i18n.content.form.organisaatiotekija.orcid.picktip[lang]}}">
               <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
             </div>
+
+            <!-- Kenttä: Tekijän rooli taidejulkaisuille -->
+            <div data-ng-if="isFieldVisible('tekijanrooli')" class="col-xs-12 col-sm-6 form-group" id="rooliGroup">
+              <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                 <ui-select data-ng-model="rooli.selected"
+                            on-select="useOrganisaatiotekijaRooli($index,$select.selected)"
+                            theme="bootstrap"
+                           >
+                    <ui-select-match class="ui-select-match"
+                                     data-ng-value="justus.organisaatiotekija[$index].rooli"
+                                     placeholder="{{justus.organisaatiotekija[$index].rooli}} {{getCode('julkaisuntekijanrooli',justus.organisaatiotekija[$index].rooli).selite[lang] || i18n.content.form.organisaatiotekija.tekijanrooli.picktip[lang]}}">
+                      {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="role in codes.julkaisuntekijanrooli | orderBy: 'arvo' | filter: $select.search">
+                      {{role.arvo}} {{role.selite[lang]}}
+                    </ui-select-choices>
+                  </ui-select>
+            </div>
+
             <div class="col-xs-12">
               <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
               data-ng-init="pIx=$parent.$index" class="row form-group">
@@ -224,6 +275,9 @@
                     </ui-select-choices>
                   </ui-select>
                 </div>
+
+
+
                 <div class="col-xs-3 col-sm-3">
                   <!--
                   {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
@@ -782,6 +836,7 @@
       </div>
     </div>
   </div>
+
   <!-- Kenttä: Julkaisumaa -->
   <div class="row form-group" data-ng-if="isFieldVisible('julkaisumaa')" id="julkaisumaaGroup">
     <div class="col-sm-4 col-xs-12">
@@ -810,6 +865,71 @@
     </div>
   </div>
 
+  <!-- Kenttä: Julkistamispaikkakunta -->
+  <div class="row form-group" data-ng-if="isFieldVisible('julkistamispaikkakunta')" id="julkistamispaikkakunta">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.julkistamispaikkakunta[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.julkistamispaikkakunta.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.julkistamispaikkakunta.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('julkistamispaikkakunta')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="julkistamispaikkakunta" data-ng-required="requiredHighlight && !isValid('julkistamispaikkakunta')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.julkistamispaikkakunta.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('julkistamispaikkakunta')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kenttä: Tapahtuman lisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('tapahtumanlisatieto')" id="tapahtumalisatieto">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.tapahtumanlisatieto[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.tapahtumanlisatieto.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.tapahtumanlisatieto.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('lisatieto')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_tapahtuma" data-ng-required="requiredHighlight && !isValid('lisatieto')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.tapahtuma.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('tapahtumanlisatieto')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Kenttä: Julkaisun tieteenala -->
   <div class="row form-group" 
     id="tieteenalaGroup" 
@@ -827,7 +947,7 @@
       <span data-ng-if="isFieldRequired('tieteenala')" class="required-star">*</span>
     </div>
     <div class="col-sm-8 col-xs-12 justus-data">
-      <div data-ng-repeat="i in justus.tieteenala | orderBy: 'jnro'"
+      <div data-ng-repeat="i in justus.tieteenala track by $index"
         class="row">
         <div class="col-xs-10">
           <div class="form-group">
@@ -896,6 +1016,120 @@
               </ui-select-choices>
             </ui-select>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kenttä: Julkaisun taiteenala -->
+  <div class="row form-group"
+       id="taiteenalaGroup"
+       data-ng-if="isFieldVisible('taiteenala')">
+      <div class="col-sm-4 col-xs-12">
+        <label class="control-label"
+               data-ng-bind="i18n.content.form.taiteenala[lang]"
+        >
+        </label>
+           <i class="fa fa-info-circle justus-info"
+              data-popover-trigger="'mouseenter'"
+              data-popover-placement="right"
+              data-uib-popover="{{i18n.content.form.taiteenala.tooltip[lang]}}"
+              data-ng-show="i18n.content.form.taiteenala.tooltip[lang]">
+          </i>
+      <span data-ng-if="isFieldRequired('taiteenala')" class="required-star">*</span>
+      </div>
+      <div class="col-xs-10 col-sm-8 justus-data">
+        <div data-ng-repeat="i in justus.taiteenala track by $index" class="row">
+        <div class="col-xs-10">
+          <div class="form-group">
+            <input type="text" ng-disabled="true"
+                   class="form-control"
+                   data-ng-model="lab_taiteenala$index"
+                   data-ng-value="i.taiteenalakoodi+' '+getCode('taiteenalat',i.taiteenalakoodi).selite[lang]">
+            <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <button class="btn btn-primary m-b"
+                  data-ng-click="justus.taiteenala.splice($index, 1)"
+                  data-ng-if="justus.taiteenala.length >= 2 && (justus.taiteenala.length - 1) !== $index"
+                  title="{{i18n.content.form.taiteenala.poista.tooltip[lang]}}"
+                  data-ng-bind="i18n.content.form.taiteenala.poista.tooltip[lang]">
+          </button>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col-xs-10 form-group">
+              <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                 <ui-select data-ng-model="taiteenala.selected"
+                            on-select="useTaiteenala($select.selected.arvo)"
+                            theme="bootstrap"
+                 >
+                    <ui-select-match class="ui-select-match"
+                                     data-ng-value="justus.taiteenala"
+                                     placeholder="{{i18n.content.form.taiteenala.picktip[lang]}}">
+                      {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="code in codes.taiteenalat | orderBy: 'arvo' | filter: $select.search">
+                      {{code.arvo}} {{code.selite[lang]}}
+                    </ui-select-choices>
+                  </ui-select>
+              </div>
+            </div>
+        </div>
+  </div>
+
+  <!-- Taiteenalan tyyppikategoria-->
+  <div class="row form-group"
+       id="taidealaTyyppiGroup"
+       data-ng-if="isFieldVisible('taidealantyyppikategoria')">
+    <div class="col-sm-4 col-xs-12">
+       <label class="control-label"
+              data-ng-bind="i18n.content.form.taidealantyyppikategoria[lang]"
+       ></label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'"
+         data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.taidealantyyppikategoria.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.taidealantyyppikategoria.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('taidealantyyppikategoria')" class="required-star">*</span>
+    </div>
+    <div class="col-xs-10 col-sm-8 justus-data">
+    <div data-ng-repeat="i in justus.taidelisatieto | filter: {lisatietotyyppi: 'taidealantyyppikategoria'}" class="row">
+      <div class="col-xs-10">
+        <div class="form-group">
+          <input type="text" ng-disabled="true"
+          class="form-control"
+          data-ng-model="lab_taidealantyyppikategoria$index"
+          data-ng-value="i.lisatietoteksti+' '+getCode('taidealantyypit',i.lisatietoteksti).selite[lang]">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
+        <div class="col-xs-2">
+          <button class="btn btn-primary m-b"
+          data-ng-click="justus.taidelisatieto.splice($index, 1)"
+          title="{{i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]}}"
+          data-ng-bind="i18n.content.form.taidealantyyppikategoria.poista.tooltip[lang]">
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-10 form-group">
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+          <ui-select data-ng-model="taidelisatieto.selected"
+                     on-select="useTaidelanTyyppi($select.selected.arvo)"
+                     theme="bootstrap"
+          >
+          <ui-select-match class="ui-select-match"
+                           data-ng-value="justus.taidelisatieto"
+                           placeholder="{{i18n.content.form.taidealantyyppikategoria.picktip[lang]}}">
+          {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
+          </ui-select-match>
+          <ui-select-choices repeat="code in codes.taidealantyypit | orderBy: 'arvo' | filter: $select.search">
+          {{code.arvo}} {{code.selite[lang]}}
+          </ui-select-choices>
+          </ui-select>
         </div>
       </div>
     </div>
@@ -1014,6 +1248,38 @@
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="col-xs-2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kenttä: Muu tunniste lisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('muutunniste')" id="muutunniste">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.muutunniste[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.muutunniste.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.muutunniste.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('muutunniste')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_muutunniste" data-ng-required="requiredHighlight && !isValid('muutunniste')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                    rows="1"
+                    maxlength="1000"
+                    data-ng-model="justus.tempLisatieto.muutunniste.lisatietoteksti">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('muutunniste')">
+          </i>
         </div>
       </div>
     </div>
@@ -1187,6 +1453,38 @@
         <div class="col-xs-2">
           <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
             data-ng-if="requiredHighlight && !isValid('rinnakkaistallennetunversionverkkoosoite')">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kenttä: Lisätieto -->
+  <div class="row form-group" data-ng-if="isFieldVisible('lisatieto')" id="lisatietoGroup">
+    <div class="col-sm-4 col-xs-12">
+      <label class="control-label" data-ng-bind="i18n.content.form.lisatieto[lang]">
+      </label>
+      <i class="fa fa-info-circle justus-info"
+         data-popover-trigger="'mouseenter'" data-popover-placement="right"
+         data-uib-popover="{{i18n.content.form.lisatieto.tooltip[lang]}}"
+         data-ng-show="i18n.content.form.lisatieto.tooltip[lang]">
+      </i>
+      <span data-ng-if="isFieldRequired('lisatieto')" class="required-star">*</span>
+    </div>
+    <div class="col-sm-8 col-xs-12 justus-data"
+         data-ng-model="req_lisatieto" data-ng-required="requiredHighlight && !isValid('lisatieto')">
+      <div class="row">
+        <div class="col-xs-10">
+          <textarea type="text" class="form-control vertical-resize"
+                 maxlength="1000"
+                 data-ng-model="justus.lisatieto"
+                 placeholder="{{i18n.content.form.lisatieto.picktip[lang]}}">
+          </textarea>
+          <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-2">
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
+             data-ng-if="requiredHighlight && !isValid('lisatieto')">
           </i>
         </div>
       </div>
