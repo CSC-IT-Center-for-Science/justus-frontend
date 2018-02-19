@@ -55,7 +55,7 @@ angular.module('TarkastaController', [])
         'Julkaisun tieteenala 4',
         'Julkaisun tieteenala 5',
         'Julkaisun tieteenala 6',
-        // 'Julkaisun taiteenalat',
+        'Julkaisun taiteenalat',
         // 'Taidealan tyyppikategoriat',
         'Organisaation tekijä 1',
         'Alayksikko 1',
@@ -75,8 +75,9 @@ angular.module('TarkastaController', [])
       $scope.getCsvExportFile = function () {
         $scope.loading.csv = true;
         mapOrganisaatioData();
-        mapTieteenalaData();
         mapAlayksikkoData();
+        mapTieteenalaData();
+        mapTaiteenalaData();
 
         return Promise.map($scope.data.julkaisu, function (publication) {
           return {
@@ -118,7 +119,7 @@ angular.module('TarkastaController', [])
             'Julkaisun tieteenala 4': getTieteenala(publication.tieteenala, 4),
             'Julkaisun tieteenala 5': getTieteenala(publication.tieteenala, 5),
             'Julkaisun tieteenala 6': getTieteenala(publication.tieteenala, 6),
-            // 'Julkaisun taiteenalat',
+            'Julkaisun taiteenalat': getTaiteenalat(publication.taiteenalat),
             // 'Taidealan tyyppikategoriat',
             'Organisaation tekijä 1': getOrganisaatioTekijat(publication.organisaatiotekijat, 1),
             'Alayksikko 1': getAlayksikko(publication.organisaatiotekijat, 1),
@@ -127,7 +128,7 @@ angular.module('TarkastaController', [])
             'Organisaation tekijä 2': getOrganisaatioTekijat(publication.organisaatiotekijat, 2),
             'Alayksikkö 2': getAlayksikko(publication.organisaatiotekijat, 2),
             'ORCID 2': getOrcid(publication.orcid, 2),
-            'Rooli 2': getRooli(publication.rooli, 2),
+            'Rooli 2': getRooli(publication.rooli, 2)
             // 'Organisaation tekijä 3',
             // 'Alayksikkö 2'
             // 'ORCID 3',
@@ -142,7 +143,7 @@ angular.module('TarkastaController', [])
 
       let getAlayksikko = function (data, val) {
         if (data === null || typeof data === 'undefined') {
-           return;
+          return;
           } else if (typeof data[val - 1] !== 'undefined') {
             return data[val - 1].alayksikot;
           }
@@ -153,7 +154,9 @@ angular.module('TarkastaController', [])
           return;
         } else if (typeof data[val - 1] !== 'undefined') {
           return data[val - 1].etunimet + ',' + data[val - 1].sukunimi;
-        } else { return; }
+        } else {
+          return;
+        }
       };
 
       let getOrcid = function (data, val) {
@@ -161,20 +164,39 @@ angular.module('TarkastaController', [])
           return;
         } else if (typeof data[val - 1] !== 'undefined') {
           return data[val - 1];
-        } else { return; }
+        } else {
+          return;
+        }
       };
 
       let getTieteenala = function(data, val) {
         if (typeof data === 'undefined' || data[0] === null) {
           return;
         } else if (typeof data[val - 1] !== 'undefined') {
-          // console.log(data);
-          let tieteenala = $scope.getCode('tieteenalat', data[val - 1]);
-          if(!tieteenala) {
+          // order array by 'jnro'
+          data.sort((a, b) => a.jnro.localeCompare(b.jnro));
+          const tieteenala = $scope.getCode('tieteenalat', data[val - 1].tieteenalakoodi);
+          if (!tieteenala) {
             return;
           }
           return tieteenala.arvo + ' ' + tieteenala.selite[$scope.lang];
-        } else { return; }
+        } else {
+          return;
+        }
+      };
+
+      let getTaiteenalat = function(data) {
+        if (typeof data === 'undefined' || data[0] === null) {
+          return;
+        } else if (typeof data !== 'undefined') {
+          const taiteenalat = [];
+          for (let i = 0; i < data.length; i++) {
+            taiteenalat.push(data[i] + ' ' + $scope.getCode('taiteenalat', data[i]).selite[$scope.lang]);
+          }
+          return taiteenalat.join('; ');
+        } else {
+          return;
+        }
       };
 
       let getRooli = function (data, val) {
@@ -183,7 +205,9 @@ angular.module('TarkastaController', [])
         } else if (typeof data[val - 1] !== 'undefined') {
           let rooli = $scope.getCode('julkaisuntekijanrooli', data[val - 1]);
           return rooli.selite[$scope.lang];
-        } else { return; }
+        } else {
+          return;
+        }
       };
 
       let mapAlayksikkoData = function () {
@@ -214,7 +238,20 @@ angular.module('TarkastaController', [])
               if (typeof $scope.data.julkaisu[akey].tieteenala === 'undefined') {
                 $scope.data.julkaisu[akey].tieteenala = [];
               }
-              $scope.data.julkaisu[akey].tieteenala.push(bvalue.tieteenalakoodi);
+              $scope.data.julkaisu[akey].tieteenala.push(bvalue);
+            }
+          });
+        });
+      };
+
+      let mapTaiteenalaData = function () {
+        angular.forEach($scope.data.julkaisu, function (avalue, akey) {
+          angular.forEach($scope.taiteenalaData, function (bvalue, bkey) {
+            if (avalue.id.match(bvalue.julkaisuid)) {
+              if (typeof $scope.data.julkaisu[akey].taiteenalat === 'undefined') {
+                $scope.data.julkaisu[akey].taiteenalat = [];
+              }
+              $scope.data.julkaisu[akey].taiteenalat.push(bvalue.taiteenalakoodi);
             }
           });
         });
@@ -242,15 +279,15 @@ angular.module('TarkastaController', [])
                 });
               $scope.data.julkaisu[akey].orcid.push(bvalue.orcid);
               $scope.data.julkaisu[akey].rooli.push(bvalue.rooli);
-            };
+            }
           });
         });
       };
 
       // map from service (generic) to scope
       $scope.getCode = function (codeset, code) {
-        return KoodistoService.getCode($scope.codes, codeset, code)
-      }
+        return KoodistoService.getCode($scope.codes, codeset, code);
+      };
 
       $scope.updatePublication = function (julkaisu, julkaisuntila) {
         if (julkaisu && julkaisu.id) {
