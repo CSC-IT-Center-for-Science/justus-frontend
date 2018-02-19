@@ -47,7 +47,7 @@ angular.module('TarkastaController', [])
         'Pysyvä verkko-osoite',
         'Rinnakkaistallennetun version verkko-osoite',
         'Avoin saatavuus',
-        // 'Avainsanat',
+        'Avainsanat',
         'Lisätieto',
         'Julkaisun tieteenala 1',
         'Julkaisun tieteenala 2',
@@ -78,6 +78,7 @@ angular.module('TarkastaController', [])
         mapAlayksikkoData();
         mapTieteenalaData();
         mapTaiteenalaData();
+        mapAvainsanat();
 
         return Promise.map($scope.data.julkaisu, function (publication) {
           return {
@@ -111,7 +112,7 @@ angular.module('TarkastaController', [])
             'Pysyvä verkko-osoite': publication.pysyvaverkkoosoite,
             'Rinnakkaistallennetun version verkko-osoite': publication.rinnakkaistallennetunversionverkkoosoite,
             'Avoin saatavuus': publication.avoinsaatavuus,
-            // 'Avainsanat',
+            'Avainsanat': publication.avainsanat,
             'Lisätieto': publication.lisatieto,
             'Julkaisun tieteenala 1': getTieteenala(publication.tieteenala, 1),
             'Julkaisun tieteenala 2': getTieteenala(publication.tieteenala, 2),
@@ -257,6 +258,21 @@ angular.module('TarkastaController', [])
         });
       };
 
+      let mapAvainsanat = function () {
+        angular.forEach($scope.data.julkaisu, function (avalue, akey) {
+          angular.forEach($scope.avainsanaData, function (bvalue, bkey) {
+            if (avalue.id.match(bvalue.julkaisuid)) {
+              if (typeof $scope.data.julkaisu[akey].avainsanat === 'undefined') {
+                $scope.data.julkaisu[akey].avainsanat = [];
+              }
+              if (bvalue.avainsana || bvalue.avainsana.length !== 0) {
+                $scope.data.julkaisu[akey].avainsanat.push(bvalue.avainsana);
+              }
+            }
+          });
+        });
+      };
+
       let mapOrganisaatioData = function () {
         angular.forEach($scope.data.julkaisu, function (avalue, akey) {
           angular.forEach($scope.organisaatioData, function (bvalue, bkey) {
@@ -368,13 +384,15 @@ angular.module('TarkastaController', [])
           $scope.getData('organisaatiotekija'),
           $scope.getData('alayksikko'),
           $scope.getData('tieteenala'),
-          $scope.getData('taiteenala')
+          $scope.getData('taiteenala'),
+          $scope.getData('avainsana')
         ])
-          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala) => {
+          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana) => {
             $scope.organisaatioData = organisaatiotekija;
             $scope.alayksikkoData = alayksikko;
             $scope.tieteenalaData = tieteenala;
             $scope.taiteenalaData = taiteenala;
+            $scope.avainsanaData = avainsana;
           }).then(() => {
           });
       };
