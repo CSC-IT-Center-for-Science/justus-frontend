@@ -308,25 +308,8 @@ angular.module('TarkastaController', [])
           });
       };
 
-      $scope.getTieteenalaData = function () {
-        APIService.get('tieteenala', null, null, $scope.query)
-          .then(function (data) {
-            $scope.tieteenalaData = data;
-          });
-      };
-
-      $scope.getOrganisaatioData = function () {
-        APIService.get('organisaatiotekija', null, null, $scope.query)
-          .then(function (data) {
-            $scope.organisaatioData = data;
-          });
-      };
-
-      $scope.getAlayksikkoData = function () {
-        APIService.get('alayksikko', null, null, $scope.query)
-          .then(function (data) {
-            $scope.alayksikkoData = data;
-          });
+      $scope.getData = function (val) {
+        return APIService.get(val, null, null, $scope.query);
       };
 
       $scope.resetData = function () {
@@ -344,9 +327,19 @@ angular.module('TarkastaController', [])
 
         $scope.odottavat = true;
 
-        $scope.getTieteenalaData();
-        $scope.getOrganisaatioData();
-        $scope.getAlayksikkoData();
+        Promise.all([
+          $scope.getData('organisaatiotekija'),
+          $scope.getData('alayksikko'),
+          $scope.getData('tieteenala'),
+          $scope.getData('taiteenala')
+        ])
+          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala) => {
+            $scope.organisaatioData = organisaatiotekija;
+            $scope.alayksikkoData = alayksikko;
+            $scope.tieteenalaData = tieteenala;
+            $scope.taiteenalaData = taiteenala;
+          }).then(() => {
+          });
       };
 
       init();
