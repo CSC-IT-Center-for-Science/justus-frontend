@@ -39,8 +39,8 @@ angular.module('TarkastaController', [])
         'Konferenssin vakiintunut nimi',
         'Emojulkaisun nimi',
         'Emojulkaisun toimittajat',
-        // 'Julkistamispaikkakunta',
-        // 'Tapahtuma',
+        'Julkistamispaikkakunta',
+        'Tapahtuma',
         'Julkaisun kansainvälisyys',
         'Kansainvälinen yhteisjulkaisu',
         'DOI-tunniste',
@@ -56,7 +56,7 @@ angular.module('TarkastaController', [])
         'Julkaisun tieteenala 5',
         'Julkaisun tieteenala 6',
         'Julkaisun taiteenalat',
-        // 'Taidealan tyyppikategoriat',
+        'Taidealan tyyppikategoriat',
         'Organisaation tekijä 1',
         'Alayksikko 1',
         'ORCID 1',
@@ -79,6 +79,7 @@ angular.module('TarkastaController', [])
         mapTieteenalaData();
         mapTaiteenalaData();
         mapAvainsanat();
+        mapTaidelisatietoData();
 
         return Promise.map($scope.data.julkaisu, function (publication) {
           return {
@@ -104,8 +105,8 @@ angular.module('TarkastaController', [])
             'Konferenssin vakiintunut nimi': publication.konferenssinvakiintunutnimi,
             'Emojulkaisun nimi': publication.emojulkaisunnimi,
             'Emojulkaisun toimittajat': publication.emojulkaisuntoimittajat,
-            // 'Julkistamispaikkakunta',
-            // 'Tapahtuma',
+            'Julkistamispaikkakunta': publication.julkistamispaikkakunta,
+            'Tapahtuma': publication.tapahtuma,
             'Julkaisun kansainvälisyys': publication.julkaisunkansainvalisyys,
             'Kansainvälinen yhteisjulkaisu': publication.kansainvalinenyhteisjulkaisu,
             'DOI-tunniste': publication.doitunniste,
@@ -121,7 +122,7 @@ angular.module('TarkastaController', [])
             'Julkaisun tieteenala 5': getTieteenala(publication.tieteenala, 5),
             'Julkaisun tieteenala 6': getTieteenala(publication.tieteenala, 6),
             'Julkaisun taiteenalat': getTaiteenalat(publication.taiteenalat),
-            // 'Taidealan tyyppikategoriat',
+            'Taidealan tyyppikategoriat': getTyyppikategoriat(publication.taidealantyyppikategoria),
             'Organisaation tekijä 1': getOrganisaatioTekijat(publication.organisaatiotekijat, 1),
             'Alayksikko 1': getAlayksikko(publication.organisaatiotekijat, 1),
             'ORCID 1': getOrcid(publication.orcid, 1),
@@ -198,6 +199,20 @@ angular.module('TarkastaController', [])
         }
       };
 
+      let getTyyppikategoriat = function(data) {
+        if (!data) {
+          return;
+        } else if (data[0]) {
+          const tyyppikategoriat = [];
+          for (let i = 0; i < data.length; i++) {
+            tyyppikategoriat.push(data[i] + ' ' + $scope.getCode('taidealantyypit', data[i]).selite[$scope.lang]);
+          }
+          return tyyppikategoriat.join('; ');
+        } else {
+          return;
+        }
+      };
+
       let getRooli = function (data, val) {
         if (typeof data === 'undefined' || data[0] === null) {
           return;
@@ -265,6 +280,32 @@ angular.module('TarkastaController', [])
               }
               if (bvalue.avainsana || bvalue.avainsana.length !== 0) {
                 $scope.data.julkaisu[akey].avainsanat.push(bvalue.avainsana);
+              }
+            }
+          });
+        });
+      };
+
+      let mapTaidelisatietoData = function () {
+        angular.forEach($scope.data.julkaisu, function (avalue, akey) {
+          angular.forEach($scope.taidelisatietoData, function (bvalue, bkey) {
+            if (avalue.id.match(bvalue.julkaisuid)) {
+              if (typeof $scope.data.julkaisu[akey].taidealantyyppikategoria === 'undefined') {
+                $scope.data.julkaisu[akey].taidealantyyppikategoria = [];
+              }
+              if (bvalue.lisatietoteksti || bvalue.lisatietoteksti.length !== 0) {
+                if (bvalue.lisatietotyyppi === 'tapahtuma') {
+                  $scope.data.julkaisu[akey].tapahtuma = bvalue.lisatietoteksti;
+                }
+                if (bvalue.lisatietotyyppi === 'julkaisuvuodenlisatieto') {
+                  $scope.data.julkaisu[akey].julkaisuvuodenlisatieto = bvalue.lisatietoteksti;
+                }
+                if (bvalue.lisatietotyyppi === 'julkistamispaikkakunta') {
+                  $scope.data.julkaisu[akey].julkistamispaikkakunta = bvalue.lisatietoteksti;
+                }
+                if (bvalue.lisatietotyyppi === 'taidealantyyppikategoria') {
+                  $scope.data.julkaisu[akey].taidealantyyppikategoria.push(bvalue.lisatietoteksti);
+                }
               }
             }
           });
@@ -383,14 +424,16 @@ angular.module('TarkastaController', [])
           $scope.getData('alayksikko'),
           $scope.getData('tieteenala'),
           $scope.getData('taiteenala'),
-          $scope.getData('avainsana')
+          $scope.getData('avainsana'),
+          $scope.getData('lisatieto')
         ])
-          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana) => {
+          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana, lisatieto) => {
             $scope.organisaatioData = organisaatiotekija;
             $scope.alayksikkoData = alayksikko;
             $scope.tieteenalaData = tieteenala;
             $scope.taiteenalaData = taiteenala;
             $scope.avainsanaData = avainsana;
+            $scope.taidelisatietoData = lisatieto;
           }).then(() => {
           });
       };
