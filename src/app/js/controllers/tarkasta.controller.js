@@ -173,7 +173,7 @@ angular.module('TarkastaController', [])
       let getTieteenala = function(data, val) {
         if (typeof data === 'undefined' || data[0] === null) {
           return;
-        } else if (typeof data[val - 1] !== 'undefined') {
+        } else if (data[val - 1] && data[val - 1].jnro) {
           // order array by 'jnro'
           console.log(data[val - 1]);
           console.log(data[0].jnro);
