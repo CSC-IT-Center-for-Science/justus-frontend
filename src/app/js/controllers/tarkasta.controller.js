@@ -171,13 +171,9 @@ angular.module('TarkastaController', [])
       };
 
       let getTieteenala = function(data, val) {
-        if (typeof data === 'undefined' || data[0] === null) {
+        if (!data || !data[0]) {
           return;
         } else if (data[val - 1] && data[val - 1].jnro) {
-          // order array by 'jnro'
-          console.log(data[val - 1]);
-          console.log(data[0].jnro);
-          data.sort((a, b) => a.jnro.localeCompare(b.jnro));
           const tieteenala = $scope.getCode('tieteenalat', data[val - 1].tieteenalakoodi);
           if (!tieteenala) {
             return;
@@ -189,9 +185,9 @@ angular.module('TarkastaController', [])
       };
 
       let getTaiteenalat = function(data) {
-        if (typeof data === 'undefined' || data[0] === null) {
+        if (!data) {
           return;
-        } else if (typeof data !== 'undefined') {
+        } else if (data[0]) {
           const taiteenalat = [];
           for (let i = 0; i < data.length; i++) {
             taiteenalat.push(data[i] + ' ' + $scope.getCode('taiteenalat', data[i]).selite[$scope.lang]);
@@ -241,7 +237,7 @@ angular.module('TarkastaController', [])
               if (typeof $scope.data.julkaisu[akey].tieteenala === 'undefined') {
                 $scope.data.julkaisu[akey].tieteenala = [];
               }
-              $scope.data.julkaisu[akey].tieteenala.push(bvalue);
+              $scope.data.julkaisu[akey].tieteenala.unshift(bvalue);
             }
           });
         });
