@@ -951,10 +951,11 @@
         class="row">
         <div class="col-xs-10">
           <div class="form-group">
-            <input type="text" 
-              class="form-control"
-              data-ng-model="lab_tieteenala$index"
-              data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]">
+            <input type="text"
+                   ng-disabled="true"
+                    class="form-control"
+                    data-ng-model="lab_tieteenala$index"
+                    data-ng-value="i.tieteenalakoodi+' '+getCode('tieteenalat',i.tieteenalakoodi).selite[lang]">
             <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
