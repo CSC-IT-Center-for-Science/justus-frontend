@@ -237,7 +237,7 @@ angular.module('TarkastaController', [])
               if (typeof $scope.data.julkaisu[akey].tieteenala === 'undefined') {
                 $scope.data.julkaisu[akey].tieteenala = [];
               }
-              $scope.data.julkaisu[akey].tieteenala.unshift(bvalue);
+              $scope.data.julkaisu[akey].tieteenala.push(bvalue);
             }
           });
         });
