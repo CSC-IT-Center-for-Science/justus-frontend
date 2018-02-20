@@ -175,6 +175,8 @@ angular.module('TarkastaController', [])
           return;
         } else if (typeof data[val - 1] !== 'undefined') {
           // order array by 'jnro'
+          console.log(data[val - 1]);
+          console.log(data[0].jnro);
           data.sort((a, b) => a.jnro.localeCompare(b.jnro));
           const tieteenala = $scope.getCode('tieteenalat', data[val - 1].tieteenalakoodi);
           if (!tieteenala) {
