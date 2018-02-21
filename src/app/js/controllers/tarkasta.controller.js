@@ -135,12 +135,26 @@ angular.module('TarkastaController', [])
             // 'Alayksikkö 2'
             // 'ORCID 3',
             // Rooli 3',
+
           };
         })
           .then(function (data) {
             $scope.loading.csv = false;
+            setTimeout(function() {
+              emptyMappingData();
+            }, 1000);
             return data;
           });
+      };
+
+      let emptyMappingData = function() {
+        angular.forEach($scope.data.julkaisu, function (jvalue, jkey) {
+          $scope.data.julkaisu[jkey].organisaatiotekijat = [];
+          $scope.data.julkaisu[jkey].tieteenala = [];
+          $scope.data.julkaisu[jkey].taiteenalat = [];
+          $scope.data.julkaisu[jkey].alayksikot = [];
+          $scope.data.julkaisu[jkey].taidealantyyppikategoria = [];
+        });
       };
 
       let getAlayksikko = function (data, val) {
