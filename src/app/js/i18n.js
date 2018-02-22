@@ -132,13 +132,17 @@ const i18n = {
       },
       julkaisuvuodenlisatieto: {
         FI: 'Julkaisuvuoden lisätieto',
-        SV: '*SV Julkaisuvuoden lisätieto',
-        EN: '*EN Julkaisuvuoden lisätieto',
+        SV: 'Mer information av publikationens utgivningsår',
+        EN: 'Additional information to publication year',
         tooltip: {
-          FI: 'Valinnainen julkaisuvuoden lisätieto',
-          SV: '*SV Valinnainen julkaisuvuoden lisätieto',
-          EN: '*EN Valinnainen julkaisuvuoden lisätieto'
-        }
+          FI: 'Päivämäärät (esimerkiksi aikavälit), näytösten määrä jne.',
+          SV: 'Datum',
+          EN: 'Dates (e.g. time frame), amount of presentations/shows'
+        },
+        picktip: {
+          FI: 'esim. 20 näytöstä, 1.2.-31.3.2018',
+          SV: 't.ex. 20 utställningar, 1.2.-31.3.2018',
+          EN: 'e.g. 20 presentations, 1.2.-31.3.2018' }
       },
       julkaisunnimi: {
         FI: 'Julkaisun nimi',
@@ -185,7 +189,7 @@ const i18n = {
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
-        tekijanrooli: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli', picktip: { FI: 'Rooli', SV: 'SV*Rooli', EN: 'EN*Rooli' } },
+        tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
         kopioi: { FI: 'Kopioi tekijät',
@@ -378,22 +382,32 @@ const i18n = {
       },
       julkistamispaikkakunta: {
         FI: 'Julkistamispaikkakunta',
-        SV: '*SV Julkistamispaikkakunta',
-        EN: '*EN Julkistamispaikkakunta',
+        SV: 'Plats av utgivning',
+        EN: 'Place of publication',
         tooltip: {
-          FI: 'Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
-          SV: '*SV Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti',
-          EN: '*EN Vapaaehtoinen julkistamispaikkakunnan lisätietoteksti'
+          FI: 'Paikka julkaisumaassa. Tiedolla voi tarkentaa julkaisumaan yhteydessä annettua tietoa. Usein tieto paikkakunnasta ja esimerkiksi esityksen paikasta on tärkeä.',
+          SV: 'Place of publication in the country of publication. With this information it is possible to provide additional information releated to the publication country.',
+          EN: 'Place of publication in the country of publication. With this information it is possible to provide additional information releated to the publication country.'
+        },
+        picktip: {
+          FI: 'esim. Helsinki, Kansallisteatteri',
+          SV: 'e.g. Helsinki, Finnish National Theatre',
+          EN: 'e.g. Helsinki, Finnish National Theatre'
         }
       },
       tapahtumanlisatieto: {
         FI: 'Tapahtuma',
-        SV: '*SV Tapahtuma',
-        EN: '*EN Tapahtuma',
+        SV: 'Event',
+        EN: 'Event',
         tooltip: {
-          FI: 'Vapaaehtoinen tapahtuman lisätietoteksti',
-          SV: '*SV Vapaaehtoinen tapahtuman lisätietoteksti',
-          EN: '*EN Vapaaehtoinen tapahtuman lisätietoteksti'
+          FI: 'Missä tapahtumassa julkaisu on esitetty.',
+          SV: 'The event where the publication is performed',
+          EN: 'The event where the publication is performed'
+        },
+        picktip: {
+          FI: 'esim. Sodankylän elokuvafestivaalit',
+          SV: 'e.g. Sodankylä Film Festival',
+          EN: 'e.g. Sodankylä Film Festival'
         }
       },
       tieteenala: {
@@ -412,29 +426,29 @@ const i18n = {
       },
       taiteenala: {
         FI: 'Julkaisun taiteenalat',
-        SV: '*SV julkaisun taiteenalat',
-        EN: '*EN julkaisun taiteenalat',
+        SV: 'Field of art of the publication',
+        EN: 'Field of art of the publication',
         tooltip: {
-          FI: '1-7 taiteenala Tilastokeskuksen taiteenalaluokituksen mukaan...',
-          SV: '*SV 1–7 ...',
-          EN: '*EN 1-7 .....'
+          FI: 'Julkaisulle voidaan raportoida 1-7 taiteenalaa.',
+          SV: 'It is possible to report 1–7 fields or art per publication',
+          EN: 'It is possible to report 1–7 fields or art per publication'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Valitse taiteenala', SV: '*SV valitse taiteenala', EN: '*EN valitse taiteenala' }
+        picktip: { FI: 'Valitse taiteenala', SV: 'Choose field of art', EN: 'Choose field of art' }
       },
       taidealantyyppikategoria: {
         FI: 'Taidealan tyyppikategoriat',
-        SV: '*SV Taidealan tyyppikategoriat',
-        EN: '*EN Taidealan tyyppikategoriat',
+        SV: 'Field of art type categories',
+        EN: 'Field of art type categories',
         tooltip: {
-          FI: 'Lorem ipsum',
-          SV: '*SV Lorem ipsum',
-          EN: '*EN Lorem ipsum'
+          FI: 'Tyyppikategoriat muistuttavat roolia, mutta ne ovat tuotoksen ominaisuus siinä missä rooli on tekijän ominaisuus.',
+          SV: 'Type categories resemble roles, but are a feature of the production/publication when again role is a feature of the author/maker',
+          EN: 'Type categories resemble roles, but are a feature of the production/publication when again role is a feature of the author/maker'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: '*SV valitse taiteenalan tyyppikategoria', EN: '*EN valitse taiteenalan tyyppikategoria' }
+        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: 'Choose type category of the field of art', EN: 'Choose type category of the field of art' }
       },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
@@ -473,12 +487,17 @@ const i18n = {
       },
       muutunniste: {
         FI: 'Muu tunniste',
-        SV: '*SV Muu tunniste',
-        EN: '*EN Muu tunniste',
+        SV: 'Other identifier',
+        EN: 'Other identifier',
         tooltip: {
-          FI: 'Muu tunniste lorem impsum',
-          SV: '*SV Muu tunniste loerm ipsum',
-          EN: '*EN Muu tunniste lorem ipsum'
+          FI: 'Esimerkiksi CD:n, nuotin, jne tuotetunniste tai -tunnisteet.',
+          SV: 'e.g. Identifier of a CD, note or other product',
+          EN: 'e.g. Identifier of a CD, note or other product'
+        },
+        picktip: {
+          FI: 'Kirjoita julkaisun muu tunniste',
+          SV: 'Write other identifier of the publication',
+          EN: 'Write other identifier of the publication'
         }
       },
       pysyvaverkkoosoite: {
@@ -552,14 +571,18 @@ const i18n = {
       },
       lisatieto: {
         FI: 'Lisätieto',
-        SV: '*SV Lisätieto',
-        EN: '*EN Lisätieto',
+        SV: 'Additional information',
+        EN: 'Additional information',
         tooltip: {
-          FI: 'Lorem ipsun lisätieto',
-          SV: '*SV Lorem ipsum lisätieto',
-          EN: '*EN Lorem ipsun lisätieto'
+          FI: 'Vapaatekstikenttä, johon voi kirjoittaa organisaation sisäiseen käyttöön lisätietoja julkaisuun liittyen.',
+          SV: 'Text field, where one can write addtional information considering the publication for the use of one\'s own organisation',
+          EN: 'Text field, where one can write addtional information considering the publication for the use of one\'s own organisation'
         },
-        picktip: { FI: 'Kirjoita lisätietoteksti', SV: '*SV Lisätietoteksti', EN: '*EN Lisätietoteksti' }
+        picktip: {
+          FI: 'Kirjoita mahdollisia lisätietoja julkaisuun liittyen',
+          SV: 'Write possible additional information considering the publication',
+          EN: 'Write possible additional information considering the publication'
+        }
       },
       jufotunnus: { FI: 'JUFO-ID', SV: 'JUFO-ID', EN: 'JUFO-ID' },
       jufoluokitus: { FI: 'JUFO-luokitus', SV: 'JUFO-klassificering', EN: 'JUFO-classification' }
