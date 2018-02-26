@@ -385,9 +385,6 @@ angular.module('TarkastaController', [])
             if (!ovalue.organisaatiotekijat) {
               return;
             }
-            if (typeof ovalue.organisaatiotekijat.alayksikot === 'undefined') {
-              $scope.data.julkaisu[akey].organisaatiotekijat = [];
-            }
             for (let i = 0; i < ovalue.organisaatiotekijat.length; i++) {
               if (ovalue.organisaatiotekijat[i].organisaatiotekijaid.match(avalue.organisaatiotekijaid)) {
                 if (typeof ovalue.organisaatiotekijat[i].alayksikot === 'undefined') {
