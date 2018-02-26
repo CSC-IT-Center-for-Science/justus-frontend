@@ -2,8 +2,8 @@
 
 angular.module('TarkastaController', [])
   .controller('TarkastaController', [
-    '$rootScope', '$scope', '$http', '$state', '$location', '$log', 'APIService', 'KoodistoService',
-    function ($rootScope, $scope, $http, $state, $location, $log, APIService, KoodistoService) {
+    '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService',
+    function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService) {
       $scope.meta = APIService.meta;
       $scope.data = [];
       $scope.colOrder = 'id';
@@ -142,7 +142,10 @@ angular.module('TarkastaController', [])
 
       // Hide button from My publications
       $scope.getCsvExportFile = function () {
+
         $scope.loading.csv = true;
+        $scope.$apply();
+
         mapOrganisaatioData();
         mapAlayksikkoData();
         mapTieteenalaData();
@@ -151,6 +154,7 @@ angular.module('TarkastaController', [])
         mapTaidelisatietoData();
 
         return Promise.map($scope.data.julkaisu, function (publication) {
+
           return {
             'Julkaisun ID': publication.id,
             'Organisaatiotunnus': publication.organisaatiotunnus,
@@ -278,9 +282,9 @@ angular.module('TarkastaController', [])
         })
           .then(function (data) {
             $scope.loading.csv = false;
-            setTimeout(function() {
+            $timeout(function() {
               emptyMappingData();
-            }, 5000);
+            }, 1000);
             return data;
           });
       };
@@ -371,7 +375,8 @@ angular.module('TarkastaController', [])
       let getRooli = function (data, val) {
         if (typeof data === 'undefined' || data[0] === null) {
           return;
-        } else if (typeof data[val - 1] !== 'undefined') {
+        } else if (data[val - 1]) {
+          console.log(data[val - 1]);
           let rooli = $scope.getCode('julkaisuntekijanrooli', data[val - 1]);
           return rooli.selite[$scope.lang];
         } else {
