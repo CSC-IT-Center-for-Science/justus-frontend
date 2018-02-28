@@ -208,7 +208,8 @@ angular.module('TallennusController', [])
             .then((otid) => {
               return Promise.map(alayksikot, (alayksikko) => {
                 if (alayksikko) {
-                  return saveTable('alayksikko', alayksikko, alayksikko.id, otid);
+                  alayksikko.organisaatiotekijaid = otid;
+                  return saveTable('alayksikko', alayksikko);
                 }
               });
             });
