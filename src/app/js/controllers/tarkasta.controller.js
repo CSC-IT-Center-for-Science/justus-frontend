@@ -144,7 +144,6 @@ angular.module('TarkastaController', [])
       $scope.getCsvExportFile = function () {
 
         $scope.loading.csv = true;
-        $scope.$apply();
 
         mapOrganisaatioData();
         mapAlayksikkoData();
@@ -152,9 +151,9 @@ angular.module('TarkastaController', [])
         mapTaiteenalaData();
         mapAvainsanat();
         mapTaidelisatietoData();
+        mapTaidealantyyppiData();
 
         return Promise.map($scope.data.julkaisu, function (publication) {
-
           return {
             'Julkaisun ID': publication.id,
             'Organisaatiotunnus': publication.organisaatiotunnus,
@@ -447,9 +446,6 @@ angular.module('TarkastaController', [])
         angular.forEach($scope.data.julkaisu, function (avalue, akey) {
           angular.forEach($scope.taidelisatietoData, function (bvalue, bkey) {
             if (avalue.id.match(bvalue.julkaisuid)) {
-              if (typeof $scope.data.julkaisu[akey].taidealantyyppikategoria === 'undefined') {
-                $scope.data.julkaisu[akey].taidealantyyppikategoria = [];
-              }
               if (bvalue.lisatietoteksti || bvalue.lisatietoteksti.length !== 0) {
                 if (bvalue.lisatietotyyppi === 'tapahtuma') {
                   $scope.data.julkaisu[akey].tapahtuma = bvalue.lisatietoteksti;
@@ -460,10 +456,20 @@ angular.module('TarkastaController', [])
                 if (bvalue.lisatietotyyppi === 'julkistamispaikkakunta') {
                   $scope.data.julkaisu[akey].julkistamispaikkakunta = bvalue.lisatietoteksti;
                 }
-                if (bvalue.lisatietotyyppi === 'taidealantyyppikategoria') {
-                  $scope.data.julkaisu[akey].taidealantyyppikategoria.push(bvalue.lisatietoteksti);
-                }
               }
+            }
+          });
+        });
+      };
+
+      let mapTaidealantyyppiData = function () {
+        angular.forEach($scope.data.julkaisu, function (avalue, akey) {
+          angular.forEach($scope.taidealantyyppiData, function (bvalue, bkey) {
+            if (avalue.id.match(bvalue.julkaisuid)) {
+              if (typeof $scope.data.julkaisu[akey].taidealantyyppikategoria === 'undefined') {
+                $scope.data.julkaisu[akey].taidealantyyppikategoria = [];
+              }
+              $scope.data.julkaisu[akey].taidealantyyppikategoria.push(bvalue.tyyppikategoria);
             }
           });
         });
@@ -582,15 +588,17 @@ angular.module('TarkastaController', [])
           $scope.getData('tieteenala'),
           $scope.getData('taiteenala'),
           $scope.getData('avainsana'),
-          $scope.getData('lisatieto')
+          $scope.getData('lisatieto'),
+          $scope.getData('taidealantyyppikategoria')
         ])
-          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana, lisatieto) => {
+          .spread((organisaatiotekija, alayksikko, tieteenala, taiteenala, avainsana, lisatieto, taidealantyyppikategoria) => {
             $scope.organisaatioData = organisaatiotekija;
             $scope.alayksikkoData = alayksikko;
             $scope.tieteenalaData = tieteenala;
             $scope.taiteenalaData = taiteenala;
             $scope.avainsanaData = avainsana;
             $scope.taidelisatietoData = lisatieto;
+            $scope.taidealantyyppiData = taidealantyyppikategoria;
           }).then(() => {
           });
        };

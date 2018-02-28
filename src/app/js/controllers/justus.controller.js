@@ -425,21 +425,19 @@ angular.module('JustusController', [])
           jnro: ''
         });
       }
-  };
+    };
 
     $scope.useTaidelanTyyppi = function(input) {
-      if (!$scope.justus.taidelisatieto) {
-        $scope.justus.taidelisatieto = [];
+      if (!$scope.justus.taidealantyyppikategoria) {
+        $scope.justus.taidealantyyppikategoria = [];
       }
 
-      // TODO: Ensure that maximum amount is five
-
-      if (!containsObject($scope.justus.taidelisatieto, input, 'lisatietoteksti') && $scope.justus.taidelisatieto.length < 5) {
-        $scope.justus.taidelisatieto.push({
-          lisatietoteksti: input,
-          lisatietotyyppi: 'taidealantyyppikategoria'
+      if (!containsObject($scope.justus.taidealantyyppikategoria, input, 'tyyppikategoria') && $scope.justus.taidealantyyppikategoria.length < 5) {
+        $scope.justus.taidealantyyppikategoria.push({
+          'tyyppikategoria': input
         });
       }
+      console.log($scope.justus.taidealantyyppikategoria);
     };
 
     const containsObject = function(array, value, identifier) {
@@ -547,7 +545,9 @@ angular.module('JustusController', [])
       if (!$scope.justus.tempLisatieto) {
         $scope.justus.tempLisatieto = {};
       }
-
+      if (!$scope.justus.taidealantyyppikategoria) {
+        $scope.justus.taidealantyyppikategoria = [];
+      }
       if (!$scope.justus.tempLisatieto.tapahtuma) {
         $scope.justus.tempLisatieto.tapahtuma = { 'lisatietoteksti': '', 'lisatietotyyppi': 'tapahtuma' };
       }
@@ -577,9 +577,10 @@ angular.module('JustusController', [])
         APIService.get('tieteenala', $stateParams.id, 'julkaisuid'),
         APIService.get('taiteenala', $stateParams.id, 'julkaisuid'),
         APIService.get('lisatieto', $stateParams.id, 'julkaisuid'),
+        APIService.get('taidealantyyppikategoria', $stateParams.id, 'julkaisuid'),
         APIService.get('organisaatiotekija', $stateParams.id, 'julkaisuid')
       ])
-      .spread((julkaisu, avainsana, tieteenala, taiteenala, lisatieto, organisaatiotekijat) => {
+      .spread((julkaisu, avainsana, tieteenala, taiteenala, lisatieto, taidealantyyppikategoria, organisaatiotekijat) => {
         $scope.justus = julkaisu;
 
         parseNames($scope.justus.tekijat).map((nameObject) => {
@@ -594,6 +595,7 @@ angular.module('JustusController', [])
         $scope.justus.tieteenala = tieteenala;
         $scope.justus.taiteenala = taiteenala;
 
+        $scope.justus.taidealantyyppikategoria = taidealantyyppikategoria;
         $scope.justus.tempLisatieto = {};
         $scope.justus.taidelisatieto = [];
         $scope.intializeLisatiedot(lisatieto);

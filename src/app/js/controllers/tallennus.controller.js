@@ -151,6 +151,37 @@ angular.module('TallennusController', [])
         });
     };
 
+    const savaTaidelanTyyppikategoria = (julkaisuId) => {
+      // if tyyppikategoria is empty; return
+      if ($scope.justus.taidealantyyppikategoria.length === 0) {
+        return Promise.resolve(true);
+      }
+      return Promise.resolve()
+        .then(() => {
+          if ($scope.justus.id) {
+            return $http({
+              method: 'DELETE',
+              url: `${API_BASE_URL}justus_save.php/taidealantyyppikategoria/julkaisuid/${julkaisuId}`
+            });
+          }
+        })
+        .then(() => {
+          const data = [];
+          $scope.justus.taidealantyyppikategoria.forEach((item) => {
+            data.push({
+              tyyppikategoria: item.tyyppikategoria,
+              julkaisuid: julkaisuId
+            });
+          });
+          return $http({
+            method: 'POST',
+            url: `${API_BASE_URL}justus_save.php/taidealantyyppikategoria/julkaisuid/${julkaisuId}`,
+            data: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+          });
+        });
+    };
+
     const saveOrganisaatiotekija = function(julkaisuId) {
       return Promise.resolve()
       .then(() => {
@@ -227,15 +258,14 @@ angular.module('TallennusController', [])
         if (!julkaisuId) {
           throw new Error('JulkaisuId missing from response');
         }
-
-        return Promise.all([
-          saveAvainsana(julkaisuId),
-          saveTieteenala(julkaisuId),
-          saveOrganisaatiotekija(julkaisuId),
-          saveTaiteenala(julkaisuId),
-          saveLisatieto(julkaisuId)
-
-        ]);
+          return Promise.all([
+            saveAvainsana(julkaisuId),
+            saveTieteenala(julkaisuId),
+            saveOrganisaatiotekija(julkaisuId),
+            saveTaiteenala(julkaisuId),
+            saveLisatieto(julkaisuId),
+            savaTaidelanTyyppikategoria(julkaisuId)
+          ]);
       })
       .then(() => {
         $state.go('omat', { lang: $scope.lang });
