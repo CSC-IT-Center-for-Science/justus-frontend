@@ -386,27 +386,27 @@ const i18n = {
         EN: 'Place of publication',
         tooltip: {
           FI: 'Paikka julkaisumaassa. Tiedolla voi tarkentaa julkaisumaan yhteydessä annettua tietoa. Usein tieto paikkakunnasta ja esimerkiksi esityksen paikasta on tärkeä.',
-          SV: 'Place of publication in the country of publication. With this information it is possible to provide additional information releated to the publication country.',
+          SV: 'Platsen i utgivningslandet. Man kan ge mer specifik information om publikationens utgivningsplats.',
           EN: 'Place of publication in the country of publication. With this information it is possible to provide additional information releated to the publication country.'
         },
         picktip: {
           FI: 'esim. Helsinki, Kansallisteatteri',
-          SV: 'e.g. Helsinki, Finnish National Theatre',
+          SV: 't.ex. Helsingfors, Finlands Nationalteater',
           EN: 'e.g. Helsinki, Finnish National Theatre'
         }
       },
       tapahtumanlisatieto: {
         FI: 'Tapahtuma',
-        SV: 'Event',
+        SV: 'Evenemang',
         EN: 'Event',
         tooltip: {
           FI: 'Missä tapahtumassa julkaisu on esitetty.',
-          SV: 'The event where the publication is performed',
+          SV: 'Evenemanget där publikationen har framställts.',
           EN: 'The event where the publication is performed'
         },
         picktip: {
           FI: 'esim. Sodankylän elokuvafestivaalit',
-          SV: 'e.g. Sodankylä Film Festival',
+          SV: 't.ex. Sodankylä filmfestival',
           EN: 'e.g. Sodankylä Film Festival'
         }
       },
@@ -426,29 +426,29 @@ const i18n = {
       },
       taiteenala: {
         FI: 'Julkaisun taiteenalat',
-        SV: 'Field of art of the publication',
+        SV: 'Publikationens konstområden',
         EN: 'Field of art of the publication',
         tooltip: {
           FI: 'Julkaisulle voidaan raportoida 1-7 taiteenalaa.',
-          SV: 'It is possible to report 1–7 fields or art per publication',
+          SV: 'Det är möjligt att ange 1-7 konstområden för publikationen.',
           EN: 'It is possible to report 1–7 fields or art per publication'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Valitse taiteenala', SV: 'Choose field of art', EN: 'Choose field of art' }
+        picktip: { FI: 'Valitse taiteenala', SV: 'Välj konstområde', EN: 'Choose field of art' }
       },
       taidealantyyppikategoria: {
         FI: 'Taidealan tyyppikategoriat',
-        SV: 'Field of art type categories',
+        SV: 'Typkategori',
         EN: 'Field of art type categories',
         tooltip: {
           FI: 'Tyyppikategoriat muistuttavat roolia, mutta ne ovat tuotoksen ominaisuus siinä missä rooli on tekijän ominaisuus.',
-          SV: 'Type categories resemble roles, but are a feature of the production/publication when again role is a feature of the author/maker',
+          SV: 'Typkategorier liknar roller men är verkets egenskaper medan med roll hänvisas till verkets upphovsman.',
           EN: 'Type categories resemble roles, but are a feature of the production/publication when again role is a feature of the author/maker'
         },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
         poista: { FI: '-', SV: '-', EN: '-', tooltip: { FI: 'Poista', SV: 'Ta bort', EN: 'Remove' } },
-        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: 'Choose type category of the field of art', EN: 'Choose type category of the field of art' }
+        picktip: { FI: 'Valitse taiteenalan tyyppikategoria', SV: 'Välj typkategori', EN: 'Choose type category of the field of art' }
       },
       kansainvalinenyhteisjulkaisu: {
         FI: 'Kansainvälinen yhteisjulkaisu',
@@ -487,16 +487,16 @@ const i18n = {
       },
       muutunniste: {
         FI: 'Muu tunniste',
-        SV: 'Other identifier',
+        SV: 'Annan identifierare',
         EN: 'Other identifier',
         tooltip: {
           FI: 'Esimerkiksi CD:n, nuotin, jne tuotetunniste tai -tunnisteet.',
-          SV: 'e.g. Identifier of a CD, note or other product',
+          SV: 'T.ex. Identifierare för en CD-skiva, noter eller en annan produkt',
           EN: 'e.g. Identifier of a CD, note or other product'
         },
         picktip: {
           FI: 'Kirjoita julkaisun muu tunniste',
-          SV: 'Write other identifier of the publication',
+          SV: 'Skriv en annan identifierare',
           EN: 'Write other identifier of the publication'
         }
       },
@@ -571,16 +571,16 @@ const i18n = {
       },
       lisatieto: {
         FI: 'Lisätieto',
-        SV: 'Additional information',
+        SV: 'Tilläggsinformation',
         EN: 'Additional information',
         tooltip: {
           FI: 'Vapaatekstikenttä, johon voi kirjoittaa organisaation sisäiseen käyttöön lisätietoja julkaisuun liittyen.',
-          SV: 'Text field, where one can write addtional information considering the publication for the use of one\'s own organisation',
+          SV: 'Textfält där man kan skriva kompletterande information om publikation för intern användning.',
           EN: 'Text field, where one can write addtional information considering the publication for the use of one\'s own organisation'
         },
         picktip: {
           FI: 'Kirjoita mahdollisia lisätietoja julkaisuun liittyen',
-          SV: 'Write possible additional information considering the publication',
+          SV: 'Skriv eventuell tilläggsinformation angående publikationen.',
           EN: 'Write possible additional information considering the publication'
         }
       },
