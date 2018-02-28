@@ -44,6 +44,7 @@ angular.module('TarkastaController', [])
         'Julkaisun kansainvälisyys',
         'Kansainvälinen yhteisjulkaisu',
         'DOI-tunniste',
+        'Muu tunniste',
         'Pysyvä verkko-osoite',
         'Rinnakkaistallennetun version verkko-osoite',
         'Avoin saatavuus',
@@ -182,6 +183,7 @@ angular.module('TarkastaController', [])
             'Julkaisun kansainvälisyys': publication.julkaisunkansainvalisyys,
             'Kansainvälinen yhteisjulkaisu': publication.kansainvalinenyhteisjulkaisu,
             'DOI-tunniste': publication.doitunniste,
+            'Muu tunniste': publication.muutunniste,
             'Pysyvä verkko-osoite': publication.pysyvaverkkoosoite,
             'Rinnakkaistallennetun version verkko-osoite': publication.rinnakkaistallennetunversionverkkoosoite,
             'Avoin saatavuus': publication.avoinsaatavuus,
@@ -455,6 +457,9 @@ angular.module('TarkastaController', [])
                 }
                 if (bvalue.lisatietotyyppi === 'julkistamispaikkakunta') {
                   $scope.data.julkaisu[akey].julkistamispaikkakunta = bvalue.lisatietoteksti;
+                }
+                if (bvalue.lisatietotyyppi === 'muutunniste') {
+                  $scope.data.julkaisu[akey].muutunniste = bvalue.lisatietoteksti;
                 }
               }
             }
