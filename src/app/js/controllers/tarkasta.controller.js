@@ -60,7 +60,7 @@ angular.module('TarkastaController', [])
         'Julkaisun taiteenalat',
         'Taidealan tyyppikategoriat',
         'Organisaation tekijä 1',
-        'Alayksikko 1',
+        'Alayksikkö 1',
         'ORCID 1',
         'Rooli 1',
         'Organisaation tekijä 2',
@@ -199,7 +199,7 @@ angular.module('TarkastaController', [])
             'Julkaisun taiteenalat': getTaiteenalat(publication.taiteenalat),
             'Taidealan tyyppikategoriat': getTyyppikategoriat(publication.taidealantyyppikategoria),
             'Organisaation tekijä 1': getOrganisaatioTekijat(publication.organisaatiotekijat, 1),
-            'Alayksikko 1': getAlayksikko(publication.organisaatiotekijat, 1),
+            'Alayksikkö 1': getAlayksikko(publication.organisaatiotekijat, 1),
             'ORCID 1': getOrcid(publication.orcid, 1),
             'Rooli 1': getRooli(publication.rooli, 1),
             'Organisaation tekijä 2': getOrganisaatioTekijat(publication.organisaatiotekijat, 2),
@@ -306,7 +306,7 @@ angular.module('TarkastaController', [])
       let getAlayksikko = function (data, val) {
         if (data === null || typeof data === 'undefined') {
           return;
-          } else if (typeof data[val - 1] !== 'undefined') {
+          } else if (data[val - 1]) {
             return data[val - 1].alayksikot;
           }
       };
@@ -314,8 +314,8 @@ angular.module('TarkastaController', [])
       let getOrganisaatioTekijat = function (data, val) {
         if (typeof data === 'undefined') {
           return;
-        } else if (typeof data[val - 1] !== 'undefined') {
-          return data[val - 1].etunimet + ',' + data[val - 1].sukunimi;
+        } else if (data[val - 1]) {
+          return data[val - 1].sukunimi + ',' + data[val - 1].etunimet;
         } else {
           return;
         }
