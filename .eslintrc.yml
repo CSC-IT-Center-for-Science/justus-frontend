@@ -22,32 +22,32 @@ globals:
   organizationFieldConfig: true
 
 rules:
-  angular/module-getter: 2
-  angular/module-setter: 2
-  angular/no-private-call: 2
-  angular/no-cookiestore: 2
-  angular/no-directive-replace: 2
-  angular/no-http-callback : 2
+  angular/module-getter: 1
+  angular/module-setter: 1
+  angular/no-private-call: 1
+  angular/no-cookiestore: 1
+  angular/no-directive-replace: 1
+  angular/no-http-callback : 1
   angular/di: 
-    - 2
+    - 1
     - array
   brace-style: 
-    - 2
+    - 1
     - stroustrup
-  no-console: 2
+  no-console: 0
   no-unneeded-ternary: 1
   no-unused-vars: 1
   no-useless-return: 1
   no-var: 1
   object-curly-spacing:
-    - 2
+    - 1
     - always
   prefer-const: 
     - 1
     - destructuring: all
       ignoreReadBeforeAssign: false
   semi: 
-    - 2
+    - 1
     - always
   space-before-function-paren: 0
 
