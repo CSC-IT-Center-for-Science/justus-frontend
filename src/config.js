@@ -32,125 +32,125 @@ let domain_organization = {
   //Arcada - Nylands svenska yrkeshögskola  #arcada-admins
   '@arcada.fi': {
     code:'02535',
-    email:'notvalid@arcada.fi'
+    email:'biblioteket@arcada.fi'
   },
   //Centria-ammattikorkeakoulu  #centria-admins
   '@centria.fi': {
     code:'02536',
-    email:'notvalid@centria'
+    email: 'marjo.pekola@centria'
   },
   //Diakonia-ammattikorkeakoulu  #diak-admins
   '@diak.fi': {
     code:'02623',
-    email:'notvalid@diak.fi'
+    email:'julkaisutiedot@diak.fi'
   },
   //Haaga-Helia ammattikorkeakoulu  #haaga-helia-admins
   '@haaga-helia.fi': {
     code:'10056',
-    email:'notvalid@haaga-helia.fi'
+    email:'kirjasto.pasila@haaga-helia.fi'
   },
   //Humanistinen ammattikorkeakoulu  #humak-admins
   '@humak.fi': {
     code:'02631',
-    email:'notvalid@humak.fi'
+    email:'kirjasto@humak.fi'
   },
   //Jyväskylän ammattikorkeakoulu  #jamk-admins
   '@jamk.fi': {
     code:'02504',
-    email:'notvalid@jamk.fi'
+    email:'helpdesk@jamk.fi'
   },
   //Kajaanin ammattikorkeakoulu  #kamk-admins
   '@kamk.fi': {
     code:'02473',
-    email:'notvalid@kamk.fi'
+    email:'amkkirjasto@kamk.fi'
   },
   //Karelia-ammattikorkeakoulu  #karelia-admins
   '@karelia.fi': {
     code:'02469',
-    email:'notvalid@karelia.fi'
+    email:'julkaisut@karelia.fi'
   },
   // nb! xamk may have 3 domains (mahd. kyamk.fi ja mamk.fi)
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@xamk.fi': {
     code:'10118',
-    email:'notvalid@xamk.fi'
+    email:'julkaisut@karelia.fi'
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@kyamk.fi': {
     code:'10118',
-    email:'notvalid@xamk.fi'
+    email:'julkaisut@karelia.fi'
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@mamk.fi': {
     code:'10118',
-    email:'notvalid@xamk.fi'
+    email:'julkaisut@karelia.fi'
   },
   //Lahden ammattikorkeakoulu  #lamk-admins
   '@lamk.fi': {
     code:'02470',
-    email:'notvalid@lamk.fi'
+    email: 'julkaisut@lamk.fi'
   },
   //Laurea-ammattikorkeakoulu  #laurea-admins
   '@laurea.fi': {
     code:'02629',
-    email:'notvalid@laurea.fi'
+    email:'julkaisut@laurea.fi'
   },
   //Metropolia ammattikorkeakoulu  #metropolia-admins
   '@metropolia.fi': {
     code:'10065',
-    email:'notvalid@metropolia.fi'
+    email:'annika.hayrynen@metropolia.fi'
   },
   //Satakunnan ammattikorkeakoulu  #samk-admins
   '@samk.fi': {
     code:'02507',
-    email:'julkaisurekisteri@samk.fi'
+    email: 'julkaisurekisteri@samk.fi'
   }, 
   //Seinäjoen ammattikorkeakoulu  #seamk-admins
   '@seamk.fi': {
     code:'02472',
-    email:'notvalid@seamk.fi'
+    email:'julkaisutuki@seamk.fi'
   },
   //Tampereen ammattikorkeakoulu  #tamk-admins
   '@tamk.fi': {
     code:'02630',
-    email:'notvalid@tamk.fi'
+    email:'tiina.kenttala-koivumaki@tamk.fi'
   },
   //Yrkeshögskolan Novia  #novia-admins
   '@novia.fi': {
     code:'10066',
-    email:'notvalid@novia.fi'
+    email:'johanna.glader@novia.fi'
   },
   //Poliisiammattikorkeakoulu  #polamk-admins
   '@polamk.fi': {
     code:'02557',
-    email:'notvalid@polamk.fi'
+    email:'kirjasto@polamk.fi'
   },
   //Poliisiammattikorkeakoulu
   '@poliisi.fi': {
     code:'02557',
-    email:'notvalid@poliisi.fi'
+    email:'kirjasto@polamk.fi'
   },
   // tutkimusorganisaatio
   //Ilmatieteen laitos  #fmi-admins
   '@fmi.fi': {
     code:'4940015',
-    email:'notvalid@fmi.fi'
+    email:'achim.drebs@fmi.fi'
   }, 
   // nb! mml has 2 domains
   //Maanmittauslaitos  #mml-admins
   '@nls.fi': { 
     code:'4020217', 
-    email:'notvalid@maanmittauslaitos.fi'
+    email:'MML.VIRTA@maanmittauslaitos.fi'
   },
   //Maanmittauslaitos  #mml-admins
   '@maanmittauslaitos.fi': {
     code:'4020217',
-    email:'notvalid@maanmittauslaitos.fi'
+    email:'MML.VIRTA@maanmittauslaitos.fi'
   },
   // Maanpuolustuskorkeakoulu
   '@mil.fi': {
     code:'02358',
-    email:'notvalid@mil.fi'
+    email: 'joonas.parviainen@mil.fi'
   }
 
   //,'@': '' //...
