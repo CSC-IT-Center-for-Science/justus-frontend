@@ -520,6 +520,27 @@ angular.module('JustusController', [])
     // - internal unscoped function
     // - parameter input is optional
     let fillMissingJustusLists = function() {
+
+      // default organisational unit year is 2017
+      $scope.alayksikkovuodet = [{
+        id: 2016,
+        label: '2016'
+      },
+      {
+        id: 2017,
+        label: '2017'
+      }];
+
+      // get alayksikkodata based on selected year
+      $scope.getAlayksikkoData = function(alayksikkovuosi) {
+        if (alayksikkovuosi.id === 2016) {
+          return $scope.getCode('organization', $scope.user.organization.code).alatyypit;
+        }
+        if (alayksikkovuosi.id === 2017) {
+          return $scope.getCode('organization', $scope.user.organization.code).alatyypit2017;
+        }
+      };
+
       if (!$scope.justus.avainsana) {
         $scope.justus.avainsana = [{ avainsana: '' }];
       }
@@ -539,6 +560,24 @@ angular.module('JustusController', [])
         $scope.justus.organisaatiotekija = [{
           alayksikko: [ { alayksikko: '' } ]
         }];
+        // set default organisational unit year as 2017
+        $scope.alayksikkovuosi = {
+          id: 2017,
+          label: '2017'
+        };
+
+      } else {
+        if ($scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko.includes('-2017-')) {
+          $scope.alayksikkovuosi = {
+            id: 2017,
+            label: '2017'
+          };
+        } else {
+          $scope.alayksikkovuosi = {
+            id: 2016,
+            label: '2016'
+          };
+        }
       }
 
       // Initialize lisatieto fields
