@@ -406,7 +406,7 @@ angular.module('JustusController', [])
         $scope.alatieteenalat = $scope.getCode('tieteenalat', input).alatyypit;
       }
       // Otherwise selecting alatieteenala, add if not already found
-      else if (!containsObject($scope.justus.tieteenala, input, 'tieteenalakoodi')) {
+      else if (!containsObject($scope.justus.tieteenala, input, 'tieteenalakoodi') && $scope.justus.tieteenala.length < 6) {
         $scope.justus.tieteenala.push({
           tieteenalakoodi: input,
           jnro: ''
