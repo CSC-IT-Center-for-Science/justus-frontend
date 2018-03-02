@@ -437,7 +437,6 @@ angular.module('JustusController', [])
           'tyyppikategoria': input
         });
       }
-      console.log($scope.justus.taidealantyyppikategoria);
     };
 
     const containsObject = function(array, value, identifier) {
@@ -556,24 +555,27 @@ angular.module('JustusController', [])
         $scope.justus.taidelisatieto = [];
       }
 
+      $scope.alayksikkovuosi = {};
+
       if (!$scope.justus.organisaatiotekija) {
         $scope.justus.organisaatiotekija = [{
           alayksikko: [ { alayksikko: '' } ]
         }];
+
         // set default organisational unit year as 2017
-        $scope.alayksikkovuosi = {
+        $scope.alayksikkovuosi.selected = {
           id: 2017,
           label: '2017'
         };
 
       } else {
         if ($scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko.includes('-2017-')) {
-          $scope.alayksikkovuosi = {
+          $scope.alayksikkovuosi.selected = {
             id: 2017,
             label: '2017'
           };
         } else {
-          $scope.alayksikkovuosi = {
+          $scope.alayksikkovuosi.selected = {
             id: 2016,
             label: '2016'
           };
