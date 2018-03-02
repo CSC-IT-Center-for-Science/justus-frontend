@@ -188,6 +188,7 @@ const i18n = {
         sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
+        alayksikkovuosi: { FI: 'Alayksikkökoodiston vuosi', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Valitse alayksikkövuosi', SV: 'Enhet', EN: 'Organisational unit' }, tooltip: { FI: 'Valitse vuosi jonka mukaan haluat valita alayksikködoodin, oletusvuosi on 2017'}   },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
         tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },

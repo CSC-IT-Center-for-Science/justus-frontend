@@ -186,6 +186,38 @@
     </div>
   </div>
 
+
+  <!-- Kenttä alayksikön vuosivalinta, hide from members, set default as 2017-->
+  <div data-ng-show="user.role !== 'member'" class="row form-group">
+       <div class="col-xs-12 col-sm-4">
+        <label data-ng-bind="i18n.content.form.organisaatiotekija.alayksikkovuosi[lang]">
+        </label>
+          <i class="fa fa-info-circle justus-info"
+             data-popover-trigger="'mouseenter'" data-popover-placement="right"
+             data-uib-popover="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.tooltip[lang]}}">
+         </i>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <!--<select ng-model="alayksikkovuosi"-->
+                <!--data-ng-options="item as item.label for item in alayksikkovuodet track by item.id"-->
+                <!--class="form-control">-->
+        <!--</select>-->
+        <ui-select data-ng-model="alayksikkovuosi.selected"
+                     theme="bootstrap"
+        >
+          <ui-select-match class="ui-select-match"
+                           data-ng-value="alayksikkovuosi.selected"
+                           placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
+            {{ $select.selected.label }}
+          </ui-select-match>
+            <ui-select-choices repeat="ala in alayksikkovuodet">
+              {{ala.label}}
+            </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
+
+
   <!-- Kenttä: Organisaation tekijät -->
   <div class="row form-group" 
     id="organisaatiotekijaGroup" 
@@ -245,15 +277,15 @@
                       {{role.arvo}} {{role.selite[lang]}}
                     </ui-select-choices>
                   </ui-select>
-            </div>
-
+              </div>
             <div class="col-xs-12">
               <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
               data-ng-init="pIx=$parent.$index" class="row form-group">
                 <div class="col-xs-9 col-sm-9">
-                  <input type="hidden" 
+                  <input type="hidden"
                     data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
                   <input type="text"
+                         ng-disabled="true"
                     class="form-control"
                     data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
                     data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
@@ -264,21 +296,19 @@
                   -{{justus.organisaatiotekija[$parent.$index].alayksikko|json}}-
                   -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{ota}}"
                   -->
+
                   <ui-select data-ng-model="alayksikko.selected" data-ng-hide="ota.alayksikko"
                     on-select="useOrganisaatiotekijaAlayksikko(pIx,$index,$select.selected.arvo)"
                     theme="bootstrap">
-                    <ui-select-match class="ui-select-match" 
+                    <ui-select-match class="ui-select-match"
                       placeholder="{{i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
                       {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                     </ui-select-match>
-                    <ui-select-choices repeat="o in getCode('organization',user.organization.code).alatyypit | filter: $select.search">
+                    <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
                       {{o.arvo}} {{o.selite[lang]}}
                     </ui-select-choices>
                   </ui-select>
                 </div>
-
-
-
                 <div class="col-xs-3 col-sm-3">
                   <!--
                   {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-

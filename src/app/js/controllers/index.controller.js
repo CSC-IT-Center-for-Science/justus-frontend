@@ -108,9 +108,15 @@ angular.module('IndexController', [])
               $scope.codes.alayksikkokoodi = a;
               angular.forEach(o, function(oobj, okey) {
                 oobj.alatyypit = [];
+                oobj.alatyypit2017 = [];
                 angular.forEach(a, function(aobj, akey) {
-                  if (aobj.arvo.match('^' + oobj.arvo + '-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+                  if (aobj.arvo.match('^' + oobj.arvo + '-') && !aobj.arvo.match('-2017-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+                  // if (aobj.arvo.match('^' + oobj.arvo + '-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
                     oobj.alatyypit.push(aobj);
+                  }
+                  // filter year 2017 data
+                  if (aobj.arvo.match('^' + oobj.arvo + '-' + '2017-')) {
+                    oobj.alatyypit2017.push(aobj);
                   }
                 });
                 // store in variable by pushing one at a time now
@@ -122,6 +128,7 @@ angular.module('IndexController', [])
         }
       });
     }
+
     // for ui listing unique organizations ordered!
     $scope.allowedOrganizations = function() {
       let ret = []; //
