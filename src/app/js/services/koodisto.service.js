@@ -212,6 +212,14 @@ angular.module('KoodistoService', [])
             }
           }
         }
+        if (c.alatyypit2017) {
+          for (let jen = c.alatyypit2017.length, j = 0; j < jen && j in c.alatyypit2017; j++) {
+            const a = c.alatyypit2017[j];
+            if (a.arvo === code) {
+              return a;
+            }
+          }
+        }
       }
     };
   }
