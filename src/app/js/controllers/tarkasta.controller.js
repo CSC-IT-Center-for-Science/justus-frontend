@@ -6,8 +6,8 @@ angular.module('TarkastaController', [])
     function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService) {
       $scope.meta = APIService.meta;
       $scope.data = [];
-      $scope.colOrder = 'id';
-      $scope.colOrderReverse = false;
+      $scope.colOrder = 'modified';
+      $scope.colOrderReverse = true;
       $scope.totalItems = 0;
       $scope.query = APIService.restoreQuery();
       $scope.loading = {};
