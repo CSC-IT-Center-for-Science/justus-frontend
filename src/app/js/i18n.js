@@ -188,7 +188,14 @@ const i18n = {
         sukunimi: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname', picktip: { FI: 'Sukunimi', SV: 'Efternamn', EN: 'Surname' } },
         etunimet: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names', picktip: { FI: 'Etunimet', SV: 'Förnamn', EN: 'First names' } },
         alayksikko: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Alayksikkö', SV: 'Enhet', EN: 'Organisational unit' } },
-        alayksikkovuosi: { FI: 'Alayksikkökoodiston vuosi', SV: 'Enhet', EN: 'Organisational unit', picktip: { FI: 'Valitse alayksikkövuosi', SV: 'Enhet', EN: 'Organisational unit' }, tooltip: { FI: 'Valitse vuosi jonka mukaan haluat valita alayksikködoodin, oletusvuosi on 2017'}   },
+        alayksikkovuosi: { FI: 'Alayksikkökoodiston vuosiversio', SV: 'Year of organisational unit', EN: 'Year of organisational unit',
+          picktip: { FI: 'Valitse vuosi', SV: 'Choose year', EN: 'Choose year' },
+          tooltip: {
+            FI: 'Valitse Koodistopalvelun alayksiköistä tietyn vuoden vuosiversio. Oletuksena käytössä on aina uusin vuosiversio, mutta tarvittaessa voidaan käyttää myös vanhempaa vuosiversiota esim. vanhemmille julkaisuille.',
+            SV: 'Choose the organisational units based on the Koodisto service by year. The service uses the most recent organisational units by default, but if necessary, older organisational units can be used as well.',
+            EN: 'Choose the organisational units based on the Koodisto service by year. The service uses the most recent organisational units by default, but if necessary, older organisational units can be used as well.'
+          }
+        },
         orcid: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID', picktip: { FI: 'ORCID', SV: 'ORCID', EN: 'ORCID' } },
         tekijanrooli: { FI: 'Rooli', SV: 'Roll', EN: 'Role', picktip: { FI: 'Rooli', SV: 'Roll', EN: 'Role' } },
         lisaa: { FI: '+', SV: '+', EN: '+', tooltip: { FI: 'Lisää', SV: 'Lägg till ny', EN: 'Add' } },
