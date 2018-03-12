@@ -567,9 +567,8 @@ angular.module('JustusController', [])
           id: 2017,
           label: '2017'
         };
-
       } else {
-        if ($scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko.includes('-2017-')) {
+        if ($scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko.includes('-2017-') || $scope.justus.organisaatiotekija[0].alayksikko[0].alayksikko === '') {
           $scope.alayksikkovuosi.selected = {
             id: 2017,
             label: '2017'
