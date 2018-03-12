@@ -282,26 +282,26 @@
               <div data-ng-repeat="ota in justus.organisaatiotekija[$index].alayksikko track by $index"
               data-ng-init="pIx=$parent.$index" class="row form-group">
                 <div class="col-xs-9 col-sm-9">
-                  <input type="hidden"
-                    data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">
-                  <input type="text"
-                         ng-disabled="true"
-                    class="form-control"
-                    data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"
-                    data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"
-                    data-ng-show="ota.alayksikko">
-                  <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
+                  <!--<input type="hidden"-->
+                    <!--data-ng-model="justus.organisaatiotekija[$parent.$index].alayksikko[$index].alayksikko">-->
+                  <!--<input type="text"-->
+                         <!--ng-disabled="true"-->
+                    <!--class="form-control"-->
+                    <!--data-ng-model="lab_organisaatiotekija[pIx].alayksikko$index"-->
+                    <!--data-ng-value="ota.alayksikko+' '+getCode('organization',ota.alayksikko).selite[lang]"-->
+                    <!--data-ng-show="ota.alayksikko">-->
+                  <!--<span class="fa fa-times form-control-feedback" aria-hidden="true"></span>-->
+
                   <!--
                   {{pIx}}-{{$index}}({{justus.organisaatiotekija[$parent.$index].alayksikko.length}})-
                   -{{justus.organisaatiotekija[$parent.$index].alayksikko|json}}-
                   -"{{justus.organisaatiotekija[$parent.$index].alayksikko[$index]}}"="{{ota}}"
                   -->
-
-                  <ui-select data-ng-model="alayksikko.selected" data-ng-hide="ota.alayksikko"
+                  <ui-select data-ng-model="alayksikko.selected"
                     on-select="useOrganisaatiotekijaAlayksikko(pIx,$index,$select.selected.arvo)"
                     theme="bootstrap">
                     <ui-select-match class="ui-select-match"
-                      placeholder="{{i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
+                      placeholder="{{ota.alayksikko}} {{getCode('organization',ota.alayksikko).selite[lang] || i18n.content.form.organisaatiotekija.alayksikko.picktip[lang]}}">
                       {{ $select.selected.arvo }} {{ $select.selected.selite[lang] }}
                     </ui-select-match>
                     <ui-select-choices repeat="o in getAlayksikkoData(alayksikkovuosi.selected) | filter: $select.search">
