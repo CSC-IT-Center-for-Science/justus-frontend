@@ -81,22 +81,22 @@
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
               data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)"
-              data-ng-click="editPublication(d)"
+
               data-ng-class="{'hover-table-green': !d.julkaisuntila || state.name=='hyvaksy'}">
             <td class="condensed nowrap">
               <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
-                href="" 
+                 data-ng-click="editPublication(d)"
                 data-ui-sref="justus({lang:lang,id:d.id,vaihe:4})">
                 <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
               </a>
               <span data-ng-show="state.name=='omat' && d.julkaisuntila" data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
             </td>
-            <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
-            <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
-            <td class="hidden-xs nowrap">
+            <td data-ng-click="editPublication(d)">{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
+            <td data-ng-click="editPublication(d)">{{ d.tekijat | truncate:true:180:'...' }}</td>
+            <td data-ng-click="editPublication(d)" class="hidden-xs nowrap">
               <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
             </td>
-            <td class="hidden-xs">
+            <td data-ng-click="editPublication(d)" class="hidden-xs">
               <span data-ng-bind="d.username"></span>
             </td>
             <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
