@@ -627,14 +627,10 @@ angular.module('TarkastaController', [])
         $scope.resetData();
 
         if (DataStoreService.getBooleanForOdottavat() === false) {
-          console.log("odottavat on false");
-          console.log(DataStoreService.getBooleanForOdottavat());
           $scope.odottavat = false;
           DataStoreService.storeBooleanforOdottavat(null);
         } else {
-          console.log(DataStoreService.getBooleanForOdottavat());
           $scope.odottavat = true;
-          console.log("odottavat on true");
         }
       };
 
