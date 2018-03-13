@@ -5,6 +5,7 @@ angular.module('ServicesModule', [
   'JUFOService',
   'JustusService',
   'KoodistoService',
+  'DataStoreService',
   'ValidationService',
   'VIRTAService',
   'AuthService'

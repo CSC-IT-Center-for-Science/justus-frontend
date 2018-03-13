@@ -5,7 +5,6 @@
       th {
         white-space: nowrap;
       }
-
       th,
       td {
         vertical-align: top;
@@ -34,4 +33,16 @@
       }
     }
   }
+}
+
+.hover-table-green {
+  &:hover {
+    cursor: pointer;
+    background-color: $brand-secondary !important;
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
+
 }

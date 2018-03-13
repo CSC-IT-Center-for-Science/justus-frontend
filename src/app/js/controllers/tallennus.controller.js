@@ -2,8 +2,8 @@
 
 angular.module('TallennusController', [])
 .controller('TallennusController', [
-  '$scope', '$log', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService',
-  function($scope, $log, $http, $state, APIService, API_BASE_URL, JustusService) {
+  '$scope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService',
+  function($scope, $window, $log, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
     // index provides: lang, ...
     // justus provides: justus
 
@@ -283,5 +283,18 @@ angular.module('TallennusController', [])
         }
       });
      };
+
+      $scope.cancelAndReturnToPublicationListing = function() {
+        if (!DataStoreService.getStateName()) {
+          $state.go('omat');
+          JustusService.clearPublicationForm();
+        } else {
+          let state = DataStoreService.getStateName();
+          $state.go(state);
+          DataStoreService.storeStateData(null);
+          JustusService.clearPublicationForm();
+        }
+      };
+
   }
 ]);

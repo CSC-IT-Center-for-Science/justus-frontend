@@ -278,11 +278,24 @@
     </tbody>
   </table>
 
-  <button 
-    data-ng-controller="TallennusController"
-    class="btn btn-lg btn-block btn-primary" 
-    type="button" 
-    data-ng-click="savePublicationForm()">
-    {{i18n.content.tallennus.tallenna[lang]}}
-  </button>
+  <div class="row">
+    <div class="col-md-8">
+      <button
+        data-ng-controller="TallennusController"
+        class="btn btn-lg btn-block btn-primary"
+        type="button"
+        data-ng-click="savePublicationForm()">
+        {{i18n.content.tallennus.tallenna[lang]}}
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button
+        data-ng-controller="TallennusController"
+        class="btn btn-lg btn-block btn-danger"
+        type="button"
+        data-ng-click=cancelAndReturnToPublicationListing()>
+        {{i18n.content.tallennus.hylkaa[lang]}}
+      </button>
+    </div>
+  </div>
 </div>

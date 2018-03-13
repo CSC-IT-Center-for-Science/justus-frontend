@@ -70,19 +70,19 @@
               <span class="fa fa-sort-desc" data-ng-if="colOrder=='username' && !(colOrderReverse)"></span>
               <span class="fa fa-sort-asc" data-ng-if="colOrder=='username' && (colOrderReverse)"></span>
             </th>
-
             <th data-ng-show="state.name=='hyvaksy'"
               data-ng-click="colOrderReverse=!(colOrder=='julkaisuntila'?colOrderReverse:false); colOrder='julkaisuntila'"
               class="condensed">
               <span data-ng-bind="i18n.content.tarkasta.table.hyvaksy[lang]"></span>
               <span class="fa" data-ng-class="{'fa-sort-desc': colOrder=='julkaisuntila' && !(colOrderReverse), 'fa-sort-asc': colOrder=='julkaisuntila' && (colOrderReverse)}"></span>
             </th>
-
           </tr>
         </thead>
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
-              data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)">
+              data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)"
+              data-ng-click="editPublication(d)"
+              data-ng-class="{'hover-table-green': !d.julkaisuntila || state.name=='hyvaksy'}">
             <td class="condensed nowrap">
               <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
                 href="" 

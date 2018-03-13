@@ -18,6 +18,10 @@
   resize: vertical;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

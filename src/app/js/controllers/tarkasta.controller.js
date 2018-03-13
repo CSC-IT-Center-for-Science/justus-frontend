@@ -2,8 +2,8 @@
 
 angular.module('TarkastaController', [])
   .controller('TarkastaController', [
-    '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService',
-    function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService) {
+    '$rootScope', '$scope', '$http', '$state', '$location', '$log', '$timeout', 'APIService', 'KoodistoService', 'DataStoreService',
+    function ($rootScope, $scope, $http, $state, $location, $log, $timeout, APIService, KoodistoService, DataStoreService) {
       $scope.meta = APIService.meta;
       $scope.data = [];
       $scope.colOrder = 'modified';
@@ -500,6 +500,17 @@ angular.module('TarkastaController', [])
         });
       };
 
+      $scope.editPublication = function(d) {
+        if ($scope.state.name === 'omat' && d.julkaisuntila) {
+          return;
+        } else {
+          DataStoreService.storeStateData($scope.state.name)
+          DataStoreService.storeBooleanforOdottavat($scope.odottavat);
+          $location.path('/justus').search({lang: $scope.lang, id: d.id, vaihe: 4});
+        }
+      };
+
+
       // map from service (generic) to scope
       $scope.getCode = function (codeset, code) {
         return KoodistoService.getCode($scope.codes, codeset, code);
@@ -607,7 +618,6 @@ angular.module('TarkastaController', [])
          // val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
          // col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
 
-
         // at very first test that user object is accessible
         if (!$scope.hasAccess($scope.state.name)) {
           $state.go('index', {lang: $scope.lang});
@@ -615,7 +625,17 @@ angular.module('TarkastaController', [])
           return;
         }
         $scope.resetData();
-        $scope.odottavat = true;
+
+        if (DataStoreService.getBooleanForOdottavat() === false) {
+          console.log("odottavat on false");
+          console.log(DataStoreService.getBooleanForOdottavat());
+          $scope.odottavat = false;
+          DataStoreService.storeBooleanforOdottavat(null);
+        } else {
+          console.log(DataStoreService.getBooleanForOdottavat());
+          $scope.odottavat = true;
+          console.log("odottavat on true");
+        }
       };
 
       init();

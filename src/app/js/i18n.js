@@ -606,10 +606,11 @@ const i18n = {
         korosta: { FI: 'korosta', SV: 'markera', EN: 'highlight' },
         poistakorostus: { FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight' }
       },
-      jatka: { FI: 'Tallenna muutokset ja siirry esikatseluun', SV: 'Spara och förhandsgranska', EN: 'Save changes and preview' }
+      jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' }
     },
     tallennus: {
-      tallenna: { FI: 'Tallenna tiedot ja palaa omiin tallennuksiin', SV: 'Spara och gå till egna publikationer', EN: 'Save changes and return to saved publications' }
+      tallenna: { FI: 'Tallenna tiedot ja palaa omiin tallennuksiin', SV: 'Spara och gå till egna publikationer', EN: 'Save changes and return to saved publications' },
+      hylkaa: { FI: 'Hylkää ja palaa omiin tallennuksiin', SV: 'Avbryt och gå till egna publikationer', EN: 'Discard and return to saved publications' }
     },
     vaihevuo: {
       julkaisutyyppi: { FI: 'Valitse julkaisutyyppi', SV: 'Välj publikationstyp', EN: 'Choose publication type' },
