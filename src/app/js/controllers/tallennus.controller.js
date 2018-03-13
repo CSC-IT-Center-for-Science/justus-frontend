@@ -273,7 +273,8 @@ angular.module('TallennusController', [])
         JustusService.clearPublicationForm();
       })
       .catch((error) => {
-        $log.error(error);
+        // $log.error(error);
+         console.log(error);
 
         // Todo: Backend provides invalid JSON as a response which results in a baddata-error even though the save is a success
         // Can be removed after the responses are fixed
