@@ -3,7 +3,7 @@
 angular.module('TallennusController', [])
 .controller('TallennusController', [
   '$scope', '$log', '$window', '$http', '$state', 'APIService', 'API_BASE_URL', 'JustusService', 'DataStoreService',
-  function($scope, $window, $log, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
+  function($scope, $log, $window, $http, $state, APIService, API_BASE_URL, JustusService, DataStoreService) {
     // index provides: lang, ...
     // justus provides: justus
 
@@ -273,8 +273,7 @@ angular.module('TallennusController', [])
         JustusService.clearPublicationForm();
       })
       .catch((error) => {
-        // $log.error(error);
-         console.log(error);
+          $log.error(error);
 
         // Todo: Backend provides invalid JSON as a response which results in a baddata-error even though the save is a success
         // Can be removed after the responses are fixed
