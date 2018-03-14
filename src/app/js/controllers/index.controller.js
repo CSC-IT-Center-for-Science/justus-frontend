@@ -77,18 +77,7 @@ angular.module('IndexController', [])
       $scope.codes.taidealantyypit = o;
     });
 
-    // ugly hack to get ALL alatieteenalas in one list
-    $scope.getAlltieteenalat = function() {
-      let ret = [];
-      angular.forEach($scope.codes.tieteenalat, function(tobj, tkey) {
-        tobj.nogo = true;
-        ret.push(tobj);
-        angular.forEach(tobj.alatyypit, function(aobj, akey) {
-          ret.push(aobj);
-        });
-      });
-      return ret;
-    };
+
 
     // unite organization code and alayksikkokoodi to "organization" codeset (our own!)
     // nb! only for those organizations we've included in config. (there are a lot of them otherwise, for ex all oppilaitosnumero)
