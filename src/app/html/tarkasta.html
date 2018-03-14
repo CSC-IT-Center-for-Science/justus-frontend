@@ -81,7 +81,7 @@
         <tbody>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
               data-ng-if="(odottavat && !d.julkaisuntila) || (!odottavat && d.julkaisuntila)"
-
+              data-ng-hide="d.julkaisuntila === '-1'"
               data-ng-class="{'hover-table-green': !d.julkaisuntila || state.name=='hyvaksy'}">
             <td class="condensed nowrap">
               <a data-ng-show="state.name=='hyvaksy' || !d.julkaisuntila"
