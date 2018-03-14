@@ -37,6 +37,7 @@ angular.module('IndexController', [])
       });
     }
 
+  let init = function() {
     $scope.i18n = (typeof (i18n) !== 'undefined') ? i18n : {};
     $scope.codes = (typeof (codes) !== 'undefined') ? codes : {}; // config
 
@@ -123,21 +124,48 @@ angular.module('IndexController', [])
                 $scope.codes.organization.push(oobj);
                 orgPushed.push(oobj.arvo);
               });
+              $scope.getOrganizationList();
             });
           });
         }
       });
     }
+  }
 
-    // for ui listing unique organizations ordered!
-    $scope.allowedOrganizations = function() {
-      let ret = []; //
+ // for ui listing unique organizations ordered by languaage!
+  $scope.getOrganizationList = function() {
+
+        let retFI = [];
+        let retSV = [];
+        let retEN = [];
+
       angular.forEach($scope.codes.organization, function(oobj, okey) {
-        if (oobj.arvo !== '00000' && ret.indexOf(oobj.selite[$scope.lang]) < 0) {
-          ret.push(oobj.selite[$scope.lang]);
+        if (oobj.arvo !== '00000' && retFI.indexOf(oobj.selite['FI']) < 0) {
+          retFI.push(oobj.selite['FI']);
+        }
+        if (oobj.arvo !== '00000' && retSV.indexOf(oobj.selite['SV']) < 0) {
+          retSV.push(oobj.selite['SV']);
+        }
+        if (oobj.arvo !== '00000' && retEN.indexOf(oobj.selite['EN']) < 0) {
+          retEN.push(oobj.selite['EN']);
         }
       });
-      return ret.sort();
+      $scope.organizationListFI = retFI.sort();
+      $scope.organizationListSV = retSV.sort();
+      $scope.organizationListEN = retEN.sort();
+  }
+
+    // ugly hack to get ALL alatieteenalas in one list
+    $scope.getAlltieteenalat = function() {
+      let ret = [];
+      angular.forEach($scope.codes.tieteenalat, function(tobj, tkey) {
+        tobj.nogo = true;
+        ret.push(tobj);
+        angular.forEach(tobj.alatyypit, function(aobj, akey) {
+          ret.push(aobj);
+        });
+      });
+      return ret;
     };
 
     // for knowing (save to scope) which "state" is selected (criteria+$transitions)
@@ -216,5 +244,8 @@ angular.module('IndexController', [])
         }
       }
     };
+
+    init();
+
   }
 ]);

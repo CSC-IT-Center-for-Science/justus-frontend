@@ -19,14 +19,38 @@
 
     <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
     <div class="row">
-      <div class="col-xs-12 col-sm-4">
-        <span data-ng-repeat="o in allowedOrganizations()" data-ng-if="$index < allowedOrganizations().length/3"><span data-ng-bind="o"></span><br></span>
+      <div ng-if="lang === 'FI'">
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListFI" data-ng-if="$index < organizationListFI.length/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListFI" data-ng-if="$index >= organizationListFI.length/3 && $index < organizationListFI.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListFI" data-ng-if="$index >= organizationListFI.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
       </div>
-      <div class="col-xs-12 col-sm-4">
-        <span data-ng-repeat="o in allowedOrganizations()" data-ng-if="$index >= allowedOrganizations().length/3 && $index < allowedOrganizations().length*2/3"><span data-ng-bind="o"></span><br></span>
+      <div ng-if="lang === 'SV'">
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListSV" data-ng-if="$index < organizationListSV.length/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListSV" data-ng-if="$index >= organizationListSV.length/3 && $index < organizationListSV.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListSV" data-ng-if="$index >= organizationListSV.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
       </div>
-      <div class="col-xs-12 col-sm-4">
-        <span data-ng-repeat="o in allowedOrganizations()" data-ng-if="$index >= allowedOrganizations().length*2/3"><span data-ng-bind="o"></span><br></span>
+      <div ng-if="lang === 'EN'">
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListEN" data-ng-if="$index < organizationListEN.length/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListEN" data-ng-if="$index >= organizationListEN.length/3 && $index < organizationListEN.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <span data-ng-repeat="o in organizationListEN" data-ng-if="$index >= organizationListEN.length*2/3"><span data-ng-bind="o"></span><br></span>
+          </div>
       </div>
     </div>
   </div>
