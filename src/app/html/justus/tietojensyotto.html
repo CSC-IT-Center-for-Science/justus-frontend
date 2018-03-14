@@ -809,9 +809,10 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-10">
-          <input type="text" 
-            class="form-control" 
+          <input type="text"
+            class="form-control"
             data-ng-model="sel_julkaisunkieli"
+            data-ng-value="getCode('kieli',justus.julkaisunkieli.toUpperCase()).selite[lang]"
             data-uib-typeahead="o.selite[lang] for o in codes['kieli'] | filter: $viewValue"
             placeholder="{{i18n.content.form.julkaisunkieli.picktip[lang]}}"
             data-typeahead-on-select="useField('julkaisunkieli',$item.arvo.toLowerCase())"
@@ -882,8 +883,9 @@
     <div class="col-sm-8 col-xs-12 justus-data">
       <div class="row">
         <div class="col-xs-10">
-          <input type="text" 
-            class="form-control" 
+          <input type="text"
+            class="form-control"
+            data-ng-value="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
             data-ng-model="sel_julkaisumaa"
             data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
             data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
