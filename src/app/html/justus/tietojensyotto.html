@@ -1547,11 +1547,20 @@
 
 <!-- JATKA -->
 <div class="row form-group">
-  <div class="col-xs-12">
-    <button class="btn btn-lg btn-block btn-primary" 
-      type="button" 
+  <!-- <div class="row"> -->
+  <div class="col-md-8">
+    <button class="btn btn-lg btn-block btn-primary"
+      type="button"
       data-ng-click="useVaihe(4)">
       {{i18n.content.tietojensyotto.jatka[lang]}}
     </button>
   </div>
+  <div class="col-md-4">
+    <button class="btn btn-lg btn-block btn-danger"
+            type="button"
+            data-ng-click="cancelAndGoToPublicationListing()">
+      {{i18n.content.tietojensyotto.keskeyta[lang]}}
+    </button>
+  </div>
+  <!-- </div> -->
 </div>

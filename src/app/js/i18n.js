@@ -606,7 +606,8 @@ const i18n = {
         korosta: { FI: 'korosta', SV: 'markera', EN: 'highlight' },
         poistakorostus: { FI: 'poista korostus', SV: 'ta bort markeringen', EN: 'remove highlight' }
       },
-      jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' }
+      jatka: { FI: 'Siirry esikatseluun', SV: 'Förhandsgranska', EN: 'Preview' },
+      keskeyta: { FI: 'Hylkää ja mene omiin tallennuksiin', SV: 'Avbryt och go till egna publikationer ', EN: 'Discard and go to saved publications' }
     },
     tallennus: {
       tallenna: { FI: 'Tallenna tiedot ja palaa omiin tallennuksiin', SV: 'Spara och gå till egna publikationer', EN: 'Save changes and return to saved publications' },

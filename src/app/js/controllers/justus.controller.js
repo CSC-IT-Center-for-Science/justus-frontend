@@ -3,9 +3,9 @@
 angular.module('JustusController', [])
 .controller('JustusController', [
   '$rootScope', '$scope', '$log', '$http', '$state', '$stateParams', 'CrossRefService', 'VIRTAService',
-  'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DEMO_ENABLED',
+  'JUFOService', 'FintoService', 'KoodistoService', 'JustusService', 'APIService', 'ValidationService', 'DataStoreService', 'DEMO_ENABLED',
   function($rootScope, $scope, $log, $http, $state, $stateParams, CrossRefService, VIRTAService,
-  JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DEMO_ENABLED) {
+  JUFOService, FintoService, KoodistoService, JustusService, APIService, ValidationService, DataStoreService, DEMO_ENABLED) {
     $scope.loading = {};
     $scope.meta = APIService.meta;
     $scope.justus = JustusService.getPublicationFormData();
@@ -511,6 +511,20 @@ angular.module('JustusController', [])
 
     $scope.isFieldRequired = function(fieldName) {
       return JustusService.isFieldRequired(fieldName);
+    };
+
+    $scope.cancelAndGoToPublicationListing = function() {
+      // JustusService.clearPublicationForm();
+      // $state.go('omat');
+      if (!DataStoreService.getStateName()) {
+        $state.go('omat');
+        JustusService.clearPublicationForm();
+      } else {
+        let state = DataStoreService.getStateName();
+        $state.go(state);
+        DataStoreService.storeStateData(null);
+        JustusService.clearPublicationForm();
+      }
     };
 
     // fillMissingJustusLists - for UI setup list fields if otherwise missing
