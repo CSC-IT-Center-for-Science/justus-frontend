@@ -40,7 +40,7 @@
               class="btn btn-secondary pull-right"
               data-ng-if="!odottavat"
               ng-click="showRejectedPublications()">
-              <span data-ng-bind="i18n.content.tarkasta.hylatyt.painike[lang]"></span>
+              <span data-ng-bind="showhide[lang]+' '+i18n.content.tarkasta.hylatyt.painike[lang]"></span>
       </button>
       <hr>
     </div>
@@ -121,7 +121,7 @@
           </tr>
           <tr data-ng-if="odottavat === false"
               data-ng-show="showRejected && data.julkaisu.length > 0" class="bg-white">
-            <td colspan="6"><h4><span data-ng-bind="i18n.content.tarkasta.hylatyt.otsikko[lang]"></span></h4></td>
+            <td colspan="6"><h4><span class="font-weight-bold" data-ng-bind="i18n.content.tarkasta.hylatyt.otsikko[lang]"></span></h4></td>
           </tr>
           <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
               data-ng-if="d.julkaisuntila === '-1' && odottavat === false"
@@ -155,15 +155,15 @@
   </div>
 
   <div class="text-center">
-    <ul uib-pagination 
+    <ul uib-pagination
       data-ng-if="totalItems > query.pageSize"
       data-ng-change="loadPublications()"
       data-total-items="totalItems"
-      data-ng-model="query.currentPageNumber" 
+      data-ng-model="query.currentPageNumber"
       max-size="3"
       class="pagination"
       items-per-page="query.pageSize"
-      boundary-links="true" 
+      boundary-links="true"
       force-ellipses="true">
     </ul>
   </div>

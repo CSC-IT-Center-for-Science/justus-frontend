@@ -636,8 +636,10 @@ const i18n = {
       csv: { FI: 'Lataa CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export to CSV'},
       hylatyt: {
         otsikko: { FI: 'Hylätyt julkaisut', SV: 'Övergivna publikationer', EN: 'Rejected publications' },
-        painike: { FI: 'Näytä/Piilota hylätyt julkaisut', SV: 'Visa/Dölja övergivna publikationer', EN: 'Show/Hide rejected publications' }
-      },
+        nayta: { FI: 'Näytä', SV: 'Visa', EN: 'Show'},
+        piilota: { FI: 'Piilota', SV: 'Dölja', EN: 'Hide'},
+        painike: { FI: ' hylätyt julkaisut', SV: ' övergivna publikationer', EN: ' rejected publications' }
+      }
     },
 
     yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },

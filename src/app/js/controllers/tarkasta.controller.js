@@ -614,10 +614,16 @@ angular.module('TarkastaController', [])
       // let col;
 
       $scope.showRejectedPublications = function() {
+
+
         if($scope.showRejected) {
           $scope.showRejected = false;
+          $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.nayta;
+
         } else {
           $scope.showRejected = true;
+          $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.piilota;
+
         }
       }
 
@@ -631,6 +637,7 @@ angular.module('TarkastaController', [])
         }
         $scope.resetData();
         $scope.showRejected = false;
+        $scope.showhide = $scope.i18n.content.tarkasta.hylatyt.nayta;
 
         if (DataStoreService.getBooleanForOdottavat() === false) {
           $scope.odottavat = false;
