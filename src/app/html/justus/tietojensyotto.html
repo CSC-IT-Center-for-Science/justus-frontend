@@ -171,14 +171,14 @@
           <span class="btn btn-primary justus-btn"
             data-ng-click="useKopioiTekijat(justus.tekijat)"
             data-ng-show="justus.tekijat && !(justus.organisaatiotekija[0].sukunimi || justus.organisaatiotekija[0].etunimet)"
-            data-popover-trigger="'mouseenter'" 
+            data-popover-trigger="'mouseenter'"
             tdata-popover-placement="right"
             data-uib-popover="{{i18n.content.form.organisaatiotekija.kopioi.tooltip[lang]}}"
             data-ng-bind="i18n.content.form.organisaatiotekija.kopioi[lang]">
           </span>
         </div>
         <div class="col-xs-2">
-          <i class="fa fa-arrow-left pull-right form-control-feedback-extra" 
+          <i class="fa fa-arrow-left pull-right form-control-feedback-extra"
             data-ng-if="requiredHighlight && !isValid('julkaisuntekijoidenlukumaara')">
           </i>
         </div>
@@ -188,7 +188,8 @@
 
 
   <!-- Kenttä alayksikön vuosivalinta, hide from members, set default as 2017-->
-  <div data-ng-show="user.role !== 'member'" class="row form-group">
+  <div data-ng-if="isFieldVisible('alayksikko')"
+      data-ng-show="user.role !== 'member'" class="row form-group">
        <div class="col-xs-12 col-sm-4">
         <label data-ng-bind="i18n.content.form.organisaatiotekija.alayksikkovuosi[lang]">
         </label>
@@ -198,18 +199,13 @@
          </i>
       </div>
       <div class="col-xs-12 col-sm-5">
-        <!--<select ng-model="alayksikkovuosi"-->
-                <!--data-ng-options="item as item.label for item in alayksikkovuodet track by item.id"-->
-                <!--class="form-control">-->
-        <!--</select>-->
         <ui-select data-ng-model="alayksikkovuosi.selected"
-                     theme="bootstrap"
-        >
-          <ui-select-match class="ui-select-match"
-                           data-ng-value="alayksikkovuosi.selected"
-                           placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
-            {{ $select.selected.label }}
-          </ui-select-match>
+                     theme="bootstrap">
+            <ui-select-match class="ui-select-match"
+                             data-ng-value="alayksikkovuosi.selected"
+                             placeholder="{{i18n.content.form.organisaatiotekija.alayksikkovuosi.picktip[lang]}}">
+              {{ $select.selected.label }}
+            </ui-select-match>
             <ui-select-choices repeat="ala in alayksikkovuodet">
               {{ala.label}}
             </ui-select-choices>
@@ -219,8 +215,8 @@
 
 
   <!-- Kenttä: Organisaation tekijät -->
-  <div class="row form-group" 
-    id="organisaatiotekijaGroup" 
+  <div class="row form-group"
+    id="organisaatiotekijaGroup"
     data-ng-if="isFieldVisible('organisaatiotekija')">
     <div class="col-sm-4 col-xs-12">
       <label class="control-label" data-ng-bind="i18n.content.form.organisaatiotekija[lang]"></label>
