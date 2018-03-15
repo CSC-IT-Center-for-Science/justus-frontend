@@ -30,6 +30,10 @@
   background-color: #fff !important;
 }
 
+.d-inline-block {
+  display: inline-block;
+}
+
 @mixin input() {
   border-radius: $input-border-radius;
 }

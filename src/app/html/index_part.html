@@ -2,8 +2,8 @@
   data-ng-click="login()">
   <i class="fa fa-sign-in" aria-hidden="true"></i> {{i18n.etusivu.kirjaudu[lang]}}
 </button>
-<button class="btn btn-block btn-lg btn-primary" 
-  data-ui-sref="valitse({lang:lang})" 
+<button class="btn btn-block btn-lg btn-primary"
+  data-ui-sref="valitse({lang:lang})"
   data-ng-if="demoEnabled">
   <i class="fa fa-sign-in" aria-hidden="true"></i> Demo
 </button>
@@ -15,7 +15,14 @@
       <span data-ng-bind="text[lang]"></span>
     </p>
 
-    <h4 data-ng-bind="i18n.etusivu.help.title[lang]"></h4>
+
+    <h4 data-ng-bind="i18n.etusivu.help.title[lang]" class="d-inline-block"></h4>
+    <span>
+      <a href="https://wiki.eduuni.fi/display/CscJustus/Ohjeet" target="__blank">
+        <i class="fa fa-question-circle justus-info"></i> {{i18n.header.help[lang]}}
+      </a>
+    </span>
+
 
     <h4 data-ng-bind="i18n.etusivu.help.organization[lang]"></h4>
     <div class="row">
