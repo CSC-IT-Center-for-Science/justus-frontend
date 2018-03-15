@@ -613,10 +613,15 @@ angular.module('TarkastaController', [])
       // let val;
       // let col;
 
-      let init = function () {
+      $scope.showRejectedPublications = function() {
+        if($scope.showRejected) {
+          $scope.showRejected = false;
+        } else {
+          $scope.showRejected = true;
+        }
+      }
 
-         // val = $scope.user.organization.code !== '00000' ? $scope.user.organization.code : null;
-         // col = $scope.user.organization.code !== '00000' ? 'organisaatiotunnus' : null;
+      let init = function () {
 
         // at very first test that user object is accessible
         if (!$scope.hasAccess($scope.state.name)) {
@@ -625,6 +630,7 @@ angular.module('TarkastaController', [])
           return;
         }
         $scope.resetData();
+        $scope.showRejected = false;
 
         if (DataStoreService.getBooleanForOdottavat() === false) {
           $scope.odottavat = false;

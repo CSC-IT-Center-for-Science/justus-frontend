@@ -20,19 +20,27 @@
 <div data-ng-if="loading.publications === false">
   <div class="row">
     <div class="col-xs-12">
-      <button type="button" 
-        class="btn btn-default" 
+      <button type="button"
+        class="btn btn-default"
         ng-csv="getCsvExportFile()"
         lazy-load="true"
-        csv-header="csvExportHeader" 
+        csv-header="csvExportHeader"
         filename="julkaisut.csv"
         field-separator=";"
         quote-strings="true"
         data-ng-disabled="loading.csv === true">
-        Lataa CSV-tiedostona
+        <span data-ng-bind="i18n.content.tarkasta.csv[lang]"></span>
+
+
         <span data-ng-if="loading.csv">
           &nbsp;<span class="fa fa-spinner fa-spin"></span>
         </span>
+      </button>
+      <button type="button"
+              class="btn btn-secondary pull-right"
+              data-ng-if="!odottavat"
+              ng-click="showRejectedPublications()">
+              <span data-ng-bind="i18n.content.tarkasta.hylatyt.painike[lang]"></span>
       </button>
       <hr>
     </div>
@@ -101,9 +109,39 @@
             </td>
             <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
               <div class="btn-group">
-                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']" 
+                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']"
                   title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
-                  class="btn btn-primary" 
+                  class="btn btn-primary"
+                  data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
+                  data-ng-click="d.ui_julkaisuntila = julkaisuntila; updatePublication(d, julkaisuntila)">
+                  {{ julkaisuntila }}
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr data-ng-if="odottavat === false"
+              data-ng-show="showRejected && data.julkaisu.length > 0" class="bg-white">
+            <td colspan="6"><h4><span data-ng-bind="i18n.content.tarkasta.hylatyt.otsikko[lang]"></span></h4></td>
+          </tr>
+          <tr data-ng-repeat="d in data.julkaisu | orderBy:colOrder:colOrderReverse track by d.id"
+              data-ng-if="d.julkaisuntila === '-1' && odottavat === false"
+              data-ng-show="showRejected">
+            <td class="condensed nowrap">
+                <span data-ng-bind="d.julkaisuvuosi+'-'+d.organisaatiotunnus+'-'+d.id"></span>
+            </td>
+            <td>{{ d.julkaisunnimi | truncate:true:180:'...' }}</td>
+            <td>{{ d.tekijat | truncate:true:180:'...' }}</td>
+            <td>
+              <span data-ng-bind="d.modified | date:'d.M.yyyy HH:mm'"></span>
+            </td>
+            <td >
+              <span data-ng-bind="d.username"></span>
+            </td>
+            <td data-ng-show="state.name=='hyvaksy'" class="btn-col">
+              <div class="btn-group">
+                <button data-ng-repeat="julkaisuntila in ['-1','0','1','2']"
+                  title="{{getCode('julkaisuntila',julkaisuntila).selite[lang]}}"
+                  class="btn btn-primary"
                   data-ng-class="{'active': d.ui_julkaisuntila==julkaisuntila}"
                   data-ng-click="d.ui_julkaisuntila = julkaisuntila; updatePublication(d, julkaisuntila)">
                   {{ julkaisuntila }}

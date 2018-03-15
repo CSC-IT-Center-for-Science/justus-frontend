@@ -632,7 +632,12 @@ const i18n = {
         toiminnot: { FI: 'Toiminnot', SV: 'Funktioner', EN: 'Functions' },
         hyvaksy: { FI: 'Hyväksy', SV: 'Godkänd', EN: 'Approve' }
       },
-      uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' }
+      uusi: { FI: 'Tallenna uusi julkaisu', SV: 'Lägga till en ny publikation', EN: 'Save new publication' },
+      csv: { FI: 'Lataa CSV-tiedostona', SV: 'Hämta som CSV', EN: 'Export to CSV'},
+      hylatyt: {
+        otsikko: { FI: 'Hylätyt julkaisut', SV: 'Övergivna publikationer', EN: 'Rejected publications' },
+        painike: { FI: 'Näytä/Piilota hylätyt julkaisut', SV: 'Visa/Dölja övergivna publikationer', EN: 'Show/Hide rejected publications' }
+      },
     },
 
     yes: { FI: 'Kyllä', SV: 'Ja', EN: 'Yes' },
