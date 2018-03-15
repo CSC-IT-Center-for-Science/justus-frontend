@@ -417,6 +417,22 @@ const organizationFieldConfig = [
       'organisaatiotekija', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja',
       'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'taiteenala', 'taiteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
       'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+  },
+  // Savonia-ammattikorkeakoulu
+  {
+    domain: '@savonia.fi',
+    code:'02537',
+    email:'julkaisut@savonia.fi',
+    visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisuvuodenlisatieto', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+      'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero',
+      'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'taidealantyyppikategoria', 'kansainvalinenyhteisjulkaisu',
+      'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite',
+      'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat',
+      'julkaisumaa', 'julkistamispaikkakunta', 'tapahtumanlisatieto', 'julkaisunkieli', 'doitunniste', 'muutunniste', 'pysyvaverkkoosoite', 'tekijanrooli', 'lisatieto'],
+    requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+      'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja',
+      'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'taiteenala', 'taiteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+      'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
   }
 ];
 

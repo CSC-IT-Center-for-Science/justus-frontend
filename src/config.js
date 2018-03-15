@@ -151,6 +151,11 @@ let domain_organization = {
   '@mil.fi': {
     code:'02358',
     email: 'joonas.parviainen@mil.fi'
+  },
+  // Savonia-ammattikorkeakoulu
+  '@savonia.fi': {
+    code:'02537',
+    email: 'julkaisut@savonia.fi'
   }
 
   //,'@': '' //...
