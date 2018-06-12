@@ -156,7 +156,12 @@ let domain_organization = {
   '@savonia.fi': {
     code:'02537',
     email: 'julkaisut@savonia.fi'
-  }
+  },
+    // Turun ammattikorkeakoulu
+    '@turkuamk.fi': {
+      code:'02509',
+      email: 'julkaisutiedonkeruu@turkuamk.fi'
+    }
 
   //,'@': '' //...
 };

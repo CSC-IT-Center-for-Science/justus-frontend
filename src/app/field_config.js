@@ -433,7 +433,23 @@ const organizationFieldConfig = [
       'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja',
       'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'taiteenala', 'taiteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
       'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
-  }
+  },
+    // Turun ammattikorkeakoulu
+    {
+      domain: '@turkuamk.fi',
+      code:'02509',
+      email:'julkaisutiedonkeruu@turkuamk.fi',
+      visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisuvuodenlisatieto', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+        'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero',
+        'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'taidealantyyppikategoria', 'kansainvalinenyhteisjulkaisu',
+        'yhteisjulkaisuyrityksenkanssa', 'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite',
+        'emojulkaisunnimi', 'emojulkaisuntoimittajat', 'sivut', 'artikkelinumero', 'julkaisunkustannuspaikka', 'avainsanat',
+        'julkaisumaa', 'julkistamispaikkakunta', 'tapahtumanlisatieto', 'julkaisunkieli', 'doitunniste', 'muutunniste', 'pysyvaverkkoosoite', 'tekijanrooli', 'lisatieto'],
+      requiredFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
+        'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'lehdenjulkaisusarjannimi', 'kustantaja',
+        'julkaisunkansainvalisyys', 'tieteenala', 'tieteenalakoodi', 'taiteenala', 'taiteenalakoodi', 'kansainvalinenyhteisjulkaisu', 'yhteisjulkaisuyrityksenkanssa',
+        'avoinsaatavuus', 'julkaisurinnakkaistallennettu', 'rinnakkaistallennetunversionverkkoosoite']
+    }
 ];
 
 // Depicts field settings based on selected publication type. Settings for a single field constist of the following attributes:
