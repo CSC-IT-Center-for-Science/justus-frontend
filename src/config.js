@@ -161,7 +161,12 @@ let domain_organization = {
     '@turkuamk.fi': {
       code:'02509',
       email: 'julkaisutiedonkeruu@turkuamk.fi'
-    }
+    },
+    // Hämeen ammattikorkeakoulu
+      '@hamk.fi': {
+        code:'02467',
+        email: 'julkaisurekisteri@hamk.fi'
+       }
 
   //,'@': '' //...
 };
