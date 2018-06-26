@@ -54,6 +54,11 @@ let domain_organization = {
     code:'02631',
     email:'kirjasto@humak.fi'
   },
+    // Hämeen ammattikorkeakoulu
+    '@hamk.fi': {
+        code:'02467',
+        email: 'julkaisurekisteri@hamk.fi'
+    },
   //Jyväskylän ammattikorkeakoulu  #jamk-admins
   '@jamk.fi': {
     code:'02504',
@@ -162,10 +167,15 @@ let domain_organization = {
       code:'02509',
       email: 'julkaisutiedonkeruu@turkuamk.fi'
     },
-    // Hämeen ammattikorkeakoulu
-    '@hamk.fi': {
-        code:'02467',
-        email: 'julkaisurekisteri@hamk.fi'
+    // Taideyliopisto
+    '@uniarts.fi': {
+        code:'10103',
+        email: 'katariina.kivisto-rahnasto@uniarts.fi'
+    },
+    // Luonnonvarakeskus
+    '@luke.fi': {
+        code:'4100010',
+        email: 'leena.byholm@luke.fi'
     },
     // Oulun ammattikorkeakoulu
     '@oamk.fi': {
