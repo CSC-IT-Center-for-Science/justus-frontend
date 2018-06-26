@@ -73,17 +73,17 @@ let domain_organization = {
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@xamk.fi': {
     code:'10118',
-    email:'julkaisut@karelia.fi'
+    email:'julkaisut@xamk.fi'
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@kyamk.fi': {
     code:'10118',
-    email:'julkaisut@karelia.fi'
+    email:'julkaisut@xamk.fi'
   },
   //Kaakkois-Suomen ammattikorkeakoulu  #xamk-admins
   '@mamk.fi': {
     code:'10118',
-    email:'julkaisut@karelia.fi'
+    email:'julkaisut@xamk.fi'
   },
   //Lahden ammattikorkeakoulu  #lamk-admins
   '@lamk.fi': {
