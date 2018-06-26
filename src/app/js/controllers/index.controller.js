@@ -119,7 +119,7 @@ angular.module('IndexController', [])
         }
       });
     }
-  }
+  };
 
  // for ui listing unique organizations ordered by languaage!
   $scope.getOrganizationList = function() {
@@ -129,20 +129,21 @@ angular.module('IndexController', [])
         let retEN = [];
 
       angular.forEach($scope.codes.organization, function(oobj, okey) {
-        if (oobj.arvo !== '00000' && retFI.indexOf(oobj.selite['FI']) < 0) {
+        if (oobj.arvo !== '00000' && retFI.indexOf(oobj.selite['FI']) < 0 && oobj.arvo !== '10103' && oobj.arvo !== '4100010') {
+          // console.log(oobj);
           retFI.push(oobj.selite['FI']);
         }
-        if (oobj.arvo !== '00000' && retSV.indexOf(oobj.selite['SV']) < 0) {
+        if (oobj.arvo !== '00000' && retSV.indexOf(oobj.selite['SV']) < 0 && oobj.arvo !== '10103' && oobj.arvo !== '4100010') {
           retSV.push(oobj.selite['SV']);
         }
-        if (oobj.arvo !== '00000' && retEN.indexOf(oobj.selite['EN']) < 0) {
+        if (oobj.arvo !== '00000' && retEN.indexOf(oobj.selite['EN']) < 0 && oobj.arvo !== '10103' && oobj.arvo !== '4100010') {
           retEN.push(oobj.selite['EN']);
         }
       });
       $scope.organizationListFI = retFI.sort();
       $scope.organizationListSV = retSV.sort();
       $scope.organizationListEN = retEN.sort();
-  }
+  };
 
     // ugly hack to get ALL alatieteenalas in one list
     $scope.getAlltieteenalat = function() {
