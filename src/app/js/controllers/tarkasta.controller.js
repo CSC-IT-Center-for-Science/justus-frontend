@@ -558,6 +558,7 @@ angular.module('TarkastaController', [])
                 let m = o.modified;
                 m = m.replace(/-/g, '/'); // date separator to '/'
                 m = m.replace(/\..*$/, ''); // strip milliseconds away
+                m = m.replace(/\+.*$/, ''); // strip timezone
                 o.modified = new Date(m);
               }
               o.ui_julkaisuntila = o.julkaisuntila;
