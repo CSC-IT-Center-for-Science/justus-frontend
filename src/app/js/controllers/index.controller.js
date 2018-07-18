@@ -100,7 +100,7 @@ angular.module('IndexController', [])
                 oobj.alatyypit = [];
                 oobj.alatyypit2017 = [];
                 angular.forEach(a, function(aobj, akey) {
-                  if (aobj.arvo.match('^' + oobj.arvo + '-') && !aobj.arvo.match('-2017-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
+                  if (aobj.arvo.match('^' + oobj.arvo + '-') && (!aobj.arvo.match('-2017-')) && (!aobj.arvo.match('-2018-'))) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
                   // if (aobj.arvo.match('^' + oobj.arvo + '-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
                     oobj.alatyypit.push(aobj);
                   }
@@ -130,7 +130,6 @@ angular.module('IndexController', [])
 
       angular.forEach($scope.codes.organization, function(oobj, okey) {
         if (oobj.arvo !== '00000' && retFI.indexOf(oobj.selite['FI']) < 0 && oobj.arvo !== '10103' && oobj.arvo !== '4100010') {
-          // console.log(oobj);
           retFI.push(oobj.selite['FI']);
         }
         if (oobj.arvo !== '00000' && retSV.indexOf(oobj.selite['SV']) < 0 && oobj.arvo !== '10103' && oobj.arvo !== '4100010') {
