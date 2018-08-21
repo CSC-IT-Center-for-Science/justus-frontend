@@ -160,7 +160,7 @@ let domain_organization = {
   // Savonia-ammattikorkeakoulu
   '@savonia.fi': {
     code:'02537',
-    email: 'julkaisut@savonia.fi'
+    email: 'justus@savonia.fi'
   },
     // Turun ammattikorkeakoulu
     '@turkuamk.fi': {

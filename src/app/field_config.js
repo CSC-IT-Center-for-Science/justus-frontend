@@ -422,7 +422,7 @@ const organizationFieldConfig = [
   {
     domain: '@savonia.fi',
     code:'02537',
-    email:'julkaisut@savonia.fi',
+    email:'justus@savonia.fi',
     visibleFields: ['etunimet', 'sukunimi', 'julkaisutyyppi', 'julkaisuvuosi', 'julkaisuvuodenlisatieto', 'julkaisunnimi', 'tekijat', 'julkaisuntekijoidenlukumaara',
       'organisaatiotekija', 'alayksikko', 'konferenssinvakiintunutnimi', 'isbn', 'issn', 'volyymi', 'numero',
       'lehdenjulkaisusarjannimi', 'kustantaja',  'julkaisunkansainvalisyys', 'tieteenala', 'taiteenala', 'taidealantyyppikategoria', 'kansainvalinenyhteisjulkaisu',
