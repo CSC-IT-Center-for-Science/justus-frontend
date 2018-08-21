@@ -879,12 +879,13 @@
       <div class="row">
         <div class="col-xs-10">
           <input type="text"
-            class="form-control"
-            data-ng-value="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
-            data-ng-model="sel_julkaisumaa"
-            data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
-            data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
-            placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
+                 class="form-control"
+                 data-ng-value="getCode('maatjavaltiot2',justus.julkaisumaa).selite[lang]"
+                 data-ng-model="sel_julkaisumaa"
+                 data-uib-typeahead="o.arvo+' '+o.selite[lang] for o in codes['maatjavaltiot2'] | filter: $viewValue"
+                 data-typeahead-on-select="useField('julkaisumaa',$item.arvo)"
+                 data-typeahead-editable="false"
+                 placeholder="{{ i18n.content.form.julkaisumaa.picktip[lang] }}">
           <span class="fa fa-times form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="col-xs-2">
