@@ -99,6 +99,7 @@ angular.module('IndexController', [])
               angular.forEach(o, function(oobj, okey) {
                 oobj.alatyypit = [];
                 oobj.alatyypit2017 = [];
+                oobj.alatyypit2018 = [];
                 angular.forEach(a, function(aobj, akey) {
                   if (aobj.arvo.match('^' + oobj.arvo + '-') && (!aobj.arvo.match('-2017-')) && (!aobj.arvo.match('-2018-'))) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
                   // if (aobj.arvo.match('^' + oobj.arvo + '-')) { // alayksikkokoodi koodiarvo is in form "^123-..." where 123 is organization code
@@ -107,6 +108,10 @@ angular.module('IndexController', [])
                   // filter year 2017 data
                   if (aobj.arvo.match('^' + oobj.arvo + '-' + '2017-')) {
                     oobj.alatyypit2017.push(aobj);
+                  }
+                //  filter year 2018 data
+                  if (aobj.arvo.match('^' + oobj.arvo + '-' + '2018-')) {
+                      oobj.alatyypit2018.push(aobj);
                   }
                 });
                 // store in variable by pushing one at a time now
