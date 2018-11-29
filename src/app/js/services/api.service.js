@@ -150,6 +150,7 @@ angular.module('APIService', [])
 	  console.log(id);
 	  console.log(col);
 	  console.log(query);
+	  console.log(API_BASE_URL + 'justus_save.php/' + api + (col ? '/' + col : '') + '/' + id);
       return $http({
         method: 'GET',
         url: API_BASE_URL + 'justus_save.php/' + api + (col ? '/' + col : '') + '/' + id,
