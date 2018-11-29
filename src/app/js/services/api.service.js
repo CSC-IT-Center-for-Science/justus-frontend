@@ -146,6 +146,10 @@ angular.module('APIService', [])
     /* READ :: GET */
     this.get = function (api, id, col, query, singleResult = false) {
       // id voi puuttua, jolloin palautetaan kaikki
+	  console.log(api);
+	  console.log(id);
+	  console.log(col);
+	  console.log(query);
       return $http({
         method: 'GET',
         url: API_BASE_URL + 'justus_save.php/' + api + (col ? '/' + col : '') + '/' + id,
