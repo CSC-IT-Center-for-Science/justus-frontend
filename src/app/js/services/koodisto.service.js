@@ -220,6 +220,14 @@ angular.module('KoodistoService', [])
             }
           }
         }
+          if (c.alatyypit2018) {
+              for (let jen = c.alatyypit2018.length, j = 0; j < jen && j in c.alatyypit2018; j++) {
+                  const a = c.alatyypit2018[j];
+                  if (a.arvo === code) {
+                      return a;
+                  }
+              }
+          }
       }
     };
   }
