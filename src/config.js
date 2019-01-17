@@ -120,6 +120,11 @@ let domain_organization = {
     code:'02630',
     email:'tiina.kenttala-koivumaki@tamk.fi'
   },
+   //Tampereen ammattikorkeakoulu
+  '@tuni.fi': {
+    code:'02630',
+    email:'tiina.kenttala-koivumaki@tamk.fi'
+  },
   //Yrkeshögskolan Novia  #novia-admins
   '@novia.fi': {
     code:'10066',
